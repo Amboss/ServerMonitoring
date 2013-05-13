@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                http://www.springframework.org/schema/security
+                http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <!--  Spring Security autowire the parent property  -->
+    <security:authentication-manager/>
+
+    <!-- exclusions from Security Authentication-->
+    <!--<security:http pattern="/resources/**" security="none"/>-->
+
+    <!-- Configuration of Spring-Security. Set to false to assign custom filters  -->
+    <security:http auto-config="false" use-expressions="true"
+                   access-denied-page="/auth/denied"
+                   entry-point-ref="authenticationEntryPoint">
+
+        <security:logout invalidate-session="true"
+                         logout-success-url="/index.html"
+                         delete-cookies="SPRING_SECURITY_REMEMBER_ME_COOKIE"
+                         logout-url="/index.html?loggedout"/>
+
+        <security:custom-filter ref="authenticationFilter" position="FORM_LOGIN_FILTER"/>
+
+        <!-- permitAll access -->
+        <security:intercept-url pattern="/img/**" access="permitAll" />
+        <security:intercept-url pattern="/css/**"  access="permitAll" />
+        <security:intercept-url pattern="/js/**"  access="permitAll" />
+        <security:intercept-url pattern="/favicon.ico"  access="permitAll" />
+        <!--<security:intercept-url pattern="/j_spring_security*"  access="permitAll" />-->
+    </security:http>
+
+    <!-- Custom filter for username and password -->
+    <bean id="authenticationFilter"
+          class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"
+          p:authenticationManager-ref="customAuthenticationManager"
+          p:authenticationFailureHandler-ref="customAuthenticationFailureHandler"
+          p:authenticationSuccessHandler-ref="customAuthenticationSuccessHandler"/>
+
+    <!-- Custom authentication manager. !!! Username and password must not be the same !!! -->
+    <bean id="customAuthenticationManager"
+          class="serverMonitoring.logic.service.authentication.UserAuthentication"/>
+
+    <!-- default failure URL -->
+    <bean id="customAuthenticationFailureHandler"
+          class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler"
+          p:defaultFailureUrl="/index.html?authfail"/>
+
+    <!-- default target URL here -->
+    <bean id="customAuthenticationSuccessHandler"
+          class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler"
+          p:defaultTargetUrl="/index.html"/>
+
+    <!-- The AuthenticationEntryPoint -->
+    <bean id="authenticationEntryPoint"
+          class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint"
+          p:loginFormUrl="/index.html?login"/>
+</beans>

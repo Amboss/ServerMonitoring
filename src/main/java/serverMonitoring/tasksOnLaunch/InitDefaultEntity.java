@@ -12,6 +12,7 @@ import serverMonitoring.logic.DAO.DAOImpl.EmployeeDaoImpl;
 import serverMonitoring.logic.DAO.EmployeeDao;
 import serverMonitoring.model.EmployeeEntity;
 
+import javax.xml.bind.DataBindingException;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -25,11 +26,9 @@ import java.util.List;
 public class InitDefaultEntity implements ApplicationListener<ContextRefreshedEvent> {
 
     protected final Logger log = Logger.getLogger(this.getClass().getName());
-    @Value( "#{applicationProperties['encoding.strengths']}" )
-    protected String encodingStrengths;
-    private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(Integer.parseInt(encodingStrengths));
+    protected @Value( "#{applicationProperties['encoding.strengths']}" ) String encodingStrengths;
+    private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
     private java.util.Date date = new java.util.Date();
-    @Autowired
     private EmployeeEntity entity = new EmployeeEntity();
     @Autowired
     private EmployeeDao employeeDao = new EmployeeDaoImpl();
@@ -37,18 +36,12 @@ public class InitDefaultEntity implements ApplicationListener<ContextRefreshedEv
     /*
      *  settings from application.properties
      */
-    @Value( "#{applicationProperties['startup.entity.setAdmin']}" )
-    protected String entitySetAdmin;
-    @Value( "#{applicationProperties['startup.entity.setActive']}" )
-    protected String entitySetActive;
-    @Value( "#{applicationProperties['startup.entity.setEmail']}" )
-    protected String entitySetEmail;
-    @Value( "#{applicationProperties['startup.entity.setEmployee_name']}" )
-    protected String entitySetEmployee_name;
-    @Value( "#{applicationProperties['startup.entity.setLogin']}" )
-    protected String entitySetLogin;
-    @Value( "#{applicationProperties['startup.entity.setPassword']}" )
-    protected String entitySetPassword;
+    protected @Value( "#{applicationProperties['startup.entity.setAdmin']}" ) String entitySetAdmin;
+    protected @Value( "#{applicationProperties['startup.entity.setActive']}" ) String entitySetActive;
+    protected @Value( "#{applicationProperties['startup.entity.setEmail']}" ) String entitySetEmail;
+    protected @Value( "#{applicationProperties['startup.entity.setEmployee_name']}" ) String entitySetEmployee_name;
+    protected @Value( "#{applicationProperties['startup.entity.setLogin']}" )String entitySetLogin;
+    protected @Value( "#{applicationProperties['startup.entity.setPassword']}" ) String entitySetPassword;
 
     /*
      * creating default access entity
@@ -61,15 +54,21 @@ public class InitDefaultEntity implements ApplicationListener<ContextRefreshedEv
             return;
         }
 
-        entity.setAdmin(Integer.parseInt(entitySetAdmin));
-        entity.setActive(Integer.parseInt(entitySetActive));
-        entity.setCreated(new Timestamp(date.getTime()));
-        entity.setEmail(entitySetEmail);
-        entity.setEmployee_name(entitySetEmployee_name);
-        entity.setLastLogin(new Timestamp(date.getTime()));
-        entity.setLogin(entitySetLogin);
-        entity.setPassword(passwordEncoder.encodePassword(entitySetPassword, null));
-        employeeDao.save(entity);
-        log.debug("successful creation of default access entity");
+        try {
+            entity.setAdmin(Integer.parseInt(entitySetAdmin));
+            entity.setActive(Integer.parseInt(entitySetActive));
+            entity.setCreated(new Timestamp(date.getTime()));
+            entity.setEmail(entitySetEmail);
+            entity.setEmployee_name(entitySetEmployee_name);
+            entity.setLastLogin(new Timestamp(date.getTime()));
+            entity.setLogin(entitySetLogin);
+            entity.setPassword(passwordEncoder.encodePassword(entitySetPassword, null));
+            employeeDao.save(entity);
+            log.debug("successful creation of default access entity");
+        } catch (DataBindingException e) {
+            log.error(e.getStackTrace());
+            throw new ExceptionInInitializerError("creation of default access entity");
+        }
+
     }
 }

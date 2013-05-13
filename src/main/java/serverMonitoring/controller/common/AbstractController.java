@@ -20,8 +20,8 @@ public abstract class AbstractController {
 
     protected Logger log = Logger.getLogger(this.getClass().getName());
 
-    @Value( "#{applicationProperties['format.date']}" )
-    protected String dateFormat;
+    protected @Value( "#{applicationProperties['format.date']}" )String dateFormat;
+
 
     @InitBinder
     public void allowEmptyDateBinding( WebDataBinder binder ) {

@@ -32,15 +32,13 @@ import java.util.List;
 public class UserAuthentication implements AuthenticationManager {
 
     protected static Logger userAccessLogger = Logger.getLogger("UserAuthentication");
-    @Value( "#{applicationProperties['startup.entity.setLogin']}" )
-    protected String entitySetLogin;
-    @Value( "#{applicationProperties['startup.entity.setPassword']}" )
-    protected String entitySetPassword;
-    @Value( "#{applicationProperties['encoding.strengths']}" )
-    protected String encodingStrengths;
-    private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(Integer.parseInt(encodingStrengths));
+    protected @Value( "#{applicationProperties['startup.entity.setLogin']}" ) String entitySetLogin;
+    protected @Value( "#{applicationProperties['startup.entity.setPassword']}" ) String entitySetPassword;
+    protected @Value( "#{applicationProperties['encoding.strengths']}" ) Integer encodingStrengths;
     @Autowired
     private EmployeeDao employeeDao = new EmployeeDaoImpl();
+
+    private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
 
     public Authentication authenticate(Authentication auth)  throws UsernameNotFoundException {
 
@@ -72,9 +70,14 @@ public class UserAuthentication implements AuthenticationManager {
             EmployeeEntity defaultEntity = (list.isEmpty()) ? null : list.get(0);
             if (defaultEntity != null) {
                 if (defaultEntity.getPassword().equals(passwordEncoder.encodePassword(entitySetPassword, null))) {
-                    //  must be redirected to /employee/monitoring/password_update.ftl
-                    EmployeeController controller = new EmployeeController();
-                    controller.getPasswordUpdatePage();
+                    try {
+                        //  must be redirected to /employee/monitoring/password_update.ftl
+                        EmployeeController controller = new EmployeeController();
+                        controller.getPasswordUpdatePage();
+                        //message PLEASE CHANGE YOUR PASSWORD
+                    } catch (Exception e) {
+                        throw new RuntimeException("redirection of default entity failed" + e);
+                    }
                 }
             } else {
                 throw new BadCredentialsException(entitySetLogin + " does not exists!");
@@ -118,4 +121,5 @@ public class UserAuthentication implements AuthenticationManager {
         // Return list of granted authorities
         return authList;
     }
+
 }

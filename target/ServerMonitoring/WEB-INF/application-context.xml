@@ -26,6 +26,6 @@
 
     <util:properties id="applicationProperties" location="/WEB-INF/application.properties" />
 
-    <context:property-placeholder location="/WEB-INF/application.properties"
+    <context:property-placeholder location="/src/main/webapp/WEB-INF/application.properties"
                                   ignore-unresolvable="true"/>
 </beans>
