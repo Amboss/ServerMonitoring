@@ -13,7 +13,15 @@
     <security:authentication-manager/>
 
     <!-- exclusions from Security Authentication-->
-    <!--<security:http pattern="/resources/**" security="none"/>-->
+    <security:http pattern="/resources/**" security="none"/>
+
+    <!-- The definition of filter chain proxy -->
+    <!--<bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">-->
+        <!--<security:filter-chain-map >-->
+            <!--<security:filter-chain pattern="/login.ftl" filters="none"/>-->
+            <!--<security:filter-chain pattern="/**" filters="none"/>-->
+        <!--</security:filter-chain-map>-->
+    <!--</bean>-->
 
     <!-- Configuration of Spring-Security. Set to false to assign custom filters  -->
     <security:http auto-config="false" use-expressions="true"
@@ -23,16 +31,9 @@
         <security:logout invalidate-session="true"
                          logout-success-url="/index.html"
                          delete-cookies="SPRING_SECURITY_REMEMBER_ME_COOKIE"
-                         logout-url="/index.html?loggedout"/>
+                         logout-url="/index.html?logout"/>
 
         <security:custom-filter ref="authenticationFilter" position="FORM_LOGIN_FILTER"/>
-
-        <!-- permitAll access -->
-        <security:intercept-url pattern="/img/**" access="permitAll" />
-        <security:intercept-url pattern="/css/**"  access="permitAll" />
-        <security:intercept-url pattern="/js/**"  access="permitAll" />
-        <security:intercept-url pattern="/favicon.ico"  access="permitAll" />
-        <!--<security:intercept-url pattern="/j_spring_security*"  access="permitAll" />-->
     </security:http>
 
     <!-- Custom filter for username and password -->

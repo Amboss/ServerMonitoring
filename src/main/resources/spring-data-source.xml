@@ -48,7 +48,7 @@
 
     <!-- sets location of application.properties -->
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:application.properties"/>
+        <property name="location" value="/WEB-INF/application.properties"/>
     </bean>
 
     <!-- transactionManager settings -->

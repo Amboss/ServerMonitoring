@@ -2,58 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca731e94-cc2a-4ee6-b7d5-dd8492cd8a33" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\webapp\WEB-INF\application.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\applicationContext.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\controller\MainController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\model\ServerState.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\database.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\jsp\admin.jsp" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\jsp\common.jsp" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\jsp\denied.jsp" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\jsp\login.jsp" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\surefire\surefire2486677506442879543tmp" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\surefire\surefire3712302148181581751tmp" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\surefire\surefire5663787819249251322tmp" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\surefire\surefire8816991084129061608tmp" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\surefire\surefirebooter7017654944158515473.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\surefire\surefirebooter9160318259846788336.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\work\jsp\org\apache\jsp\WEB_002dINF\jsp\admin_jsp.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\work\jsp\org\apache\jsp\WEB_002dINF\jsp\common_jsp.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\work\jsp\org\apache\jsp\WEB_002dINF\jsp\denied_jsp.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\work\jsp\org\apache\jsp\WEB_002dINF\jsp\login_jsp.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ServerMonitoring.war" afterPath="$PROJECT_DIR$/target/ServerMonitoring.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ServerMonitoring/WEB-INF/classes/serverMonitoring/logic/service/authentication/UserAuthentication.class" afterPath="$PROJECT_DIR$/target/ServerMonitoring/WEB-INF/classes/serverMonitoring/logic/service/authentication/UserAuthentication.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ServerMonitoring/WEB-INF/classes/serverMonitoring/tasksOnLaunch/InitDefaultEntity.class" afterPath="$PROJECT_DIR$/target/ServerMonitoring/WEB-INF/classes/serverMonitoring/tasksOnLaunch/InitDefaultEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/logic/service/authentication/UserAuthentication.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/logic/service/authentication/UserAuthentication.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/tasksOnLaunch/InitDefaultEntity.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/tasksOnLaunch/InitDefaultEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/controller/common/AbstractController.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/controller/common/AbstractController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/authentication/UserAuthentication.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/authentication/UserAuthentication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/tasksOnLaunch/InitDefaultEntity.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/tasksOnLaunch/InitDefaultEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ServerMonitoring/WEB-INF/application-context.xml" afterPath="$PROJECT_DIR$/target/ServerMonitoring/WEB-INF/application-context.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ServerMonitoring/WEB-INF/spring-mvc.xml" afterPath="$PROJECT_DIR$/target/ServerMonitoring/WEB-INF/spring-mvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\resources\css\bootstrap-responsive.css" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/css/bootstrap-responsive.css" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\resources\css\bootstrap-responsive.min.css" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/css/bootstrap-responsive.min.css" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\resources\css\bootstrap.css" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/css/bootstrap.css" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\resources\css\bootstrap.min.css" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/css/bootstrap.min.css" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\resources\css\style.css" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/css/style.css" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\resources\img\favicon.ico" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/img/favicon.ico" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\resources\img\glyphicons-halflings-white.png" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/img/glyphicons-halflings-white.png" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\resources\img\glyphicons-halflings.png" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/img/glyphicons-halflings.png" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\resources\js\bootstrap.js" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/js/bootstrap.js" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\resources\js\bootstrap.min.js" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/js/bootstrap.min.js" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\webapp\WEB-INF\application-context.xml" afterPath="$PROJECT_DIR$/src/main/resources/application-context.xml" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\webapp\WEB-INF\ehcache.xml" afterPath="$PROJECT_DIR$/src/main/resources/ehcache.xml" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\webapp\WEB-INF\spring-cache.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-cache.xml" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\webapp\WEB-INF\spring-data-source.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-data-source.xml" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\webapp\WEB-INF\spring-logging.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-logging.xml" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\webapp\WEB-INF\spring-mvc.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\webapp\WEB-INF\spring-security.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-security.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ServerMonitoring.iml" afterPath="$PROJECT_DIR$/ServerMonitoring.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application-context.xml" afterPath="$PROJECT_DIR$/src/main/resources/application-context.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-data-source.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-data-source.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-security.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-security.xml" />
+      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\resources\application.properties" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/application.properties" />
     </list>
     <ignored path="ServerMonitoring.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -118,8 +73,8 @@
       <property name="field_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByClasses" value="true" />
       <property name="exception_breakpoints_viewId" value="TABLE" />
-      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="field_breakpoints_viewId" value="TABLE" />
+      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByMethods" value="false" />
     </ui_properties>
   </component>
@@ -127,70 +82,44 @@
     <favorites_list name="ServerMonitoring" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="spring-mvc.xml" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="17" column="19" selection-start="931" selection-end="931" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="UserAuthentication.java" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/authentication/UserAuthentication.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="36" column="81" selection-start="1778" selection-end="1778" vertical-scroll-proportion="0.21624714">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="application.properties" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="4" column="0" selection-start="235" selection-end="235" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="AbstractController.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/serverMonitoring/controller/common/AbstractController.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="26" column="16" selection-start="734" selection-end="734" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="InitDefaultEntity.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/serverMonitoring/tasksOnLaunch/InitDefaultEntity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="28" column="80" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="spring-security.xml" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/resources/spring-security.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="35" column="33" selection-start="1860" selection-end="1860" vertical-scroll-proportion="0.3549107">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="application-context.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application-context.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="75" selection-start="1417" selection-end="1417" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spring-security.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/spring-security.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="0" selection-start="1224" selection-end="1224" vertical-scroll-proportion="0.36413643">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spring-servlet.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-servlet.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="97" column="49" selection-start="3386" selection-end="3386" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -199,6 +128,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="expandStates">
+      <map>
+        <entry key="ServerMonitoring" value="true" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
@@ -209,16 +145,16 @@
         <option value="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/DAO/DAOImpl/CustomHibernateDaoSupport.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-mvc.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/application-context.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/application-context.xml" />
         <option value="$PROJECT_DIR$/src/main/java/serverMonitoring/controller/common/AbstractController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/spring-logging.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring-data-source.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring-security.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/serverMonitoring/tasksOnLaunch/InitDefaultEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/authentication/UserAuthentication.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/application-context.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring-data-source.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring-security.xml" />
       </list>
     </option>
   </component>
@@ -326,6 +262,30 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ServerMonitoring" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ServerMonitoring" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -770,30 +730,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ServerMonitoring" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ServerMonitoring" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -811,9 +747,9 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -824,15 +760,15 @@
       <recent name="serverMonitoring.logic.service.serviceImpl" />
       <recent name="serverMonitoring.logic.service" />
     </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\webapp\WEB-INF" />
       <recent name="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\resources" />
       <recent name="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\webapp\WEB-INF\static" />
       <recent name="D:\JAVAprojects\WEBprojects\ServerMonitoring\src\main\resources\img" />
       <recent name="D:\JAVAprojects\WEBprojects\ServerMonitoring\src\main\webapp\WEB-INF\ftl\common\message" />
-      <recent name="D:\JAVAprojects\WEBprojects\ServerMonitoring\src\main\webapp\WEB-INF\ftl\common\header" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
     </key>
   </component>
   <component name="RunManager" selected="Maven.ServerMonitoring [org.mortbay.jetty:maven-jetty-plugin:6.1.26:run]">
@@ -877,6 +813,35 @@
             <option name="goals">
               <list>
                 <option value="org.mortbay.jetty:maven-jetty-plugin:6.1.26:run" />
+              </list>
+            </option>
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <ConfigurationWrapper RunnerId="Debug" />
+      <method />
+    </configuration>
+    <configuration default="false" name="ServerMonitoring [org.mortbay.jetty:maven-jetty-plugin:6.1.26:deploy-war]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="org.mortbay.jetty:maven-jetty-plugin:6.1.26:deploy-war" />
               </list>
             </option>
             <option name="profilesMap">
@@ -943,6 +908,24 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -968,24 +951,6 @@
       <envs />
       <properties />
       <listeners />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -1037,9 +1002,10 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Maven.ServerMonitoring [org.mortbay.jetty:maven-jetty-plugin:6.1.26:run-exploded]" />
       <item index="1" class="java.lang.String" itemvalue="Maven.ServerMonitoring [org.mortbay.jetty:maven-jetty-plugin:6.1.26:run]" />
+      <item index="2" class="java.lang.String" itemvalue="Maven.ServerMonitoring [org.mortbay.jetty:maven-jetty-plugin:6.1.26:deploy-war]" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -1072,30 +1038,55 @@
       <created>1367325382386</created>
       <updated>1367325382386</updated>
     </task>
+    <task id="LOCAL-00001" summary="changed the location of XML configuration. Made some corrections in the debug">
+      <created>1368471855135</created>
+      <updated>1368471855135</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TodoView" selected-index="2">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.4975669" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32799146" sideWeight="0.4975669" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977018" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3985043" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45405984" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.49817517" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32799146" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14216997" sideWeight="0.6720086" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17370391" sideWeight="0.33760685" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17370391" sideWeight="0.33226496" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14698023" sideWeight="0.54594016" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17370391" sideWeight="0.6720086" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37606838" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20309995" sideWeight="0.54594016" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5405983" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32799146" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39955848" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1157,114 +1148,100 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitattributes">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="131" column="3" selection-start="1564" selection-end="1564" vertical-scroll-proportion="0.21758737" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/authentication/UserAuthentication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="49" selection-start="2060" selection-end="2060" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/serverMonitoring/controller/common/AbstractController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="16" selection-start="734" selection-end="734" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/serverMonitoring/controller/adminPages/EmployeeManagementController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="13" selection-start="701" selection-end="701" vertical-scroll-proportion="0.24915445" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/ehcache.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/serverMonitoring/controller/LoginLogoutController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="47" selection-start="2201" selection-end="2218" vertical-scroll-proportion="0.79427946">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-cache.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/serverMonitoring/controller/employeePages/EmployeeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="4" selection-start="655" selection-end="655" vertical-scroll-proportion="0.0">
+        <state line="16" column="26" selection-start="602" selection-end="610" vertical-scroll-proportion="0.39278132">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-servlet.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="82" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application-context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="76" selection-start="1397" selection-end="1419" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/serverMonitoring/model/EmployeeEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="43" selection-start="402" selection-end="402" vertical-scroll-proportion="0.4299611">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-data-source.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="55" selection-start="2312" selection-end="2312" vertical-scroll-proportion="0.0">
+        <state line="35" column="60" selection-start="1782" selection-end="1782" vertical-scroll-proportion="0.7892562">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/spring-logging.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="66" selection-start="743" selection-end="743" vertical-scroll-proportion="0.0">
+        <state line="17" column="66" selection-start="743" selection-end="743" vertical-scroll-proportion="0.5971074">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk/src.zip!/java/net/URLClassLoader.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-cache.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="365" column="0" selection-start="13550" selection-end="13550" vertical-scroll-proportion="0.332696">
+        <state line="11" column="4" selection-start="655" selection-end="655" vertical-scroll-proportion="0.38636363">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="49" selection-start="3386" selection-end="3386" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-data-source.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="104" selection-start="1427" selection-end="1427" vertical-scroll-proportion="0.579758">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application-context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="75" selection-start="1417" selection-end="1417" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/spring-security.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="33" selection-start="1860" selection-end="1860" vertical-scroll-proportion="0.3549107">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="19" selection-start="931" selection-end="931" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="235" selection-end="235" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/serverMonitoring/controller/common/AbstractController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="16" selection-start="734" selection-end="734" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/serverMonitoring/tasksOnLaunch/InitDefaultEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="80" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/authentication/UserAuthentication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="81" selection-start="1778" selection-end="1778" vertical-scroll-proportion="0.21624714">
+        <state line="24" column="0" selection-start="1224" selection-end="1224" vertical-scroll-proportion="0.36413643">
           <folding />
         </state>
       </provider>
