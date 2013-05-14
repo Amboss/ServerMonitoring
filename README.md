@@ -36,3 +36,18 @@ At version 2.0 these actions have been produced:
     -Configuration is divided into thematic modules
     -Encoding password changed to SHA256
     -application is under debug process
+    
+At this stage, these actions have been produced:
+
+    -application is under debug process
+    -there are configuration problems. debugging error message showing conflict at spring-security.xml
+    
+    ":WARN::Nested in org.springframework.beans.factory.BeanCreationException:
+    Error creating bean with name 'org.springframework.security.filterChainProxy': 
+    Invocation of init method failed; nested exception is java.lang.IllegalArgumentException:
+    A universal match pattern ('/**') is defined  before other patterns in the filter chain, 
+    causing them to be ignored. Please check the ordering in your <security:http> namespace 
+    or FilterChainProxy bean configuration:java.lang.IllegalArgumentException: 
+    A universal match pattern ('/**') is defined  before other patterns in the filter chain,
+    causing them to be ignored."
+
