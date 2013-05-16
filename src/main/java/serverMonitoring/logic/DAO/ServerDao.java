@@ -1,11 +1,8 @@
 package serverMonitoring.logic.DAO;
 
 import serverMonitoring.model.ServerEntity;
-
-/**
- * Created with IntelliJ IDEA.
- * User: serge
- */
-
+/*
+* Interface to specify DAO functionality for ServerEntity
+*/
 public interface ServerDao extends Dao<ServerEntity>{
 }

@@ -7,8 +7,9 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- * Created with IntelliJ IDEA.
- * User: serge
+ * Employee entity model with constructor
+ * validation setting
+ * Hibernate table creation settings
  */
 @Entity
 @Table(name = "employee_entity", catalog = "server_monitoring_db")
@@ -26,7 +27,7 @@ public class EmployeeEntity implements Serializable {
      * Name of the employee.
      */
     //@NotEmpty(message = "{employee_name.required}")
-    //@Length(min = 5, message = "{employee_name.length}")
+    //@Length(min = 3, message = "{employee_name.length}")
     //@Pattern(regexp = "^[a-zA-Z0-9_-,]$", message = "{employee_name.content}")
     @Column(name = "employee_name", nullable = false, length = 20)
     private String employee_name;
@@ -64,16 +65,12 @@ public class EmployeeEntity implements Serializable {
     /*
      * date of creating an employee.
      */
-    //@NotEmpty(message = "{created.required}")
-    //@Pattern(regexp = "^[0-9-]{10,10}$", message = "{created.content}")
     @Column(name = "created", nullable = false, length = 15)
     private Timestamp created;
 
     /*
      * date of last login.
      */
-    //@NotEmpty(message = "{lastLogin.required}")
-    //@Pattern(regexp = "^[0-9-]{10,10}$", message = "{lastLogin.content}")
     @Column(name = "lastLogin", nullable = false, length = 15)
     private Timestamp lastLogin;
 
@@ -82,9 +79,6 @@ public class EmployeeEntity implements Serializable {
      * 0 = not active
      * 1 = active
      */
-    //@NotEmpty(message = "{active.required}")
-    //@Length(max = 1, message = "{active.length}")
-    //@Pattern(regexp = "^[0,1]{1}$")
     @Column(name = "active", nullable = false)
     private Integer active;
 
@@ -94,7 +88,6 @@ public class EmployeeEntity implements Serializable {
      * 1 = admin role
      */
     //@NotEmpty(message = "{admin.required}")
-    //@Length(max = 1, message = "{admin.length}")
     //@Pattern(regexp = "^[0,1]{1}$")
     @Column(name = "admin", nullable = false)
     private Integer admin;

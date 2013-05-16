@@ -11,10 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: serge
- *
- * CustomHibernateDaoSupport with sessionFactory insted HibernateDaoSupport
+ * CustomHibernateDaoSupport with sessionFactory instead of HibernateDaoSupport
  */
 @Transactional
 public class CustomHibernateDaoSupport<T> implements Dao<T> {

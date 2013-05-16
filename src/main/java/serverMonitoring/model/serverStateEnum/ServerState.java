@@ -1,9 +1,6 @@
 package serverMonitoring.model.serverStateEnum;
 
 /**
- * Created with IntelliJ IDEA.
- * User: serge
- *
  * ENUM vars to declare Server Status
  */
 

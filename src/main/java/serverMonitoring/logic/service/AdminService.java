@@ -4,8 +4,7 @@ import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
 
 /**
- * Created with IntelliJ IDEA.
- * User: serge
+ *  Interface for functionality of user with ROLE_ADMIN access
  */
 public interface AdminService {
 

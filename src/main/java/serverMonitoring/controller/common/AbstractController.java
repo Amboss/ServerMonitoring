@@ -12,8 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 
 /**
- * Created with IntelliJ IDEA.
- * User: serge
+ *  Class responsible for Date format customisation,
+ *  extended by controllers classes
  */
 
 public abstract class AbstractController {
@@ -21,7 +21,6 @@ public abstract class AbstractController {
     protected Logger log = Logger.getLogger(this.getClass().getName());
 
     protected @Value( "#{applicationProperties['format.date']}" )String dateFormat;
-
 
     @InitBinder
     public void allowEmptyDateBinding( WebDataBinder binder ) {

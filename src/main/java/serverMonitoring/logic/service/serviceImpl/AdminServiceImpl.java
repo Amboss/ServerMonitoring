@@ -11,8 +11,7 @@ import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
 
 /**
- * Created with IntelliJ IDEA.
- * User: serge
+ * This class responsible for functionality of user with ROLE_ADMIN access
  */
 @Service("adminService")
 public class AdminServiceImpl extends EmployeeServiceImpl implements AdminService {

@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import serverMonitoring.controller.common.AbstractController;
 
 /**
- * Created with IntelliJ IDEA.
- * User: serge
  * Handles and retrieves the login or denied page depending on the URI template
  */
 @Controller
@@ -17,22 +15,22 @@ public class LoginLogoutController extends AbstractController {
 
     protected static Logger logger = Logger.getLogger("LoginLogoutController");
 
-    @RequestMapping("/")
-    public String root() {
-        return index();
-    }
-
-    /**
-     * Handles and retrieves /WEB-INF/ftl/index.ftl
-     *
-     * @return the name of the ftl page
-     */
-    @RequestMapping("/index.html")
-    public String index() {
-
-        logger.info("/index.htm ");
-        return "index";
-    }
+//    @RequestMapping("/")
+//    public String root() {
+//        return index();
+//    }
+//
+//    /**
+//     * Handles and retrieves /WEB-INF/ftl/index.ftl
+//     *
+//     * @return the name of the ftl page
+//     */
+//    @RequestMapping("/index.html")
+//    public String index() {
+//
+//        logger.info("/index.htm ");
+//        return "index";
+//    }
 
     /**
      * Handles and retrieves /WEB-INF/ftl/login.ftl
@@ -42,11 +40,11 @@ public class LoginLogoutController extends AbstractController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLoginPage() {
         logger.debug("Received request to show login page");
-        return "employee/authorization/login";
+        return "login";
     }
 
     /**
-     * Handles and retrieves a /WEB-INF/ftl/login.ftl
+     * Handles a logout request
      *
      * @return the name of the ftl page
      */
@@ -54,11 +52,11 @@ public class LoginLogoutController extends AbstractController {
     public String logoutSuccess() {
         logger.debug("Received request to logout & show index page");
         String message = "Logout Success!";
-        return "index.html?loggedout" + message;
+        return "/login?signout" + message;
     }
 
     /**
-     * Handles and retrieves /WEB-INF/ftl/denied.ftl
+     * Handles and retrieves /WEB-INF/ftl/common/message/access_denied.ftl
      * shown whenever a access denied.
      *
      * @return the name of the ftl page
@@ -70,13 +68,13 @@ public class LoginLogoutController extends AbstractController {
     }
 
     /**
-     * Handles and retrieves /WEB-INF/ftl/login.ftl
+     * Handles and retrieves /WEB-INF/ftl/authorization/password_recovery.ftl
      *
      * @return the name of the ftl page
      */
     @RequestMapping(value = "/password_recovery", method = RequestMethod.GET)
     public String getPasswordRecoveryPage() {
         logger.debug("Received request to show password_recovery page");
-        return "employee/authorization/password_recovery";
+        return "authorization/password_recovery";
     }
 }

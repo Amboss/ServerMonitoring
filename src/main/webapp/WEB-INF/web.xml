@@ -7,16 +7,15 @@
     <display-name>ServerMonitoring</display-name>
 
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
-        <welcome-file>index.ftl</welcome-file>
+        <welcome-file>login.ftl</welcome-file>
     </welcome-file-list>
 
     <!-- Spring MVC configurations -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            classpath:/application-context.xml
-            classpath:/spring-security.xml
+            classpath:application-context.xml
+            classpath:spring-security.xml
         </param-value>
     </context-param>
 
@@ -33,7 +32,7 @@
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
 
-    <!-- Spring Security configurations -->
+    <!-- DelegatingFilterProxy -->
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -41,68 +40,29 @@
 
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/</url-pattern>
     </filter-mapping>
-
-    <servlet-mapping>
-        <servlet-name>spring</servlet-name>
-        <url-pattern>*.html</url-pattern>
-    </servlet-mapping>
 
     <!-- Free Marker configurations -->
     <servlet>
         <servlet-name>freemarker</servlet-name>
         <servlet-class>freemarker.ext.servlet.FreemarkerServlet</servlet-class>
-
-        <!-- FreemarkerServlet settings: -->
-        <init-param>
-            <param-name>TemplatePath</param-name>
-            <param-value>/</param-value>
-        </init-param>
-        <init-param>
-            <param-name>NoCache</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <init-param>
-            <param-name>ContentType</param-name>
-            <param-value>text/html; charset=UTF-8</param-value>
-            <!-- Forces UTF-8 output encoding! -->
-        </init-param>
-
-        <!-- FreeMarker settings: -->
-        <init-param>
-            <param-name>template_update_delay</param-name>
-            <param-value>0</param-value> <!-- 0 is for development only! Use higher value otherwise. -->
-        </init-param>
-        <init-param>
-            <param-name>default_encoding</param-name>
-            <param-value>ISO-8859-1</param-value> <!-- The encoding of the template files. -->
-        </init-param>
-        <init-param>
-            <param-name>number_format</param-name>
-            <param-value>0.##########</param-value>
-        </init-param>
-
         <load-on-startup>1</load-on-startup>
     </servlet>
 
-    <servlet-mapping>
-        <servlet-name>freemarker</servlet-name>
-        <url-pattern>*.ftl</url-pattern>
-    </servlet-mapping>
 
     <!--
       Prevent the visiting of MVC Views from outside the servlet container.
       RequestDispatcher.forward/include should and will still work.
       Removing this may open security holes!
     -->
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>FreeMarker MVC Views</web-resource-name>
-            <url-pattern>*.ftl</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <!-- Nobody is allowed to visit these -->
-        </auth-constraint>
-    </security-constraint>
+    <!--<security-constraint>-->
+        <!--<web-resource-collection>-->
+            <!--<web-resource-name>FreeMarker MVC Views</web-resource-name>-->
+            <!--<url-pattern>*.ftl</url-pattern>-->
+        <!--</web-resource-collection>-->
+        <!--<auth-constraint>-->
+            <!--&lt;!&ndash; Nobody is allowed to visit these &ndash;&gt;-->
+        <!--</auth-constraint>-->
+    <!--</security-constraint>-->
 </web-app>

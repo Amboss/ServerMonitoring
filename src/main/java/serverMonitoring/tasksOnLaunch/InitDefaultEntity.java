@@ -17,10 +17,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: serge
- *
- * this class responsible for initialisation of default entity
+ * this class responsible for initialisation of default entity at the start of application
  */
 @Component
 public class InitDefaultEntity implements ApplicationListener<ContextRefreshedEvent> {
@@ -69,6 +66,5 @@ public class InitDefaultEntity implements ApplicationListener<ContextRefreshedEv
             log.error(e.getStackTrace());
             throw new ExceptionInInitializerError("creation of default access entity");
         }
-
     }
 }

@@ -14,8 +14,7 @@ import serverMonitoring.model.serverStateEnum.ServerState;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: serge
+ *  This class responsible for functionality of user with ROLE_USER access
  */
 @Service("employeeService")
 public class EmployeeServiceImpl implements EmployeeService {

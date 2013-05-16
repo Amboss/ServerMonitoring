@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import serverMonitoring.controller.common.AbstractController;
 
 /**
- * Created with IntelliJ IDEA.
- * User: serge
  * Handles and retrieves the ROLE_ADMIN employee_management pages depending on the URI template.
  * A admin must be log-in first he can access these pages. However, only admin can see
  * these pages.

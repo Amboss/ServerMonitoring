@@ -13,15 +13,15 @@
     <!-- Freemarker config -->
     <bean id="freemarkerConfig"
           class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"
-          p:templateLoaderPath="/WEB-INF/ftl/"
-          p:defaultEncoding="UTF-8" />
+          p:templateLoaderPath="/WEB-INF/ftl">
+    </bean>
 
-    <bean id="freemarkerViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
+    <bean id="freemarkerViewResolver"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
           p:cache="true"
-          p:prefix=""
           p:suffix=".ftl"
           p:exposeSpringMacroHelpers="true"
           p:exposeRequestAttributes="true"
           p:exposeSessionAttributes="true"
-          p:allowSessionOverride="true" />
+          p:allowSessionOverride="true"/>
 </beans>

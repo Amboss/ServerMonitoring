@@ -2,10 +2,8 @@ package serverMonitoring.logic.DAO;
 
 import serverMonitoring.model.EmployeeEntity;
 
-/**
- * Created with IntelliJ IDEA.
- * User: serge
- */
-
+/*
+* Interface to specify DAO functionality for EmployeeEntity
+*/
 public interface EmployeeDao extends Dao<EmployeeEntity>{
 }

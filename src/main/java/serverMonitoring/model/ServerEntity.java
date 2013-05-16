@@ -6,6 +6,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+/**
+ * Server entity model with constructor
+ * validation setting
+ * Hibernate table creation settings
+ */
 @Entity
 @Table(name = "server_entity", catalog = "server_monitoring_db")
 public class ServerEntity implements Serializable {
@@ -18,7 +23,9 @@ public class ServerEntity implements Serializable {
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
-    // a unique name for the server in the system.
+    /*
+     * a unique name for the server in the system.
+     */
     //@NotEmpty(message = "{server_name.required}")
     //@Length(min = 5, message = "{server_name.length}")
     //@Pattern(regexp = "^[a-zA-Z0-9.]$", message = "{server_name.content}")
@@ -48,9 +55,7 @@ public class ServerEntity implements Serializable {
      */
     //@NotEmpty(message = "{url.required}")
     //@Length(min = 5, max = 16, message = "{url.length}")
-    //    !!! !!! !!! check regular expression for e-mail    !!! !!! !!!
-    //@Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])"
-    //        + "(?=.*[@#$%]).{5,16})", message = "{url.content}")
+    //@Pattern(regexp = "((?=.*[a-z])(?=.*[A-Z]).{5,16})", message = "{url.content}")
     @Column(name = "url")
     private String url = "/";
 
@@ -72,16 +77,12 @@ public class ServerEntity implements Serializable {
     /*
      * date of creation or updating.
      */
-    //@NotEmpty(message = "{created.required}")
-    //@Pattern(regexp = "^[0-9-]{10,10}$", message = "{created.content}")
     @Column(name = "created", nullable = false, length = 15)
     private Timestamp created;
 
     /*
      * time of the the last status check.
      */
-    //@NotEmpty(message = "{lastCheck.required}")
-    //@Pattern(regexp = "^[0-9-]{10,10}$", message = "{lastCheck.content}")
     @Column(name = "lastCheck", nullable = false, length = 15)
     private Timestamp lastCheck;
 

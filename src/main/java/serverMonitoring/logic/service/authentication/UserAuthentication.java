@@ -12,7 +12,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import serverMonitoring.controller.employeePages.EmployeeController;
 import serverMonitoring.logic.DAO.DAOImpl.EmployeeDaoImpl;
 import serverMonitoring.logic.DAO.EmployeeDao;
 import serverMonitoring.model.EmployeeEntity;
@@ -22,8 +21,6 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: serge
  * this class responsible for the Authorized System Access
  * and first entrance of default entity
  */
@@ -65,24 +62,24 @@ public class UserAuthentication implements AuthenticationManager {
          * must be redirected to /employee/monitoring/password_update.ftl
          * with message PLEASE CHANGE YOUR PASSWORD
          */
-        if (auth.getName().equals(entitySetLogin) & auth.getCredentials().equals(entitySetPassword)) {
-            List<EmployeeEntity> entitylist = employeeDao.findAllByParam("login", entitySetLogin);
-            EmployeeEntity defaultEntity = (list.isEmpty()) ? null : list.get(0);
-            if (defaultEntity != null) {
-                if (defaultEntity.getPassword().equals(passwordEncoder.encodePassword(entitySetPassword, null))) {
-                    try {
-                        //  must be redirected to /employee/monitoring/password_update.ftl
-                        EmployeeController controller = new EmployeeController();
-                        controller.getPasswordUpdatePage();
-                        //message PLEASE CHANGE YOUR PASSWORD
-                    } catch (Exception e) {
-                        throw new RuntimeException("redirection of default entity failed" + e);
-                    }
-                }
-            } else {
-                throw new BadCredentialsException(entitySetLogin + " does not exists!");
-            }
-        }
+//        if (auth.getName().equals(entitySetLogin) & auth.getCredentials().equals(entitySetPassword)) {
+//            List<EmployeeEntity> entitylist = employeeDao.findAllByParam("login", entitySetLogin);
+//            EmployeeEntity defaultEntity = (list.isEmpty()) ? null : list.get(0);
+//            if (defaultEntity != null) {
+//                if (defaultEntity.getPassword().equals(passwordEncoder.encodePassword(entitySetPassword, null))) {
+//                    try {
+//                        //  must be redirected to /employee/monitoring/password_update.ftl
+//                        EmployeeController controller = new EmployeeController();
+//                        controller.getPasswordUpdatePage();
+//                        //message PLEASE CHANGE YOUR PASSWORD
+//                    } catch (Exception e) {
+//                        throw new RuntimeException("redirection of default entity failed" + e);
+//                    }
+//                }
+//            } else {
+//                throw new BadCredentialsException(entitySetLogin + " does not exists!");
+//            }
+//        }
 
         /*
          * main logic of authentication manager

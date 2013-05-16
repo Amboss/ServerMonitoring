@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import serverMonitoring.controller.common.AbstractController;
 
 /**
- * Created with IntelliJ IDEA.
- * User: serge
  * Handles and retrieves the ROLE_ADMIN Settings page.
  * A admin must be log-in first he can access these pages.
  * However, only admin can see these page.

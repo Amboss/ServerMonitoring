@@ -4,9 +4,8 @@ import org.springframework.stereotype.Repository;
 import serverMonitoring.logic.DAO.ServerDao;
 import serverMonitoring.model.ServerEntity;
 
-/**
- * Created with IntelliJ IDEA.
- * User: serge
+/*
+ * This class embodies DAO functionality for ServerEntity
  */
 @Repository("serverDaoImpl")
 public class ServerDaoImpl extends CustomHibernateDaoSupport<ServerEntity> implements ServerDao {

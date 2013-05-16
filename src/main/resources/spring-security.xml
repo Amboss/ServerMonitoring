@@ -12,28 +12,17 @@
     <!--  Spring Security autowire the parent property  -->
     <security:authentication-manager/>
 
-    <!-- exclusions from Security Authentication-->
-    <security:http pattern="/resources/**" security="none"/>
-
-    <!-- The definition of filter chain proxy -->
-    <!--<bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">-->
-        <!--<security:filter-chain-map >-->
-            <!--<security:filter-chain pattern="/login.ftl" filters="none"/>-->
-            <!--<security:filter-chain pattern="/**" filters="none"/>-->
-        <!--</security:filter-chain-map>-->
-    <!--</bean>-->
-
     <!-- Configuration of Spring-Security. Set to false to assign custom filters  -->
     <security:http auto-config="false" use-expressions="true"
                    access-denied-page="/auth/denied"
                    entry-point-ref="authenticationEntryPoint">
 
-        <security:logout invalidate-session="true"
-                         logout-success-url="/index.html"
+        <security:logout invalidate-session="true" logout-success-url="/auth/login/success"
                          delete-cookies="SPRING_SECURITY_REMEMBER_ME_COOKIE"
-                         logout-url="/index.html?logout"/>
+                         logout-url="/auth/logout?success"/>
 
-        <security:custom-filter ref="authenticationFilter" position="FORM_LOGIN_FILTER"/>
+        <security:intercept-url pattern="/auth/login" access="permitAll"/>
+        <security:custom-filter position="FORM_LOGIN_FILTER" ref="authenticationFilter"/>
     </security:http>
 
     <!-- Custom filter for username and password -->
@@ -41,7 +30,7 @@
           class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"
           p:authenticationManager-ref="customAuthenticationManager"
           p:authenticationFailureHandler-ref="customAuthenticationFailureHandler"
-          p:authenticationSuccessHandler-ref="customAuthenticationSuccessHandler"/>
+          p:authenticationSuccessHandler-ref="customAuthenticationSuccessHandler" />
 
     <!-- Custom authentication manager. !!! Username and password must not be the same !!! -->
     <bean id="customAuthenticationManager"
@@ -50,15 +39,15 @@
     <!-- default failure URL -->
     <bean id="customAuthenticationFailureHandler"
           class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler"
-          p:defaultFailureUrl="/index.html?authfail"/>
+          p:defaultFailureUrl="/auth/login?error=true"/>
 
     <!-- default target URL here -->
     <bean id="customAuthenticationSuccessHandler"
           class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler"
-          p:defaultTargetUrl="/index.html"/>
+          p:defaultTargetUrl="/employee/monitoring"/>
 
     <!-- The AuthenticationEntryPoint -->
     <bean id="authenticationEntryPoint"
           class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint"
-          p:loginFormUrl="/index.html?login"/>
+          p:loginFormUrl="/auth/login"/>
 </beans>

@@ -2,11 +2,9 @@ package serverMonitoring.logic.DAO;
 
 import java.io.Serializable;
 import java.util.List;
-
-/**
- * Created with IntelliJ IDEA.
- * User: serge
- */
+/*
+* Interface to specify list of methods for generic DAO functionality
+*/
 public interface Dao<T> {
 
     public void save(T entity);

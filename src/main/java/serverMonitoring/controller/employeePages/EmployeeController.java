@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import serverMonitoring.controller.common.AbstractController;
 
 /**
- * Created with IntelliJ IDEA.
- * User: serge
  * Handles and retrieves the ROLE_USER page depending on the URI template.
  * A user must be log-in first he can access these pages.
  */

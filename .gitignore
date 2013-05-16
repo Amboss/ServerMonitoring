@@ -1,4 +1,11 @@
 #################
+## IDEA
+#################
+.iml
+.idea
+/target
+
+#################
 ## Eclipse
 #################
 
@@ -213,3 +220,7 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+# If Posh-Git environment is defined, load it.
+if (test-path env:posh_git) {
+    . $env:posh_git
+}

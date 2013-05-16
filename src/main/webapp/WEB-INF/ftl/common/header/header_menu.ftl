@@ -1,16 +1,11 @@
 [#ftl]
 [#if Session.the_user?? && Session.the_user.loggedIn]
     [@security.authorize ifAnyGranted="ROLE_USER","ROLE_ADMIN" ]
-        [# if mointoring]
             <a href="<@spring.url value="../employee/monitoring/password_update.ftl />" >Password change</a>
             <a href="<@spring.url value="../employee/monitoring/serv_details.ftl  />" >Server details</a>
-        [/#if]
-        [# if employee.serverDetails && employee.password_update]
             <a href="<@spring.url value="../employee/monitoring/monitoring.ftl />" >Monitoring service</a>
-        [/#if]
-        [#if ftl/employee/authorization/pass_recovery.ftl]
-            <a href="<@spring.url value="../employee/authorization/login.ftl />" >Login page</a>
-        [/#if]
+            <a href="<@spring.url value="../login.ftl />" >Login page</a>
+            <a href="<@spring.url value="../authorization/pass_recovery.ftl />" >Login page</a>
     [/@security.authorize]
 
     [@security.authorize ifAnyGranted="ROLE_ADMIN"]

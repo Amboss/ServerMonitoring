@@ -5,8 +5,7 @@ import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.serverStateEnum.ServerState;
 
 /**
- * Created with IntelliJ IDEA.
- * User: serge
+ *  Interface for functionality of user with ROLE_USER access
  */
 public interface EmployeeService {
 

@@ -8,20 +8,14 @@
     <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
     <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-		<#include "../common/common.ftl"/>
-
+		<#include "../common/common_library.ftl"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"; charset="utf-8">
         <meta name="description" content="Server Manager Service">
-
         <title>${pageTitleFromHttpRequest}</title>
-
-        <link rel="stylesheet" type="text/css" href="<@spring.url '/resources/css/style.css'/>"/>
-        <link rel="stylesheet" type="text/css" href="<@spring.url value="/resources/css/bootstrap.min.css"/>">
-        <link rel="stylesheet" href="<@spring.url value="/resources/css/bootstrap-responsive.min.css"/>">
     </head>
     <body>
         <script src="http://code.jquery.com/jquery-latest.js"></script>
-        <script src="/resources/js/bootstrap.min.js"></script>
+        <script src="/WEB-INF/static/js/bootstrap.min.js"></script>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">
             Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">
@@ -36,7 +30,7 @@
                         <span class="icon-bar"></span>
                     </a>
                     <div class="nav-collapse collapse">
-                        [#include "./employee/authorization/login_form.ftl"/]
+                        [#include "../authorization/login_form.ftl"/]
                      </div><!--/.nav-collapse -->
                     [#if active?? ]
                         <div class="header_menu">

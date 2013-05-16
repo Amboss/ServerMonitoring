@@ -18,15 +18,14 @@
     <context:component-scan base-package="serverMonitoring"/>
 
     <!-- Spring modules -->
-    <import resource="classpath:/spring-data-source.xml"/>
-    <import resource="classpath:/spring-logging.xml"/>
-    <import resource="classpath:/spring-mvc.xml"/>
-    <import resource="classpath:/spring-security.xml"/>
-    <import resource="classpath:/spring-cache.xml"/>
+    <import resource="classpath:spring-data-source.xml"/>
+    <import resource="classpath:spring-logging.xml"/>
+    <import resource="classpath:spring-mvc.xml"/>
+    <!--<import resource="classpath:spring-security.xml"/>-->
 
     <!-- properties placeholder -->
-    <util:properties id="applicationProperties" location="/WEB-INF/application.properties"/>
+    <util:properties id="applicationProperties" location="WEB-INF/application.properties"/>
 
-    <context:property-placeholder location="/WEB-INF/application.properties"
+    <context:property-placeholder location="WEB-INF/application.properties"
                                   ignore-unresolvable="true"/>
 </beans>
