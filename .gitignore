@@ -1,9 +1,10 @@
 #################
 ## IDEA
 #################
+ServerMonitoring.iml
 .iml
-.idea
-/target
+.idea/
+target/
 
 #################
 ## Eclipse

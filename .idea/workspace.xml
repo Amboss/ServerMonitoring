@@ -2,210 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca731e94-cc2a-4ee6-b7d5-dd8492cd8a33" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\.idea\libraries\Maven__com_googlecode_ehcache_spring_annotations_ehcache_spring_annotations_1_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\.idea\libraries\Maven__javax_servlet_servlet_api_2_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\.idea\libraries\Maven__junit_junit_4_11.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\.idea\libraries\Maven__net_sf_ehcache_ehcache_2_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\.idea\libraries\Maven__net_sf_ehcache_ehcache_core_2_4_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\.idea\libraries\Maven__org_hamcrest_hamcrest_core_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\.idea\libraries\Maven__org_webjars_jquery_2_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\info.txt" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\java\serverMonitoring\util\CustomSHA256PasswordEncoder.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\resources\ehcache.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\resources\spring-cache.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\webapp\WEB-INF\ftl\index.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring.war" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\META-INF\MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\application-context.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\application.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\css\bootstrap-responsive.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\css\bootstrap-responsive.min.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\css\bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\css\bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\css\style.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\errors.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\img\favicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\img\glyphicons-halflings-white.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\img\glyphicons-halflings.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\js\bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\js\bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\log4j.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\controller\LoginLogoutController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\controller\adminPages\AdminSettingsController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\controller\adminPages\EmployeeManagementController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\controller\adminPages\ServerManagementController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\controller\common\AbstractController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\controller\employeePages\EmployeeController.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\logic\DAO\DAOImpl\CustomHibernateDaoSupport.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\logic\DAO\DAOImpl\EmployeeDaoImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\logic\DAO\DAOImpl\ServerDaoImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\logic\DAO\Dao.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\logic\DAO\EmployeeDao.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\logic\DAO\ServerDao.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\logic\service\AdminService.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\logic\service\EmployeeService.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\logic\service\authentication\UserAuthentication.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\logic\service\serviceImpl\AdminServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\logic\service\serviceImpl\EmployeeServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\model\EmployeeEntity.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\model\ServerEntity.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\model\serverStateEnum\ServerState.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\tasksOnLaunch\InitDefaultEntity.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\classes\serverMonitoring\util\CustomSHA256PasswordEncoder.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ehcache.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\admin\employee_management\employee_manager.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\admin\employee_management\employee_registr.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\admin\employee_management\employee_removal.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\admin\employee_management\employee_update.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\admin\employee_management\serv_assignment.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\admin\server_management\serv_manager.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\admin\server_management\serv_registr.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\admin\server_management\serv_removal.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\admin\server_management\serv_update.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\admin\settings\change_settings.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\common\common.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\common\footer.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\common\footer\copyright.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\common\footer\footer_menu.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\common\header.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\common\header\header_menu.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\common\header\header_status.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\common\message\access_denied.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\common\message\info.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\common\message\login_message.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\employee\authorization\login.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\employee\authorization\login_form.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\employee\authorization\password_recovery.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\employee\monitoring\monitoring.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\employee\monitoring\password_update.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\employee\monitoring\serv_details.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\ftl\index.ftl" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\antlr-2.7.7.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\aopalliance-1.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\asm-3.3.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\bonecp-0.8.0-rc1.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\bootstrap-2.3.1-1.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\cglib-2.2.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\commons-collections-3.2.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\commons-logging-1.1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\dom4j-1.6.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\ehcache-2.7.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\ehcache-core-2.4.5.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\ehcache-spring-annotations-1.2.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\freemarker-2.3.19.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\guava-13.0.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\hamcrest-core-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\hibernate-commons-annotations-4.0.1.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\hibernate-core-4.2.0.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\hibernate-entitymanager-4.2.0.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\hibernate-jpa-2.0-api-1.0.1.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\hibernate-validator-5.0.0.Alpha2.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\javassist-3.12.1.GA.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\javassist-3.15.0-GA.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\jboss-logging-3.1.0.GA.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\jboss-transaction-api_1.1_spec-1.0.0.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\jquery-2.0.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\jstl-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\junit-4.11.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\log4j-1.2.17.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\mysql-connector-java-5.1.9.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\servlet-api-2.5.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\slf4j-api-1.7.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\spring-aop-3.2.2.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\spring-beans-3.2.2.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\spring-context-3.2.2.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\spring-context-support-3.2.2.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\spring-core-3.2.2.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\spring-expression-3.2.2.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\spring-jdbc-3.2.2.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\spring-orm-3.2.2.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\spring-security-config-3.1.3.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\spring-security-core-3.1.3.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\spring-security-web-3.1.3.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\spring-test-3.2.2.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\spring-tx-3.2.2.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\spring-web-3.2.2.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\spring-webmvc-3.2.2.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\standard-1.1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\validation-api-1.1.0.Beta2.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\lib\xml-apis-1.0.b2.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\spring-cache.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\spring-data-source.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\spring-logging.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\spring-mvc.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\spring-security.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\spring-servlet.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\ServerMonitoring\WEB-INF\web.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\classes\css\bootstrap-responsive.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\classes\css\bootstrap-responsive.min.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\classes\css\bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\classes\css\bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\classes\css\style.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\classes\img\favicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\classes\img\glyphicons-halflings-white.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\classes\img\glyphicons-halflings.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\classes\js\bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\classes\js\bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\classes\serverMonitoring\util\CustomSHA256PasswordEncoder.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\target\maven-archiver\pom.properties" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/controller/LoginLogoutController.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/controller/LoginLogoutController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/controller/adminPages/AdminSettingsController.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/controller/adminPages/AdminSettingsController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/controller/adminPages/EmployeeManagementController.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/controller/adminPages/EmployeeManagementController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/controller/adminPages/ServerManagementController.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/controller/adminPages/ServerManagementController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/controller/common/AbstractController.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/controller/common/AbstractController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/controller/employeePages/EmployeeController.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/controller/employeePages/EmployeeController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/logic/DAO/DAOImpl/CustomHibernateDaoSupport.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/logic/DAO/DAOImpl/CustomHibernateDaoSupport.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/logic/DAO/DAOImpl/EmployeeDaoImpl.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/logic/DAO/DAOImpl/EmployeeDaoImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/logic/DAO/DAOImpl/ServerDaoImpl.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/logic/DAO/DAOImpl/ServerDaoImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/logic/service/authentication/UserAuthentication.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/logic/service/authentication/UserAuthentication.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/logic/service/serviceImpl/AdminServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/logic/service/serviceImpl/AdminServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/logic/service/serviceImpl/EmployeeServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/logic/service/serviceImpl/EmployeeServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/model/EmployeeEntity.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/model/EmployeeEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/model/ServerEntity.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/model/ServerEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/model/serverStateEnum/ServerState.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/model/serverStateEnum/ServerState.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/serverMonitoring/tasksOnLaunch/InitDefaultEntity.class" afterPath="$PROJECT_DIR$/target/classes/serverMonitoring/tasksOnLaunch/InitDefaultEntity.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ServerMonitoring.iml" afterPath="$PROJECT_DIR$/ServerMonitoring.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/controller/LoginLogoutController.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/controller/LoginLogoutController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/controller/adminPages/AdminSettingsController.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/controller/adminPages/AdminSettingsController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/controller/adminPages/EmployeeManagementController.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/controller/adminPages/EmployeeManagementController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/controller/adminPages/ServerManagementController.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/controller/adminPages/ServerManagementController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/controller/common/AbstractController.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/controller/common/AbstractController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/controller/employeePages/EmployeeController.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/controller/employeePages/EmployeeController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/DAO/DAOImpl/CustomHibernateDaoSupport.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/DAO/DAOImpl/CustomHibernateDaoSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/DAO/DAOImpl/EmployeeDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/DAO/DAOImpl/EmployeeDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/DAO/DAOImpl/ServerDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/DAO/DAOImpl/ServerDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/DAO/Dao.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/DAO/Dao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/DAO/EmployeeDao.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/DAO/EmployeeDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/DAO/ServerDao.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/DAO/ServerDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/AdminService.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/AdminService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/EmployeeService.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/EmployeeService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/authentication/UserAuthentication.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/authentication/UserAuthentication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/serviceImpl/AdminServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/serviceImpl/AdminServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/serviceImpl/EmployeeServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/serviceImpl/EmployeeServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/model/EmployeeEntity.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/model/EmployeeEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/model/ServerEntity.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/model/ServerEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/model/serverStateEnum/ServerState.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/model/serverStateEnum/ServerState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/serverMonitoring/tasksOnLaunch/InitDefaultEntity.java" afterPath="$PROJECT_DIR$/src/main/java/serverMonitoring/tasksOnLaunch/InitDefaultEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application-context.xml" afterPath="$PROJECT_DIR$/src/main/resources/application-context.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/errors.properties" afterPath="$PROJECT_DIR$/src/main/resources/errors.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-logging.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-logging.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-security.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-security.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/ftl/common/header.ftl" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/ftl/common/header.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/ftl/common/header/header_menu.ftl" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/ftl/common/header/header_menu.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-servlet.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-servlet.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/errors.properties" afterPath="$PROJECT_DIR$/target/classes/errors.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\webapp\WEB-INF\ftl\common\common.ftl" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/ftl/common/common_library.ftl" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\webapp\WEB-INF\ftl\employee\authorization\login.ftl" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/ftl/login.ftl" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\webapp\WEB-INF\ftl\employee\authorization\login_form.ftl" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/ftl/authorization/login_form.ftl" />
-      <change type="MOVED" beforePath="D:\JAVAprojects\WEBprojects\ServerMonitoring_2.0\src\main\webapp\WEB-INF\ftl\employee\authorization\password_recovery.ftl" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/ftl/authorization/password_recovery.ftl" />
     </list>
     <ignored path="ServerMonitoring.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -270,8 +67,8 @@
       <property name="field_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByClasses" value="true" />
       <property name="exception_breakpoints_viewId" value="TABLE" />
-      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="field_breakpoints_viewId" value="TABLE" />
+      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByMethods" value="false" />
     </ui_properties>
   </component>
@@ -282,10 +79,10 @@
     <splitter split-orientation="horizontal" split-proportion="0.47727272">
       <split-first>
         <leaf>
-          <file leaf-file-name="spring-servlet.xml" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="spring-servlet.xml" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-servlet.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="26" column="59" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.508046">
+                <state line="26" column="59" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.78368795">
                   <folding />
                 </state>
               </provider>
@@ -331,10 +128,28 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/.gitignore">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="10" column="0" selection-start="111" selection-end="111" vertical-scroll-proportion="-3.2118833">
+                <state line="7" column="6" selection-start="85" selection-end="85" vertical-scroll-proportion="0.2109929">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="README.md" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/README.md">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="5" column="25" selection-start="108" selection-end="117" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="AdminServiceImpl.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/serviceImpl/AdminServiceImpl.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="16" column="13" selection-start="614" selection-end="614" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -463,8 +278,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="1932" />
+    <option name="y" value="855" />
     <option name="width" value="1936" />
     <option name="height" value="1092" />
   </component>
@@ -494,6 +309,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -992,16 +817,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -1033,9 +848,9 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -1194,6 +1009,24 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -1219,24 +1052,6 @@
       <envs />
       <properties />
       <listeners />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -1356,8 +1171,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1092" extended-state="0" />
-    <editor active="true" />
+    <frame x="1932" y="855" width="1936" height="1092" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32799146" sideWeight="0.4975669" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977018" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1367,16 +1182,16 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.49817517" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17370391" sideWeight="0.33760685" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32832617" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17370391" sideWeight="0.33226496" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20470336" sideWeight="0.6727468" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20684126" sideWeight="0.67167383" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22127205" sideWeight="0.6727468" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22127205" sideWeight="0.67167383" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4474249" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32799146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32725322" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39955848" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1440,11 +1255,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/3.2.2.RELEASE/spring-beans-3.2.2.RELEASE-sources.jar!/org/springframework/beans/BeanWrapperImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1041" column="0" selection-start="39277" selection-end="39277" vertical-scroll-proportion="0.33222038" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/spring-logging.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="0" selection-start="98" selection-end="154" vertical-scroll-proportion="0.03756906" />
@@ -1470,11 +1280,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="43" selection-start="122" selection-end="122" vertical-scroll-proportion="0.07513812" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/ftl/login.ftl">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -1483,6 +1288,13 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-servlet.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="59" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.78368795">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/spring-security.xml">
@@ -1502,9 +1314,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="0" selection-start="1749" selection-end="1749" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="51" column="0" selection-start="1749" selection-end="1749" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/serverMonitoring/tasksOnLaunch/InitDefaultEntity.java">
@@ -1512,16 +1322,23 @@
         <state line="22" column="13" selection-start="880" selection-end="880" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="111" selection-end="111" vertical-scroll-proportion="-3.2118833">
+        <state line="5" column="25" selection-start="108" selection-end="117" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-servlet.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/serverMonitoring/logic/service/serviceImpl/AdminServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="59" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.508046">
+        <state line="16" column="13" selection-start="614" selection-end="614" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="6" selection-start="85" selection-end="85" vertical-scroll-proportion="0.2109929">
           <folding />
         </state>
       </provider>
