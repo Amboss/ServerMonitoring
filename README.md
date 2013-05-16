@@ -1,5 +1,5 @@
-ServerMonitoring_2.0
-====================
+Server Monitoring Service
+=========================
 
 installation procedure:
 - upload war repository to server
