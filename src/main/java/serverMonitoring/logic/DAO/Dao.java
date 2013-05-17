@@ -1,21 +1,21 @@
 package serverMonitoring.logic.DAO;
 
-import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 /*
 * Interface to specify list of methods for generic DAO functionality
 */
 public interface Dao<T> {
 
-    public void save(T entity);
+    public void add(T entity) throws SQLException;
 
-    public void update(T entity);
+    public void addGroup(final List<T> entity);
 
-    public void delete(Serializable key);
+    public void update(T entity) throws SQLException;
 
-    public T find(Serializable key);
+    public void delete(T entity_id) throws SQLException;
 
-    public List<T> findAll();
+    public T findById(Long entity_id) throws SQLException;
 
-    public List<T> findAllByParam(String paramName, Object paramValue);
+    public List<T> findAll() throws SQLException;
 }

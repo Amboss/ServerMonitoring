@@ -8,42 +8,14 @@
             http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
 
     <!-- transaction-manager schema -->
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:annotation-driven transaction-manager="txManager"/>
 
-    <!-- Shared Hibernate SessionFactory in a Spring application context. -->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-
-        <property name="annotatedClasses">
-            <list>
-                <value>serverMonitoring.model.EmployeeEntity</value>
-                <value>serverMonitoring.model.ServerEntity</value>
-            </list>
-        </property>
-
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
-                <prop key="hibernate.show_sql">${hibernate.show.sql}</prop>
-                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
-            </props>
-        </property>
-    </bean>
-
-    <!-- Datasource configuration from application.properties -->
-    <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
-        <property name="driverClass" value="${jdbc.driverClassName}"/>
-        <property name="jdbcUrl" value="${jdbc.url}"/>
+    <!-- Datasource configuration -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
-        <property name="idleConnectionTestPeriod" value="60"/>
-        <property name="idleMaxAge" value="240"/>
-        <property name="maxConnectionsPerPartition" value="30"/>
-        <property name="minConnectionsPerPartition" value="10"/>
-        <property name="partitionCount" value="3"/>
-        <property name="acquireIncrement" value="5"/>
-        <property name="statementsCacheSize" value="100"/>
-        <property name="releaseHelperThreads" value="3"/>
     </bean>
 
     <!-- sets location of application.properties -->
@@ -52,7 +24,15 @@
     </bean>
 
     <!-- transactionManager settings -->
-    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="ServerJdbcDaoSupport" class="serverMonitoring.logic.DAO.DAOImpl.ServerJdbcDaoSupport">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="EmployeeJdbcDaoSupport" class="serverMonitoring.logic.DAO.DAOImpl.EmployeeJdbcDaoSupport">
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 </beans>

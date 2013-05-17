@@ -5,16 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import serverMonitoring.logic.DAO.DAOImpl.EmployeeDaoImpl;
+import serverMonitoring.logic.DAO.DAOImpl.EmployeeJdbcDaoSupport;
 import serverMonitoring.logic.DAO.EmployeeDao;
 import serverMonitoring.model.EmployeeEntity;
 
-import javax.xml.bind.DataBindingException;
+import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.List;
 
 /**
  * this class responsible for initialisation of default entity at the start of application
@@ -28,7 +28,7 @@ public class InitDefaultEntity implements ApplicationListener<ContextRefreshedEv
     private java.util.Date date = new java.util.Date();
     private EmployeeEntity entity = new EmployeeEntity();
     @Autowired
-    private EmployeeDao employeeDao = new EmployeeDaoImpl();
+    private EmployeeDao employeeDao = new EmployeeJdbcDaoSupport();
 
     /*
      *  settings from application.properties
@@ -46,8 +46,13 @@ public class InitDefaultEntity implements ApplicationListener<ContextRefreshedEv
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
-        List<EmployeeEntity> existing = employeeDao.findAllByParam("login", "admin");
-        if (!existing.isEmpty()) {
+        EmployeeEntity existing = null;
+        try {
+            existing = employeeDao.findByLogin("admin");
+        } catch (SQLException | BadCredentialsException | NullPointerException e) {
+            e.printStackTrace();
+        }
+        if (existing == null) {
             return;
         }
 
@@ -60,9 +65,9 @@ public class InitDefaultEntity implements ApplicationListener<ContextRefreshedEv
             entity.setLastLogin(new Timestamp(date.getTime()));
             entity.setLogin(entitySetLogin);
             entity.setPassword(passwordEncoder.encodePassword(entitySetPassword, null));
-            employeeDao.save(entity);
+            employeeDao.add(entity);
             log.debug("successful creation of default access entity");
-        } catch (DataBindingException e) {
+        } catch (SQLException | BadCredentialsException | NullPointerException e) {
             log.error(e.getStackTrace());
             throw new ExceptionInInitializerError("creation of default access entity");
         }

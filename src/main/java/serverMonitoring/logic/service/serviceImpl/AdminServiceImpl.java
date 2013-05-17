@@ -4,21 +4,26 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
+import serverMonitoring.logic.DAO.DAOImpl.EmployeeJdbcDaoSupport;
+import serverMonitoring.logic.DAO.DAOImpl.ServerJdbcDaoSupport;
 import serverMonitoring.logic.DAO.EmployeeDao;
 import serverMonitoring.logic.DAO.ServerDao;
 import serverMonitoring.logic.service.AdminService;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
 
+import java.sql.SQLException;
+import java.sql.Timestamp;
+
 /**
  * This class responsible for functionality of user with ROLE_ADMIN access
  */
-@Service("adminService")
+@Service("AdminServiceImpl")
 public class AdminServiceImpl extends EmployeeServiceImpl implements AdminService {
 
     protected static Logger adminLogger = Logger.getLogger("AdminServiceImpl");
-    private EmployeeDao employeeDao;
-    private ServerDao serverDao;
+    private EmployeeDao employeeDao = new EmployeeJdbcDaoSupport();
+    private ServerDao serverDao = new ServerJdbcDaoSupport();
 
     @Autowired
     public void setEmployeeDao(EmployeeDao employeeDao) {
@@ -32,7 +37,6 @@ public class AdminServiceImpl extends EmployeeServiceImpl implements AdminServic
 
     /**
      * registration of new Employee
-     *
      * @return EmployeeEntity object
      */
     @Override
@@ -41,16 +45,16 @@ public class AdminServiceImpl extends EmployeeServiceImpl implements AdminServic
         String str = "of new Employee";
         adminLogger.debug("registration " + str);
         try {
-            employeeDao.save(entity);
-        } catch (NullPointerException e) {
+            employeeDao.add(entity);
+        } catch (SQLException | NullPointerException e) {
             adminLogger.error("error in registration " + str);
+            e.printStackTrace();
         }
         return entity;
     }
 
     /**
      * updating Employee
-     *
      * @return EmployeeEntity object
      */
     @Override
@@ -60,8 +64,9 @@ public class AdminServiceImpl extends EmployeeServiceImpl implements AdminServic
         adminLogger.debug("updating " + str);
         try {
             employeeDao.update(entity);
-        } catch (NullPointerException e) {
+        } catch (SQLException | NullPointerException e) {
             adminLogger.error("error in update of " + str);
+            e.printStackTrace();
         }
         return entity;
     }
@@ -76,14 +81,14 @@ public class AdminServiceImpl extends EmployeeServiceImpl implements AdminServic
         adminLogger.debug("deleting " + str);
         try {
             employeeDao.delete(entity);
-        } catch (NullPointerException e) {
+        } catch (SQLException | NullPointerException e) {
             adminLogger.error("error while deleting " + str);
+            e.printStackTrace();
         }
     }
 
     /**
      * registration of new Server
-     *
      * @return ServerEntity object
      */
     @Override
@@ -92,16 +97,16 @@ public class AdminServiceImpl extends EmployeeServiceImpl implements AdminServic
         String str = "registration of new Server";
         adminLogger.debug(str);
         try {
-            serverDao.save(entity);
-        } catch (NullPointerException e) {
+            serverDao.add(entity);
+        } catch (SQLException | NullPointerException e) {
             adminLogger.error("error in " + str);
+            e.printStackTrace();
         }
         return entity;
     }
 
     /**
      * updating Server
-     *
      * @return ServerEntity object
      */
     @Override
@@ -111,8 +116,9 @@ public class AdminServiceImpl extends EmployeeServiceImpl implements AdminServic
         adminLogger.debug("updating " + str);
         try {
             serverDao.update(entity);
-        } catch (NullPointerException e) {
+        } catch (SQLException | NullPointerException e) {
             adminLogger.error("error while updating of " + str);
+            e.printStackTrace();
         }
         return entity;
     }
@@ -127,9 +133,15 @@ public class AdminServiceImpl extends EmployeeServiceImpl implements AdminServic
         adminLogger.debug("deleting " + str);
         try {
             serverDao.delete(entity);
-        } catch (NullPointerException e) {
+        } catch (SQLException | NullPointerException e) {
             adminLogger.error("error while deleting  " + str);
+            e.printStackTrace();
         }
     }
 
+    private static Timestamp getCurrentTimeStamp() {
+
+        java.util.Date today = new java.util.Date();
+        return new Timestamp(today.getTime());
+    }
 }

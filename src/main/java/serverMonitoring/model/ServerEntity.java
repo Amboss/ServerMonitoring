@@ -2,102 +2,55 @@ package serverMonitoring.model;
 
 import serverMonitoring.model.serverStateEnum.ServerState;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Server entity model with constructor
- * validation setting
- * Hibernate table creation settings
  */
-@Entity
-@Table(name = "server_entity", catalog = "server_monitoring_db")
 public class ServerEntity implements Serializable {
 
-    /*
-     * a unique identifier of the entity.
-     */
-    @Id
-    @GeneratedValue
-    @Column(name = "id", nullable = false, unique = true)
+    //a unique identifier of the entity.
     private Long id;
 
-    /*
-     * a unique name for the server in the system.
-     */
-    //@NotEmpty(message = "{server_name.required}")
-    //@Length(min = 5, message = "{server_name.length}")
-    //@Pattern(regexp = "^[a-zA-Z0-9.]$", message = "{server_name.content}")
-    @Column(name = "server_name", nullable = false)
+    //a unique name for the server in the system.
     private String server_name;
 
-    /*
-     *IP address or host name.
-     */
-    //@NotEmpty(message = "{address.required}")
-    //@Length(min = 5, message = "{address.length}")
-    //@Pattern(regexp = "^[a-zA-Z0-9.]$", message = "{address.content}")
-    @Column(name = "address", nullable = false)
+    //IP address or host name.
     private String address;
 
-    /*
-     * server port:80 by default.
-     */
-    //@NotEmpty(message = "{port.required}")
-    //@Length(min = 5, max = 16, message = "{port.length}")
-    //@Pattern(regexp = "^[0-9]{5,10}$", message = "{port.content}")
-    @Column(name = "port", nullable = false, length = 16)
+    //server port:80 by default.
     private Integer port = 80;
 
-    /*
-     *  resource path by default:"/" .
-     */
-    //@NotEmpty(message = "{url.required}")
-    //@Length(min = 5, max = 16, message = "{url.length}")
-    //@Pattern(regexp = "((?=.*[a-z])(?=.*[A-Z]).{5,16})", message = "{url.content}")
-    @Column(name = "url")
+    //resource path by default:"/".
     private String url = "/";
 
-    /*
-     * The last state. The possible values ​​are:
-     * OK   - server is up and responding correctly
-     * WARN - server is running, but returns a response to the HTTP - code different than 200
-     * FAIL - the server is not responding, or responds with HTTP code, such as 500
-     */
-    @Column(name = "state")
-    private ServerState state;
-
-    /*
-     * headlines of the last server response.
-     */
-    @Column(name = "response")
+    //headlines of the last server response.
     private String response;
 
-    /*
-     * date of creation or updating.
-     */
-    @Column(name = "created", nullable = false, length = 15)
+    //date of creation or updating.
     private Timestamp created;
 
-    /*
-     * time of the the last status check.
-     */
-    @Column(name = "lastCheck", nullable = false, length = 15)
+    //time of the the last status check.
     private Timestamp lastCheck;
+
+    /*
+    * The last state. The possible values ​​are:
+    * OK   - server is up and responding correctly
+    * WARN - server is running, but returns a response to the HTTP - code different than 200
+    * FAIL - the server is not responding, or responds with HTTP code, such as 500
+    */
+    private ServerState state;
 
     /*
     * If set to "0" - no need to carry out monitoring.
     * 0 = not active
     * 1 = active
     */
-    //@NotEmpty(message = "{active.required}")
-    //@Length(max = 1, message = "{active.length}")
-    //@Pattern(regexp = "^[0,1]{1}$")
-    @Column(name = "active", nullable = false)
     private Integer active;
 
-    public ServerEntity() {}
+    public ServerEntity() {
+    }
 
     public ServerEntity(Long id, String server_name, String address, Integer port,
                         String url, ServerState state, String response,
@@ -158,8 +111,8 @@ public class ServerEntity implements Serializable {
         return state;
     }
 
-    public void setState(ServerState state) {
-        this.state = state;
+    public void setState(String state) {
+        this.state = this.state;
     }
 
     public String getResponse() {

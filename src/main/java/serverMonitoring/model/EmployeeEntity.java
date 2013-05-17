@@ -1,77 +1,32 @@
 package serverMonitoring.model;
 
-import org.hibernate.validator.constraints.Length;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Employee entity model with constructor
- * validation setting
- * Hibernate table creation settings
  */
-@Entity
-@Table(name = "employee_entity", catalog = "server_monitoring_db")
 public class EmployeeEntity implements Serializable {
 
-    /*
-     * a unique identifier of the entity.
-     */
-    @Id
-    @GeneratedValue
-    @Column(name = "id", nullable = false, unique = true)
+    //a unique identifier of the entity.
     private Long id;
 
-    /*
-     * Name of the employee.
-     */
-    //@NotEmpty(message = "{employee_name.required}")
-    //@Length(min = 3, message = "{employee_name.length}")
-    //@Pattern(regexp = "^[a-zA-Z0-9_-,]$", message = "{employee_name.content}")
-    @Column(name = "employee_name", nullable = false, length = 20)
+    //Name of the employee.
     private String employee_name;
 
-    /*
-     * a unique userName for login.
-     */
-    //@NotEmpty(message = "{login.required}")
-    //@Length(min = 5, max = 16, message = "{login.length}")
-    //@Pattern(regexp = "^[a-zA-Z0-9_-]{5,16}$", message = "{login.content}")
-    @Column(name = "login", nullable = false, length = 20)
+    //a unique userName for login.
     private String login;
 
-    /*
-     * employee password hash (SHA-2 algorithm).
-     */
-    //@NotEmpty(message = "{password.required}")
-    @Length(min = 5, max = 50, message = "{password.length}")
-    //@Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])"
-    //        + "(?=.*[@#$%]).{5,16})", message = "{password.content}")
-    @Column(name = "password", nullable = false, length = 64)
+    //employee password hash (SHA-2 algorithm).
     private String password;
 
-    /*
-     * e-mail address to send notifications.
-     */
-    //@NotEmpty(message = "{email.required}")
-    //@Length(min = 5, max = 16, message = "{email.length}")
-    //    !!! !!! !!! check regular expression for e-mail    !!! !!! !!!
-    //@Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])"
-    //        + "(?=.*[@#$%]).{5,16})", message = "{email.content}")
-    @Column(name = "email", nullable = false, length = 20)
+    //e-mail address to send notifications.
     private String email;
 
-    /*
-     * date of creating an employee.
-     */
-    @Column(name = "created", nullable = false, length = 15)
+    //date of creating an employee.
     private Timestamp created;
 
-    /*
-     * date of last login.
-     */
-    @Column(name = "lastLogin", nullable = false, length = 15)
+    //date of last login.
     private Timestamp lastLogin;
 
     /*
@@ -79,7 +34,6 @@ public class EmployeeEntity implements Serializable {
      * 0 = not active
      * 1 = active
      */
-    @Column(name = "active", nullable = false)
     private Integer active;
 
     /*
@@ -87,9 +41,6 @@ public class EmployeeEntity implements Serializable {
      * 0 = regular role
      * 1 = admin role
      */
-    //@NotEmpty(message = "{admin.required}")
-    //@Pattern(regexp = "^[0,1]{1}$")
-    @Column(name = "admin", nullable = false)
     private Integer admin;
 
     public EmployeeEntity() {

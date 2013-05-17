@@ -12,10 +12,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import serverMonitoring.logic.DAO.DAOImpl.EmployeeDaoImpl;
+import serverMonitoring.logic.DAO.DAOImpl.EmployeeJdbcDaoSupport;
 import serverMonitoring.logic.DAO.EmployeeDao;
 import serverMonitoring.model.EmployeeEntity;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -33,19 +34,19 @@ public class UserAuthentication implements AuthenticationManager {
     protected @Value( "#{applicationProperties['startup.entity.setPassword']}" ) String entitySetPassword;
     protected @Value( "#{applicationProperties['encoding.strengths']}" ) Integer encodingStrengths;
     @Autowired
-    private EmployeeDao employeeDao = new EmployeeDaoImpl();
-
+    private EmployeeDao employeeDao = new EmployeeJdbcDaoSupport();
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
+    private EmployeeEntity employeeEntity = null;
 
     public Authentication authenticate(Authentication auth)  throws UsernameNotFoundException {
 
         /*
          * Init a database user object
          */
-        List<EmployeeEntity> list = employeeDao.findAllByParam("login", auth.getName());
-        EmployeeEntity employeeEntity = (list.isEmpty()) ? null : list.get(0);
-        if (employeeEntity == null) {
-            throw new BadCredentialsException("User does not exists!");
+        try {
+            employeeEntity = employeeDao.findByLogin(auth.getName());
+        } catch (SQLException | BadCredentialsException | NullPointerException e) {
+            e.printStackTrace();
         }
 
         /*
