@@ -5,7 +5,6 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import serverMonitoring.controller.common.AbstractController;
 
 /**
  * Handles and retrieves the ROLE_ADMIN Settings page.
@@ -14,7 +13,7 @@ import serverMonitoring.controller.common.AbstractController;
  */
 @Controller
 @RequestMapping("/settings")
-public class AdminSettingsController extends AbstractController {
+public class AdminSettingsController {
 
     protected static Logger logger = Logger.getLogger("AdminSettingsController");
     private String dir = "admin/settings/";

@@ -5,7 +5,6 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import serverMonitoring.controller.common.AbstractController;
 
 /**
  * Handles and retrieves the ROLE_ADMIN employee_management pages depending on the URI template.
@@ -14,7 +13,7 @@ import serverMonitoring.controller.common.AbstractController;
  */
 @Controller
 @RequestMapping("/employee_management")
-public class EmployeeManagementController extends AbstractController {
+public class EmployeeManagementController {
 
     protected static Logger logger = Logger.getLogger("EmployeeManagementController");
     private String dir = "admin/employee_management/";

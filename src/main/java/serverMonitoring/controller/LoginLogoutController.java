@@ -4,14 +4,13 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import serverMonitoring.controller.common.AbstractController;
 
 /**
  * Handles and retrieves the login or denied page depending on the URI template
  */
 @Controller
 @RequestMapping("/auth")
-public class LoginLogoutController extends AbstractController {
+public class LoginLogoutController {
 
     protected static Logger logger = Logger.getLogger("LoginLogoutController");
 
