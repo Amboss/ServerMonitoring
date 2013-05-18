@@ -35,4 +35,8 @@
     <bean id="EmployeeJdbcDaoSupport" class="serverMonitoring.logic.DAO.DAOImpl.EmployeeJdbcDaoSupport">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
+    <bean id="CreateDataBaseImpl" class="serverMonitoring.dataBase.createDataBase.CreateDataBaseImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 </beans>

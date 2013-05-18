@@ -8,7 +8,8 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+import serverMonitoring.dataBase.CreateDataBase;
+import serverMonitoring.dataBase.createDataBase.CreateDataBaseImpl;
 import serverMonitoring.logic.DAO.DAOImpl.EmployeeJdbcDaoSupport;
 import serverMonitoring.logic.DAO.EmployeeDao;
 import serverMonitoring.model.EmployeeEntity;
@@ -29,7 +30,7 @@ public class InitDefaultEntity implements ApplicationListener<ContextRefreshedEv
     private EmployeeEntity entity = new EmployeeEntity();
     @Autowired
     private EmployeeDao employeeDao = new EmployeeJdbcDaoSupport();
-
+    private CreateDataBase createDataBase = new CreateDataBaseImpl();
     /*
      *  settings from application.properties
      */
@@ -43,9 +44,12 @@ public class InitDefaultEntity implements ApplicationListener<ContextRefreshedEv
     /*
      * creating default access entity
      */
-    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
+        // initialisation of Data Base
+        createDataBase.getDBExistsConfirmation();
+
+        // check for existence of default entity
         EmployeeEntity existing = null;
         try {
             existing = employeeDao.findByLogin("admin");
@@ -56,6 +60,7 @@ public class InitDefaultEntity implements ApplicationListener<ContextRefreshedEv
             return;
         }
 
+        // initialisation of of default entity
         try {
             entity.setAdmin(Integer.parseInt(entitySetAdmin));
             entity.setActive(Integer.parseInt(entitySetActive));

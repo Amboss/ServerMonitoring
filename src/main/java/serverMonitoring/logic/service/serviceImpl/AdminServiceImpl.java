@@ -14,6 +14,7 @@ import serverMonitoring.model.ServerEntity;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * This class responsible for functionality of user with ROLE_ADMIN access
@@ -72,6 +73,30 @@ public class AdminServiceImpl extends EmployeeServiceImpl implements AdminServic
     }
 
     /**
+     * Retrieving list of all employees
+     *
+     * @return List of EmployeeEntity objects
+     */
+    @Override
+    @Secured("ROLE_ADMIN")
+    public List<EmployeeEntity> getAllEmployee() {
+
+        adminLogger.debug("retrieving list of servers");
+        List<EmployeeEntity> employeeList = null;
+        try {
+            employeeList = employeeDao.findAll();
+//            for (EmployeeEntity aEmployeeList : employeeList) {
+//                EmployeeEntity entity = aEmployeeList;
+//                System.out.println(entity);
+//            }
+        } catch (SQLException | NullPointerException e) {
+            adminLogger.error("error while retrieving list of servers");
+            e.printStackTrace();
+        }
+        return employeeList;
+    }
+
+    /**
      * deleting Employee
      */
     @Override
@@ -124,6 +149,29 @@ public class AdminServiceImpl extends EmployeeServiceImpl implements AdminServic
     }
 
     /**
+     * @return List of ServerEntity objects
+     */
+    @Override
+    @Secured("ROLE_ADMIN")
+    public List<ServerEntity> getAllServers() {
+
+        adminLogger.debug("retrieving list of servers");
+        List<ServerEntity> serverList = null;
+        try {
+            serverList = serverDao.findAll();
+//            for (ServerEntity aServerList : serverList) {
+//                ServerEntity serverEntity = aServerList;
+//                System.out.println(serverEntity);
+//            }
+
+        } catch (SQLException | NullPointerException e) {
+            adminLogger.error("error while retrieving list of servers");
+            e.printStackTrace();
+        }
+        return serverList;
+    }
+
+    /**
      * deleting Server
      */
     @Override
@@ -138,6 +186,7 @@ public class AdminServiceImpl extends EmployeeServiceImpl implements AdminServic
             e.printStackTrace();
         }
     }
+
 
     private static Timestamp getCurrentTimeStamp() {
 

@@ -1,45 +1,90 @@
 package serverMonitoring.dataBase.createDataBase;
 
 import org.apache.log4j.Logger;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import serverMonitoring.dataBase.CreateDataBase;
-import serverMonitoring.model.EmployeeEntity;
-import serverMonitoring.model.ServerEntity;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
  * This class responsible for creation of entity tables in Data Base
  */
-
-public class CreateDataBaseImpl implements CreateDataBase {
+@Transactional
+@Repository("CreateDataBaseImpl")
+public class CreateDataBaseImpl extends JdbcDaoSupport implements CreateDataBase {
 
     protected static Logger mylog = Logger.getLogger("CreateDataBaseImpl");
-    private DataSource dataSource;
+    private JdbcTemplate jdbcTemplate;
+    private String db_name = "server_monitoring_db";
+    private String employeeEntity_table = "employee_entity";
+    private String serverEntity_table = "server_entity";
+    private String driver = "com.mysql.jdbc.Driver";
+    private String url = "jdbc:mysql://localhost:3306/" + db_name;
+    private String login = "root";
+    private String password = "";
+    private Connection connection;
 
-    /*
-    * Execute SQL query to create Data Base
-    */
+    @Resource(name = "dataSource")
+    public void initDataSource(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    /**
+     * Initialisation of Data Base
+     * creation of new if not exists
+     */
     @Override
-    public void createDataBase(String db_name) throws SQLException {
+    public void getDBExistsConfirmation() {
+        try {
+            Class.forName(driver);
+            connection = DriverManager.getConnection(url, login, password);
+            ResultSet resultSet = connection.getMetaData().getCatalogs();
 
+            //iterate each catalog in the ResultSet
+            while (resultSet.next()) {
+                // Get the database name, which is at position 1
+                if (resultSet.getString(1) == null) {
+                    createDataBase();
+                    createEmployeeEntityTable();
+                    createServerEntityTable();
+                }
+            }
+            resultSet.close();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Execute SQL query to create Data Base
+     */
+    @Override
+    public void createDataBase() {
         String query = "CREATE DATABASE" + db_name;
-//        try (Statement statement = con.createStatement()){
-//            statement.executeUpdate(query);
-//        } catch (SQLException e) {
-//            mylog.error(e);
-//        }
+        try {
+            this.jdbcTemplate.update(query);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     /*
-    * Execute SQL query to create employee_entity table
-    */
+     * Execute SQL query to create employee_entity table
+     */
     @Override
-    public void createEmployeeEntityTable(EmployeeEntity employeeEntity,
-                                          String db_name, String employeeEntity_table) throws SQLException {
-
+    public void createEmployeeEntityTable() {
         String query = "CREATE TABLE " +
-                db_name + employeeEntity_table +
+                db_name +
+                employeeEntity_table +
                 "(id int NOT NULL, " +
                 "employee_name varchar(20) NOT NULL, " +
                 "login varchar(20) NOT NULL, " +
@@ -49,22 +94,21 @@ public class CreateDataBaseImpl implements CreateDataBase {
                 "lastLogin datetime NOT NULL," +
                 "active int(1) NOT NULL," +
                 "admin int(1) NOT NULL)";
-
-//        try (Statement statement = con.createStatement()) {
-//            statement.executeUpdate(query);
-//        } catch (SQLException e) {
-//            mylog.error(e);
-//        }
+        try {
+            this.jdbcTemplate.update(query);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     /*
     * Execute SQL query to create server_entity table
     */
     @Override
-    public void createServerEntityTable(ServerEntity serverEntity,
-                                        String db_name, String serverEntity_table) throws SQLException {
+    public void createServerEntityTable() {
         String query = "CREATE TABLE " +
-                db_name + serverEntity_table +
+                db_name +
+                serverEntity_table +
                 "(id int NOT NULL, " +
                 "server_name varchar(20) NOT NULL, " +
                 "address varchar(20) NOT NULL, " +
@@ -75,11 +119,10 @@ public class CreateDataBaseImpl implements CreateDataBase {
                 "created datetime NOT NULL," +
                 "lastCheck datetime NOT NULL," +
                 "active int(1) NOT NULL)";
-
-//        try (Statement statement = con.createStatement()) {
-//            statement.executeUpdate(query);
-//        } catch (SQLException e) {
-//            mylog.error(e);
-//        }
+        try {
+            this.jdbcTemplate.update(query);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,6 +1,7 @@
 package serverMonitoring.logic.DAO.DAOImpl;
 
 import org.apache.log4j.Logger;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -29,17 +30,15 @@ public class EmployeeJdbcDaoSupport extends JdbcDaoSupport implements EmployeeDa
     protected static Logger daoSupportLogger = Logger.getLogger("EmployeeJdbcDaoSupport");
     private SimpleJdbcInsert insertEntity;
     private JdbcTemplate jdbcTemplate;
-
     private String nullError = "EmployeeEntity entity is empty!";
     private String db_table = "employee_entity";
-    private String raw_list = "(id, employee_name, login, password, email, created, lastLogin, active, admin)";
+    private String raw_list = "id, employee_name, login, password, email, created, lastLogin, active, admin";
     private String raw_list_update = "(id = ?, employee_name = ?, login = ?, password = ?, " +
             "email = ?, created = ?, lastLogin = ?, active = ?, admin = ?)";
     private String raw_value = "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     @Resource(name = "dataSource")
     public void initDataSource(DataSource dataSource) {
-
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.insertEntity = new SimpleJdbcInsert(dataSource)
                 .withTableName(db_table)
@@ -76,7 +75,6 @@ public class EmployeeJdbcDaoSupport extends JdbcDaoSupport implements EmployeeDa
         String query = "INSERT INTO " + db_table + raw_list + " VALUES " + raw_value;
         if (entity != null) {
             List<Object[]> parameters = new ArrayList<Object[]>();
-
             for (EmployeeEntity foo : entity) {
                 parameters.add(new Object[]{foo.getEmployee_name(),
                         foo.getLogin(),
@@ -136,10 +134,15 @@ public class EmployeeJdbcDaoSupport extends JdbcDaoSupport implements EmployeeDa
      */
     @Override
     public EmployeeEntity findById(Long entity_id) throws SQLException {
-
         String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE id = ?";
         assert (entity_id != null);
-        return this.jdbcTemplate.queryForObject(query, new Object[]{1212L}, new EmployeeEntityMapper());
+        EmployeeEntity entity = null;
+        try {
+            entity = this.jdbcTemplate.queryForObject(query, new Object[]{1212L}, new EmployeeEntityMapper());
+        } catch (DataAccessException e) {
+            //e.printStackTrace();
+        }
+        return entity;
     }
 
     /**
@@ -149,10 +152,15 @@ public class EmployeeJdbcDaoSupport extends JdbcDaoSupport implements EmployeeDa
      */
     @Override
     public EmployeeEntity findByLogin(String entity_login) throws SQLException {
-
         String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE login = ?";
         assert (entity_login != null);
-        return this.jdbcTemplate.queryForObject(query, new Object[]{1212L}, new EmployeeEntityMapper());
+        EmployeeEntity entity = null;
+        try {
+            entity = this.jdbcTemplate.queryForObject(query, new Object[]{1212L}, new EmployeeEntityMapper());
+        } catch (DataAccessException e) {
+            //e.printStackTrace();
+        }
+        return entity;
     }
 
     /**
@@ -162,7 +170,6 @@ public class EmployeeJdbcDaoSupport extends JdbcDaoSupport implements EmployeeDa
      */
     @Override
     public List<EmployeeEntity> findAll() throws SQLException {
-
         String query = "SELECT * FROM " + db_table;
         return this.jdbcTemplate.query(query, new EmployeeEntityMapper());
     }
@@ -175,14 +182,14 @@ public class EmployeeJdbcDaoSupport extends JdbcDaoSupport implements EmployeeDa
     private static final class EmployeeEntityMapper implements RowMapper<EmployeeEntity> {
         public EmployeeEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
             EmployeeEntity entity = new EmployeeEntity();
-            entity.setEmployee_name(rs.getString("employee_name"));
-            entity.setLogin(rs.getString("login"));
-            entity.setPassword(rs.getString("password"));
-            entity.setEmail(rs.getString("email"));
-            entity.setCreated(rs.getTimestamp("created"));
-            entity.setLastLogin(rs.getTimestamp("lastLogin"));
-            entity.setActive(rs.getInt("active"));
-            entity.setAdmin(rs.getInt("admin"));
+                entity.setEmployee_name(rs.getString("employee_name"));
+                entity.setLogin(rs.getString("login"));
+                entity.setPassword(rs.getString("password"));
+                entity.setEmail(rs.getString("email"));
+                entity.setCreated(rs.getTimestamp("created"));
+                entity.setLastLogin(rs.getTimestamp("lastLogin"));
+                entity.setActive(rs.getInt("active"));
+                entity.setAdmin(rs.getInt("admin"));
             return entity;
         }
     }
