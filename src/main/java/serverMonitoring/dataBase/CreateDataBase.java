@@ -6,11 +6,10 @@ import java.sql.SQLException;
  * Interface for Data Base creation functionality
  */
 public interface CreateDataBase {
-
     /**
-     * Defines method to create Data Base
+     * Defines method for confirmation of Data Base existence
      */
-    public void createDataBase() throws SQLException ;
+    void getDBExistsConfirmation();
 
     /**
      * Defines method to create EmployeeEntity Data Base table
@@ -22,5 +21,5 @@ public interface CreateDataBase {
      */
     public void createServerEntityTable() throws SQLException;
 
-    void getDBExistsConfirmation();
+
 }

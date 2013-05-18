@@ -85,10 +85,10 @@ public class AdminServiceImpl extends EmployeeServiceImpl implements AdminServic
         List<EmployeeEntity> employeeList = null;
         try {
             employeeList = employeeDao.findAll();
-//            for (EmployeeEntity aEmployeeList : employeeList) {
-//                EmployeeEntity entity = aEmployeeList;
-//                System.out.println(entity);
-//            }
+            for (EmployeeEntity aEmployeeList : employeeList) {
+                EmployeeEntity entity = aEmployeeList;
+                System.out.println(entity);
+            }
         } catch (SQLException | NullPointerException e) {
             adminLogger.error("error while retrieving list of servers");
             e.printStackTrace();

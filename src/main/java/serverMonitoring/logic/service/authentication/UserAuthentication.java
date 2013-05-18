@@ -2,7 +2,6 @@ package serverMonitoring.logic.service.authentication;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,6 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import serverMonitoring.controller.employeePages.EmployeeController;
 import serverMonitoring.logic.DAO.DAOImpl.EmployeeJdbcDaoSupport;
 import serverMonitoring.logic.DAO.EmployeeDao;
 import serverMonitoring.model.EmployeeEntity;
@@ -30,22 +30,19 @@ import java.util.List;
 public class UserAuthentication implements AuthenticationManager {
 
     protected static Logger userAccessLogger = Logger.getLogger("UserAuthentication");
-    protected @Value( "#{applicationProperties['startup.entity.setLogin']}" ) String entitySetLogin;
-    protected @Value( "#{applicationProperties['startup.entity.setPassword']}" ) String entitySetPassword;
-    protected @Value( "#{applicationProperties['encoding.strengths']}" ) Integer encodingStrengths;
     @Autowired
     private EmployeeDao employeeDao = new EmployeeJdbcDaoSupport();
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
     private EmployeeEntity employeeEntity = null;
 
-    public Authentication authenticate(Authentication auth)  throws UsernameNotFoundException {
+    public Authentication authenticate(Authentication auth) throws UsernameNotFoundException {
 
         /*
          * Init a database user object
          */
         try {
             employeeEntity = employeeDao.findByLogin(auth.getName());
-        } catch (SQLException | BadCredentialsException | NullPointerException e) {
+        } catch (SQLException | BadCredentialsException e) {
             e.printStackTrace();
         }
 
@@ -63,32 +60,33 @@ public class UserAuthentication implements AuthenticationManager {
          * must be redirected to /employee/monitoring/password_update.ftl
          * with message PLEASE CHANGE YOUR PASSWORD
          */
-//        if (auth.getName().equals(entitySetLogin) & auth.getCredentials().equals(entitySetPassword)) {
-//            List<EmployeeEntity> entitylist = employeeDao.findAllByParam("login", entitySetLogin);
-//            EmployeeEntity defaultEntity = (list.isEmpty()) ? null : list.get(0);
-//            if (defaultEntity != null) {
-//                if (defaultEntity.getPassword().equals(passwordEncoder.encodePassword(entitySetPassword, null))) {
-//                    try {
-//                        //  must be redirected to /employee/monitoring/password_update.ftl
-//                        EmployeeController controller = new EmployeeController();
-//                        controller.getPasswordUpdatePage();
-//                        //message PLEASE CHANGE YOUR PASSWORD
-//                    } catch (Exception e) {
-//                        throw new RuntimeException("redirection of default entity failed" + e);
-//                    }
-//                }
-//            } else {
-//                throw new BadCredentialsException(entitySetLogin + " does not exists!");
-//            }
-//        }
+        if (auth.getName().equals("admin") & auth.getCredentials().equals("admin")) {
+            EmployeeEntity entity = null;
+            try {
+                entity = employeeDao.findByLogin("admin");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            if (entity != null & (entity.getPassword().equals(passwordEncoder.encodePassword("admin", null)))) {
+                try {
+                    //  must be redirected to /employee/monitoring/password_update.ftl
+                    EmployeeController controller = new EmployeeController();
+                    controller.getPasswordUpdatePage();
+                    //message PLEASE CHANGE YOUR PASSWORD
+                } catch (Exception e) {
+                    throw new RuntimeException("redirection of default entity failed" + e);
+                }
+            }
+        }
 
         /*
-         * main logic of authentication manager
-         * Username and password must be the same to authenticate
-         */
+        * main logic of authentication manager
+        * Username and password must be the same to authenticate
+        */
         if (auth.getName().equals(auth.getCredentials())) {
 
-                throw new BadCredentialsException("Entered login and password are the same!");
+            throw new BadCredentialsException("Entered login and password are the same!");
         } else {
             userAccessLogger.debug("User is located!");
             return new UsernamePasswordAuthenticationToken(

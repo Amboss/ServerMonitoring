@@ -49,31 +49,12 @@ public class CreateDataBaseImpl extends JdbcDaoSupport implements CreateDataBase
             ResultSet resultSet = connection.getMetaData().getCatalogs();
 
             //iterate each catalog in the ResultSet
-            while (resultSet.next()) {
-                // Get the database name, which is at position 1
-                if (resultSet.getString(1) == null) {
-                    createDataBase();
-                    createEmployeeEntityTable();
-                    createServerEntityTable();
-                }
+            if (!resultSet.next()) {
+                createEmployeeEntityTable();
+                createServerEntityTable();
             }
             resultSet.close();
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    /**
-     * Execute SQL query to create Data Base
-     */
-    @Override
-    public void createDataBase() {
-        String query = "CREATE DATABASE" + db_name;
-        try {
-            this.jdbcTemplate.update(query);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | SQLException ignored) {
         }
     }
 
@@ -94,11 +75,7 @@ public class CreateDataBaseImpl extends JdbcDaoSupport implements CreateDataBase
                 "lastLogin datetime NOT NULL," +
                 "active int(1) NOT NULL," +
                 "admin int(1) NOT NULL)";
-        try {
-            this.jdbcTemplate.update(query);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+        this.jdbcTemplate.update(query);
     }
 
     /*
@@ -119,10 +96,6 @@ public class CreateDataBaseImpl extends JdbcDaoSupport implements CreateDataBase
                 "created datetime NOT NULL," +
                 "lastCheck datetime NOT NULL," +
                 "active int(1) NOT NULL)";
-        try {
-            this.jdbcTemplate.update(query);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+        this.jdbcTemplate.update(query);
     }
 }
