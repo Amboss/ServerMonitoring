@@ -49,12 +49,16 @@ public class CreateDataBaseImpl extends JdbcDaoSupport implements CreateDataBase
             ResultSet resultSet = connection.getMetaData().getCatalogs();
 
             //iterate each catalog in the ResultSet
-            if (!resultSet.next()) {
-                createEmployeeEntityTable();
-                createServerEntityTable();
+            while (resultSet.next()) {
+                // Get the database name, which is at position 1
+                if (resultSet.getString(1) == null) {
+                    createEmployeeEntityTable();
+                    createServerEntityTable();
+                }
             }
             resultSet.close();
         } catch (ClassNotFoundException | SQLException ignored) {
+
         }
     }
 
