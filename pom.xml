@@ -7,16 +7,50 @@
     <groupId>ServerMonitoring</groupId>
     <artifactId>ServerMonitoring</artifactId>
     <version>1.0</version>
-    <packaging>war</packaging>
+
     <name>ServerMonitoring</name>
-    <url>http://maven.apache.org</url>
+    <packaging>war</packaging>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Generic properties properties-->
         <java.version>1.7</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!--Spring framework properties -->
         <spring.version>3.2.2.RELEASE</spring.version>
         <spring-security.version>3.1.3.RELEASE</spring-security.version>
-        <hibernate.version>4.2.0.Final</hibernate.version>
+
+        <!-- Java dependencies properties-->
+        <jstl.version>1.2</jstl.version>
+        <servlet.version>2.5</servlet.version>
+        <cglib.version>2.2.2</cglib.version>
+        <javassist.version>3.12.1.GA</javassist.version>
+        <taglibs.version>1.1.2</taglibs.version>
+
+        <!-- Database access properties-->
+        <common-dbcp.version>20030825.184428</common-dbcp.version>
+        <commons-pool.version>20030825.183949</commons-pool.version>
+        <commons-logging.version>1.1.1</commons-logging.version>
+        <commons-collections.version>3.2.1</commons-collections.version>
+
+        <!-- MySQL properties -->
+        <mysql-connector.version>5.1.9</mysql-connector.version>
+
+        <!-- Logging properties-->
+        <log4j.version>1.2.17</log4j.version>
+
+        <!-- Web dependencies properties-->
+        <freemarker.version>2.3.19</freemarker.version>
+        <bootstrap.version>2.3.1-1</bootstrap.version>
+
+        <!-- Test properties-->
+        <junit.version>4.11</junit.version>
+
+        <!-- XML parser properties-->
+        <antlr.version>2.7.7</antlr.version>
+        <dom4j.version>1.6.1</dom4j.version>
+
     </properties>
 
     <dependencies>
@@ -26,37 +60,31 @@
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
@@ -67,19 +95,16 @@
             <artifactId>spring-jdbc</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
@@ -92,123 +117,116 @@
             <artifactId>spring-security-core</artifactId>
             <version>${spring-security.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
             <version>${spring-security.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <version>${spring-security.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>dom4j</groupId>
-            <artifactId>dom4j</artifactId>
-            <version>1.6.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>20030825.184428</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-pool</groupId>
-            <artifactId>commons-pool</artifactId>
-            <version>20030825.183949</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-collections</groupId>
-            <artifactId>commons-collections</artifactId>
-            <version>3.2.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>antlr</groupId>
-            <artifactId>antlr</artifactId>
-            <version>2.7.7</version>
-        </dependency>
-
-        <!-- MySQL database driver -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.9</version>
-        </dependency>
-
-        <!--  CGLIB  -->
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>2.2.2</version>
-        </dependency>
-
-        <!-- log4j -->
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
-
-        <!-- JUnit testing framework -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- javassist-->
-        <dependency>
-            <groupId>javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.12.1.GA</version>
-        </dependency>
-
-        <!--javax Servlet api-->
+        <!-- Java dependencies -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
+            <version>${servlet.version}</version>
         </dependency>
-
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
-            <version>1.2</version>
+            <version>${jstl.version}</version>
         </dependency>
-
+        <!-- extend JAVA runtime-->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>${cglib.version}</version>
+        </dependency>
+        <!-- library for editing byte codes -->
+        <dependency>
+            <groupId>javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>${javassist.version}</version>
+        </dependency>
+        <!-- hosts the Apache Standard Taglib -->
         <dependency>
             <groupId>taglibs</groupId>
             <artifactId>standard</artifactId>
-            <version>1.1.2</version>
+            <version>${taglibs.version}</version>
         </dependency>
 
-        <!-- generic template freemarker engine -->
+        <!-- Database access -->
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>${common-dbcp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-pool</groupId>
+            <artifactId>commons-pool</artifactId>
+            <version>${commons-pool.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons-logging.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>${commons-collections.version}</version>
+        </dependency>
+
+        <!-- MySQL -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector.version}</version>
+        </dependency>
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <!-- Web dependencies -->
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-            <version>2.3.19</version>
+            <version>${freemarker.version}</version>
         </dependency>
-
-        <!-- Bootstrap template -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
-            <version>2.3.1-1</version>
+            <version>${bootstrap.version}</version>
         </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- XML parser -->
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>${dom4j.version}</version>
+        </dependency>
+        <!-- generator for structured text -->
+        <dependency>
+            <groupId>antlr</groupId>
+            <artifactId>antlr</artifactId>
+            <version>${antlr.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -230,16 +248,16 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-                <!--<groupId>org.apache.tomcat.maven</groupId>-->
-                <!--<artifactId>tomcat7-maven-plugin</artifactId>-->
-                <!--<version>2.0</version>-->
-                <!--<configuration>-->
-                    <!--<url>http://localhost:8080/manager/html</url>-->
-                    <!--<server>localhost</server>-->
-                    <!--<path>/${project.build.finalName}</path>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.0</version>
+                <configuration>
+                    <url>http://localhost:8080/manager/html</url>
+                    <server>localhost</server>
+                    <path>/${project.build.finalName}</path>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
