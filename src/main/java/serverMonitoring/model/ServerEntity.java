@@ -111,7 +111,7 @@ public class ServerEntity implements Serializable {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(ServerState state) {
         this.state = this.state;
     }
 

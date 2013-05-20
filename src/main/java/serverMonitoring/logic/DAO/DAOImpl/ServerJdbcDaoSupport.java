@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import serverMonitoring.logic.DAO.ServerDao;
 import serverMonitoring.model.ServerEntity;
+import serverMonitoring.model.serverStateEnum.ServerState;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -172,7 +173,7 @@ public class ServerJdbcDaoSupport extends JdbcDaoSupport implements ServerDao {
             entity.setAddress(rs.getString("address"));
             entity.setPort(rs.getInt("port"));
             entity.setUrl(rs.getString("url"));
-            entity.setState(rs.getString("state"));
+            entity.setState(ServerState.getEnum(rs.getString("state")));
             entity.setResponse(rs.getString("response"));
             entity.setCreated(rs.getTimestamp("created"));
             entity.setLastCheck(rs.getTimestamp("lastCheck"));

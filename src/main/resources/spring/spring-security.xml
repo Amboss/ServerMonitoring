@@ -30,7 +30,7 @@
           class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"
           p:authenticationManager-ref="customAuthenticationManager"
           p:authenticationFailureHandler-ref="customAuthenticationFailureHandler"
-          p:authenticationSuccessHandler-ref="customAuthenticationSuccessHandler" />
+          p:authenticationSuccessHandler-ref="customAuthenticationSuccessHandler"/>
 
     <!-- Custom authentication manager. !!! Username and password must not be the same !!! -->
     <bean id="customAuthenticationManager"

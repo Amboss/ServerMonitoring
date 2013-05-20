@@ -22,7 +22,7 @@
 
 
     <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"
-          p:templateLoaderPath="/WEB-INF/ftl"
+          p:templateLoaderPath="/WEB-INF/freemaker"
           p:defaultEncoding="UTF-8"/>
 
     <bean id="freemarkerViewResolver"
