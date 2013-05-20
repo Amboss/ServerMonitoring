@@ -1,49 +1,52 @@
 package serverMonitoring.logic.service;
 
-import org.springframework.security.access.annotation.Secured;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
 
 import java.util.List;
 
 /**
- *  Interface for functionality of user with ROLE_ADMIN access
+ * Interface for functionality of user with ROLE_ADMIN access
  */
-public interface AdminService {
+public interface AdminService extends EmployeeService{
 
-    /*
-     *  registration of new Employee
+    /**
+     * registration of new Employee
      */
     public EmployeeEntity registerEmployee(EmployeeEntity entity);
 
-    /*
-     *  update Employee Info
+    /**
+     * update Employee Info
      */
     public EmployeeEntity updateEmployee(EmployeeEntity entity);
 
-    /*
-     *  delete Employee
+    /**
+     * delete Employee
      */
     public void deleteEmployee(EmployeeEntity entity);
 
-    /*
-     *  register the new Server
+    /**
+     * register the new Server
      */
     public ServerEntity registerServer(ServerEntity entity);
 
-    /*
-    *  update Employee Info
-    */
+    /**
+     * update Employee Info
+     */
     public ServerEntity updateServer(ServerEntity entity);
 
-    /*
-     *  delete Employee
+    /**
+     * delete Server
      */
     public void deleteServer(ServerEntity entity);
 
-    @Secured("ROLE_ADMIN")
-    List<ServerEntity> getAllServers();
+    /**
+     * retrieve all Servers
+     */
+    public List<ServerEntity> getAllServers();
 
-    @Secured("ROLE_ADMIN")
-    List<EmployeeEntity> getAllEmployee();
+    /**
+     * retrieve all Employees
+     */
+    public List<EmployeeEntity> getAllEmployee();
 }

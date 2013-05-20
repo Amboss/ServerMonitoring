@@ -10,9 +10,14 @@ import serverMonitoring.model.serverStateEnum.ServerState;
 public interface EmployeeService {
 
     /*
+     * retrieve Employee by login
+     */
+    public EmployeeEntity getEmployeeByLogin(EmployeeEntity entity);
+
+    /*
      * change password
      */
-    public EmployeeEntity changePassword(EmployeeEntity entity);
+    public void changePassword(EmployeeEntity entity_id, String newPass);
 
     /*
      * retrieve server status
@@ -22,5 +27,5 @@ public interface EmployeeService {
     /*
      * retrieve server details
      */
-    public String getDetails(ServerEntity entity);
+    public String getServerDetails(ServerEntity entity);
 }

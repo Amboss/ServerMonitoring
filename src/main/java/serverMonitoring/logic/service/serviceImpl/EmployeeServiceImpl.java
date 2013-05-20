@@ -3,6 +3,7 @@ package serverMonitoring.logic.service.serviceImpl;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
 import serverMonitoring.logic.DAO.DAOImpl.EmployeeJdbcDaoSupport;
 import serverMonitoring.logic.DAO.DAOImpl.ServerJdbcDaoSupport;
@@ -37,16 +38,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     /**
-     * updating Server
-     * @return ServerEntity object
+     * retrieve Employee by login
+     *
+     * @return Employee Entity object
      */
     @Override
     @Secured("ROLE_USER")
-    public EmployeeEntity changePassword(EmployeeEntity entity) {
-        String str = "Employee Password with id: " + entity.getId();
+    public EmployeeEntity getEmployeeByLogin(EmployeeEntity entity_login) {
+        EmployeeEntity entity = new EmployeeEntity();
+        String str = "Employee with login: " + entity_login.getLogin();
         employeeLogger.debug("updating " + str);
         try {
-            employeeDao.update(entity);
+            entity = employeeDao.findByLogin(entity_login.getLogin());
         } catch (SQLException | NullPointerException e) {
             employeeLogger.error("error in update of " + str);
             e.printStackTrace();
@@ -55,17 +58,37 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     /**
+     * updating Employee
+     */
+    @Override
+    @Secured("ROLE_USER")
+    public void changePassword(EmployeeEntity entity_id, String newPass) {
+        ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
+        String str = "Employee Password with id: " + entity_id.getId();
+        EmployeeEntity entity = new EmployeeEntity();
+        employeeLogger.debug("updating " + str);
+        try {
+            entity.setPassword(passwordEncoder.encodePassword(newPass, null));
+            employeeDao.update(entity);
+        } catch (SQLException | NullPointerException e) {
+            employeeLogger.error("error in update of " + str);
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * retrieve server status
+     *
      * @return ServerEntity object
      */
     @Override
     @Secured("ROLE_USER")
-    public ServerState getServerState(ServerEntity entity) {
-        String str = "Server status with id: " + entity.getId();
+    public ServerState getServerState(ServerEntity entity_id) {
+        String str = "Server status with id: " + entity_id.getId();
         employeeLogger.debug("retrieving " + str);
         ServerEntity entityState = null;
         try {
-            entityState = serverDao.findById(entity.getId());
+            entityState = serverDao.findById(entity_id.getId());
         } catch (SQLException | NullPointerException e) {
             employeeLogger.error("error while retrieving " + str);
             e.printStackTrace();
@@ -75,16 +98,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * retrieve server details
+     *
      * @return ServerEntity object
      */
     @Override
     @Secured("ROLE_USER")
-    public String getDetails(ServerEntity entity) {
-        String str = "server details with id: " + entity.getId();
+    public String getServerDetails(ServerEntity entity_id) {
+        String str = "server details with id: " + entity_id.getId();
         employeeLogger.debug("retrieving " + str);
         ServerEntity entityDetails = null;
         try {
-            entityDetails = serverDao.findById(entity.getId());
+            entityDetails = serverDao.findById(entity_id.getId());
 
         } catch (SQLException | NullPointerException e) {
             employeeLogger.error("error while retrieving " + str);

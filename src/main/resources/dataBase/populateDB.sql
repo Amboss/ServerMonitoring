@@ -8,6 +8,6 @@ INSERT INTO `employee_entity`(`id`, `employee_name`, `login`, `password`, `email
 '2013-05-19 00:00:01', '2038-01-09 03:14:07', 1, 0);
 
 INSERT INTO `server_entity`(`id`, `server_name`, `address`, `port`, `url`, `state`, `response`,
- `created`, `lastCheck`, `active`) VALUES (011, 'localhost', '255.255.255.0', 8080,
+ `created`, `lastCheck`, `active`) VALUES (09, 'localhost', '255.255.255.0', 8080,
  'http://localhost/', 'OK', 'OK', '2013-05-19 00:00:01', '2038-01-09 03:14:07', 1);
 

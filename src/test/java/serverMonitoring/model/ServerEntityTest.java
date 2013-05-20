@@ -1,6 +1,8 @@
 package serverMonitoring.model;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import serverMonitoring.model.serverStateEnum.ServerState;
 
 import java.sql.Timestamp;
@@ -10,7 +12,9 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * JUnit test for the {@link ServerEntity} class.
+ *
  */
+@RunWith(SpringJUnit4ClassRunner.class)
 public class ServerEntityTest {
     ServerEntity entity = new ServerEntity();
     Date date = new Date();
@@ -19,16 +23,20 @@ public class ServerEntityTest {
     @Test
     public void testSetEmployeeFiller() {
         ServerState state = ServerState.OK;
-        entity.setId(34l);
-        entity.setServer_name("localhost");
-        entity.setAddress("255.255.255.0");
-        entity.setPort(8080);
-        entity.setUrl("http://localhost/");
-        entity.setState(state);
-        entity.setResponse(state.toString());
-        entity.setCreated(timestamp);
-        entity.setLastCheck(timestamp);
-        entity.setActive(1);
+        try {
+            entity.setId(34l);
+            entity.setServer_name("localhost");
+            entity.setAddress("255.255.255.0");
+            entity.setPort(8080);
+            entity.setUrl("http://localhost/");
+            entity.setState(state);
+            entity.setResponse(state.toString());
+            entity.setCreated(timestamp);
+            entity.setLastCheck(timestamp);
+            entity.setActive(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         assertEquals("failure - id should be same", (Object)34l,  entity.getId());
