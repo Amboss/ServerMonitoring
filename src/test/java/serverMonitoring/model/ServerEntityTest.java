@@ -1,7 +1,9 @@
 package serverMonitoring.model;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import serverMonitoring.model.serverStateEnum.ServerState;
 
@@ -16,12 +18,23 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ServerEntityTest {
-    ServerEntity entity = new ServerEntity();
-    Date date = new Date();
-    Timestamp timestamp = new Timestamp(date.getTime());
 
+    Date date;
+    ShaPasswordEncoder passwordEncoder;
+    Timestamp timestamp;
+
+    @BeforeClass
+    public void initiate() {
+        passwordEncoder = new ShaPasswordEncoder(256);
+        date = new Date();
+        timestamp = new Timestamp(date.getTime());
+    }
+    /**
+     * Testing Server entity setters/getters functionality
+     */
     @Test
     public void testSetEmployeeFiller() {
+        ServerEntity entity = new ServerEntity();
         ServerState state = ServerState.OK;
         try {
             entity.setId(34l);

@@ -101,11 +101,11 @@ public class AdminServiceImpl extends EmployeeServiceImpl implements AdminServic
      */
     @Override
     @Secured("ROLE_ADMIN")
-    public void deleteEmployee(EmployeeEntity entity) {
-        String str = "Employee with id: " + entity.getId();
+    public void deleteEmployee(Long entity_id) {
+        String str = "Employee with id: " + Long.toString(entity_id);
         adminLogger.debug("deleting " + str);
         try {
-            employeeDao.delete(entity);
+            employeeDao.delete(entity_id);
         } catch (SQLException | NullPointerException e) {
             adminLogger.error("error while deleting " + str);
             e.printStackTrace();
@@ -176,11 +176,11 @@ public class AdminServiceImpl extends EmployeeServiceImpl implements AdminServic
      */
     @Override
     @Secured("ROLE_ADMIN")
-    public void deleteServer(ServerEntity entity) {
-        String str = "Server with id: " + entity.getId();
+    public void deleteServer(Long entity_id) {
+        String str = "Server with id: " + entity_id;
         adminLogger.debug("deleting " + str);
         try {
-            serverDao.delete(entity);
+            serverDao.delete(entity_id);
         } catch (SQLException | NullPointerException e) {
             adminLogger.error("error while deleting  " + str);
             e.printStackTrace();

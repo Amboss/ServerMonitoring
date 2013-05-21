@@ -1,5 +1,6 @@
 package serverMonitoring.model;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
@@ -17,14 +18,25 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class EmployeeEntityTest {
 
-    EmployeeEntity entity = new EmployeeEntity();
-    Date date = new Date();
-    ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
-    String pass = passwordEncoder.encodePassword("12345", null);
-    Timestamp timestamp = new Timestamp(date.getTime());
 
+    Date date;
+    ShaPasswordEncoder passwordEncoder;
+    Timestamp timestamp;
+
+    @BeforeClass
+    public void initiate() {
+        passwordEncoder = new ShaPasswordEncoder(256);
+        date = new Date();
+        timestamp = new Timestamp(date.getTime());
+    }
+
+    /**
+     * Testing Employee entity setters/getters functionality
+     */
     @Test
     public void testSetEmployeeFiller() {
+        EmployeeEntity entity = new EmployeeEntity();
+        String pass = passwordEncoder.encodePassword("12345", null);
         try {
             entity.setId(2l);
             entity.setEmployee_name("Default_FirstName &LastName");
@@ -41,13 +53,13 @@ public class EmployeeEntityTest {
 
         assertEquals("failure - id should be same", 1l, (Object) entity.getId());
         assertEquals("failure - entity_name should be same", "Default_FirstName &LastName",
-                                                                    entity.getEmployee_name());
+                entity.getEmployee_name());
         assertEquals("failure - login should be same", "Default_login", entity.getLogin());
         assertEquals("failure - password should be same", pass, entity.getPassword());
         assertEquals("failure - password should be same", "default_email@mail.com", entity.getEmail());
         assertEquals("failure - created should be same", timestamp, entity.getCreated());
         assertEquals("failure - lastLogin should be same", timestamp, entity.getLastLogin());
-        assertEquals("failure - isActive should be same", (Object)1,  entity.getActive());
-        assertEquals("failure - isAdmin should be same", (Object)0,  entity.getAdmin());
+        assertEquals("failure - isActive should be same", (Object) 1, entity.getActive());
+        assertEquals("failure - isAdmin should be same", (Object) 0, entity.getAdmin());
     }
 }

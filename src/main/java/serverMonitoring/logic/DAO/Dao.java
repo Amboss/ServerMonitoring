@@ -13,7 +13,7 @@ public interface Dao<T> {
 
     public void update(T entity) throws SQLException;
 
-    public void delete(T entity_id) throws SQLException;
+    void delete(Long entity_id) throws SQLException;
 
     public T findById(Long entity_id) throws SQLException;
 

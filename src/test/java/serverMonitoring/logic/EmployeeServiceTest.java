@@ -1,5 +1,6 @@
 package serverMonitoring.logic;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ import serverMonitoring.logic.service.serviceImpl.EmployeeServiceImpl;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.serverStateEnum.ServerState;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -26,9 +30,19 @@ import static org.junit.Assert.assertNotNull;
 @ContextConfiguration(locations = {"classpath:/application-context.xml"})
 public class EmployeeServiceTest {
 
-    private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
+    private ShaPasswordEncoder passwordEncoder;
+    private Date date;
+    private Timestamp timestamp;
+
     @Autowired
     private EmployeeService employeeService = new EmployeeServiceImpl();
+
+    @BeforeClass
+    public void initiate() {
+        passwordEncoder = new ShaPasswordEncoder(256);
+        date = new Date();
+        timestamp = new Timestamp(date.getTime());
+    }
 
     /**
      * Retrieving employee with login "user" and changing password to "54321",
@@ -86,13 +100,12 @@ public class EmployeeServiceTest {
     @Transactional
     public void testGetDetails() {
         ServerEntity entity = new ServerEntity();
-        String str = null;
         try {
             entity.setId(9l);
-            str = employeeService.getServerDetails(entity);
+            entity = employeeService.getServerDetails(entity);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        assertNotNull("failure - getServerDetails must be same NotNull",str);
+        assertNotNull("failure - getServerDetails must be same NotNull",entity);
     }
 }

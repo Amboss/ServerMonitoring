@@ -86,7 +86,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public ServerState getServerState(ServerEntity entity_id) {
         String str = "Server status with id: " + entity_id.getId();
         employeeLogger.debug("retrieving " + str);
-        ServerEntity entityState = null;
+        ServerEntity entityState = new ServerEntity();
         try {
             entityState = serverDao.findById(entity_id.getId());
         } catch (SQLException | NullPointerException e) {
@@ -103,18 +103,18 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     @Secured("ROLE_USER")
-    public String getServerDetails(ServerEntity entity_id) {
-        String str = "server details with id: " + entity_id.getId();
+    public ServerEntity getServerDetails(ServerEntity entity) {
+        String str = "server details with id: " + entity.getId();
         employeeLogger.debug("retrieving " + str);
-        ServerEntity entityDetails = null;
+        ServerEntity entityDetails = new ServerEntity();
         try {
-            entityDetails = serverDao.findById(entity_id.getId());
+            entityDetails = serverDao.findById(entity.getId());
 
         } catch (SQLException | NullPointerException e) {
             employeeLogger.error("error while retrieving " + str);
             e.printStackTrace();
         }
-        return entityDetails.toString();
+        return entityDetails;
     }
 
     private static Timestamp getCurrentTimeStamp() {

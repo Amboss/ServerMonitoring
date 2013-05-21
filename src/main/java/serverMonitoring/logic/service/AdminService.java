@@ -23,7 +23,7 @@ public interface AdminService extends EmployeeService{
     /**
      * delete Employee
      */
-    public void deleteEmployee(EmployeeEntity entity);
+    public void deleteEmployee(Long entity_id);
 
     /**
      * register the new Server
@@ -38,7 +38,7 @@ public interface AdminService extends EmployeeService{
     /**
      * delete Server
      */
-    public void deleteServer(ServerEntity entity);
+    public void deleteServer(Long entity_id);
 
     /**
      * retrieve all Servers

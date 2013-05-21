@@ -122,10 +122,10 @@ public class ServerJdbcDaoSupport extends JdbcDaoSupport implements ServerDao {
      * Deleting existing Server entity
      */
     @Override
-    public void delete(ServerEntity entity_id) throws SQLException {
+    public void delete(Long entity_id) throws SQLException {
         String query = "delete from " + db_table + " where id = ?";
         if (entity_id != null) {
-            Object[] args = {entity_id.getId()};
+            Object[] args = {entity_id};
             this.getJdbcTemplate().update(query, args);
         } else {
             throw new NullPointerException(nullError);
@@ -173,7 +173,7 @@ public class ServerJdbcDaoSupport extends JdbcDaoSupport implements ServerDao {
             entity.setAddress(rs.getString("address"));
             entity.setPort(rs.getInt("port"));
             entity.setUrl(rs.getString("url"));
-            entity.setState(ServerState.getEnum(rs.getString("state")));
+            entity.setState(ServerState.getEnumFromString(rs.getString("state")));
             entity.setResponse(rs.getString("response"));
             entity.setCreated(rs.getTimestamp("created"));
             entity.setLastCheck(rs.getTimestamp("lastCheck"));

@@ -27,5 +27,5 @@ public interface EmployeeService {
     /*
      * retrieve server details
      */
-    public String getServerDetails(ServerEntity entity);
+    public ServerEntity getServerDetails(ServerEntity entity);
 }

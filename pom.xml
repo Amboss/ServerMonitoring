@@ -46,6 +46,7 @@
 
         <!-- Test properties-->
         <junit.version>4.11</junit.version>
+        <junit-addons.version>1.4</junit-addons.version>
         <hamcrest.version>1.3</hamcrest.version>
 
         <!-- XML parser properties-->
@@ -107,7 +108,7 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <!-- Spring Security -->
+        <!-- Spring Security dependencies-->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
@@ -135,26 +136,26 @@
             <artifactId>jstl</artifactId>
             <version>${jstl.version}</version>
         </dependency>
-        <!-- extend JAVA runtime-->
         <dependency>
+            <!-- extend Java runtime-->
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>${cglib.version}</version>
         </dependency>
-        <!-- library for editing byte codes -->
         <dependency>
+            <!-- library for editing byte codes -->
             <groupId>javassist</groupId>
             <artifactId>javassist</artifactId>
             <version>${javassist.version}</version>
         </dependency>
-        <!-- hosts the Apache Standard Taglib -->
         <dependency>
+            <!-- hosts the Apache Standard Taglib -->
             <groupId>taglibs</groupId>
             <artifactId>standard</artifactId>
             <version>${taglibs.version}</version>
         </dependency>
 
-        <!-- Database access -->
+        <!-- Database access dependencies-->
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
@@ -176,14 +177,14 @@
             <version>${commons-collections.version}</version>
         </dependency>
 
-        <!-- MySQL -->
+        <!-- MySQL dependencies-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql-connector.version}</version>
         </dependency>
 
-        <!-- Logging -->
+        <!-- Logging dependencies-->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
@@ -202,7 +203,7 @@
             <version>${bootstrap.version}</version>
         </dependency>
 
-        <!-- Test -->
+        <!-- Test dependencies-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
@@ -216,20 +217,27 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <!-- asserting List objects-->
+            <groupId>junit-addons</groupId>
+            <artifactId>junit-addons</artifactId>
+            <version>${junit-addons.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-library</artifactId>
             <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- XML parser -->
+        <!-- XML parser dependencies-->
         <dependency>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
             <version>${dom4j.version}</version>
         </dependency>
-        <!-- generator for structured text -->
         <dependency>
+            <!-- generator for structured text -->
             <groupId>antlr</groupId>
             <artifactId>antlr</artifactId>
             <version>${antlr.version}</version>

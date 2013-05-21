@@ -16,11 +16,11 @@ public enum ServerState {
     };
 
     /**
-     * @return the exact string used to create that enum which can be used
+     * @return the exact Enum used to create that enum which can be used
      *         to check against provided string.
      *         Throws an IllegalArgumentException if no match is found.
      */
-    public static ServerState getEnum(String s) {
+    public static ServerState getEnumFromString(String s) {
         if (OK.name().equals(s)) {
             return OK;
         } else if (WARN.name().equals(s)) {
@@ -29,5 +29,21 @@ public enum ServerState {
             return FAIL;
         }
         throw new IllegalArgumentException("No Enum specified for this string");
+    }
+
+    /**
+     * @return the exact String used to create that enum which can be used
+     *         to check against provided string.
+     *         Throws an IllegalArgumentException if no match is found.
+     */
+    public static String getString(ServerState state) {
+        if (ServerState.OK.equals(state)) {
+            return "OK";
+        } else if (ServerState.WARN.equals(state)) {
+            return "WARN";
+        } else if (ServerState.FAIL.equals(state)) {
+            return "FAIL";
+        }
+        throw new IllegalArgumentException("No String specified for existing Enum");
     }
 }

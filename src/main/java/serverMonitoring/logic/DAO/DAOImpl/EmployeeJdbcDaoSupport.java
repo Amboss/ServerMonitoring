@@ -117,10 +117,10 @@ public class EmployeeJdbcDaoSupport extends JdbcDaoSupport implements EmployeeDa
      * Deleting existing Employee entity
      */
     @Override
-    public void delete(EmployeeEntity entity_id) throws SQLException {
+    public void delete(Long entity_id) throws SQLException {
         String query = "delete from " + db_table + " where id = ?";
         if (entity_id != null) {
-            Object[] args = {entity_id.getId()};
+            Object[] args = {entity_id};
             this.getJdbcTemplate().update(query, args);
         } else {
             throw new NullPointerException(nullError);
