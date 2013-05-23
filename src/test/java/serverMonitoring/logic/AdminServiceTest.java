@@ -12,7 +12,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import serverMonitoring.logic.service.AdminService;
-import serverMonitoring.logic.service.serviceImpl.AdminServiceImpl;
+import serverMonitoring.logic.service.EmployeeService;
+import serverMonitoring.logic.service.impl.AdminServiceImpl;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.serverStateEnum.ServerState;
@@ -36,9 +37,18 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
     private static ShaPasswordEncoder passwordEncoder;
     private static Date date;
     private static Timestamp timestamp;
+    private AdminService adminService;
+    private EmployeeService employeeService;
 
     @Autowired
-    public AdminService adminService;
+    public void setAdminService(AdminService adminService) {
+        this.adminService = adminService;
+    }
+
+    @Autowired
+    public void setEmployeeService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @BeforeClass
     public static void initiate() {
@@ -73,12 +83,13 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         }
 
         try {
-            entity2 = adminService.getEmployeeByLogin(entity);
+            entity2 = employeeService.getEmployeeByLogin(entity);
+            assertNotNull("failure - Employee entity2 must not be null", entity2);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        assertNotNull("failure - Employee entity2 must not be null", entity2);
+
 
         assertEquals("failure - entity_name should be same", "Test_Employee_Name", entity2.getEmployee_name());
         assertEquals("failure - login should be same", "testUser", entity2.getLogin());
@@ -112,7 +123,7 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         // retrieving entity
         try {
             entity.setLogin("testUser");
-            entity = adminService.getEmployeeByLogin(entity);
+            entity = employeeService.getEmployeeByLogin(entity);
             assertNotNull(entity);
         } catch (Exception e) {
             e.printStackTrace();
@@ -191,7 +202,7 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         try {
 
             entity.setLogin("testUser");
-            entity = adminService.getEmployeeByLogin(entity);
+            entity = employeeService.getEmployeeByLogin(entity);
             Long id = entity.getId();
             adminService.deleteEmployee(id);
         } catch (Exception e) {
@@ -201,7 +212,7 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         // deleting entity2
         try {
             entity.setLogin("testUser2");
-            entity = adminService.getEmployeeByLogin(entity);
+            entity = employeeService.getEmployeeByLogin(entity);
             Long id = entity.getId();
             adminService.deleteEmployee(id);
         } catch (Exception e) {
@@ -211,7 +222,7 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         //retrieving and asserting for null
         try {
             entity.setLogin("testUser");
-            entity = adminService.getEmployeeByLogin(entity);
+            entity = employeeService.getEmployeeByLogin(entity);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -219,7 +230,7 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
 
         try {
             entity2.setLogin("testUser");
-            entity2 = adminService.getEmployeeByLogin(entity2);
+            entity2 = employeeService.getEmployeeByLogin(entity2);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -256,7 +267,7 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
 
         try {
             entity.setId(2l);
-            entity2 = adminService.getServerDetails(entity);
+            entity2 = employeeService.getServerDetails(entity);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -299,7 +310,7 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         // retrieving entity
         try {
             entity.setId(2l);
-            entity = adminService.getServerDetails(entity);
+            entity = employeeService.getServerDetails(entity);
             assertNotNull(entity);
         } catch (Exception e) {
             e.printStackTrace();
@@ -382,7 +393,7 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         // deleting entity
         try {
             entity.setId(2l);
-            entity = adminService.getServerDetails(entity);
+            entity = employeeService.getServerDetails(entity);
             Long id = entity.getId();
             adminService.deleteServer(id);
         } catch (Exception e) {
@@ -392,7 +403,7 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         // deleting entity2
         try {
             entity2.setId(3l);
-            entity2 = adminService.getServerDetails(entity2);
+            entity2 = employeeService.getServerDetails(entity2);
             Long id = entity2.getId();
             adminService.deleteServer(id);
         } catch (Exception e) {
@@ -402,7 +413,7 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         //retrieving and asserting for null
         try {
             entity.setId(2l);
-            entity = adminService.getServerDetails(entity);
+            entity = employeeService.getServerDetails(entity);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -410,7 +421,7 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
 
         try {
             entity2.setId(3l);
-            entity2 = adminService.getServerDetails(entity2);
+            entity2 = employeeService.getServerDetails(entity2);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }

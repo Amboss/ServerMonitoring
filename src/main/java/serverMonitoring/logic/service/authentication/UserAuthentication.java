@@ -11,12 +11,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import serverMonitoring.controller.employeePages.EmployeeController;
-import serverMonitoring.logic.DAO.DAOImpl.EmployeeJdbcDaoSupport;
-import serverMonitoring.logic.DAO.EmployeeDao;
+import serverMonitoring.logic.dao.EmployeeDao;
 import serverMonitoring.model.EmployeeEntity;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -30,23 +27,23 @@ import java.util.List;
 public class UserAuthentication implements AuthenticationManager {
 
     protected static Logger userAccessLogger = Logger.getLogger("UserAuthentication");
-    @Autowired
-    private EmployeeDao employeeDao = new EmployeeJdbcDaoSupport();
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
-    private EmployeeEntity employeeEntity = null;
+    private EmployeeDao employeeDao;
+
+    @Autowired
+    public void setEmployeeDao(EmployeeDao employeeDao) {
+        this.employeeDao = employeeDao;
+    }
 
     public Authentication authenticate(Authentication auth) throws UsernameNotFoundException {
 
-        /*
+        /**
          * Init a database user object
          */
-        try {
-            employeeEntity = employeeDao.findByLogin(auth.getName());
-        } catch (SQLException | BadCredentialsException e) {
-            e.printStackTrace();
-        }
+        EmployeeEntity employeeEntity = employeeDao.findByLogin(auth.getName());
+        assert employeeEntity != null;
 
-        /*
+        /**
          * Compare passwords
          * Make sure to encode the password first before comparing
          */
@@ -54,36 +51,27 @@ public class UserAuthentication implements AuthenticationManager {
             throw new BadCredentialsException("Wrong password!");
         }
 
-        /*
+        /**
          * Init a first entrance of default entity
          *
          * must be redirected to /employee/monitoring/password_update.ftl
          * with message PLEASE CHANGE YOUR PASSWORD
          */
         if (auth.getName().equals("admin") & auth.getCredentials().equals("admin")) {
-            EmployeeEntity entity = null;
-            try {
-                entity = employeeDao.findByLogin("admin");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-            if (entity != null & (entity.getPassword().equals(passwordEncoder.encodePassword("admin", null)))) {
-                try {
-                    //  must be redirected to /employee/monitoring/password_update.ftl
-                    EmployeeController controller = new EmployeeController();
-                    controller.getPasswordUpdatePage();
-                    //message PLEASE CHANGE YOUR PASSWORD
-                } catch (Exception e) {
-                    throw new RuntimeException("redirection of default entity failed" + e);
-                }
+            employeeEntity = employeeDao.findByLogin("admin");
+            if (employeeEntity.getPassword().equals(passwordEncoder.encodePassword("admin", null))) {
+                //  must be redirected to /employee/monitoring/password_update.ftl
+                userAccessLogger.debug("Admin is logged in");
+//                EmployeeController controller = new EmployeeController();
+//                controller.getPasswordUpdatePage();
+//                String message = "PLEASE CHANGE YOUR PASSWORD";
             }
         }
 
-        /*
-        * main logic of authentication manager
-        * Username and password must be the same to authenticate
-        */
+        /**
+         * main logic of authentication manager
+         * Username and password must be the same to authenticate
+         */
         if (auth.getName().equals(auth.getCredentials())) {
 
             throw new BadCredentialsException("Entered login and password are the same!");
@@ -96,7 +84,7 @@ public class UserAuthentication implements AuthenticationManager {
         }
     }
 
-    /*
+    /**
      * Retrieves the correct ROLE type depending on the access level
      */
     public Collection<GrantedAuthority> getAuthorities(Integer access) {

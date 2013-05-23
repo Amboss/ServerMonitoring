@@ -1,5 +1,6 @@
 package serverMonitoring.logic.service;
 
+import org.springframework.security.access.annotation.Secured;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.serverStateEnum.ServerState;
@@ -7,6 +8,7 @@ import serverMonitoring.model.serverStateEnum.ServerState;
 /**
  *  Interface for functionality of user with ROLE_USER access
  */
+@Secured("ROLE_USER")
 public interface EmployeeService {
 
     /*

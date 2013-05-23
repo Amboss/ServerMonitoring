@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import serverMonitoring.logic.service.EmployeeService;
-import serverMonitoring.logic.service.serviceImpl.EmployeeServiceImpl;
+import serverMonitoring.logic.service.impl.EmployeeServiceImpl;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.serverStateEnum.ServerState;
@@ -29,9 +29,12 @@ import static org.junit.Assert.assertNotNull;
 public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
 
     private static ShaPasswordEncoder passwordEncoder;
+    private EmployeeService employeeService;
 
     @Autowired
-    public EmployeeService employeeService;
+    public void setAdminService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @BeforeClass
     public static void initiate() {
