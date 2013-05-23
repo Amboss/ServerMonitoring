@@ -54,6 +54,9 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
         try {
             entity.setLogin("user");
             entity = employeeService.getEmployeeByLogin(entity);
+            assertNotNull("entity is empty", entity);
+            Long id = entity.getId();
+            entity.setId(id);
             employeeService.changePassword(entity, "54321");
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,7 +68,7 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
             entity2 = employeeService.getEmployeeByLogin(entity);
             String testPass = passwordEncoder.encodePassword("54321", null);
             assertNotNull(entity2);
-            assertEquals("failure - password must be same", testPass, entity2.getLogin());
+            assertEquals("failure - password must be same", testPass, entity2.getPassword());
         } catch (Exception e) {
             e.printStackTrace();
         }
