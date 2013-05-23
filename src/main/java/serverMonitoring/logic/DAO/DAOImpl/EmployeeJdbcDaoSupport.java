@@ -135,10 +135,10 @@ public class EmployeeJdbcDaoSupport extends JdbcDaoSupport implements EmployeeDa
     @Override
     public EmployeeEntity findById(Long entity_id) throws SQLException {
         String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE id = ?";
-        assert (entity_id != null);
-        EmployeeEntity entity = null;
+        EmployeeEntity entity = new EmployeeEntity();
         try {
-            entity = this.jdbcTemplate.queryForObject(query, new Object[]{1212L}, new EmployeeEntityMapper());
+            entity = this.jdbcTemplate.queryForObject(query, new Object[]{1212L},
+                    new EmployeeEntityMapper());
         } catch (DataAccessException e) {
             //e.printStackTrace();
         }
@@ -153,10 +153,10 @@ public class EmployeeJdbcDaoSupport extends JdbcDaoSupport implements EmployeeDa
     @Override
     public EmployeeEntity findByLogin(String entity_login) throws SQLException {
         String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE login = ?";
-        assert (entity_login != null);
-        EmployeeEntity entity = null;
+        EmployeeEntity entity = new EmployeeEntity();
         try {
-            entity = this.jdbcTemplate.queryForObject(query, new Object[]{1212L}, new EmployeeEntityMapper());
+            entity = this.jdbcTemplate.queryForObject(query, new Object[]{1212L},
+                    new EmployeeEntityMapper());
         } catch (DataAccessException e) {
             //e.printStackTrace();
         }

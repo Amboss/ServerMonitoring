@@ -6,9 +6,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import serverMonitoring.logic.service.AdminService;
 import serverMonitoring.logic.service.serviceImpl.AdminServiceImpl;
@@ -21,9 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 /**
  * JUnit test for the {@link AdminServiceImpl} class.
@@ -31,18 +29,18 @@ import static org.junit.Assert.assertNull;
  * ApplicationContext will be loaded from "classpath:/application-context.xml"
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/application-context.xml"})
-public class AdminServiceTest {
+@ContextConfiguration(locations = {"classpath:application-context.xml"})
+public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
 
-    private ShaPasswordEncoder passwordEncoder;
-    private Date date;
-    private Timestamp timestamp;
+    private static ShaPasswordEncoder passwordEncoder;
+    private static Date date;
+    private static Timestamp timestamp;
 
-    @Autowired
-    AdminService adminService = new AdminServiceImpl();
+
+    public AdminService adminService = new AdminServiceImpl();
 
     @BeforeClass
-    public void initiate() {
+    public static void initiate() {
         passwordEncoder = new ShaPasswordEncoder(256);
         date = new Date();
         timestamp = new Timestamp(date.getTime());
@@ -232,7 +230,7 @@ public class AdminServiceTest {
         ServerEntity entity = new ServerEntity();
         ServerEntity entity2 = new ServerEntity();
         ServerState serverState = ServerState.FAIL;
-        String serverStateString = ServerState.getString(serverState);
+        String serverStateString = ServerState.getStringFromEnum(serverState);
 
         entity.setId(2l);
         entity.setServer_name("Test_Server1");
@@ -317,7 +315,7 @@ public class AdminServiceTest {
         List<ServerEntity> reality = new ArrayList<>();
         List<ServerEntity> expected = new ArrayList<>();
         ServerState serverState = ServerState.OK;
-        String serverStateString = ServerState.getString(serverState);
+        String serverStateString = ServerState.getStringFromEnum(serverState);
 
         entity.setId(2l);
         entity.setServer_name("Test_Server1");

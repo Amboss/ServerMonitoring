@@ -4,6 +4,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Timestamp;
@@ -16,15 +18,16 @@ import static org.junit.Assert.assertEquals;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-public class EmployeeEntityTest {
+@ContextConfiguration(locations = {"classpath:application-context.xml"})
+public class EmployeeEntityTest extends AbstractJUnit4SpringContextTests {
 
 
-    Date date;
-    ShaPasswordEncoder passwordEncoder;
-    Timestamp timestamp;
+    private static Date date;
+    private static ShaPasswordEncoder passwordEncoder;
+    private static Timestamp timestamp;
 
     @BeforeClass
-    public void initiate() {
+    public static void initiate() {
         passwordEncoder = new ShaPasswordEncoder(256);
         date = new Date();
         timestamp = new Timestamp(date.getTime());
@@ -51,7 +54,7 @@ public class EmployeeEntityTest {
             e.printStackTrace();
         }
 
-        assertEquals("failure - id should be same", 1l, (Object) entity.getId());
+        assertEquals("failure - id should be same", 2l, (Object) entity.getId());
         assertEquals("failure - entity_name should be same", "Default_FirstName &LastName",
                 entity.getEmployee_name());
         assertEquals("failure - login should be same", "Default_login", entity.getLogin());

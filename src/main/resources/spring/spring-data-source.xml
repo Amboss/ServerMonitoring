@@ -22,10 +22,10 @@
         <property name="password" value=""/>
     </bean>
 
-    <!-- DataBase initialisation -->
+    <!-- DataBase initialization -->
     <jdbc:initialize-database data-source="dataSource">
         <jdbc:script location="classpath:dataBase/createDB.sql"/>
-        <jdbc:script location="classpath:dataBase/populateDB.sql"/>
+        <!--<jdbc:script location="classpath:dataBase/populateDB.sql"/>-->
     </jdbc:initialize-database>
 
     <!-- transactionManager settings -->

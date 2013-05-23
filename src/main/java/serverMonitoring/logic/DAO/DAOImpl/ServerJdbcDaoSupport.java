@@ -140,8 +140,7 @@ public class ServerJdbcDaoSupport extends JdbcDaoSupport implements ServerDao {
     @Override
     public ServerEntity findById(Long entity_id) throws SQLException {
         String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE id = ?";
-        assert (entity_id != null);
-        ServerEntity serverEntity = null;
+        ServerEntity serverEntity = new ServerEntity();
         try {
             serverEntity = this.jdbcTemplate.queryForObject(query, new Object[]{1212L}, new EmployeeEntityMapper());
         } catch (DataAccessException e) {

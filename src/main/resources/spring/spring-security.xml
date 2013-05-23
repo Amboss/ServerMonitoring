@@ -18,7 +18,6 @@
                    entry-point-ref="authenticationEntryPoint">
 
         <security:logout invalidate-session="true" logout-success-url="/auth/login/success"
-                         delete-cookies="SPRING_SECURITY_REMEMBER_ME_COOKIE"
                          logout-url="/auth/logout?success"/>
 
         <security:intercept-url pattern="/auth/login" access="permitAll"/>

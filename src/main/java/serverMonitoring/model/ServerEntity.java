@@ -112,7 +112,7 @@ public class ServerEntity implements Serializable {
     }
 
     public void setState(ServerState state) {
-        this.state = this.state;
+        this.state = state;
     }
 
     public String getResponse() {

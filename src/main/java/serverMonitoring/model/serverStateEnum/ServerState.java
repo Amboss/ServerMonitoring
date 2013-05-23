@@ -36,7 +36,7 @@ public enum ServerState {
      *         to check against provided string.
      *         Throws an IllegalArgumentException if no match is found.
      */
-    public static String getString(ServerState state) {
+    public static String getStringFromEnum(ServerState state) {
         if (ServerState.OK.equals(state)) {
             return "OK";
         } else if (ServerState.WARN.equals(state)) {
