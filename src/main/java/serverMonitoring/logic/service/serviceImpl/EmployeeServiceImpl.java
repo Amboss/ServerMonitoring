@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
-import serverMonitoring.logic.DAO.DAOImpl.EmployeeJdbcDaoSupport;
-import serverMonitoring.logic.DAO.DAOImpl.ServerJdbcDaoSupport;
 import serverMonitoring.logic.DAO.EmployeeDao;
 import serverMonitoring.logic.DAO.ServerDao;
 import serverMonitoring.logic.service.EmployeeService;
@@ -24,8 +22,8 @@ import java.sql.Timestamp;
 public class EmployeeServiceImpl implements EmployeeService {
 
     protected static Logger employeeLogger = Logger.getLogger("EmployeeServiceImpl");
-    private EmployeeDao employeeDao = new EmployeeJdbcDaoSupport();
-    private ServerDao serverDao = new ServerJdbcDaoSupport();
+    private EmployeeDao employeeDao;
+    private ServerDao serverDao;
 
     @Autowired
     public void setEmployeeDao(EmployeeDao employeeDao) {

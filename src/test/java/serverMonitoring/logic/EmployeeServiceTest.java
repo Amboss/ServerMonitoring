@@ -3,6 +3,7 @@ package serverMonitoring.logic;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
@@ -29,8 +30,8 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
 
     private static ShaPasswordEncoder passwordEncoder;
 
-
-    public EmployeeService employeeService = new EmployeeServiceImpl();
+    @Autowired
+    public EmployeeService employeeService;
 
     @BeforeClass
     public static void initiate() {
@@ -60,6 +61,7 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
             entity2.setLogin("user");
             entity2 = employeeService.getEmployeeByLogin(entity);
             String testPass = passwordEncoder.encodePassword("54321", null);
+            assertNotNull(entity2);
             assertEquals("failure - password must be same", testPass, entity2.getLogin());
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,6 +83,7 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
         try {
             entity.setId(9l);
             ServerState state = employeeService.getServerState(entity);
+            assertNotNull(state);
             assertEquals("failure - state must be same", ServerState.valueOf("OK"), state);
         } catch (Exception e) {
             e.printStackTrace();

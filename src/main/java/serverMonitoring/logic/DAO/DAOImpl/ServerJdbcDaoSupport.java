@@ -1,7 +1,7 @@
 package serverMonitoring.logic.DAO.DAOImpl;
 
 import org.apache.log4j.Logger;
-import org.springframework.dao.DataAccessException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -40,6 +40,7 @@ public class ServerJdbcDaoSupport extends JdbcDaoSupport implements ServerDao {
     private String raw_value = "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     @Resource(name = "dataSource")
+    @Autowired(required = true)
     public void initDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.insertEntity = new SimpleJdbcInsert(dataSource)
@@ -52,22 +53,19 @@ public class ServerJdbcDaoSupport extends JdbcDaoSupport implements ServerDao {
      */
     @Override
     public void add(ServerEntity entity) throws SQLException {
-        if (entity != null) {
-            SqlParameterSource parameters = new MapSqlParameterSource()
-                    .addValue("server_name", entity.getServer_name())
-                    .addValue("address", entity.getAddress())
-                    .addValue("port", entity.getPort())
-                    .addValue("url", entity.getUrl())
-                    .addValue("state", entity.getState())
-                    .addValue("response", entity.getResponse())
-                    .addValue("created", entity.getCreated())
-                    .addValue("lastCheck", entity.getLastCheck())
-                    .addValue("active", entity.getActive());
-            Number newId = insertEntity.executeAndReturnKey(parameters);
-            entity.setId(newId.longValue());
-        } else {
-            throw new NullPointerException(nullError);
-        }
+        assert entity != null;
+        SqlParameterSource parameters = new MapSqlParameterSource()
+                .addValue("server_name", entity.getServer_name())
+                .addValue("address", entity.getAddress())
+                .addValue("port", entity.getPort())
+                .addValue("url", entity.getUrl())
+                .addValue("state", entity.getState())
+                .addValue("response", entity.getResponse())
+                .addValue("created", entity.getCreated())
+                .addValue("lastCheck", entity.getLastCheck())
+                .addValue("active", entity.getActive());
+        Number newId = insertEntity.executeAndReturnKey(parameters);
+        entity.setId(newId.longValue());
     }
 
     /**
@@ -76,24 +74,20 @@ public class ServerJdbcDaoSupport extends JdbcDaoSupport implements ServerDao {
     @Override
     public void addGroup(final List<ServerEntity> entity) {
         String query = "INSERT INTO " + db_table + raw_list + " VALUES " + raw_value;
-        if (entity != null) {
-            List<Object[]> parameters = new ArrayList<Object[]>();
-
-            for (ServerEntity foo : entity) {
-                parameters.add(new Object[]{foo.getServer_name(),
-                        foo.getAddress(),
-                        foo.getPort(),
-                        foo.getUrl(),
-                        foo.getState(),
-                        foo.getResponse(),
-                        foo.getCreated(),
-                        foo.getLastCheck(),
-                        foo.getActive()});
-            }
-            this.getJdbcTemplate().batchUpdate(query, parameters);
-        } else {
-            throw new NullPointerException(nullError);
+        assert entity != null;
+        List<Object[]> parameters = new ArrayList<Object[]>();
+        for (ServerEntity foo : entity) {
+            parameters.add(new Object[]{foo.getServer_name(),
+                    foo.getAddress(),
+                    foo.getPort(),
+                    foo.getUrl(),
+                    foo.getState(),
+                    foo.getResponse(),
+                    foo.getCreated(),
+                    foo.getLastCheck(),
+                    foo.getActive()});
         }
+        this.getJdbcTemplate().batchUpdate(query, parameters);
     }
 
     /**
@@ -102,20 +96,17 @@ public class ServerJdbcDaoSupport extends JdbcDaoSupport implements ServerDao {
     @Override
     public void update(ServerEntity entity) throws SQLException {
         String query = "UPDATE " + db_table + " SET " + raw_list_update + " where id = ?";
-        if (entity != null) {
-            Object[] args = {entity.getServer_name(),
-                    entity.getAddress(),
-                    entity.getPort(),
-                    entity.getUrl(),
-                    entity.getState(),
-                    entity.getResponse(),
-                    entity.getCreated(),
-                    entity.getLastCheck(),
-                    entity.getActive()};
-            this.getJdbcTemplate().update(query, args);
-        } else {
-            throw new NullPointerException(nullError);
-        }
+        assert entity != null;
+        Object[] args = {entity.getServer_name(),
+                entity.getAddress(),
+                entity.getPort(),
+                entity.getUrl(),
+                entity.getState(),
+                entity.getResponse(),
+                entity.getCreated(),
+                entity.getLastCheck(),
+                entity.getActive()};
+        this.getJdbcTemplate().update(query, args);
     }
 
     /**
@@ -123,13 +114,10 @@ public class ServerJdbcDaoSupport extends JdbcDaoSupport implements ServerDao {
      */
     @Override
     public void delete(Long entity_id) throws SQLException {
-        String query = "delete from " + db_table + " where id = ?";
-        if (entity_id != null) {
-            Object[] args = {entity_id};
-            this.getJdbcTemplate().update(query, args);
-        } else {
-            throw new NullPointerException(nullError);
-        }
+        String query = "DELETE FROM " + db_table + " WHERE id = ?";
+        assert entity_id != null;
+        Object[] args = {entity_id};
+        this.getJdbcTemplate().update(query, args);
     }
 
     /**
@@ -140,13 +128,9 @@ public class ServerJdbcDaoSupport extends JdbcDaoSupport implements ServerDao {
     @Override
     public ServerEntity findById(Long entity_id) throws SQLException {
         String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE id = ?";
-        ServerEntity serverEntity = new ServerEntity();
-        try {
-            serverEntity = this.jdbcTemplate.queryForObject(query, new Object[]{1212L}, new EmployeeEntityMapper());
-        } catch (DataAccessException e) {
-            //e.printStackTrace();
-        }
-        return serverEntity;
+        assert entity_id != null;
+        Object[] args = {entity_id};
+        return this.jdbcTemplate.queryForObject(query, args, new EmployeeEntityMapper());
     }
 
     /**

@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
@@ -36,8 +37,8 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
     private static Date date;
     private static Timestamp timestamp;
 
-
-    public AdminService adminService = new AdminServiceImpl();
+    @Autowired
+    public AdminService adminService;
 
     @BeforeClass
     public static void initiate() {
@@ -112,6 +113,7 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         try {
             entity.setLogin("testUser");
             entity = adminService.getEmployeeByLogin(entity);
+            assertNotNull(entity);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -161,6 +163,7 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
 
         try {
             reality = adminService.getAllEmployee();
+            assertNotNull(reality);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -169,6 +172,8 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         expected.add(entity);
         expected.add(entity2);
 
+        assertNotNull(expected);
+        assertNotNull(reality);
         ListAssert.assertEquals("value of list must be the same", expected, reality);
 
     }
@@ -294,7 +299,8 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         // retrieving entity
         try {
             entity.setId(2l);
-            adminService.getServerDetails(entity);
+            entity = adminService.getServerDetails(entity);
+            assertNotNull(entity);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -350,6 +356,7 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
 
         try {
             reality = adminService.getAllServers();
+            assertNotNull(reality);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -358,6 +365,8 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         expected.add(entity);
         expected.add(entity2);
 
+        assertNotNull(expected);
+        assertNotNull(reality);
         ListAssert.assertEquals("value of list must be the same", expected, reality);
     }
 

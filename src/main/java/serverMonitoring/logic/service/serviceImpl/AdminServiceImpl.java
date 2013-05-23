@@ -4,8 +4,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
-import serverMonitoring.logic.DAO.DAOImpl.EmployeeJdbcDaoSupport;
-import serverMonitoring.logic.DAO.DAOImpl.ServerJdbcDaoSupport;
 import serverMonitoring.logic.DAO.EmployeeDao;
 import serverMonitoring.logic.DAO.ServerDao;
 import serverMonitoring.logic.service.AdminService;
@@ -23,8 +21,8 @@ import java.util.List;
 public class AdminServiceImpl extends EmployeeServiceImpl implements AdminService {
 
     protected static Logger adminLogger = Logger.getLogger("AdminServiceImpl");
-    private EmployeeDao employeeDao = new EmployeeJdbcDaoSupport();
-    private ServerDao serverDao = new ServerJdbcDaoSupport();
+    private EmployeeDao employeeDao;
+    private ServerDao serverDao;
 
     @Autowired
     public void setEmployeeDao(EmployeeDao employeeDao) {

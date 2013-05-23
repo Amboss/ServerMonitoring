@@ -20,6 +20,7 @@
                                     ;useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8"/>
         <property name="username" value="root"/>
         <property name="password" value=""/>
+        <property name="defaultAutoCommit" value="false"/>
     </bean>
 
     <!-- DataBase initialization -->
