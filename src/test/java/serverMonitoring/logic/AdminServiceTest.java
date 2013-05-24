@@ -76,20 +76,10 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         entity.setActive(1);
         entity.setAdmin(0);
 
-        try {
-            adminService.registerEmployee(entity);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        adminService.registerEmployee(entity);
 
-        try {
-            entity2 = employeeService.getEmployeeByLogin(entity);
-            assertNotNull("failure - Employee entity2 must not be null", entity2);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
+        entity2 = employeeService.getEmployeeByLogin(entity);
+        assertNotNull("failure - Employee entity2 must not be null", entity2);
 
         assertEquals("failure - entity_name should be same", "Test_Employee_Name", entity2.getEmployee_name());
         assertEquals("failure - login should be same", "testUser", entity2.getLogin());
@@ -114,21 +104,13 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         entity.setEmail("new_test_email@mail.com");
         entity.setActive(0);
 
-        try {
-            adminService.updateEmployee(entity);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        adminService.updateEmployee(entity);
 
         // retrieving entity
-        try {
-            entity.setLogin("testUser");
-            entity = employeeService.getEmployeeByLogin(entity);
-            assertNotNull(entity);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        entity.setLogin("testUser");
+        entity = employeeService.getEmployeeByLogin(entity);
 
+        assertNotNull(entity);
         assertEquals("failure - password should be same", "test_email@mail.com", entity.getEmail());
         assertEquals("failure - isActive should be same", (Object) 0, entity.getActive());
     }
@@ -165,19 +147,11 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         entity.setAdmin(0);
 
         // updating employee to set same timestamp
-        try {
-            adminService.updateEmployee(entity);
-            adminService.registerEmployee(entity2);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        adminService.updateEmployee(entity);
+        adminService.registerEmployee(entity2);
 
-        try {
-            reality = adminService.getAllEmployee();
-            assertNotNull(reality);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        reality = adminService.getAllEmployee();
+        assertNotNull(reality);
 
         // adding expected List of Employee entity objects
         expected.add(entity);
@@ -199,42 +173,27 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         EmployeeEntity entity2 = new EmployeeEntity();
 
         // deleting entity
-        try {
-
-            entity.setLogin("testUser");
-            entity = employeeService.getEmployeeByLogin(entity);
-            Long id = entity.getId();
-            adminService.deleteEmployee(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        entity.setLogin("testUser");
+        entity = employeeService.getEmployeeByLogin(entity);
+        Long id = entity.getId();
+        adminService.deleteEmployee(id);
 
         // deleting entity2
-        try {
-            entity.setLogin("testUser2");
-            entity = employeeService.getEmployeeByLogin(entity);
-            Long id = entity.getId();
-            adminService.deleteEmployee(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        entity.setLogin("testUser2");
+        entity = employeeService.getEmployeeByLogin(entity);
+        Long id2 = entity.getId();
+        adminService.deleteEmployee(id2);
 
         //retrieving and asserting for null
-        try {
-            entity.setLogin("testUser");
-            entity = employeeService.getEmployeeByLogin(entity);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-        assertNull("the configuration is not empty", entity);
+        entity.setLogin("testUser");
+        entity = employeeService.getEmployeeByLogin(entity);
 
-        try {
-            entity2.setLogin("testUser");
-            entity2 = employeeService.getEmployeeByLogin(entity2);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-        assertNull("the configuration is not empty", entity2);
+        assertNull("the testUser is not empty", entity);
+
+        entity2.setLogin("testUser");
+        entity2 = employeeService.getEmployeeByLogin(entity2);
+
+        assertNull("the testUser2 is not empty", entity2);
     }
 
     /**
@@ -259,19 +218,11 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         entity.setLastCheck(timestamp);
         entity.setActive(1);
 
-        try {
-            adminService.registerServer(entity);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        adminService.registerServer(entity);
 
-        try {
-            entity.setId(2l);
-            entity2 = employeeService.getServerDetails(entity);
+        entity.setId(2l);
+        entity2 = employeeService.getServerDetails(entity);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         assertNotNull("failure - Server entity2 must not be null", entity2);
 
@@ -301,20 +252,13 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         entity.setState(serverState);
         entity.setPort(9999);
 
-        try {
-            adminService.updateServer(entity);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        adminService.updateServer(entity);
 
         // retrieving entity
-        try {
-            entity.setId(2l);
-            entity = employeeService.getServerDetails(entity);
-            assertNotNull(entity);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        entity.setId(2l);
+        entity = employeeService.getServerDetails(entity);
+        assertNotNull(entity);
+
 
         assertEquals("failure - password should be same", "http://localhost/test_change", entity.getUrl());
         assertEquals("failure - state should be same", serverState, entity.getState());
@@ -358,19 +302,11 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         entity2.setActive(1);
 
         // updating employee to set same timestamp
-        try {
-            adminService.updateServer(entity);
-            adminService.registerServer(entity2);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        adminService.updateServer(entity);
+        adminService.registerServer(entity2);
 
-        try {
-            reality = adminService.getAllServers();
-            assertNotNull(reality);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        reality = adminService.getAllServers();
+        assertNotNull(reality);
 
         // adding to expected List of Servers entity objects
         expected.add(entity);
@@ -391,40 +327,24 @@ public class AdminServiceTest extends AbstractJUnit4SpringContextTests {
         ServerEntity entity2 = new ServerEntity();
 
         // deleting entity
-        try {
-            entity.setId(2l);
-            entity = employeeService.getServerDetails(entity);
-            Long id = entity.getId();
-            adminService.deleteServer(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        entity.setId(2l);
+        entity = employeeService.getServerDetails(entity);
+        Long id = entity.getId();
+        adminService.deleteServer(id);
 
         // deleting entity2
-        try {
-            entity2.setId(3l);
-            entity2 = employeeService.getServerDetails(entity2);
-            Long id = entity2.getId();
-            adminService.deleteServer(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        entity2.setId(3l);
+        entity2 = employeeService.getServerDetails(entity2);
+        Long id2 = entity2.getId();
+        adminService.deleteServer(id2);
 
         //retrieving and asserting for null
-        try {
-            entity.setId(2l);
-            entity = employeeService.getServerDetails(entity);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+        entity.setId(2l);
+        entity = employeeService.getServerDetails(entity);
         assertNull("the configuration is not empty", entity);
 
-        try {
-            entity2.setId(3l);
-            entity2 = employeeService.getServerDetails(entity2);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+        entity2.setId(3l);
+        entity2 = employeeService.getServerDetails(entity2);
         assertNull("the configuration is not empty", entity2);
     }
 }

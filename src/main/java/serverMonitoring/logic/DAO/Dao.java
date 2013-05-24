@@ -1,8 +1,8 @@
-package serverMonitoring.logic.dao;
+package serverMonitoring.logic.DAO;
 
 import java.util.List;
 /*
-* Interface to specify list of methods for generic dao functionality
+* Interface to specify list of methods for generic DAO functionality
 */
 public interface Dao<T> {
 

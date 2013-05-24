@@ -50,28 +50,19 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
     @Transactional
     public void testChangePassword() {
         EmployeeEntity entity = new EmployeeEntity();
+        entity.setLogin("user");
+        entity = employeeService.getEmployeeByLogin(entity);
+        assertNotNull("entity is empty", entity);
+        Long id = entity.getId();
+        entity.setId(id);
+        employeeService.changePassword(entity, "54321");
 
-        try {
-            entity.setLogin("user");
-            entity = employeeService.getEmployeeByLogin(entity);
-            assertNotNull("entity is empty", entity);
-            Long id = entity.getId();
-            entity.setId(id);
-            employeeService.changePassword(entity, "54321");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         EmployeeEntity entity2 = new EmployeeEntity();
-
-        try {
-            entity2.setLogin("user");
-            entity2 = employeeService.getEmployeeByLogin(entity);
-            String testPass = passwordEncoder.encodePassword("54321", null);
-            assertNotNull(entity2);
-            assertEquals("failure - password must be same", testPass, entity2.getPassword());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        entity2.setLogin("user");
+        entity2 = employeeService.getEmployeeByLogin(entity);
+        String testPass = passwordEncoder.encodePassword("54321", null);
+        assertNotNull(entity2);
+        assertEquals("failure - password must be same", testPass, entity2.getPassword());
 
         //04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb  - "user"
         //20f3765880a5c269b747e1e906054a4b4a3a991259f1e16b5dde4742cec2319a  - "54321"
@@ -85,16 +76,10 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
     @Transactional
     public void testGetServerState() {
         ServerEntity entity = new ServerEntity();
-
-        try {
-            entity.setId(9l);
-            ServerState state = employeeService.getServerState(entity);
-            assertNotNull(state);
-            assertEquals("failure - state must be same", ServerState.valueOf("OK"), state);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        entity.setId(9l);
+        ServerState state = employeeService.getServerState(entity);
+        assertNotNull(state);
+        assertEquals("failure - state must be same", ServerState.valueOf("OK"), state);
     }
 
     /**
@@ -105,13 +90,8 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
     @Transactional
     public void testGetDetails() {
         ServerEntity entity = new ServerEntity();
-        try {
-            entity.setId(9l);
-            entity = employeeService.getServerDetails(entity);
-            assertNotNull("failure - getServerDetails must be same NotNull", entity);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        entity.setId(9l);
+        entity = employeeService.getServerDetails(entity);
+        assertNotNull("failure - getServerDetails must be same NotNull", entity);
     }
 }

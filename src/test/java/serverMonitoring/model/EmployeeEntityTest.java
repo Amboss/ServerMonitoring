@@ -40,19 +40,16 @@ public class EmployeeEntityTest extends AbstractJUnit4SpringContextTests {
     public void testSetEmployeeFiller() {
         EmployeeEntity entity = new EmployeeEntity();
         String pass = passwordEncoder.encodePassword("12345", null);
-        try {
-            entity.setId(2l);
-            entity.setEmployee_name("Default_FirstName &LastName");
-            entity.setLogin("Default_login");
-            entity.setPassword(pass);
-            entity.setEmail("default_email@mail.com");
-            entity.setCreated(timestamp);
-            entity.setLastLogin(timestamp);
-            entity.setActive(1);
-            entity.setAdmin(0);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        entity.setId(2l);
+        entity.setEmployee_name("Default_FirstName &LastName");
+        entity.setLogin("Default_login");
+        entity.setPassword(pass);
+        entity.setEmail("default_email@mail.com");
+        entity.setCreated(timestamp);
+        entity.setLastLogin(timestamp);
+        entity.setActive(1);
+        entity.setAdmin(0);
 
         assertEquals("failure - id should be same", 2l, (Object) entity.getId());
         assertEquals("failure - entity_name should be same", "Default_FirstName &LastName",
