@@ -40,7 +40,6 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public EmployeeEntity getEmployeeByLogin(EmployeeEntity entity_login) {
-        EmployeeEntity entity = new EmployeeEntity();
         employeeLogger.debug("updating Employee with login: " + entity_login.getLogin());
         return employeeDao.findByLogin(entity_login.getLogin());
     }
@@ -50,9 +49,9 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public void changePassword(EmployeeEntity entity_id, String newPass) {
+        employeeLogger.debug("updating Employee Password with id: " + entity_id.getId());
         ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
         EmployeeEntity entity = new EmployeeEntity();
-        employeeLogger.debug("updating Employee Password with id: " + entity_id.getId());
         entity.setPassword(passwordEncoder.encodePassword(newPass, null));
         employeeDao.update(entity);
     }
@@ -66,8 +65,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public ServerState getServerState(ServerEntity entity_id) {
         employeeLogger.debug("retrieving Server status with id: " + entity_id.getId());
-        ServerEntity serverEntity = new ServerEntity();
-        serverEntity = serverDao.findById(entity_id.getId());
+        ServerEntity serverEntity = serverDao.findById(entity_id.getId());
         return serverEntity.getState();
     }
 

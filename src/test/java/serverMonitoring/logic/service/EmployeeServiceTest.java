@@ -1,4 +1,4 @@
-package serverMonitoring.logic;
+package serverMonitoring.logic.service;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -9,7 +9,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
-import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.logic.service.impl.EmployeeServiceImpl;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;

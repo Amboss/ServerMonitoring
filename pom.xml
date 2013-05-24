@@ -12,7 +12,6 @@
     <packaging>war</packaging>
 
     <properties>
-
         <!-- Generic properties properties-->
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,6 +35,9 @@
 
         <!-- MySQL properties -->
         <mysql-connector.version>5.1.9</mysql-connector.version>
+
+        <!-- JNDI properties -->
+        <simple-jndi.version>0.11.4.1</simple-jndi.version>
 
         <!-- Logging properties-->
         <log4j.version>1.2.17</log4j.version>
@@ -184,6 +186,13 @@
             <version>${mysql-connector.version}</version>
         </dependency>
 
+        <!-- JNDI dependencies -->
+        <dependency>
+            <groupId>simple-jndi</groupId>
+            <artifactId>simple-jndi</artifactId>
+            <version>${simple-jndi.version}</version>
+        </dependency>
+
         <!-- Logging dependencies-->
         <dependency>
             <groupId>log4j</groupId>
@@ -242,10 +251,10 @@
             <artifactId>antlr</artifactId>
             <version>${antlr.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>
+        <defaultGoal>compile</defaultGoal>
         <finalName>ServerMonitoring</finalName>
         <plugins>
             <plugin>

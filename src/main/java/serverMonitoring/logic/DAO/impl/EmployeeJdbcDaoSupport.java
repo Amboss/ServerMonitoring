@@ -28,7 +28,6 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
     protected static Logger daoSupportLogger = Logger.getLogger("EmployeeJdbcDaoSupport");
     private SimpleJdbcInsert insertEntity;
     private JdbcTemplate jdbcTemplate;
-    private String nullError = "EmployeeEntity entity is empty!";
     private String db_table = "employee_entity";
     private String raw_list = "id, employee_name, login, password, email, created, lastLogin, active, admin";
     private String raw_list_update = "(id = ?, employee_name = ?, login = ?, password = ?, " +
@@ -124,7 +123,6 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
         assert entity_id != null;
         String query = "delete from " + db_table + " where id = " + entity_id;
         try {
-            //Object[] args = {entity_id};
             this.jdbcTemplate.update(query);
         } catch (RuntimeException e) {
             throw new RuntimeException();
@@ -141,7 +139,6 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
         assert entity_id != null;
         String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE id = " + entity_id;
         try {
-            //Object[] args = {entity_id};
             return this.jdbcTemplate.queryForObject(query, new EmployeeEntityMapper());
         } catch (RuntimeException e) {
             throw new RuntimeException();
@@ -182,9 +179,9 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
     }
 
     /*
-     * Supporting inner class for retrieves EmployeeEntity objects
+     * Supporting inner class to retrieve EmployeeEntity objects
      *
-     * @return EmployeeEntity object
+     * @return EmployeeEntity RowMapp object
      */
     private static final class EmployeeEntityMapper implements RowMapper<EmployeeEntity> {
         public EmployeeEntity mapRow(ResultSet rs, int rowNum) {

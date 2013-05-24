@@ -13,15 +13,16 @@
     <!-- transaction-manager schema -->
     <tx:annotation-driven transaction-manager="txManager"/>
 
-    <!-- Datasource configuration -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/server_monitoring_db?autoReconnect=true&amp;
-                                    ;useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8"/>
-        <property name="username" value="root"/>
-        <property name="password" value=""/>
-        <property name="defaultAutoCommit" value="false"/>
+    <!-- transactionManager settings -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
     </bean>
+
+    <!-- Datasource configuration -->
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="java:comp/env/jdbc/dbConnection"/>
+    </bean>
+    <!--type="org.apache.commons.dbcp.BasicDataSource"-->
 
     <!-- DataBase initialization -->
     <jdbc:initialize-database data-source="dataSource">
@@ -29,8 +30,4 @@
         <!--<jdbc:script location="classpath:dataBase/populateDB.sql"/>-->
     </jdbc:initialize-database>
 
-    <!-- transactionManager settings -->
-    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
 </beans>

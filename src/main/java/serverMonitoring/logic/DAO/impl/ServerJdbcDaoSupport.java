@@ -127,7 +127,6 @@ public class ServerJdbcDaoSupport implements ServerDao {
         assert entity_id != null;
         String query = "DELETE FROM " + db_table + " WHERE id = " + entity_id;
         try {
-            //Object[] args = {entity_id};
             this.jdbcTemplate.update(query);
         } catch (RuntimeException e) {
             throw new RuntimeException();
@@ -144,7 +143,6 @@ public class ServerJdbcDaoSupport implements ServerDao {
         assert entity_id != null;
         String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE id = " + entity_id;
         try {
-            //Object[] args = {entity_id};
             return this.jdbcTemplate.queryForObject(query, new EmployeeEntityMapper());
         } catch (RuntimeException e) {
             throw new RuntimeException();

@@ -1,4 +1,4 @@
-package serverMonitoring.logic;
+package serverMonitoring.logic.service;
 
 import junitx.framework.ListAssert;
 import org.junit.After;
@@ -11,8 +11,6 @@ import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import serverMonitoring.logic.service.AdminService;
-import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.logic.service.impl.AdminServiceImpl;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
