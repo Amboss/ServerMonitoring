@@ -2,12 +2,9 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:jee="http://www.springframework.org/schema/jee"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-            http://www.springframework.org/schema/jee
-            http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
@@ -24,6 +21,8 @@
     <!--<import resource="classpath:spring-security.xml"/>-->
 
     <!-- JNDI initiation  -->
-    <jee:jndi-lookup id="dataSource" jndi-name="jdbc/dbConnection"
-                     expected-type="javax.sql.DataSource" />
+    <!--<jee:jndi-lookup id="dataSource" jndi-name="jdbc/dbConnection"-->
+                     <!--expected-type="javax.sql.DataSource" />
+                     xmlns:jee="http://www.springframework.org/schema/jee"
+                     http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd-->
 </beans>

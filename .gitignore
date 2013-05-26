@@ -5,6 +5,7 @@ ServerMonitoring.iml
 .iml
 .idea/
 target/
+jetty/
 
 #################
 ## Eclipse

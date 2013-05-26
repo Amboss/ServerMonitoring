@@ -23,6 +23,7 @@ import static org.junit.Assert.assertNotNull;
  * ApplicationContext will be loaded from "classpath:/application-context.xml"
  */
 
+@Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:application-context.xml"})
 public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
@@ -46,14 +47,13 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
      * Testing retrieved Employee entity.getPassword() value.
      */
     @Test
-    @Transactional
     public void testChangePassword() {
         EmployeeEntity entity = new EmployeeEntity();
         entity.setLogin("user");
         entity = employeeService.getEmployeeByLogin(entity);
         assertNotNull("entity is empty", entity);
-        Long id = entity.getId();
-        entity.setId(id);
+        long id = entity.getId();
+        assertNotNull("entity is empty", id);
         employeeService.changePassword(entity, "54321");
 
         EmployeeEntity entity2 = new EmployeeEntity();
@@ -72,7 +72,6 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
      * Testing retrieved server entity.getState value.
      */
     @Test
-    @Transactional
     public void testGetServerState() {
         ServerEntity entity = new ServerEntity();
         entity.setId(9l);
@@ -86,7 +85,6 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
      * Testing if retrieved value is not empty.
      */
     @Test
-    @Transactional
     public void testGetDetails() {
         ServerEntity entity = new ServerEntity();
         entity.setId(9l);

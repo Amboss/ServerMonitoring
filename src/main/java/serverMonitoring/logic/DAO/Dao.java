@@ -12,7 +12,7 @@ public interface Dao<T> {
 
     public void update(T entity);
 
-    void delete(Long entity_id);
+    public void delete(Long entity_id);
 
     public T findById(Long entity_id);
 

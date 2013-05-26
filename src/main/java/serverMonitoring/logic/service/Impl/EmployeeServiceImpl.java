@@ -48,12 +48,16 @@ public class EmployeeServiceImpl implements EmployeeService {
      * updating Employee
      */
     @Override
-    public void changePassword(EmployeeEntity entity_id, String newPass) {
-        employeeLogger.debug("updating Employee Password with id: " + entity_id.getId());
+    public void changePassword(EmployeeEntity entity, String newPass) {
+        employeeLogger.debug("updating Employee Password with id: " + entity.getId());
+        // selecting target entity
+        Long id = entity.getId();
+        EmployeeEntity entity2 = employeeDao.findById(id);
+        // hashing new password
         ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
-        EmployeeEntity entity = new EmployeeEntity();
-        entity.setPassword(passwordEncoder.encodePassword(newPass, null));
-        employeeDao.update(entity);
+        // setting new password
+        entity2.setPassword(passwordEncoder.encodePassword(newPass, null));
+        employeeDao.update(entity2);
     }
 
     /**
