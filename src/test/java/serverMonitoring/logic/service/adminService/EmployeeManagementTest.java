@@ -33,7 +33,6 @@ import static org.junit.Assert.assertNull;
 @ContextConfiguration(locations = {"classpath:application-context.xml"})
 public class EmployeeManagementTest extends AbstractJUnit4SpringContextTests {
     private static ShaPasswordEncoder passwordEncoder;
-    private static Date date;
     private static Timestamp timestamp;
     private AdminService adminService;
     private EmployeeService employeeService;
@@ -51,7 +50,7 @@ public class EmployeeManagementTest extends AbstractJUnit4SpringContextTests {
     @BeforeClass
     public static void initiate() {
         passwordEncoder = new ShaPasswordEncoder(256);
-        date = new Date();
+        Date date = new Date();
         timestamp = new Timestamp(date.getTime());
     }
 

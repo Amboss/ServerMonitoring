@@ -51,6 +51,7 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
         assert entity != null;
         try {
             SqlParameterSource parameters = new MapSqlParameterSource()
+                    .addValue("id", entity.getId())
                     .addValue("employee_name", entity.getEmployee_name())
                     .addValue("login", entity.getLogin())
                     .addValue("password", entity.getPassword())
@@ -59,8 +60,12 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
                     .addValue("lastLogin", entity.getLastLogin())
                     .addValue("active", entity.getActive())
                     .addValue("admin", entity.getAdmin());
-            Number newId = insertEntity.executeAndReturnKey(parameters);
-            entity.setId(newId.longValue());
+            if(entity.getId() == null) {
+                Number newId = insertEntity.executeAndReturnKey(parameters);
+                entity.setId(newId.longValue());
+            } else {
+                insertEntity.execute(parameters);
+            }
         } catch (RuntimeException e) {
             e.printStackTrace();
             throw new RuntimeException();
@@ -78,7 +83,8 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
         try {
             List<Object[]> parameters = new ArrayList<Object[]>();
             for (EmployeeEntity foo : entity) {
-                parameters.add(new Object[]{foo.getId(),
+                parameters.add(new Object[]{
+                        foo.getId(),
                         foo.getEmployee_name(),
                         foo.getLogin(),
                         foo.getPassword(),
@@ -87,6 +93,7 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
                         foo.getLastLogin(),
                         foo.getActive(),
                         foo.getAdmin()});
+
             }
             this.jdbcTemplate.batchUpdate(query, parameters);
         } catch (RuntimeException e) {
@@ -126,6 +133,7 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
             } if (entity.getAdmin() == null) {
                 entity.setAdmin(entityInDB.getAdmin());
             }
+            // creating entity fill in arguments
             Object[] args = {entity.getId(),
                     entity.getEmployee_name(),
                     entity.getLogin(),
@@ -138,7 +146,6 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
                     entity.getId()};
             this.jdbcTemplate.update(query, args);
         } catch (RuntimeException e) {
-            e.printStackTrace();
             throw new RuntimeException();
         }
     }
@@ -171,6 +178,7 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
             Object[] args = {entity_id};
             return this.jdbcTemplate.queryForObject(query, args, new EmployeeEntityMapper());
         } catch (RuntimeException e) {
+            e.printStackTrace();
             throw new RuntimeException();
         }
     }

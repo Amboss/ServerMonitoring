@@ -1,7 +1,6 @@
 package serverMonitoring.logic.DAO;
 
 
-import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,8 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 /**
  * JUnit test for the {@link EmployeeJdbcDaoTest} class.
@@ -30,9 +28,8 @@ import static org.junit.Assert.assertNotNull;
 @ContextConfiguration(locations = {"classpath:application-context.xml"})
 public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
 
-    protected static Logger employeeLogger = Logger.getLogger("EmployeeServiceImpl");
+//    protected static Logger employeeLogger = Logger.getLogger("EmployeeServiceImpl");
     private static ShaPasswordEncoder passwordEncoder;
-    private static Date date;
     private static Timestamp timestamp;
     private EmployeeDao employeeDao;
 
@@ -45,7 +42,7 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
     @BeforeClass
     public static void initiate() {
         passwordEncoder = new ShaPasswordEncoder(256);
-        date = new Date();
+        Date date = new Date();
         timestamp = new Timestamp(date.getTime());
     }
 
@@ -56,8 +53,7 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
     public void testAdd() {
         EmployeeEntity entity = new EmployeeEntity();
         String pass = passwordEncoder.encodePassword("testpass", null);
-
-        entity.setEmployee_name("Test_DAO_Employee_Name");
+        entity.setEmployee_name("Test_DAO_add_Employee_Name");
         entity.setLogin("testDAOUser");
         entity.setPassword(pass);
         entity.setEmail("test_email@mail.com");
@@ -69,8 +65,7 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
 
         EmployeeEntity entity2 = employeeDao.findByLogin("testDAOUser");
         assertNotNull("failure - Employee entity2 must not be null", entity);
-
-        assertEquals("failure - entity_name should be same", "Test_DAO_Employee_Name", entity2.getEmployee_name());
+        assertEquals("failure - entity_name should be same", "Test_DAO_add_Employee_Name", entity2.getEmployee_name());
         assertEquals("failure - login should be same", "testDAOUser", entity2.getLogin());
         assertEquals("failure - password should be same", pass, entity2.getPassword());
         assertEquals("failure - password should be same", "test_email@mail.com", entity2.getEmail());
@@ -84,11 +79,11 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
 
     @Test
     public void testAddGroup() {
-        List<EmployeeEntity> entityList = new ArrayList<EmployeeEntity>();
+        List<EmployeeEntity> entityList = new ArrayList<>();
         for(int i = 0; i < 3; i++) {
             EmployeeEntity entity = new EmployeeEntity();
             String pass = passwordEncoder.encodePassword("testpass", null);
-            entity.setEmployee_name("Test_DAO_Employee_Name" + i);
+            entity.setEmployee_name("Test_DAO_addGroup_Employee_Name" + i);
             entity.setLogin("testDAOUser" + i);
             entity.setPassword(pass);
             entity.setEmail("test_email@mail.com");
@@ -103,6 +98,46 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         assertNotNull(entity2);
     }
 
+
+    /**
+     * Testing selection off EmployeeEntity from Data Base
+     */
+    @Test
+        public void testFindById() {
+        EmployeeEntity entity = new EmployeeEntity();
+        String pass = passwordEncoder.encodePassword("testlalala", null);
+        entity.setEmployee_name("Test_DAO_findById_Employee_Name");
+        entity.setLogin("testDAOUserByID");
+        entity.setPassword(pass);
+        entity.setEmail("test_email@mail.com");
+        entity.setCreated(timestamp);
+        entity.setLastLogin(timestamp);
+        entity.setActive(1);
+        entity.setAdmin(0);
+        employeeDao.add(entity);
+
+        EmployeeEntity entity2 = employeeDao.findByLogin("testDAOUserByID");
+        assertNotNull("failure - Employee entity2 must not be null", entity2);
+        Long id = entity2.getId();
+        EmployeeEntity entity3 = employeeDao.findById(id);
+        assertNotNull("failure - Employee entity2 must not be null", entity3);
+
+        assertEquals("failure - entity_name should be same", "Test_DAO_findById_Employee_Name", entity3.getEmployee_name());
+        assertEquals("failure - login should be same", "testDAOUserByID", entity3.getLogin());
+        assertEquals("failure - password should be same", pass, entity3.getPassword());
+        assertEquals("failure - password should be same", "test_email@mail.com", entity3.getEmail());
+        assertEquals("failure - isActive should be same", (Object) 1, entity3.getActive());
+        assertEquals("failure - isAdmin should be same", (Object) 0, entity3.getAdmin());
+    }
+
+    /**
+     * Testing selection off all EmployeeEntity from Data Base
+     */
+    @Test
+    public void testFindAll() {
+        List<EmployeeEntity> entitiesList = employeeDao.findAll();
+        assertNotNull("failure - Employee entitiesList must not be null", entitiesList);
+    }
 
     /**
      * Testing update of existing EmployeeEntity in Data Base
@@ -127,30 +162,41 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         assertEquals("failure - isActive should be same", (Object) 0, entity2.getActive());
 
     }
-//
+
 //    /**
 //     * Testing termination off EmployeeEntity from Data Base
 //     */
 //    @Test
-//    public void testDelete(Long entity_id) {
+//    public void testDelete() {
+//        EmployeeEntity entity = new EmployeeEntity();
+//        entity.setLogin("testDAOUser");
+//        entity = employeeDao.findByLogin(entity.getLogin());
+//        employeeDao.delete(entity.getId());
+//        EmployeeEntity entity2 = employeeDao.findByLogin("testDAOUser");
+//        assertNull("the testDAOUser is not empty", entity2);
 //
-//    }
+//        entity.setLogin("testDAOUser0");
+//        entity = employeeDao.findByLogin(entity.getLogin());
+//        employeeDao.delete(entity.getId());
+//        entity2 = employeeDao.findByLogin("testDAOUser0");
+//        assertNull("the testDAOUser0 is not empty", entity2);
 //
-//    /**
-//     * Testing selection off EmployeeEntity from Data Base
-//     */
-//    @Test
-//    public void testFindById(Long entity_id) {
+//        entity.setLogin("testDAOUser1");
+//        entity = employeeDao.findByLogin(entity.getLogin());
+//        employeeDao.delete(entity.getId());
+//        entity2 = employeeDao.findByLogin("testDAOUser1");
+//        assertNull("the testDAOUser1 is not empty", entity2);
 //
+//        entity.setLogin("testDAOUser2");
+//        entity = employeeDao.findByLogin(entity.getLogin());
+//        employeeDao.delete(entity.getId());
+//        entity2 = employeeDao.findByLogin("testDAOUser2");
+//        assertNull("the testDAOUser2 is not empty", entity2);
 //
-//    }
-//
-//    /**
-//     * Testing selection off all EmployeeEntity from Data Base
-//     */
-//    @Test
-//    public void testFindAll() {
-//
-//
+//        entity.setLogin("testDAOUserByID");
+//        entity = employeeDao.findByLogin(entity.getLogin());
+//        employeeDao.delete(entity.getId());
+//        entity2 = employeeDao.findByLogin("testDAOUserByID");
+//        assertNull("the testDAOUserByID is not empty", entity2);
 //    }
 }
