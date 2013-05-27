@@ -30,8 +30,8 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
     private JdbcTemplate jdbcTemplate;
     private String db_table = "employee_entity";
     private String raw_list = "id, employee_name, login, password, email, created, lastLogin, active, admin";
-    private String raw_list_update = "(id = ?, employee_name = ?, login = ?, password = ?, " +
-            "email = ?, created = ?, lastLogin = ?, active = ?, admin = ?)";
+    private String raw_list_update = "id = ?, employee_name = ?, login = ?, password = ?, " +
+            "email = ?, created = ?, lastLogin = ?, active = ?, admin = ?";
 
 
     //@Resource(name = "dataSource")
@@ -73,7 +73,7 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
      */
     @Override
     public void addGroup(final List<EmployeeEntity> entity) {
-        String query = "INSERT INTO " + db_table + raw_list + " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO " + db_table + " (" + raw_list + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         assert entity != null;
         try {
             List<Object[]> parameters = new ArrayList<Object[]>();
@@ -99,9 +99,33 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
      */
     @Override
     public void update(EmployeeEntity entity) {
-        assert entity != null;
-        String query = "UPDATE " + db_table + " SET " + raw_list_update + " WHERE id = " + entity.getId();
+        assert entity.getLogin() != null;
+
+        // updating with full list of rows
+        String query = "UPDATE " + db_table + " SET " + raw_list_update + " WHERE id = ? ";
         try {
+            // selecting existent entity & replacing null with existent match
+            EmployeeEntity entityInDB = findByLogin(entity.getLogin());
+            assert entityInDB != null;
+            if (entity.getId() == null) {
+                entity.setId(entityInDB.getId());
+            } if (entity.getEmployee_name() == null) {
+                entity.setEmployee_name(entityInDB.getEmployee_name());
+            } if (entity.getLogin() == null) {
+                entity.setLogin(entityInDB.getLogin());
+            } if (entity.getPassword() == null) {
+                entity.setPassword(entityInDB.getPassword());
+            } if (entity.getEmail() == null) {
+                entity.setEmail(entityInDB.getEmail());
+            } if (entity.getCreated() == null) {
+                entity.setCreated(entityInDB.getCreated());
+            } if (entity.getLastLogin() == null) {
+                entity.setLastLogin(entityInDB.getLastLogin());
+            } if (entity.getActive() == null) {
+                entity.setActive(entityInDB.getActive());
+            } if (entity.getAdmin() == null) {
+                entity.setAdmin(entityInDB.getAdmin());
+            }
             Object[] args = {entity.getId(),
                     entity.getEmployee_name(),
                     entity.getLogin(),
@@ -110,7 +134,8 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
                     entity.getCreated(),
                     entity.getLastLogin(),
                     entity.getActive(),
-                    entity.getAdmin()};
+                    entity.getAdmin(),
+                    entity.getId()};
             this.jdbcTemplate.update(query, args);
         } catch (RuntimeException e) {
             e.printStackTrace();
@@ -193,6 +218,7 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
         public EmployeeEntity mapRow(ResultSet rs, int rowNum) {
             try {
                 EmployeeEntity entity = new EmployeeEntity();
+                entity.setId(rs.getLong("id"));
                 entity.setEmployee_name(rs.getString("employee_name"));
                 entity.setLogin(rs.getString("login"));
                 entity.setPassword(rs.getString("password"));

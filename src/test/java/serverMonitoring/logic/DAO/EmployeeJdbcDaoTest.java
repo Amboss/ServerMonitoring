@@ -10,10 +10,10 @@ import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 import serverMonitoring.model.EmployeeEntity;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +35,7 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
     private static Date date;
     private static Timestamp timestamp;
     private EmployeeDao employeeDao;
-    private List<EmployeeEntity> entityList;
+
 
     @Autowired
     public void setEmployeeDao(EmployeeDao employeeDao) {
@@ -53,7 +53,6 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
      * Testing registration off new EmployeeEntity to Data Base
      */
     @Test
-    @Transactional
     public void testAdd() {
         EmployeeEntity entity = new EmployeeEntity();
         String pass = passwordEncoder.encodePassword("testpass", null);
@@ -75,8 +74,6 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         assertEquals("failure - login should be same", "testDAOUser", entity2.getLogin());
         assertEquals("failure - password should be same", pass, entity2.getPassword());
         assertEquals("failure - password should be same", "test_email@mail.com", entity2.getEmail());
-//        assertEquals("failure - created should be same", timestamp, entity2.getCreated());
-//        assertEquals("failure - lastLogin should be same", timestamp, entity2.getLastLogin());
         assertEquals("failure - isActive should be same", (Object) 1, entity2.getActive());
         assertEquals("failure - isAdmin should be same", (Object) 0, entity2.getAdmin());
     }
@@ -87,6 +84,7 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
 
     @Test
     public void testAddGroup() {
+        List<EmployeeEntity> entityList = new ArrayList<EmployeeEntity>();
         for(int i = 0; i < 3; i++) {
             EmployeeEntity entity = new EmployeeEntity();
             String pass = passwordEncoder.encodePassword("testpass", null);
@@ -101,19 +99,34 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
             entityList.add(entity);
         }
         employeeDao.addGroup(entityList);
-
         List <EmployeeEntity> entity2 = employeeDao.findAll();
         assertNotNull(entity2);
     }
 
 
-//    /**
-//     * Testing update off existing EmployeeEntity in Data Base
-//     */
-//    @Test
-//    public void testUpdate(EmployeeEntity entity) {
-//
-//    }
+    /**
+     * Testing update of existing EmployeeEntity in Data Base
+     */
+    @Test
+    public void testUpdate() {
+        // selecting existent entity
+        EmployeeEntity entity = new EmployeeEntity();
+        entity.setLogin("testDAOUser");
+        entity.setEmail("new_test_email@mail.com");
+        entity.setEmployee_name("DAO_Test_Update");
+        entity.setPassword(passwordEncoder.encodePassword("33333", null));
+        entity.setActive(0);
+        employeeDao.update(entity);
+
+        // selection and asserting
+        EmployeeEntity entity2 = employeeDao.findByLogin(entity.getLogin());
+        assertNotNull(entity2);
+        assertEquals("failure - login =)) should be same", "testDAOUser", entity2.getLogin());
+        assertEquals("failure - password should be same", "new_test_email@mail.com", entity2.getEmail());
+        assertEquals("failure - name should be same", "DAO_Test_Update", entity2.getEmployee_name());
+        assertEquals("failure - isActive should be same", (Object) 0, entity2.getActive());
+
+    }
 //
 //    /**
 //     * Testing termination off EmployeeEntity from Data Base
