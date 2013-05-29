@@ -7,7 +7,9 @@ import serverMonitoring.model.EmployeeEntity;
  */
 public interface EmployeeDao extends Dao<EmployeeEntity> {
 
-    // Query retrieves EmployeeEntity entity by login for authentication module
+    /**
+     * Query retrieves EmployeeEntity entity by login
+     */
     public EmployeeEntity findByLogin(String entity_login);
 
 

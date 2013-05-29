@@ -29,7 +29,7 @@ import static org.junit.Assert.assertNotNull;
 @ContextConfiguration(locations = {"classpath:application-context.xml"})
 public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
 
-    //    protected static Logger employeeLogger = Logger.getLogger("EmployeeServiceImpl");
+    //  protected static Logger employeeLogger = Logger.getLogger("EmployeeServiceImpl");
     private static ShaPasswordEncoder passwordEncoder;
     private static Timestamp timestamp;
     private EmployeeDao employeeDao;
@@ -48,12 +48,12 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
     }
 
     /**
-     * Testing termination off EmployeeEntity from Data Base
+     * Testing termination of EmployeeEntity from Data Base
      */
 //    @After
 //    public void testDelete() {
 //
-//        for (int j = 0; j < 3; j++) {
+//        for (int j = 0; j < 5; j++) {
 //            EmployeeEntity entity = new EmployeeEntity();
 //            entity.setLogin("testDAOUser" + j);
 //            entity = employeeDao.findByLogin(entity.getLogin());
@@ -64,7 +64,7 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
 //    }
 
     /**
-     * Testing registration off new EmployeeEntity to Data Base
+     * Testing registration of new EmployeeEntity to Data Base
      */
     @Test
     public void testAdd() {
@@ -92,7 +92,7 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
     }
 
     /**
-     * Testing registration group off new EmployeeEntity to Data Base
+     * Testing registration group of new EmployeeEntity to Data Base
      */
 
     @Test
@@ -114,13 +114,13 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         employeeDao.addGroup(entityList);
 
         // testing selection off all entities
-        List<EmployeeEntity> entity2 = employeeDao.findAll();
-        assertNotNull(entity2);
+        List<EmployeeEntity> entityList2 = employeeDao.findAll();
+        assertNotNull(entityList2);
     }
 
 
     /**
-     * Testing selection off EmployeeEntity from Data Base
+     * Testing selection of EmployeeEntity from Data Base
      */
     @Test
     public void testFindById() {
@@ -151,15 +151,6 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         assertEquals("failure - password should be same", "test_email@mail.com", entity3.getEmail());
         assertEquals("failure - isActive should be same", (Object) 1, entity3.getActive());
         assertEquals("failure - isAdmin should be same", (Object) 0, entity3.getAdmin());
-    }
-
-    /**
-     * Testing selection off all EmployeeEntity from Data Base
-     */
-    @Test
-    public void testFindAll() {
-        List<EmployeeEntity> entitiesList = employeeDao.findAll();
-        assertNotNull("failure - Employee entitiesList must not be null", entitiesList);
     }
 
     /**

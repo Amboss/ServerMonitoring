@@ -33,8 +33,6 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
     private String raw_list_update = "id = ?, employee_name = ?, login = ?, password = ?, " +
             "email = ?, created = ?, lastLogin = ?, active = ?, admin = ?";
 
-
-    //@Resource(name = "dataSource")
     @Autowired
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -60,16 +58,14 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
                     .addValue("lastLogin", entity.getLastLogin())
                     .addValue("active", entity.getActive())
                     .addValue("admin", entity.getAdmin());
-            if(entity.getId() == null) {
+            if (entity.getId() == null) {
                 Number newId = insertEntity.executeAndReturnKey(parameters);
                 entity.setId(newId.longValue());
             } else {
                 insertEntity.execute(parameters);
             }
         } catch (RuntimeException e) {
-            e.printStackTrace();
             throw new RuntimeException();
-
         }
     }
 
@@ -93,7 +89,6 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
                         foo.getLastLogin(),
                         foo.getActive(),
                         foo.getAdmin()});
-
             }
             this.jdbcTemplate.batchUpdate(query, parameters);
         } catch (RuntimeException e) {
@@ -114,23 +109,32 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
             // selecting existent entity & replacing null with existent match
             EmployeeEntity entityInDB = findByLogin(entity.getLogin());
             assert entityInDB != null;
+
             if (entity.getId() == null) {
                 entity.setId(entityInDB.getId());
-            } if (entity.getEmployee_name() == null) {
+            }
+            if (entity.getEmployee_name() == null) {
                 entity.setEmployee_name(entityInDB.getEmployee_name());
-            } if (entity.getLogin() == null) {
+            }
+            if (entity.getLogin() == null) {
                 entity.setLogin(entityInDB.getLogin());
-            } if (entity.getPassword() == null) {
+            }
+            if (entity.getPassword() == null) {
                 entity.setPassword(entityInDB.getPassword());
-            } if (entity.getEmail() == null) {
+            }
+            if (entity.getEmail() == null) {
                 entity.setEmail(entityInDB.getEmail());
-            } if (entity.getCreated() == null) {
+            }
+            if (entity.getCreated() == null) {
                 entity.setCreated(entityInDB.getCreated());
-            } if (entity.getLastLogin() == null) {
+            }
+            if (entity.getLastLogin() == null) {
                 entity.setLastLogin(entityInDB.getLastLogin());
-            } if (entity.getActive() == null) {
+            }
+            if (entity.getActive() == null) {
                 entity.setActive(entityInDB.getActive());
-            } if (entity.getAdmin() == null) {
+            }
+            if (entity.getAdmin() == null) {
                 entity.setAdmin(entityInDB.getAdmin());
             }
             // creating entity fill in arguments
@@ -156,7 +160,7 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
     @Override
     public void delete(Long entity_id) {
         assert entity_id != null;
-        String query = "DELETE FROM " + db_table + " where id= ?";
+        String query = "DELETE FROM " + db_table + " WHERE id= ?";
         try {
             Object[] args = {entity_id};
             this.jdbcTemplate.update(query, args);
@@ -178,7 +182,6 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
             Object[] args = {entity_id};
             return this.jdbcTemplate.queryForObject(query, args, new EmployeeEntityMapper());
         } catch (RuntimeException e) {
-            e.printStackTrace();
             throw new RuntimeException();
         }
     }
@@ -196,7 +199,6 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
             Object[] args = {entity_login};
             return this.jdbcTemplate.queryForObject(query, args, new EmployeeEntityMapper());
         } catch (RuntimeException e) {
-            e.printStackTrace();
             throw new RuntimeException();
         }
 
