@@ -14,6 +14,9 @@ import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.serverStateEnum.ServerState;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -29,16 +32,25 @@ import static org.junit.Assert.assertNotNull;
 public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
 
     private static ShaPasswordEncoder passwordEncoder;
+    private static Timestamp timestamp;
     private EmployeeService employeeService;
+    private AdminService adminService;
 
     @Autowired
     public void setAdminService(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
+    @Autowired
+    public void setAdminService(AdminService adminService) {
+        this.adminService = adminService;
+    }
+
     @BeforeClass
     public static void initiate() {
         passwordEncoder = new ShaPasswordEncoder(256);
+        Date date = new Date();
+        timestamp = new Timestamp(date.getTime());
     }
 
     /**
@@ -49,22 +61,28 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
     @Test
     public void testChangePassword() {
         EmployeeEntity entity = new EmployeeEntity();
-        entity.setLogin("user");
-        entity = employeeService.getEmployeeByLogin(entity);
-        assertNotNull("entity is empty", entity);
-        long id = entity.getId();
-        assertNotNull("entity is empty", id);
+        String pass = passwordEncoder.encodePassword("testpass", null);
+        entity.setEmployee_name("Service_Test_Register");
+        entity.setLogin("testUser");
+        entity.setPassword(pass);
+        entity.setEmail("test_email@mail.com");
+        entity.setCreated(timestamp);
+        entity.setLastLogin(timestamp);
+        entity.setActive(1);
+        entity.setAdmin(0);
+        adminService.registerEmployee(entity);
+
+        // updating entity password
+        entity.setLogin("testUser");
         employeeService.changePassword(entity, "54321");
 
-        EmployeeEntity entity2 = new EmployeeEntity();
-        entity2.setLogin("user");
-        entity2 = employeeService.getEmployeeByLogin(entity);
-        String testPass = passwordEncoder.encodePassword("54321", null);
+        EmployeeEntity entity2 = employeeService.getEmployeeByLogin(entity);
         assertNotNull(entity2);
+        String testPass = passwordEncoder.encodePassword("54321", null);
+        // asserting password row
         assertEquals("failure - password must be same", testPass, entity2.getPassword());
-
-        //04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb  - "user"
-        //20f3765880a5c269b747e1e906054a4b4a3a991259f1e16b5dde4742cec2319a  - "54321"
+        // eliminating test entity
+        adminService.deleteEmployee(entity.getId());
     }
 
     /**
@@ -74,10 +92,32 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
     @Test
     public void testGetServerState() {
         ServerEntity entity = new ServerEntity();
-        entity.setId(9l);
-        ServerState state = employeeService.getServerState(entity);
-        assertNotNull(state);
-        assertEquals("failure - state must be same", ServerState.valueOf("OK"), state);
+        ServerState serverState = ServerState.OK;
+        String serverStateString = ServerState.getStringFromEnum(serverState);
+        // registering new server
+        entity.setServer_name("Test_Server");
+        entity.setAddress("255.255.255.6");
+        entity.setPort(8080);
+        entity.setUrl("http://localhost/register");
+        entity.setState(serverState);
+        entity.setResponse(serverStateString);
+        entity.setCreated(timestamp);
+        entity.setLastCheck(timestamp);
+        entity.setActive(1);
+        adminService.registerServer(entity);
+
+        ServerEntity entity2 = employeeService.getServerDetails(entity);
+        assertNotNull("failure - Server entity must not be null", entity2);
+        assertEquals("failure - server_name should be same", "Test_Server", entity2.getServer_name());
+        assertEquals("failure - address should be same", "255.255.255.6", entity2.getAddress());
+        assertEquals("failure - port should be same", (Object) 8080, entity2.getPort());
+        assertEquals("failure - url should be same", "http://localhost/register", entity2.getUrl());
+        assertEquals("failure - state should be same", serverState, entity2.getState());
+        assertEquals("failure - state should be same", serverStateString, entity2.getResponse());
+        assertEquals("failure - isActive should be same", (Object) 1, entity2.getActive());
+
+        // eliminating test entity
+        adminService.deleteServer(entity.getId());
     }
 
     /**
@@ -87,8 +127,33 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
     @Test
     public void testGetDetails() {
         ServerEntity entity = new ServerEntity();
-        entity.setId(9l);
-        entity = employeeService.getServerDetails(entity);
-        assertNotNull("failure - getServerDetails must be same NotNull", entity);
+        ServerState serverState = ServerState.FAIL;
+        String serverStateString = ServerState.getStringFromEnum(serverState);
+        entity.setServer_name("Test_Server");
+        entity.setAddress("255.255.255.7");
+        entity.setPort(8090);
+        entity.setUrl("http://localhost/test");
+        entity.setState(serverState);
+        entity.setResponse(serverStateString);
+        entity.setCreated(timestamp);
+        entity.setLastCheck(timestamp);
+        entity.setActive(0);
+        adminService.registerServer(entity);
+
+        // selecting and asserting server entity
+        ServerEntity entity2 = employeeService.getServerDetails(entity);
+        assertNotNull("failure - Server entity must not be null", entity2);
+        assertEquals("failure - server_name should be same", "Test_Server", entity2.getServer_name());
+        assertEquals("failure - address should be same", "255.255.255.7", entity2.getAddress());
+        assertEquals("failure - port should be same", (Object) 8090, entity2.getPort());
+        assertEquals("failure - url should be same", "http://localhost/test", entity2.getUrl());
+        assertEquals("failure - state should be same", serverState, entity2.getState());
+        assertEquals("failure - state should be same", serverStateString, entity2.getResponse());
+        assertEquals("failure - isActive should be same", (Object) 0, entity2.getActive());
+
+        // eliminating test entity
+        adminService.deleteServer(entity2.getId());
     }
+
+
 }

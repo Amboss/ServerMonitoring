@@ -1,7 +1,6 @@
 package serverMonitoring.logic.service.adminService;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,9 +18,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 /**
  * JUnit test for the {@link serverMonitoring.logic.service.impl.AdminServiceImpl} class.
@@ -58,7 +55,7 @@ public class EmployeeManagementTest extends AbstractJUnit4SpringContextTests {
      * Registration of new Employee
      * testing all raw from Employee entity
      */
-    @Before
+    @Test
     public void testRegisterEmployee() {
         //registration of new user
         EmployeeEntity entity = new EmployeeEntity();
@@ -80,8 +77,6 @@ public class EmployeeManagementTest extends AbstractJUnit4SpringContextTests {
         assertEquals("failure - login should be same", "testUser", entity2.getLogin());
         assertEquals("failure - password should be same", pass, entity2.getPassword());
         assertEquals("failure - password should be same", "test_email@mail.com", entity2.getEmail());
-//        assertEquals("failure - created should be same", timestamp, entity2.getCreated());
-//        assertEquals("failure - lastLogin should be same", timestamp, entity2.getLastLogin());
         assertEquals("failure - isActive should be same", (Object) 1, entity2.getActive());
         assertEquals("failure - isAdmin should be same", (Object) 0, entity2.getAdmin());
     }
@@ -93,8 +88,20 @@ public class EmployeeManagementTest extends AbstractJUnit4SpringContextTests {
      */
     @Test
     public void testUpdateEmployee() {
-        // performing an update of existing entity
+        //registration of new user
         EmployeeEntity entity = new EmployeeEntity();
+        String pass = passwordEncoder.encodePassword("testpass", null);
+        entity.setEmployee_name("Service_Test_Register");
+        entity.setLogin("testUser");
+        entity.setPassword(pass);
+        entity.setEmail("test_email@mail.com");
+        entity.setCreated(timestamp);
+        entity.setLastLogin(timestamp);
+        entity.setActive(1);
+        entity.setAdmin(0);
+        adminService.registerEmployee(entity);
+
+        // updating employee
         entity.setLogin("testUser");
         entity.setEmail("new_test_email@mail.com");
         entity.setEmployee_name("Service_Test_Update");
@@ -104,7 +111,7 @@ public class EmployeeManagementTest extends AbstractJUnit4SpringContextTests {
         // selection and assert of test user
         EmployeeEntity entity2 = employeeService.getEmployeeByLogin(entity);
         assertNotNull(entity2);
-        assertEquals("failure - password should be same", "test_email@mail.com", entity2.getEmail());
+        assertEquals("failure - password should be same", "new_test_email@mail.com", entity2.getEmail());
         assertEquals("failure - name should be same", "Service_Test_Update", entity2.getEmployee_name());
         assertEquals("failure - isActive should be same", (Object) 0, entity2.getActive());
     }
@@ -116,10 +123,10 @@ public class EmployeeManagementTest extends AbstractJUnit4SpringContextTests {
     @Test
     public void testGetAllEmployee() {
         EmployeeEntity entity = new EmployeeEntity();
-        String pass = passwordEncoder.encodePassword("testpass567", null);
+        String pass = passwordEncoder.encodePassword("test", null);
         // registration of new user
         entity.setEmployee_name("Service_Test_GetAll");
-        entity.setLogin("testUser2");
+        entity.setLogin("testUser");
         entity.setPassword(pass);
         entity.setEmail("test2_email@mail.com");
         entity.setCreated(timestamp);
@@ -135,31 +142,13 @@ public class EmployeeManagementTest extends AbstractJUnit4SpringContextTests {
 
     /**
      * delete Employee
-     * testing for absence of "testUser" & "testUser2"
      */
     @After
-    public void testDeleteEmployee() {
+    public void Delete() {
         EmployeeEntity entity = new EmployeeEntity();
-        EmployeeEntity entity2 = new EmployeeEntity();
-
-        // deleting entity
         entity.setLogin("testUser");
         entity = employeeService.getEmployeeByLogin(entity);
         adminService.deleteEmployee(entity.getId());
-
-        // deleting entity2
-        entity.setLogin("testUser2");
-        entity = employeeService.getEmployeeByLogin(entity);
-        adminService.deleteEmployee(entity.getId());
-
-        //retrieving and asserting for null testUser
-        entity.setLogin("testUser");
-        entity = employeeService.getEmployeeByLogin(entity);
-        assertNull("the testUser is not empty", entity);
-
-        //retrieving and asserting for null testUser2
-        entity2.setLogin("testUser");
-        entity2 = employeeService.getEmployeeByLogin(entity2);
-        assertNull("the testUser2 is not empty", entity2);
+        //assertNull("the testUser2 is not empty", entity);
     }
 }
