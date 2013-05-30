@@ -1,5 +1,6 @@
 package serverMonitoring.logic.DAO;
 
+import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,6 +38,7 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
     public void setServerDao(ServerDao serverDao) {
         this.serverDao = serverDao;
     }
+
     @BeforeClass
     public static void initiate() {
         Date date = new Date();
@@ -44,20 +46,13 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
     }
 
     /**
-     * Testing termination of EmployeeEntity from Data Base
+     * termination of EmployeeEntity from Data Base
      */
-//    @After
-//    public void testDelete() {
-//
-//        for (int j = 0; j < 5; j++) {
-//            ServerEntity entity = new ServerEntity();
-//            entity.setLogin("testDAOUser" + j);
-//            entity = serverDao.findByServerName("Test_Server_" + j);
-//            ServerEntity.delete(entity.getId());
-//            EmployeeEntity entity2 = employeeDao.findByLogin("testDAOUser" + j);
-//            assertNull("the testDAOUser is not empty", entity2);
-//        }
-//    }
+    @After
+    public void testDelete() {
+        ServerEntity entity = serverDao.findByServerName("Test_Server");
+        serverDao.delete(entity.getId());
+    }
 
     /**
      * Testing registration of new EmployeeEntity to Data Base
@@ -68,7 +63,7 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         ServerEntity entity = new ServerEntity();
         ServerState serverState = ServerState.FAIL;
         String serverStateString = ServerState.getStringFromEnum(serverState);
-        entity.setServer_name("Test_Server_0");
+        entity.setServer_name("Test_Server");
         entity.setAddress("255.255.255.0");
         entity.setPort(8080);
         entity.setUrl("http://localhost/");
@@ -80,7 +75,7 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         serverDao.add(entity);
 
         // selecting by login & asserting
-        ServerEntity entity2 = serverDao.findByServerName("Test_Server_0");
+        ServerEntity entity2 = serverDao.findByServerName("Test_Server");
         assertNotNull("failure - Server entity2 must not be null", entity2);
         assertEquals("failure - address should be same", "255.255.255.0", entity2.getAddress());
         assertEquals("failure - port should be same", (Object) 8080, entity2.getPort());
@@ -96,21 +91,19 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
     @Test
     public void testAddGroup() {
         List<ServerEntity> entityList = new ArrayList<>();
-        for (int i = 1; i < 3; i++) {
-            ServerEntity entity = new ServerEntity();
-            ServerState serverState = ServerState.WARN;
-            String serverStateString = ServerState.getStringFromEnum(serverState);
-            entity.setServer_name("Test_Server_" + i);
-            entity.setAddress("255.255.255.0");
-            entity.setPort(8080);
-            entity.setUrl("http://localhost/");
-            entity.setState(serverState);
-            entity.setResponse(serverStateString);
-            entity.setCreated(timestamp);
-            entity.setLastCheck(timestamp);
-            entity.setActive(1);
-            entityList.add(entity);
-        }
+        ServerEntity entity = new ServerEntity();
+        ServerState serverState = ServerState.WARN;
+        String serverStateString = ServerState.getStringFromEnum(serverState);
+        entity.setServer_name("Test_Server");
+        entity.setAddress("255.255.255.0");
+        entity.setPort(8080);
+        entity.setUrl("http://localhost/");
+        entity.setState(serverState);
+        entity.setResponse(serverStateString);
+        entity.setCreated(timestamp);
+        entity.setLastCheck(timestamp);
+        entity.setActive(1);
+        entityList.add(entity);
         serverDao.addGroup(entityList);
 
         // testing selection off all entities
@@ -127,7 +120,7 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         ServerEntity entity = new ServerEntity();
         ServerState serverState = ServerState.WARN;
         String serverStateString = ServerState.getStringFromEnum(serverState);
-        entity.setServer_name("Test_Server_4");
+        entity.setServer_name("Test_Server");
         entity.setAddress("255.255.255.0");
         entity.setPort(8080);
         entity.setUrl("http://localhost/");
@@ -138,7 +131,7 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         entity.setActive(1);
         serverDao.add(entity);
 
-        ServerEntity entity2 = serverDao.findByServerName("Test_Server_4");
+        ServerEntity entity2 = serverDao.findByServerName("Test_Server");
         assertNotNull("failure - Employee entity2 must not be null", entity2);
 
         // selecting by ID
@@ -163,7 +156,7 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         ServerEntity entity = new ServerEntity();
         ServerState serverState = ServerState.OK;
         String serverStateString = ServerState.getStringFromEnum(serverState);
-        entity.setServer_name("Test_Server_5");
+        entity.setServer_name("Test_Server");
         entity.setAddress("255.255.255.0");
         entity.setPort(8080);
         entity.setUrl("http://localhost/");
@@ -175,14 +168,14 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         serverDao.add(entity);
 
         // selecting existent entity
-        entity.setServer_name("Test_Server_5");
+        entity.setServer_name("Test_Server");
         entity.setAddress("255.255.255.10");
         entity.setPort(9090);
         entity.setActive(0);
         serverDao.update(entity);
 
         // selection and asserting
-        ServerEntity entity2 = serverDao.findByServerName("Test_Server_5");
+        ServerEntity entity2 = serverDao.findByServerName("Test_Server");
         assertNotNull("failure - Employee entity2 must not be null", entity2);
 
         // asserting

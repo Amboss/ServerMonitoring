@@ -81,7 +81,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public ServerEntity getServerDetails(ServerEntity entity) {
         employeeLogger.debug("retrieving Server details with id: " + entity.getId());
-        return serverDao.findById(entity.getId());
+        return serverDao.findByServerName(entity.getServer_name());
     }
 
     /*

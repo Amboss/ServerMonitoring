@@ -19,7 +19,8 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * JUnit test for the {@link AdminServiceImpl} class.
@@ -50,6 +51,18 @@ public class ServerManagementTest extends AbstractJUnit4SpringContextTests {
     public static void initiate() {
         date = new Date();
         timestamp = new Timestamp(date.getTime());
+    }
+
+    /**
+     * delete Server
+     */
+    @After
+    public void testDeleteServer() {
+        ServerEntity entity = new ServerEntity();
+        entity.setServer_name("Test_Server");
+        ServerEntity entity2 = employeeService.getServerDetails(entity);
+        adminService.deleteServer(entity2.getId());
+        //assertNull("the Test_Server is not empty", entity);
     }
 
     /**
@@ -146,18 +159,6 @@ public class ServerManagementTest extends AbstractJUnit4SpringContextTests {
 
         List<ServerEntity> reality = adminService.getAllServers();
         assertNotNull(reality);
-    }
-
-    /**
-     * delete Server
-     */
-    @After
-    public void testDeleteServer() {
-        ServerEntity entity = new ServerEntity();
-        entity.setServer_name("Test_Server");
-        ServerEntity entity2 = employeeService.getServerDetails(entity);
-        adminService.deleteServer(entity2.getId());
-        //assertNull("the Test_Server is not empty", entity);
     }
 }
 

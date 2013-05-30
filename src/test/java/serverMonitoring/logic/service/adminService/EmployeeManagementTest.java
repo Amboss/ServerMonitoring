@@ -18,7 +18,8 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * JUnit test for the {@link serverMonitoring.logic.service.impl.AdminServiceImpl} class.
@@ -49,6 +50,18 @@ public class EmployeeManagementTest extends AbstractJUnit4SpringContextTests {
         passwordEncoder = new ShaPasswordEncoder(256);
         Date date = new Date();
         timestamp = new Timestamp(date.getTime());
+    }
+
+    /**
+     * termination of Employee
+     */
+    @After
+    public void termination() {
+        EmployeeEntity entity = new EmployeeEntity();
+        entity.setLogin("testUser");
+        entity = employeeService.getEmployeeByLogin(entity);
+        adminService.deleteEmployee(entity.getId());
+        //assertNull("the testUser2 is not empty", entity);
     }
 
     /**
@@ -138,17 +151,5 @@ public class EmployeeManagementTest extends AbstractJUnit4SpringContextTests {
         // creating expected and reality Lists for comparing assert
         List<EmployeeEntity> reality = adminService.getAllEmployee();
         assertNotNull(reality);
-    }
-
-    /**
-     * delete Employee
-     */
-    @After
-    public void Delete() {
-        EmployeeEntity entity = new EmployeeEntity();
-        entity.setLogin("testUser");
-        entity = employeeService.getEmployeeByLogin(entity);
-        adminService.deleteEmployee(entity.getId());
-        //assertNull("the testUser2 is not empty", entity);
     }
 }
