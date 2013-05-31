@@ -22,12 +22,13 @@
 
 
     <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"
-          p:templateLoaderPath="/WEB-INF/freemaker"
+          p:templateLoaderPath="/WEB-INF/freemarker"
           p:defaultEncoding="UTF-8"/>
 
     <bean id="freemarkerViewResolver"
           class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
           p:cache="true"
+          p:prefix=""
           p:suffix=".ftl"
           p:exposeSpringMacroHelpers="true"
           p:exposeRequestAttributes="true"

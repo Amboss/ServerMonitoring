@@ -50,6 +50,7 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+
     <!--<resource-ref>-->
         <!--<description>My DataSource Reference</description>-->
         <!--<res-ref-name>jdbc/dbTest</res-ref-name>-->
