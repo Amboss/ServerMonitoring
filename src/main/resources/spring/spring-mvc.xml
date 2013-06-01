@@ -14,24 +14,8 @@
     <!--<mvc:resources mapping="/js/" location="/WEB-INF/static/js/"/>-->
     <!--<mvc:resources mapping="/css/" location="/WEB-INF/static/css/"/>-->
     <!--<mvc:resources mapping="/img/" location="/WEB-INF/static/img/"/>-->
-    <!--<mvc:resources mapping="/favicon.ico"-->
-                   <!--location="/WEB-INF/static/img/favicon.ico" order="0"/>-->
+    <!--<mvc:resources mapping="/favicon.ico" location="/WEB-INF/static/img/favicon.ico" order="0"/>-->
 
     <!--<bean id="defaultHandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>-->
     <!--<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>-->
-
-
-    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"
-          p:templateLoaderPath="/WEB-INF/freemarker"
-          p:defaultEncoding="UTF-8"/>
-
-    <bean id="freemarkerViewResolver"
-          class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
-          p:cache="true"
-          p:prefix=""
-          p:suffix=".ftl"
-          p:exposeSpringMacroHelpers="true"
-          p:exposeRequestAttributes="true"
-          p:exposeSessionAttributes="true"
-          p:allowSessionOverride="true"/>
 </beans>

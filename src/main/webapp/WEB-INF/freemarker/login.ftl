@@ -5,6 +5,7 @@
     <h1>Please login</h1>
     <div clas="index_text">
         <table>
+            <tr><td>Time is: ${MsTime}!</td></tr>
             <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
                 sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
                 aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud

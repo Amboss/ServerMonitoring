@@ -8,6 +8,9 @@
            [#include "./common/message/login_message.ftl"]
            <table>
                <tr>
+               <#if Session.SPRING_SECURITY_LAST_EXCEPTION?? && Session.SPRING_SECURITY_LAST_EXCEPTION.message?has_content>
+                   <@spring.message "login.bad.credentials"/>
+               </#if>
                    <td><label class="span2" for="j_username">Username</label></td>
                    <td><@spring.formInput "loginForm.username","placeholder='username'" />
                        <@spring.showErrors "loginForm.username","error" />
