@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/auth")
 public class LoginLogoutController {
 
-    protected static Logger logger = Logger.getLogger("LoginLogoutController");
-
+   protected static Logger logger = Logger.getLogger("LoginLogoutController");
+//    @RequestMapping("/")
+//    public String welcome() {
+//        return "index";
+//    }
     /**
      * Handles and retrieves /WEB-INF/ftl/index.ftl
      *

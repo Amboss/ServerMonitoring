@@ -9,44 +9,46 @@
                 http://www.springframework.org/schema/security
                 http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-    <!--&lt;!&ndash;  Spring Security autowire the parent property  &ndash;&gt;-->
-    <!--<security:authentication-manager/>-->
+    <!--  Spring Security autowire the parent property  -->
+    <security:authentication-manager alias="authenticationManager"/>
 
-    <!--&lt;!&ndash; Configuration of Spring-Security. Set to false to assign custom filters  &ndash;&gt;-->
-    <!--<security:http auto-config="false" use-expressions="true"-->
-                   <!--access-denied-page="/auth/denied"-->
-                   <!--entry-point-ref="authenticationEntryPoint">-->
+    <!-- Configuration of Spring-Security. Set to false to assign custom filters  -->
+    <security:http auto-config="false"
+                   access-denied-page="/auth/denied"
+                   entry-point-ref="authenticationEntryPoint">
 
-        <!--<security:logout invalidate-session="true" logout-success-url="/auth/login/success"-->
-                         <!--logout-url="/auth/logout?success"/>-->
+        <security:logout invalidate-session="true" logout-success-url="/auth/login/success"
+                         logout-url="/auth/logout?success"/>
 
-        <!--<security:intercept-url pattern="/auth/login" access="permitAll"/>-->
-        <!--<security:custom-filter position="FORM_LOGIN_FILTER" ref="authenticationFilter"/>-->
-    <!--</security:http>-->
+        <security:intercept-url pattern="/auth/login" access="permitAll"/>
+        <security:custom-filter position="FORM_LOGIN_FILTER" ref="authenticationFilter"/>
+    </security:http>
 
-    <!--&lt;!&ndash; Custom filter for username and password &ndash;&gt;-->
-    <!--<bean id="authenticationFilter"-->
-          <!--class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"-->
-          <!--p:authenticationManager-ref="customAuthenticationManager"-->
-          <!--p:authenticationFailureHandler-ref="customAuthenticationFailureHandler"-->
-          <!--p:authenticationSuccessHandler-ref="customAuthenticationSuccessHandler"/>-->
+    <security:authentication-provider user-service-ref="customAuthenticationManager" />
 
-    <!--&lt;!&ndash; Custom authentication manager. !!! Username and password must not be the same !!! &ndash;&gt;-->
-    <!--<bean id="customAuthenticationManager"-->
-          <!--class="serverMonitoring.logic.service.authentication.UserAuthentication"/>-->
+    <!-- Custom filter for username and password -->
+    <bean id="authenticationFilter"
+          class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"
+          p:authenticationManager-ref="customAuthenticationManager"
+          p:authenticationFailureHandler-ref="customAuthenticationFailureHandler"
+          p:authenticationSuccessHandler-ref="customAuthenticationSuccessHandler"/>
 
-    <!--&lt;!&ndash; default failure URL &ndash;&gt;-->
-    <!--<bean id="customAuthenticationFailureHandler"-->
-          <!--class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler"-->
-          <!--p:defaultFailureUrl="/auth/login?error=true"/>-->
+    <!-- Custom authentication manager. !!! Username and password must not be the same !!! -->
+    <bean id="customAuthenticationManager"
+          class="serverMonitoring.logic.service.authentication.UserAuthentication"/>
 
-    <!--&lt;!&ndash; default target URL here &ndash;&gt;-->
-    <!--<bean id="customAuthenticationSuccessHandler"-->
-          <!--class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler"-->
-          <!--p:defaultTargetUrl="/employee/monitoring"/>-->
+    <!-- default failure URL -->
+    <bean id="customAuthenticationFailureHandler"
+          class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler"
+          p:defaultFailureUrl="/auth/login?error=true"/>
 
-    <!--&lt;!&ndash; The AuthenticationEntryPoint &ndash;&gt;-->
-    <!--<bean id="authenticationEntryPoint"-->
-          <!--class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint"-->
-          <!--p:loginFormUrl="/auth/login"/>-->
+    <!-- default target URL here -->
+    <bean id="customAuthenticationSuccessHandler"
+          class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler"
+          p:defaultTargetUrl="/employee/monitoring"/>
+
+    <!-- The AuthenticationEntryPoint -->
+    <bean id="authenticationEntryPoint"
+          class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint"
+          p:loginFormUrl="/auth/login"/>
 </beans>
