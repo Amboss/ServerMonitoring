@@ -1,12 +1,11 @@
-[#ftl]
-[#macro title="Login"]
-[#include "./common/header.ftl"/]
-<div class="container">
+<#include "common/header.ftl"/>
+<div id="div-content">
+    <p>This is index page</p>
     <h1>Please login</h1>
     <div clas="index_text">
-        <table>
-            <tr><td>Time is: ${MsTime}!</td></tr>
-            <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+        <table><tr><td>Time is: ${MsTime}!</td></tr>
+            <tr><td><h1>Welcome ${user!"Anonymous"}!</h1>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
                 sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
                 aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
                 exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
@@ -29,4 +28,4 @@
         </table>
     </div>
 </div>
-[#include "./common/footer.ftl"/]
+<#include "common/footer.ftl"/>

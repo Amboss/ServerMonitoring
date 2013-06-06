@@ -10,10 +10,10 @@
                 http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
     <!--  Spring Security autowire the parent property  -->
-    <security:authentication-manager alias="authenticationManager"/>
+    <security:authentication-manager/>
 
     <!-- Configuration of Spring-Security. Set to false to assign custom filters  -->
-    <security:http auto-config="false"
+    <security:http auto-config="false" use-expressions="true"
                    access-denied-page="/auth/denied"
                    entry-point-ref="authenticationEntryPoint">
 
@@ -23,8 +23,6 @@
         <security:intercept-url pattern="/auth/login" access="permitAll"/>
         <security:custom-filter position="FORM_LOGIN_FILTER" ref="authenticationFilter"/>
     </security:http>
-
-    <security:authentication-provider user-service-ref="customAuthenticationManager" />
 
     <!-- Custom filter for username and password -->
     <bean id="authenticationFilter"

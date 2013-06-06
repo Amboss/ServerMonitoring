@@ -8,38 +8,38 @@
     <@spring.message "label.loginerror"/>: ${Session.SPRING_SECURITY_LAST_EXCEPTION.message}
 </#if>
 <#if RequestParameters['authfail']??>
-            <div class="row">
-                <div class="span12">
-                    <div class="alert alert-error">
-                        Login failed
-                    </div>
-                </div>
+    <div class="row">
+        <div class="span12">
+            <div class="alert alert-error">
+                Login failed
             </div>
-        </#if>
-        <#if RequestParameters['accessdenied']??>
-            <div class="row">
-                <div class="span12">
-                    <div class="alert alert-error">
-                        Access denied
-                    </div>
-                </div>
+        </div>
+    </div>
+</#if>
+<#if RequestParameters['accessdenied']??>
+    <div class="row">
+        <div class="span12">
+            <div class="alert alert-error">
+                Access denied
             </div>
-        </#if>
-        <#if RequestParameters['login']??>
-            <div class="row">
-                <div class="span12">
-                    <div class="alert alert-warning">
-                        You are not signed in, please sign in first.
-                    </div>
-                </div>
+        </div>
+    </div>
+</#if>
+<#if RequestParameters['login']??>
+    <div class="row">
+        <div class="span12">
+            <div class="alert alert-warning">
+                You are not signed in, please sign in first.
             </div>
-        </#if>
-        <#if RequestParameters['loggedout']??>
-            <div class="row">
-                <div class="span12">
-                    <div class="alert alert-success">
-                        You have been logged out.
-                    </div>
-                </div>
+        </div>
+    </div>
+</#if>
+<#if RequestParameters['loggedout']??>
+    <div class="row">
+        <div class="span12">
+            <div class="alert alert-success">
+                You have been logged out.
             </div>
-        </#if>
+        </div>
+    </div>
+</#if>

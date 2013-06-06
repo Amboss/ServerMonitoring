@@ -1,21 +1,25 @@
-[#ftl]
-[#-- this is header --]
+<#-- this is header -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
+     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
     <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
     <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
     <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-		<#include "../common/common_library.ftl"/>
+        <#include "common.ftl"/>
+        <link rel="stylesheet" type="text/css" href="<@spring.url value="/WEB-INF/static/css/style.css"/>"/>
+        <link rel="stylesheet" type="text/css" href="<@spring.url value="/WEB-INF/static/css/bootstrap.min.css"/>">
+        <link rel="stylesheet" type="text/css" href="<@spring.url value="/WEB-INF/static/css/bootstrap-responsive.min.css"/>">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"; charset="utf-8">
         <meta name="description" content="Server Manager Service">
-        <title>${pageTitleFromHttpRequest}</title>
-    </head>
-    <body>
+        <title></title>
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="/WEB-INF/static/js/bootstrap.min.js"></script>
+    </head>
+    <body style="width:100%;height:100%">
+        <p>This is header</p>
+
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">
             Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">
@@ -30,16 +34,16 @@
                         <span class="icon-bar"></span>
                     </a>
                     <div class="nav-collapse collapse">
-                        [#include "../authorization/login_form.ftl"/]
-                     </div><!--/.nav-collapse -->
-                    [#if active?? ]
+                        <#include "../authorization/login_form.ftl"/>
+                    </div><!--/.nav-collapse -->
+                    <#if active?? >
                         <div class="header_menu">
-                            [#include "../common/header/header_menu.ftl"]
+                            <#include "../common/header/header_menu.ftl">
                         </div>
                         <div class="header_status">
-                            [#include "../common/header/header_status.ftl"]
+                            <#include "../common/header/header_status.ftl">
                         </div>
-                    [/#if]
+                    </#if>
                 </div>
             </div>
         </div>

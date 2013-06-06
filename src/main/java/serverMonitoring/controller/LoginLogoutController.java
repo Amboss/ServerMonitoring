@@ -4,42 +4,31 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Handles and retrieves the login or denied page depending on the URI template
  */
 @Controller
 @RequestMapping("/auth")
-public class LoginLogoutController {
+public class LoginLogoutController{
 
-   protected static Logger logger = Logger.getLogger("LoginLogoutController");
-//    @RequestMapping("/")
-//    public String welcome() {
-//        return "index";
-//    }
+    protected static Logger logger = Logger.getLogger(LoginLogoutController.class);
+
     /**
      * Handles and retrieves /WEB-INF/ftl/index.ftl
      *
      * @return the name of the ftl page
      */
-    @RequestMapping("/login")
-    public String getLogin(Model model) {
-
-        logger.info("/login.ftl ");
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ModelAndView getLoginPage(Model model) {
+        ModelAndView foo = new ModelAndView("index");
+        logger.info("/index.ftl ");
         model.addAttribute("MsTime", System.currentTimeMillis());
-        return "login";
+        return foo;
     }
 
-//    /**
-//     * Handles and retrieves /WEB-INF/ftl/login.ftl
-//     *
-//     * @return the name of the ftl page
-//     */
-//    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//    public String getLoginPage() {
-//        logger.debug("Received request to show login page");
-//        return "login";
-//    }
 //
 //    /**
 //     * Handles a logout request
