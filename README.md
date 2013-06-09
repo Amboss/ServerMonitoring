@@ -13,4 +13,4 @@ Server Monitoring Service
    <configuration> ... </configuration>
 
 ### Access URL for application:
- http://localhost:8080/ServerMonitoring/
+http://localhost:8080/ServerMonitoring/auth/login
