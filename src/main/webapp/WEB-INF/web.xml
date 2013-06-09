@@ -8,8 +8,8 @@
     <display-name>ServerMonitoring</display-name>
 
     <welcome-file-list>
-
-        <welcome-file>login.ftl</welcome-file>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.ftl</welcome-file>
     </welcome-file-list>
 
     <!-- ============================ Spring MVC configurations ============================ -->
@@ -43,15 +43,15 @@
     </listener>
 
     <!-- ============================ Spring Security configurations ============================ -->
-    <!--<filter>-->
-    <!--&lt;!&ndash; DelegatingFilterProxy &ndash;&gt;-->
-    <!--<filter-name>springSecurityFilterChain</filter-name>-->
-    <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-    <!--<filter-name>springSecurityFilterChain</filter-name>-->
-    <!--<url-pattern>/*</url-pattern>-->
-    <!--</filter-mapping>-->
+    <filter>
+        <!-- DelegatingFilterProxy -->
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <!-- ============================ Free Marker configurations ============================ -->
     <servlet>
@@ -59,27 +59,6 @@
         <servlet-class>freemarker.ext.servlet.FreemarkerServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
-    <!-- ============================ Jsp tags Support Serlvet ============================ -->
-    <servlet>
-        <servlet-name>JspSupportServlet</servlet-name>
-        <servlet-class>org.apache.struts2.views.JspSupportServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-
-    <!-- ============================ Spring Security Facelets Tag Library ============================ -->
-    <context-param>
-    <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
-    <param-value>/WEB-INF/tags.security.xml</param-value>
-    </context-param>
-
-    <!-- ============================ Jetty db config ============================ -->
-    <!--<resource-ref>-->
-    <!--<description>My DataSource Reference</description>-->
-    <!--<res-ref-name>jdbc/dbTest</res-ref-name>-->
-    <!--<res-type>javax.sql.DataSource</res-type>-->
-    <!--<res-auth>Container</res-auth>-->
-    <!--</resource-ref>-->
 
     <!-- `````````````````````````````````````````````````````````````````
       Prevent the visiting of MVC Views from outside the servlet container.

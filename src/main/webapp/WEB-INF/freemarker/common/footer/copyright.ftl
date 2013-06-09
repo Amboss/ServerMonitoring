@@ -1,4 +1,5 @@
 <#-- this is Copyright -->
-<#import "../common/message/info.ftl" as my>
-<p>Copyright (C) ${my.date} ${my.admin}. All rights reserved.</p>
+<p>This is copyright</p>
+
+<p>Copyright ${my.company_name}(C) ${my.copyright_date} ${my.admin}. All rights reserved.</p>
 <p>${my.mail}</p>

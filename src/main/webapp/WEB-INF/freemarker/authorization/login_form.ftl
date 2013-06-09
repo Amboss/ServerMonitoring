@@ -9,19 +9,19 @@
        <table>
            <tr>
            <#if Session.SPRING_SECURITY_LAST_EXCEPTION?? && Session.SPRING_SECURITY_LAST_EXCEPTION.message?has_content>
-               <@spring.message "login.bad.credentials"/>
+               <#--@spring.message "login.bad.credentials"/-->
            </#if>
                <td><label class="span2" for="j_username">Username</label></td>
                <td><input id="j_username" name="j_username" size="20" maxlength="50" type="text"/></td>
-               <td><@spring.showErrors "loginForm.username","error" /></td>
+               <td><#--@spring.showErrors "loginForm.username","error" /--></td>
            </tr>
            <tr>
                <td><label class="log_pass" for="j_password">Password</label></td>
                <td><input id="j_password" name="j_password" size="20" maxlength="50" type="password"/></td>
-               <td><@spring.showErrors "loginForm.password","error" /></td>
+               <td><#--@spring.showErrors "loginForm.password","error" /--></td>
            </tr>
            <tr>
-               <td><input  type="submit" class="btn" value="Login"/><input  type="reset" class="btn" value="Cancel"/></td>
+               <td><input  type="submit" class="btn btn-primary" value="Login"/><input  type="reset" class="btn btn-primary" value="Cancel"/></td>
            </tr>
        </table>
     </form>

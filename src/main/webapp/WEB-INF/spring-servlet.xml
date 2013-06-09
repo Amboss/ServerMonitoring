@@ -25,16 +25,8 @@
         p:defaultEncoding="UTF-8"/>
 
     <bean id="viewResolver"
-    class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
-    p:cache="true"
-    p:prefix=""
-    p:suffix=".ftl"/>
-
-    <!--<bean id="viewResolver"-->
-        <!--class="org.springframework.web.servlet.view.InternalResourceViewResolver"-->
-        <!--p:viewClass="org.springframework.web.servlet.view.InternalResourceView"-->
-        <!--p:cache="true"-->
-        <!--p:prefix=""-->
-        <!--p:suffix=".ftl"/>-->
-
+        class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
+        p:cache="true"
+        p:prefix=""
+        p:suffix=".ftl"/>
 </beans>

@@ -23,45 +23,43 @@ public class LoginLogoutController{
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView getLoginPage(Model model) {
-        ModelAndView foo = new ModelAndView("index");
         logger.info("/index.ftl ");
         model.addAttribute("MsTime", System.currentTimeMillis());
-        return foo;
+        return new ModelAndView("index");
     }
 
-//
-//    /**
-//     * Handles a logout request
-//     *
-//     * @return the name of the ftl page
-//     */
-//    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-//    public String logoutSuccess() {
-//        logger.debug("Received request to logout & show index page");
-//        String message = "Logout Success!";
-//        return "/login?signout" + message;
-//    }
-//
-//    /**
-//     * Handles and retrieves /WEB-INF/ftl/common/message/access_denied.ftl
-//     * shown whenever a access denied.
-//     *
-//     * @return the name of the ftl page
-//     */
-//    @RequestMapping(value = "/access_denied", method = RequestMethod.GET)
-//    public String getDeniedPage() {
-//        logger.debug("Received request to show denied page");
-//        return "common/message/access_denied";
-//    }
-//
-//    /**
-//     * Handles and retrieves /WEB-INF/ftl/authorization/password_recovery.ftl
-//     *
-//     * @return the name of the ftl page
-//     */
-//    @RequestMapping(value = "/password_recovery", method = RequestMethod.GET)
-//    public String getPasswordRecoveryPage() {
-//        logger.debug("Received request to show password_recovery page");
-//        return "authorization/password_recovery";
-//    }
+    /**
+     * Handles a logout request
+     *
+     * @return the name of the ftl page
+     */
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public ModelAndView logoutSuccess(Model model) {
+        logger.debug("Received request to logout & show index page");
+        model.addAttribute("Logout Success!");
+        return new ModelAndView("index?signout");
+    }
+
+    /**
+     * Handles and retrieves /WEB-INF/ftl/common/message/access_denied.ftl
+     * shown whenever a access denied.
+     *
+     * @return the name of the ftl page
+     */
+    @RequestMapping(value = "/access_denied", method = RequestMethod.GET)
+    public ModelAndView getDeniedPage() {
+        logger.debug("Received request to show denied page");
+        return new ModelAndView("common/message/access_denied");
+    }
+
+    /**
+     * Handles and retrieves /WEB-INF/ftl/authorization/password_recovery.ftl
+     *
+     * @return the name of the ftl page
+     */
+    @RequestMapping(value = "/password_recovery", method = RequestMethod.GET)
+    public ModelAndView getPasswordRecoveryPage() {
+        logger.debug("Received request to show password_recovery page");
+        return new ModelAndView("authorization/password_recovery");
+    }
 }

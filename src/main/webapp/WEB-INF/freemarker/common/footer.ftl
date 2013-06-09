@@ -1,5 +1,8 @@
 <#-- this is footer -->
+<#import "message/info.ftl" as my>
+
         <div id="div-footer">
+
         <p>This is footer</p>
             <div class="footer_menu">
                 <ul>

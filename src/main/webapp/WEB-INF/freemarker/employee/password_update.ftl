@@ -1,9 +1,7 @@
-<#macro title="Password change">
-[#ftl]
 
-[#include "./common/header.ftl"/]
+<#include "../common/header.ftl"/>
 <div class="container">
-    <h1>_____________</h1>
+    <h1>Password update</h1>
     <div clas="index_text">
         <table>
             <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
@@ -29,4 +27,4 @@
         </table>
     </div>
 </div>
-[#include "./common/footer.ftl"/]
+<#include "../common/footer.ftl"/>

@@ -10,18 +10,18 @@
                 http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
     <!--  Spring Security autowire the parent property  -->
-    <security:authentication-manager/>
+    <security:authentication-manager alias="customAuthenticationManager"/>
 
     <!-- Configuration of Spring-Security. Set to false to assign custom filters  -->
-    <security:http auto-config="false" use-expressions="true"
-                   access-denied-page="/auth/denied"
+    <security:http auto-config="false"
+                   access-denied-page="/common/message/access_denied"
                    entry-point-ref="authenticationEntryPoint">
 
-        <security:logout invalidate-session="true" logout-success-url="/auth/login/success"
+        <security:logout invalidate-session="true" logout-success-url="/auth/login"
                          logout-url="/auth/logout?success"/>
 
-        <security:intercept-url pattern="/auth/login" access="permitAll"/>
-        <security:custom-filter position="FORM_LOGIN_FILTER" ref="authenticationFilter"/>
+        <security:intercept-url pattern="/auth/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <!--security:custom-filter position="FORM_LOGIN_FILTER" ref="authenticationFilter"/-->
     </security:http>
 
     <!-- Custom filter for username and password -->

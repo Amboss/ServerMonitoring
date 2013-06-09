@@ -1,4 +1,6 @@
 <#-- this is header -->
+<#import "/spring.ftl" as spring />
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
      "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -7,15 +9,18 @@
     <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
     <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        <#include "common.ftl"/>
-        <link rel="stylesheet" type="text/css" href="<@spring.url value="/WEB-INF/static/css/style.css"/>"/>
-        <link rel="stylesheet" type="text/css" href="<@spring.url value="/WEB-INF/static/css/bootstrap.min.css"/>">
-        <link rel="stylesheet" type="text/css" href="<@spring.url value="/WEB-INF/static/css/bootstrap-responsive.min.css"/>">
+
+        <link href="/WEB-INF/static/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" media="screen"/>
+        <link href="/WEB-INF/static/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" media="screen"/>
+        <link href=/WEB-INF/static/css/bootstrap.css" rel="stylesheet" type="text/css" media="screen"/>
+        <link href=/WEB-INF/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen"/>
+        <script src=/WEB-INF/static/js/bootstrap.js" type="text/javascript"></script>
+        <script src=/WEB-INF/static/js/bootstrap.min.js" type="text/javascript"></script>
+
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"; charset="utf-8">
         <meta name="description" content="Server Manager Service">
         <title></title>
         <script src="http://code.jquery.com/jquery-latest.js"></script>
-        <script src="/WEB-INF/static/js/bootstrap.min.js"></script>
     </head>
     <body style="width:100%;height:100%">
         <p>This is header</p>
@@ -35,15 +40,15 @@
                     </a>
                     <div class="nav-collapse collapse">
                         <#include "../authorization/login_form.ftl"/>
-                    </div><!--/.nav-collapse -->
-                    <#if active?? >
+                    </div>
+                    <#--if active?? -->
                         <div class="header_menu">
-                            <#include "../common/header/header_menu.ftl">
+                            <#include "header/header_menu.ftl">
                         </div>
                         <div class="header_status">
-                            <#include "../common/header/header_status.ftl">
+                            <#include "header/header_status.ftl">
                         </div>
-                    </#if>
+                    <#--/#if-->
                 </div>
             </div>
         </div>

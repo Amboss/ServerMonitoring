@@ -1,12 +1,9 @@
-<#macro title="Password Recovery">
-[#ftl]
-
-[#include "./common/header.ftl"/]
+<#include "../common/header.ftl"/>
 <div class="container">
-    <h1>_____________</h1>
+    <h1>Password Recovery</h1>
     <div clas="index_text">
         <table>
-            <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+            <tr><td><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
                 sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
                 aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
                 exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
@@ -24,9 +21,9 @@
                 quam nunc putamus parum claram, anteposuerit litterarum formas
                 humanitatis per seacula quarta decima et quinta decima. Eodem
                 modo typi, qui nunc nobis videntur parum clari, fiant sollemnes
-                in futurum.
+                in futurum.</p>
             </td></tr>
         </table>
     </div>
 </div>
-[#include "./common/footer.ftl"/]
+<#include "../common/footer.ftl"/>
