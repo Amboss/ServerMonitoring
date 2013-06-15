@@ -21,7 +21,7 @@
                <td><#--@spring.showErrors "loginForm.password","error" /--></td>
            </tr>
            <tr>
-               <td><input  type="submit" class="btn btn-primary" value="Login"/><input  type="reset" class="btn btn-primary" value="Cancel"/></td>
+               <td><input  type="submit" class="btn-primary" value="Login"/><input  type="reset" class="btn-primary" value="Cancel"/></td>
            </tr>
        </table>
     </form>

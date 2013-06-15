@@ -1,6 +1,7 @@
+<#assign pageTitle>Server details</#assign>
 <#include "../common/header.ftl"/>
 <div class="container">
-    <h1>Server details</h1>
+    <h1>${pageTitle}</h1>
     <div clas="index_text">
         <table>
             <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,

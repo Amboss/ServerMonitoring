@@ -1,7 +1,6 @@
 package serverMonitoring.controller.employeePages;
 
 import org.apache.log4j.Logger;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
  * A user must be log-in first he can access these pages.
  */
 @Controller
-@Secured("ROLE_USER")
+//@Secured("ROLE_USER")
 @RequestMapping("/employee")
 public class EmployeeController {
 

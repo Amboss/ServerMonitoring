@@ -2,7 +2,10 @@
                                 custom styles
    ========================================================================== */
 body {
-
+    background-color:#b0c4de;
+}
+p {
+    background-color:#e0ffff;
 }
 .login_block{
 
