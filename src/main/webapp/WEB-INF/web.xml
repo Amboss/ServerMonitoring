@@ -20,6 +20,18 @@
             classpath:spring/spring-security.xml
         </param-value>
     </context-param>
+
+    <!-- ============================ Spring Security web infrastructure configurations ============================ -->
+    <filter>
+        <!-- DelegatingFilterProxy -->
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>spring</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -38,20 +50,28 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
+    <!-- ============================ Spring Security debug logging ============================ -->
     <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
 
-    <!-- ============================ Spring Security configurations ============================ -->
-    <filter>
-        <!-- DelegatingFilterProxy -->
-        <filter-name>springSecurityFilterChain</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+
+
+    <!-- ``````````````````````````````````````````````````````````````````````
+          Prevent the visiting of MVC Views from outside the servlet container.
+          RequestDispatcher.forward/include should and will still work.
+          Removing this may open security holes!
+    ``````````````````````````````````````````````````````````````````````` -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>ServerMonitoring</web-resource-name>
+            <url-pattern>*.ftl</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <!-- Nobody is allowed to visit these -->
+        </auth-constraint>
+    </security-constraint>
 
     <!-- ============================ Free Marker configurations ============================ -->
     <servlet>
@@ -59,19 +79,20 @@
         <servlet-class>freemarker.ext.servlet.FreemarkerServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
-    <!-- `````````````````````````````````````````````````````````````````
-      Prevent the visiting of MVC Views from outside the servlet container.
-      RequestDispatcher.forward/include should and will still work.
-      Removing this may open security holes!
-    -->
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>FreeMarker MVC Views</web-resource-name>
-            <url-pattern>*.ftl</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <!-- Nobody is allowed to visit these -->
-        </auth-constraint>
-    </security-constraint>
+    
+    <!-- ============================ Jsp Tag libs localisation configurations ============================ -->
+    <!--<jsp-config>-->
+        <!--<taglib>-->
+            <!--<taglib-uri>http://www.springframework.org/security/tags</taglib-uri>-->
+            <!--<taglib-location>/WEB-INF/tlds/spring-security.tld</taglib-location>-->
+        <!--</taglib>-->
+        <!--<taglib>-->
+            <!--<taglib-uri>http://www.springframework.org/tags/form</taglib-uri>-->
+            <!--<taglib-location>/WEB-INF/tlds/spring-form.tld</taglib-location>-->
+        <!--</taglib>-->
+        <!--<taglib>-->
+            <!--<taglib-uri>http://www.springframework.org/tags</taglib-uri>-->
+            <!--<taglib-location>/WEB-INF/tlds/spring.tld</taglib-location>-->
+        <!--</taglib>-->
+    <!--</jsp-config>-->
 </web-app>

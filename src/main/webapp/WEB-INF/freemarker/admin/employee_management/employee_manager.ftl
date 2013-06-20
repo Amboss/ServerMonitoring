@@ -1,9 +1,9 @@
-[#ftl]
-[#macro title="Employee manager"]
+<#assign pageTitle>Employee manager</#assign>
+<#import "/layout/admin.ftl" as com>
 
-[#include "./common/header.ftl"/]
+<@com.page title="Settings">
 <div class="container">
-    <h1>_____________</h1>
+    <h1>Employee manager</h1>
     <div clas="index_text">
         <table>
             <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
@@ -29,4 +29,4 @@
         </table>
     </div>
 </div>
-[#include "./common/footer.ftl"/]
+</@com.page>

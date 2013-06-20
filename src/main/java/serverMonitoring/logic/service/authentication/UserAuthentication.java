@@ -3,6 +3,7 @@ package serverMonitoring.logic.service.authentication;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import serverMonitoring.logic.DAO.EmployeeDao;
 import serverMonitoring.model.EmployeeEntity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -24,7 +26,7 @@ import java.util.List;
  */
 
 @Service("userAuthentication")
-public class UserAuthentication implements AuthenticationManager {
+public class UserAuthentication implements AuthenticationManager,AuthenticationProvider, Serializable {
 
     protected static Logger userAccessLogger = Logger.getLogger("UserAuthentication");
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
@@ -33,6 +35,11 @@ public class UserAuthentication implements AuthenticationManager {
     @Autowired
     public void setEmployeeDao(EmployeeDao employeeDao) {
         this.employeeDao = employeeDao;
+    }
+
+    @Override
+    public boolean supports(Class<? extends Object> authentication) {
+        return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
     }
 
     public Authentication authenticate(Authentication auth) throws UsernameNotFoundException {

@@ -1,5 +1,7 @@
 <#assign pageTitle>Server details</#assign>
-<#include "../common/header.ftl"/>
+<#import "/layout/employee.ftl" as com>
+
+<@com.page title="Server details">
 <div class="container">
     <h1>${pageTitle}</h1>
     <div clas="index_text">
@@ -27,4 +29,4 @@
         </table>
     </div>
 </div>
-<#include "../common/footer.ftl"/>
+</@com.page>

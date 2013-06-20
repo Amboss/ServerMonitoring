@@ -1,10 +1,10 @@
-<#assign spring=JspTaglibs["/WEB-INF/tags/spring.xml"] />
+<#assign spring=JspTaglibs["/WEB-INF/tlds/spring.tld"] />
 <#if username??>
-    <form action=<@spring.url value="/j_spring_security_logout"/> class="navbar-form pull-right" method="POST">
-          <button type="submit" class="btn">Sign out</button>
-    </form>
+    <#--form action=<@spring.url value="/j_spring_security_logout"/> class="navbar-form pull-right" method="POST"-->
+          <#--button type="submit" class="btn">Sign out</button-->
+    <#--/form-->
 <#else>
-    <form action="<@spring.url value="../j_spring_security_logout"/>" class="navbar-form pull-right" method="POST">
+    <form action="<@spring.url value='/j_spring_security_check'/>" class="navbar-form pull-right" method="POST" onSubmit="javascript:disableControls()>
        <#include "../common/message/login_message.ftl">
        <table>
            <tr>
@@ -16,7 +16,7 @@
                <td><#--@spring.showErrors "loginForm.username","error" /--></td>
            </tr>
            <tr>
-               <td><label class="log_pass" for="j_password">Password</label></td>
+               <td><label class="span2" for="j_password">Password</label></td>
                <td><input id="j_password" name="j_password" size="20" maxlength="50" type="password"/></td>
                <td><#--@spring.showErrors "loginForm.password","error" /--></td>
            </tr>

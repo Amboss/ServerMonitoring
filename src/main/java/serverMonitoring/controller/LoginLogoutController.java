@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Handles and retrieves the login or denied page depending on the URI template
+ * Handles and retrieves password_recovery, the login or denied page
+ * depending on the URI template with IS_AUTHENTICATED_ANONYMOUSLY access
+ *
  */
 @Controller
 @RequestMapping("/auth")
@@ -37,7 +39,7 @@ public class LoginLogoutController{
     public ModelAndView logoutSuccess(Model model) {
         logger.debug("Received request to logout & show index page");
         model.addAttribute("Logout Success!");
-        return new ModelAndView("index?signout");
+        return new ModelAndView("login?signout");
     }
 
     /**

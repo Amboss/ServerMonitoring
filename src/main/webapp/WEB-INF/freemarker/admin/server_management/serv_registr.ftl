@@ -1,9 +1,9 @@
-[#ftl]
-[#macro title="Server registration"]
+<#assign pageTitle>Server registration</#assign>
+<#import "/layout/admin.ftl" as com>
 
-[#include "./common/header.ftl"/]
+<@com.page title="Server registration">
 <div class="container">
-    <h1>_____________</h1>
+    <h1>Server registration</h1>
     <div clas="index_text">
         <table>
             <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
@@ -29,4 +29,4 @@
         </table>
     </div>
 </div>
-[#include "./common/footer.ftl"/]
+</@com.page>

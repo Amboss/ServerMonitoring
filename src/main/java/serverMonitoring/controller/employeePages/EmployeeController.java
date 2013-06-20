@@ -1,6 +1,7 @@
 package serverMonitoring.controller.employeePages;
 
 import org.apache.log4j.Logger;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,15 +10,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Handles and retrieves the ROLE_USER page depending on the URI template.
- * A user must be log-in first he can access these pages.
+ * A user must be log-in first before he can access these pages.
  */
 @Controller
-//@Secured("ROLE_USER")
+@Secured("ROLE_USER")
 @RequestMapping("/employee")
 public class EmployeeController {
 
     protected static Logger logger = Logger.getLogger("EmployeeController");
-
+    private String catalogPath = "employee/";
     /**
      * Handles and retrieves /WEB-INF/ftl/employee/monitoring.ftl
      *
@@ -26,7 +27,7 @@ public class EmployeeController {
     @RequestMapping(value = "/monitoring", method = RequestMethod.GET)
     public ModelAndView getMonitoringPage(Model model) {
         showRequestLog("monitoring");
-        return new ModelAndView("employee/monitoring");
+        return new ModelAndView(catalogPath + "monitoring");
     }
 
     /**
@@ -37,7 +38,7 @@ public class EmployeeController {
     @RequestMapping(value = "/password_update", method = RequestMethod.GET)
     public ModelAndView getPasswordUpdatePage() {
         showRequestLog("password_update");
-        return new ModelAndView("employee/password_update");
+        return new ModelAndView(catalogPath + "password_update");
     }
 
     /**
@@ -48,7 +49,7 @@ public class EmployeeController {
     @RequestMapping(value = "/serv_details", method = RequestMethod.GET)
     public ModelAndView getServerDetailsPage() {
         showRequestLog("serv_details");
-        return new ModelAndView("employee/serv_details");
+        return new ModelAndView(catalogPath + "serv_details");
     }
 
     /*

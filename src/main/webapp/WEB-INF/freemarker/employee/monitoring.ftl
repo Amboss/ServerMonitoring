@@ -1,5 +1,7 @@
-<#assign pageTitle>Monitoring Page</#assign>
-<#include "../common/header.ftl"/>
+<#assign pageTitle>Monitoring page</#assign>
+<#import "/layout/employee.ftl" as com>
+
+<@com.page title="Monitoring page2">
 <div class="container">
     <h1>${pageTitle}</h1>
     <div clas="index_text">
@@ -27,4 +29,4 @@
         </table>
     </div>
 </div>
-<#include "../common/footer.ftl"/>
+</@com.page>

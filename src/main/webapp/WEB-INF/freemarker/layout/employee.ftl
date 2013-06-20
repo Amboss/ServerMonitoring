@@ -1,4 +1,5 @@
-<#include "common/header.ftl"/>
+<#macro page title>
+<#include "../common/header.ftl"/>
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span4">
@@ -9,4 +10,5 @@
             </div>
         </div>
     </div>
-<#include "common/footer.ftl"/>
+<#include "../common/footer.ftl"/>
+</#macro>
