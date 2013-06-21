@@ -26,7 +26,7 @@ import java.util.List;
  */
 
 @Service("userAuthentication")
-public class UserAuthentication implements AuthenticationManager,AuthenticationProvider, Serializable {
+public class UserAuthentication implements AuthenticationManager, AuthenticationProvider, Serializable {
 
     protected static Logger userAccessLogger = Logger.getLogger("UserAuthentication");
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
@@ -43,12 +43,23 @@ public class UserAuthentication implements AuthenticationManager,AuthenticationP
     }
 
     public Authentication authenticate(Authentication auth) throws UsernameNotFoundException {
-
         /**
          * Init a database user object
          */
-        EmployeeEntity employeeEntity = employeeDao.findByLogin(auth.getName());
-        assert employeeEntity != null;
+        EmployeeEntity employeeEntity = null;
+        try {
+            employeeEntity = employeeDao.findByLogin(auth.getName());
+        } catch (RuntimeException e) {
+            throw new BadCredentialsException("User not located!");
+        }
+
+//        assert employeeEntity != null;
+        if (auth.getName() == null | auth.getCredentials() == null) {
+            throw new BadCredentialsException("Please fill out all forms!");
+        }
+        if (employeeEntity == null) {
+            throw new BadCredentialsException("User not located!");
+        }
 
         /**
          * Compare passwords

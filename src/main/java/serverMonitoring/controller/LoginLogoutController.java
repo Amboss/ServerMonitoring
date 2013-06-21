@@ -1,10 +1,11 @@
 package serverMonitoring.controller;
 
 import org.apache.log4j.Logger;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 @Controller
+@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 @RequestMapping("/auth")
 public class LoginLogoutController{
 
@@ -24,10 +26,18 @@ public class LoginLogoutController{
      * @return the name of the ftl page
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView getLoginPage(Model model) {
+    public ModelAndView getLoginPage(@RequestParam(value="error", required=false) boolean error) {
         logger.info("/index.ftl ");
-        model.addAttribute("MsTime", System.currentTimeMillis());
-        return new ModelAndView("index");
+
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("index");
+
+        if (error) {
+            logger.error("Invalid Credentials");
+            mav.addObject("error", "Invalid login credentials");
+        }
+        //for last login row("MsTime", System.currentTimeMillis());
+        return mav;
     }
 
     /**
@@ -35,12 +45,12 @@ public class LoginLogoutController{
      *
      * @return the name of the ftl page
      */
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public ModelAndView logoutSuccess(Model model) {
-        logger.debug("Received request to logout & show index page");
-        model.addAttribute("Logout Success!");
-        return new ModelAndView("login?signout");
-    }
+//    @RequestMapping(value = "/j_spring_security_logout", method = RequestMethod.GET)
+//    public ModelAndView logoutSuccess(Model model) {
+//        logger.debug("Received request to logout & show index page");
+//        model.addAttribute("Logout Success!");
+//        return new ModelAndView("login?signout");
+//    }
 
     /**
      * Handles and retrieves /WEB-INF/ftl/common/message/access_denied.ftl
@@ -48,7 +58,7 @@ public class LoginLogoutController{
      *
      * @return the name of the ftl page
      */
-    @RequestMapping(value = "/access_denied", method = RequestMethod.GET)
+    @RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
     public ModelAndView getDeniedPage() {
         logger.debug("Received request to show denied page");
         return new ModelAndView("common/message/access_denied");

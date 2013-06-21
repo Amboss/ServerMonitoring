@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!-- ==================================================================================================
+        Spring Security 3.1 configuration
+         - annotations="enabled"
+         - authentication-provider="customAuthenticationManager"
+     ================================================================================================== -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:security="http://www.springframework.org/schema/security"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -9,8 +13,7 @@
                 http://www.springframework.org/schema/security
                 http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-
-    <!--<security:authentication-manager alias="customAuthenticationManager"/>-->
+    <!-- Spring Security annotations -->
     <security:global-method-security secured-annotations="enabled"/>
 
     <!--  Spring Security autowire the parent property  -->
@@ -19,22 +22,24 @@
     </security:authentication-manager>
 
     <!-- Configuration of Spring-Security. Set to false to assign custom filters  -->
-    <security:http auto-config="false"
+    <security:http auto-config="true"
                    access-denied-page="/auth/access_denied"
                    entry-point-ref="authenticationEntryPoint">
 
         <security:intercept-url pattern="/auth/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <security:intercept-url pattern="/auth/logout" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <security:intercept-url pattern="/auth/password_recovery" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 
         <security:form-login always-use-default-target="true"
-        login-page="/auth/login"
-        default-target-url="/employee/monitoring"
-        authentication-failure-url="/auth/login?error=true"/>
+                             authentication-failure-handler-ref="customAuthenticationFailureHandler"
+                             login-page="/auth/login"
+                             default-target-url="/employee/monitoring"
+                             authentication-failure-url="/auth/login?error=true"/>
 
-        <!--<security:custom-filter ref="authenticationFilter" position="FORM_LOGIN_FILTER"/>-->
+        <security:logout invalidate-session="true"
+                         logout-success-url="/auth/login"
+                         logout-url="/j_spring_security_logout"/>
 
-
-        <security:logout invalidate-session="true" logout-success-url="/auth/logout?message=success"/>
     </security:http>
 
     <!-- Custom filter for username and password -->
@@ -44,21 +49,20 @@
           p:authenticationFailureHandler-ref="customAuthenticationFailureHandler"
           p:authenticationSuccessHandler-ref="customAuthenticationSuccessHandler"/>
 
-    <!-- Custom authentication manager. -->
+    <!-- Custom authentication manager -->
     <bean id="customAuthenticationManager" class="serverMonitoring.logic.service.authentication.UserAuthentication"/>
 
-    <!-- default failure URL -->
+    <!-- Default failure URL -->
     <bean id="customAuthenticationFailureHandler"
           class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler"
           p:defaultFailureUrl="/auth/login?error=true"/>
-    <!-- /auth/login?error=true -->
 
-    <!-- default target URL here -->
+    <!-- Default target URL -->
     <bean id="customAuthenticationSuccessHandler"
           class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler"
           p:defaultTargetUrl="/employee/monitoring"/>
 
-    <!-- The AuthenticationEntryPoint -->
+    <!-- The Authentication Entry Point -->
     <bean id="authenticationEntryPoint"
           class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint"
           p:loginFormUrl="/auth/login"/>

@@ -1,3 +1,6 @@
+<#-- =====================================================================
+     menu for common layout separate appearance for different access roles
+     ===================================================================== -->
 <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
 
 <@security.authorize ifAnyGranted="ROLE_USER">
@@ -5,7 +8,6 @@
         <li class="divider-vertical"><a href="../employee/password_update.html">Password change</a></li>
         <li class="divider-vertical"><a href="../employee/serv_details.html">Server details</a></li>
         <li class="divider-vertical"><a href="../employee/monitoring.html">Monitoring service</a></li>
-        <li class="divider-vertical"><a href="../auth/password_recovery.html">Password recovery</a></li>
     </ul>
 </@security.authorize>
 <@security.authorize ifAnyGranted="ROLE_ADMIN">

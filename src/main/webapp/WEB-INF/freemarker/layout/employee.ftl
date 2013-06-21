@@ -1,3 +1,7 @@
+<#-- ==============================================================
+     layout for employee pages with access
+     ROLE_USER
+     ============================================================== -->
 <#macro page title>
 <#include "../common/header.ftl"/>
     <div class="container-fluid">

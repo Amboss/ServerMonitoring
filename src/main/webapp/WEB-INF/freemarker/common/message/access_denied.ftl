@@ -1,5 +1,8 @@
+<#-- ==============================================================
+     access denied page for common layout
+     ============================================================== -->
 <#assign pageTitle>Access Denied!</#assign>
-<#import "/layout/default.ftl" as com>
+<#import "../layout/default.ftl" as com>
 
 <@com.page title="Access Denied!">
 <div class="denied_message">

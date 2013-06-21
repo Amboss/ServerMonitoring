@@ -1,4 +1,6 @@
-<#-- this is info -->
+<#-- ==============================================================
+     INFO lib for common layout
+     ============================================================== -->
 <#assign copyright_date="2013-2014">
 <#assign mail="huskyserge@gmail.com">
 <#assign company_name="ServerManager">

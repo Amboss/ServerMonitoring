@@ -1,3 +1,6 @@
+<#-- ==============================================================
+     common massage handler ftl
+     ============================================================== -->
 <#if RequestParameters.login_error?exists>
     <font color="red">
         Your login attempt was not successful, try again.<BR>

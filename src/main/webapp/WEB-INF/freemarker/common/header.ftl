@@ -1,4 +1,6 @@
-<#-- this is header -->
+<#-- ==============================================================
+     HEADER part of common layout
+     ============================================================== -->
 <#import "/spring.ftl" as spring />
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"

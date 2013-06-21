@@ -1,3 +1,7 @@
+<#-- ==============================================================
+     layout for administrative pages with access
+     ROLE_ADMIN
+     ============================================================== -->
 <#macro page title>
 <#include "../common/header.ftl"/>
     <div class="container-fluid">

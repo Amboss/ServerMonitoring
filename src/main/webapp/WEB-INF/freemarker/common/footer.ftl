@@ -1,4 +1,6 @@
-<#-- this is footer -->
+<#-- ==============================================================
+     FOOTER part of common layout
+     ============================================================== -->
 <#import "message/info.ftl" as my>
 
         <div id="modal-footer">

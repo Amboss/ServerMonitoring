@@ -1,8 +1,10 @@
+<#-- =====================================================================
+     index page will appear as start page with authentication purpose
+     ===================================================================== -->
 <#assign pageTitle>Login Page</#assign>
 <#import "/layout/employee.ftl" as com>
 
 <@com.page title="Login Page">
-    <p>Time is: ${MsTime}!</p>
     <table>
         <tr><td><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
             sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna

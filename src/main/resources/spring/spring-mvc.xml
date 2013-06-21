@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-    DispatcherServlet application context for Server Monitoring web tier.
--->
+<!-- ==================================================================================================
+        Spring MVC DispatcherServlet application context for Server Monitoring web tier
+         - set to annotation driven configuration
+     ================================================================================================== -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
@@ -10,13 +11,4 @@
 
     <mvc:annotation-driven/>
 
-    <!-- location for resources -->
-    <!--<mvc:resources mapping="/resources/**" location="/resources/"/>-->
-    <!--<mvc:resources mapping="/js/" location="/WEB-INF/static/js/"/>-->
-    <!--<mvc:resources mapping="/css/" location="/WEB-INF/static/css/"/>-->
-    <!--<mvc:resources mapping="/img/" location="/WEB-INF/static/img/"/>-->
-    <!--<mvc:resources mapping="/favicon.ico" location="/WEB-INF/static/img/favicon.ico" order="0"/>-->
-
-    <!--<bean id="defaultHandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>-->
-    <!--<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>-->
 </beans>

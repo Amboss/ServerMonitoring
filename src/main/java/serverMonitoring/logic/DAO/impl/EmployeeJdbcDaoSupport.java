@@ -199,7 +199,6 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
             Object[] args = {entity_login};
             return this.jdbcTemplate.queryForObject(query, args, new EmployeeEntityMapper());
         } catch (RuntimeException e) {
-            e.printStackTrace();
             throw new RuntimeException();
         }
 
