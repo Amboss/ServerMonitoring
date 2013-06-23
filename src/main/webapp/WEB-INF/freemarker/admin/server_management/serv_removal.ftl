@@ -1,9 +1,8 @@
-<#assign pageTitle>Server removal</#assign>
 <#import "/layout/admin.ftl" as com>
 
 <@com.page title="Server removal">
 <div class="container">
-    <h1>Server removal</h1>
+
     <div clas="index_text">
         <table>
             <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,

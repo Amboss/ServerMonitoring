@@ -1,9 +1,9 @@
-<#assign pageTitle>Employee removal</#assign>
+
 <#import "/layout/admin.ftl" as com>
 
-<@com.page title="Settings">
+<@com.page title="Employee removal">
 <div class="container">
-    <h1>Employee removal</h1>
+
     <div clas="index_text">
         <table>
             <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,

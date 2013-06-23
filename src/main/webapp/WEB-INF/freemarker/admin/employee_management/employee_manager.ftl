@@ -1,9 +1,8 @@
-<#assign pageTitle>Employee manager</#assign>
 <#import "/layout/admin.ftl" as com>
 
-<@com.page title="Settings">
+<@com.page title="Employee manager">
 <div class="container">
-    <h1>Employee manager</h1>
+
     <div clas="index_text">
         <table>
             <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,

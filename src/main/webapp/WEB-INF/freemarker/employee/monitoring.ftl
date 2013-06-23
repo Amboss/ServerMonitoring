@@ -1,10 +1,8 @@
-<#assign pageTitle>Monitoring page</#assign>
 <#import "/layout/employee.ftl" as com>
 
-<@com.page title="Monitoring page2">
+<@com.page title="Monitoring service">
 <div class="container">
-    <h1>${pageTitle}</h1>
-    <div clas="index_text">
+    <div class="index_text">
         <table>
             <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
                 sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna

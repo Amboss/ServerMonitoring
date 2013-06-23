@@ -1,9 +1,8 @@
-<#assign pageTitle>Server update</#assign>
 <#import "/layout/admin.ftl" as com>
 
 <@com.page title="Server update">
 <div class="container">
-    <h1>Server update</h1>
+
     <div clas="index_text">
         <table>
             <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,

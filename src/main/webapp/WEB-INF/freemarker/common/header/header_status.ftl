@@ -3,8 +3,6 @@
      ============================================================== -->
 <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
 
-<#-- bug with ROLE_ADMIN!!! -->
-
 <@security.authorize ifAnyGranted="ROLE_USER">
     <#assign user="Server Monitoring Service"/>
 </@security.authorize>

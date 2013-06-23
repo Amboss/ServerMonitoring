@@ -1,6 +1,18 @@
 <#-- ==============================================================
      common massage handler ftl
      ============================================================== -->
+ <#import "/spring.ftl" as spring />
+ <#assign spring=JspTaglibs["/WEB-INF/tlds/spring.tld"] />
+ <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
+
+<#macro formErrors>
+<#assign formErrors><@form.errors path="*" /></#assign>
+    <#if formErrors?has_content>
+        <div id="errors">
+            <@spring.message "admin.error.globalMessage" />
+        </div>
+    </#if>
+</#macro>
 <#if RequestParameters.login_error?exists>
     <font color="red">
         Your login attempt was not successful, try again.<BR>

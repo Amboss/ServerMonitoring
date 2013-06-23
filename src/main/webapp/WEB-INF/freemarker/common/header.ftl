@@ -11,7 +11,7 @@
     <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
     <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        <link rel="shortcut icon" href="<@spring.url '/static/img/favicon.ico'/>" type="image/x-icon"/>
+        <link rel="shortcut icon" href="<@spring.url '/static/img/favicon_02.ico'/>" type="image/x-icon"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap-responsive.css'/>"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap-responsive.min.css'/>"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.css'/>"/>
@@ -23,14 +23,9 @@
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"; charset="utf-8">
         <meta name="description" content="Server Monitoring Service">
-        <title>
-            <#if pageTitle??>${pageTitle}<#else>Server Monitoring</#if>
-        </title>
-
+        <title>${title?html}</title>
     </head>
     <body style="width:100%;height:100%">
-        <p>This is header</p>
-
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">
             Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">
@@ -39,22 +34,15 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
                     <div class="nav-collapse collapse">
-                        <#include "../authorization/login_form.ftl"/>
+                        <#include "header/login_form.ftl"/>
                     </div>
-                    <#--if active?? -->
-                        <div class="header_menu">
-                            <#include "header/header_menu.ftl">
-                        </div>
-                        <div class="header_status">
-                            <#include "header/header_status.ftl">
-                        </div>
-                    <#--/#if-->
+                    <div class="header_menu">
+                        <#include "header/header_menu.ftl">
+                    </div>
+                    <div class="header_status">
+                        <#include "header/header_status.ftl">
+                    </div>
                 </div>
             </div>
         </div>

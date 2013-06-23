@@ -1,9 +1,9 @@
-<#assign pageTitle>Server assignment</#assign>
+
 <#import "/layout/admin.ftl" as com>
 
 <@com.page title="Server assignment">
 <div class="container">
-    <h1>Server assignment</h1>
+
     <div clas="index_text">
         <table>
             <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,

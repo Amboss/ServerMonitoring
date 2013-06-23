@@ -1,9 +1,8 @@
-<#assign pageTitle>Settings</#assign>
 <#import "/layout/admin.ftl" as com>
 
 <@com.page title="Settings">
 <div class="container">
-    <h1>Settings</h1>
+
     <div clas="index_text">
         <table>
             <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
