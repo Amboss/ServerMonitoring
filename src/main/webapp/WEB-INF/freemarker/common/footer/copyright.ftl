@@ -1,5 +1,8 @@
-<#-- this is Copyright -->
-<p>This is copyright</p>
+<#-- ==============================================================
+     Copyright part
+        - for common footer
+     ============================================================== -->
 
-<p>Copyright ${my.company_name}(C) ${my.copyright_date} ${my.admin}. All rights reserved.</p>
+<p>&copy; ${my.copyright_date} ${my.company_name}, Inc.  ${my.admin}.
+.&middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
 <p>${my.mail}</p>

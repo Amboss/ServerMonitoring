@@ -17,15 +17,15 @@
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.css'/>"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.min.css'/>"/>
 
-        <script type="text/javascript" src=/static/js/bootstrap.js" ></script>
-        <script type="text/javascript" src=/static/js/bootstrap.min.js" ></script>
+        <script type="text/javascript" src="<@spring.url '/static/js/bootstrap.js'/>" ></script>
+        <script type="text/javascript" src="<@spring.url '/static/js/bootstrap.min.js'/>" ></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"; charset="utf-8">
         <meta name="description" content="Server Monitoring Service">
         <title>${title?html}</title>
     </head>
-    <body style="width:100%;height:100%">
+    <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">
             Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">
@@ -34,15 +34,21 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="../employee/monitoring.html">Server Monitoring Service</a>
                     <div class="nav-collapse collapse">
-                        <#include "header/login_form.ftl"/>
+                        <div class="header_menu">
+                            <#include "header/header_menu.ftl">
+                        </div>
+                        <div class="nav-collapse collapse">
+                            <#include "header/login_form.ftl"/>
+                        </div>
                     </div>
-                    <div class="header_menu">
-                        <#include "header/header_menu.ftl">
-                    </div>
-                    <div class="header_status">
-                        <#include "header/header_status.ftl">
-                    </div>
-                </div>
-            </div>
-        </div>
+                </div><!-- /.container -->
+            </div><!-- /.navbar-inner -->
+        </div><!-- /.navbar navbar-inverse -->
+

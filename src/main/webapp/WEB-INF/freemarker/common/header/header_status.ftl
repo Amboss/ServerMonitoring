@@ -1,5 +1,6 @@
 <#-- ==============================================================
-     header status for common layout
+     header status
+        - for common layout
      ============================================================== -->
 <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
 

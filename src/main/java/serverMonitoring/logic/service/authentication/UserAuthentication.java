@@ -46,20 +46,20 @@ public class UserAuthentication implements AuthenticationManager, Authentication
         /**
          * Init a database user object
          */
-        EmployeeEntity employeeEntity = null;
+        EmployeeEntity employeeEntity;
         try {
             employeeEntity = employeeDao.findByLogin(auth.getName());
         } catch (RuntimeException e) {
             throw new BadCredentialsException("User not located!");
         }
 
-//        assert employeeEntity != null;
-        if (auth.getName() == null | auth.getCredentials() == null) {
-            throw new BadCredentialsException("Please fill out all forms!");
-        }
-        if (employeeEntity == null) {
-            throw new BadCredentialsException("User not located!");
-        }
+////        assert employeeEntity != null;
+//        if (auth.getName() == null | auth.getCredentials() == null) {
+//            throw new BadCredentialsException("Please fill out all forms!");
+//        }
+//        if (employeeEntity == null) {
+//            throw new BadCredentialsException("User not located!");
+//        }
 
         /**
          * Compare passwords

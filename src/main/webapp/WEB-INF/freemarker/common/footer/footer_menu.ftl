@@ -1,8 +1,9 @@
-<#-- this is footer menu -->
+<#-- =====================================================================
+     footer menu
+        - for common layout
+     ===================================================================== -->
+<#import "/spring.ftl" as spring />
+<#assign spring=JspTaglibs["/WEB-INF/tlds/spring.tld"] />
 
-<table class="footer">
-    <tr>
-        <td><a href="<@spring.url value="/employee/monitoring.html" htmlEscape="true" />">Home</a></td>
-        <td><a href="<@spring.url value="/j_spring_security_logout" htmlEscape="true" />">Logout</a></td>
-    </tr>
-</table>
+<p class="pull-right"><a href="#">Back to top</a></p>
+

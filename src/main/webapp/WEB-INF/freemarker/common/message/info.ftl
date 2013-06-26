@@ -1,7 +1,8 @@
 <#-- ==============================================================
-     INFO lib for common layout
+     INFO lib
+        - for common layout
      ============================================================== -->
-<#assign copyright_date="2013-2014">
+<#assign copyright_date="2013">
 <#assign mail="huskyserge@gmail.com">
 <#assign company_name="ServerManager">
-<#assign admin="Yevsyuokov Sergey">
+<#assign admin="Yevsyukov Sergey">

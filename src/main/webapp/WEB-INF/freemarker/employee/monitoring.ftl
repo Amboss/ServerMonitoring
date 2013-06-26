@@ -1,4 +1,18 @@
-<#import "/layout/employee.ftl" as com>
+<#-- =====================================================================
+     Server Monitoring page
+        - will appear after sign in page with server info purpose
+        - for admin_role the layout wil contain service menu on side bar
+     ===================================================================== -->
+<#import "/spring.ftl" as spring />
+<#assign spring=JspTaglibs["/WEB-INF/tlds/spring.tld"] />
+<#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
+
+<@security.authorize ifAnyGranted="ROLE_USER">
+    <#import "/layout/employee.ftl" as com>
+</@security.authorize>
+<@security.authorize ifAnyGranted="ROLE_ADMIN">
+    <#import "/layout/admin.ftl" as com>
+</@security.authorize>
 
 <@com.page title="Monitoring service">
 <div class="container">
