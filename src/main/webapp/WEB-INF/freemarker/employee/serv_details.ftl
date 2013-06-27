@@ -1,4 +1,16 @@
-<#import "/layout/employee.ftl" as com>
+<#-- =====================================================================
+     Server details page
+        - give ability for user to to see precise info about specific server
+        - for admin_role the layout wil contain service menu on side bar
+     ===================================================================== -->
+<#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
+
+<@security.authorize ifAnyGranted="ROLE_USER">
+    <#import "/layout/employee.ftl" as com>
+</@security.authorize>
+<@security.authorize ifAnyGranted="ROLE_ADMIN">
+    <#import "/layout/admin.ftl" as com>
+</@security.authorize>
 
 <@com.page title="Server details">
 <div class="container">

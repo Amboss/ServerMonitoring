@@ -3,8 +3,6 @@
         - will appear after sign in page with server info purpose
         - for admin_role the layout wil contain service menu on side bar
      ===================================================================== -->
-<#import "/spring.ftl" as spring />
-<#assign spring=JspTaglibs["/WEB-INF/tlds/spring.tld"] />
 <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
 
 <@security.authorize ifAnyGranted="ROLE_USER">

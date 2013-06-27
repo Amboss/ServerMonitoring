@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-
-    Application Context: defines shared resources visible to all other web components.
-
--->
+<!-- ==================================================================================================
+        Application Context
+            - defines shared resources visible to all other web components.
+     ================================================================================================== -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
             http://www.springframework.org/schema/context
-            http://www.springframework.org/schema/context/spring-context-3.1.xsd
-            http://www.springframework.org/schema/mvc
-            http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+            http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
     <!-- Activates annotations scan -->
-    <!--<context:annotation-config/>-->
-    <mvc:annotation-driven/>
-    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <context:annotation-config/>
 
     <!-- Scans for annotated components in base-package -->
     <context:component-scan base-package="serverMonitoring"/>
@@ -28,7 +22,7 @@
     <import resource="classpath:/spring/spring-logging.xml"/>
     <import resource="classpath:/spring/spring-mvc.xml"/>
 
-    <!-- JNDI initiation  -->
+    <!-- JNDI initiation  DEPRECATED  -->
     <!--<jee:jndi-lookup id="dataSource" jndi-name="jdbc/dbConnection"-->
     <!--expected-type="javax.sql.DataSource" />
     xmlns:jee="http://www.springframework.org/schema/jee"

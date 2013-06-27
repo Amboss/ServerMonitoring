@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ==================================================================================================
         Spring Security 3.1 configuration
-         - annotations="enabled"
-         - authentication-provider="customAuthenticationManager"
+             - annotations="enabled"
+             - authentication-provider="customAuthenticationManager"
      ================================================================================================== -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:security="http://www.springframework.org/schema/security"
@@ -22,7 +22,7 @@
     </security:authentication-manager>
 
     <!-- Configuration of Spring-Security. Set to false to assign custom filters  -->
-    <security:http auto-config="true"
+    <security:http auto-config="false"
                    access-denied-page="/auth/access_denied"
                    entry-point-ref="authenticationEntryPoint">
 
@@ -39,18 +39,38 @@
         <security:logout invalidate-session="true"
                          logout-success-url="/auth/login"
                          logout-url="/j_spring_security_logout"/>
-
+        <security:session-management session-authentication-strategy-ref="sas"/>
     </security:http>
 
     <!-- Custom filter for username and password -->
     <bean id="authenticationFilter"
           class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"
+          p:sessionAuthenticationStrategy-ref="sas"
           p:authenticationManager-ref="customAuthenticationManager"
           p:authenticationFailureHandler-ref="customAuthenticationFailureHandler"
           p:authenticationSuccessHandler-ref="customAuthenticationSuccessHandler"/>
 
+    <!-- Session Authentication Strategy -->
+    <bean id="sas"
+          class="org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy">
+        <constructor-arg name="sessionRegistry" ref="sessionRegistry"/>
+        <property name="exceptionIfMaximumExceeded" value="true"/>
+        <property name="maximumSessions" value="1"/>
+    </bean>
+
+    <!-- Session Registry Implementation -->
+    <bean id="sessionRegistry"
+          class="org.springframework.security.core.session.SessionRegistryImpl"/>
+
+    <!--sessionRegistry Concurrency Control -->
+    <bean id="concurrencyFilter"
+          class="org.springframework.security.web.session.ConcurrentSessionFilter"
+          p:sessionRegistry-ref="sessionRegistry"
+          p:expiredUrl="/j_spring_security_logout"/>
+
     <!-- Custom authentication manager -->
-    <bean id="customAuthenticationManager" class="serverMonitoring.logic.service.authentication.UserAuthentication"/>
+    <bean id="customAuthenticationManager"
+          class="serverMonitoring.logic.service.authentication.UserAuthentication"/>
 
     <!-- Default failure URL -->
     <bean id="customAuthenticationFailureHandler"

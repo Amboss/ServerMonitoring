@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ==================================================================================================
         Spring MVC DispatcherServlet application context for Server Monitoring web tier
-         - set to annotation driven configuration
+            - set to annotation driven configuration
      ================================================================================================== -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -9,6 +9,19 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
+    <!--
+        This tag registers the HandlerMapping and HandlerAdapter required to dispatch requests to your @Controllers.
+        In addition, it applies sensible defaults based on what is present in your classpath. Such defaults include:
+
+        1) Using the Spring 3 Type ConversionService as a simpler and more robust alternative to JavaBeans PropertyEditors
+        2) Support for formatting Number fields with @NumberFormat
+        3) Support for formatting Date, Calendar, and Joda Time fields with @DateTimeFormat, if Joda Time is on the classpath
+        4) Support for validating @Controller inputs with @Valid, if a JSR-303 Provider is on the classpath
+        5) Support for reading and writing XML, if JAXB is on the classpath
+        6) Support for reading and writing JSON, if Jackson is on the classpath
+     -->
     <mvc:annotation-driven/>
 
+    <!-- serving up static resources in the ${webappRoot}/resources directory -->
+    <mvc:resources mapping="/static/**" location="/static/" />
 </beans>

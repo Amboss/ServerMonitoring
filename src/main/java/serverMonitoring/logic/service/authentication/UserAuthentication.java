@@ -50,23 +50,22 @@ public class UserAuthentication implements AuthenticationManager, Authentication
         try {
             employeeEntity = employeeDao.findByLogin(auth.getName());
         } catch (RuntimeException e) {
-            throw new BadCredentialsException("User not located!");
+            throw new BadCredentialsException("Access denied, user not located!");
         }
 
-////        assert employeeEntity != null;
-//        if (auth.getName() == null | auth.getCredentials() == null) {
-//            throw new BadCredentialsException("Please fill out all forms!");
-//        }
-//        if (employeeEntity == null) {
-//            throw new BadCredentialsException("User not located!");
-//        }
+        /**
+         * Checking if user account is active
+         */
+        if (employeeEntity.getActive() == 0) {
+            throw new BadCredentialsException("Access denied, your permission expired!");
+        }
 
         /**
          * Compare passwords
          * Make sure to encode the password first before comparing
          */
         if (!passwordEncoder.isPasswordValid(employeeEntity.getPassword(), (String) auth.getCredentials(), null)) {
-            throw new BadCredentialsException("Wrong password!");
+            throw new BadCredentialsException("Access denied, wrong password!");
         }
 
         /**

@@ -60,6 +60,11 @@
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
 
+    <!-- ============================ Spring Security Concurrency Control ============================ -->
+    <listener>
+        <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+    </listener>
+
     <!-- ============================ Isolation of spring MVC servlet container ============================ -->
     <security-constraint>
         <web-resource-collection>
@@ -78,13 +83,14 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <!-- ============================ Session timeout configurations ============================ -->
+    <session-config>
+        <session-timeout>120</session-timeout>
+    </session-config>
+
     <!-- ============================ Error handling ============================ -->
-    <!--<error-page>-->
-        <!--<exception-type>java.lang.Exception</exception-type>-->
-        <!--<location>/WEB-INF/404</location>-->
-    <!--</error-page>-->
-    <!--<error-page>-->
-        <!--<error-code>404</error-code>-->
-        <!--<location>/WEB-INF/404</location>-->
-    <!--</error-page>-->
+    <error-page>
+        <exception-type>org.springframework.web.HttpSessionRequiredException</exception-type>
+        <location>/index.ftl</location>
+    </error-page>
 </web-app>
