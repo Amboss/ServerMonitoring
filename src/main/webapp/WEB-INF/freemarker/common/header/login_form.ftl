@@ -12,10 +12,11 @@
         - appears if user successfully logged in
      ============================================================== -->
 <@security.authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">
-    <form class="navbar-form pull-right" action=<@spring.url value="/j_spring_security_logout" htmlEscape="true"/>  method="POST">
+    <form class="navbar-form pull-right" action=<@spring.url
+                        value="/j_spring_security_logout" htmlEscape="true"/>  method="POST">
         <button type="submit" class="btn">Sign out</button>
     </form>
-    <p class="navbar-text pull-right" style="padding-right: 20px;">Logged in as ${j_username!"Username"}</p>
+    <p class="navbar-text pull-right" style="padding-right: 20px;">Logged in as ${username!"Anonymous" }</p>
 </@security.authorize>
 
 <#-- ==============================================================
@@ -23,9 +24,12 @@
         - disappears if user successfully logged in
      ============================================================== -->
 <@security.authorize ifNotGranted="ROLE_ADMIN, ROLE_USER">
-    <form action="<@spring.url value='/j_spring_security_check'/>" class="navbar-form pull-right" method="POST" >
-        <input class="span2" id="j_username" name="j_username" id="focusedInput" type="text" placeholder="Username"/>
-        <input class="span2" id="j_password" name="j_password" id="focusedInput" type="password" placeholder="Password"/>
+    <form action="<@spring.url value='/j_spring_security_check'/>"
+                                class="navbar-form pull-right" method="POST" >
+        <input class="span2" id="j_username" name="j_username"
+                                id="focusedInput" type="text" placeholder="Username"/>
+        <input class="span2" id="j_password" name="j_password"
+                                id="focusedInput" type="password" placeholder="Password"/>
         <input class="btn" type="submit"  value="Sign in"/>
     </form>
 </@security.authorize>

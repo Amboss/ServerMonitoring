@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/settings")
 public class AdminSettingsController {
 
-    protected static Logger logger = Logger.getLogger("AdminSettingsController");
+    protected static Logger logger = Logger.getLogger(AdminSettingsController.class);
     private String catalogPath = "admin/settings/";
     /**
      * Handles and retrieves /WEB-INF/ftl/admin/settings/change_settings.ftl

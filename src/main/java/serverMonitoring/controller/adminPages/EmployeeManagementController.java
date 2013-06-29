@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/employee_management")
 public class EmployeeManagementController {
 
-    protected static Logger logger = Logger.getLogger("EmployeeManagementController");
+    protected static Logger logger = Logger.getLogger(EmployeeManagementController.class);
     private String catalogPath = "admin/employee_management/";
 
     /**

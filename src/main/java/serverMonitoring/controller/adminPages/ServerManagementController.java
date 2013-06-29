@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/server_management")
 public class ServerManagementController {
 
-    protected static Logger logger = Logger.getLogger("ServerManagementController");
+    protected static Logger logger = Logger.getLogger(ServerManagementController.class);
     private String catalogPath = "admin/server_management/";
 
     /**

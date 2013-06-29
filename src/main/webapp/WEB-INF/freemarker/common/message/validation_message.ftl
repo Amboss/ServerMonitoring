@@ -1,5 +1,5 @@
 <#-- ==============================================================
-     login massage handler
+     validation massage handler
      ============================================================== -->
  <#import "/spring.ftl" as spring />
  <#assign spring=JspTaglibs["/WEB-INF/tlds/spring.tld"] />
@@ -10,4 +10,3 @@
          <p>${Session.SPRING_SECURITY_LAST_EXCEPTION.message}</p>
     </div>
 </#if>
-

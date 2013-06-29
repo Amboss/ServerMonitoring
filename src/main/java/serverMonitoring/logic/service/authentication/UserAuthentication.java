@@ -28,7 +28,7 @@ import java.util.List;
 @Service("userAuthentication")
 public class UserAuthentication implements AuthenticationManager, AuthenticationProvider, Serializable {
 
-    protected static Logger userAccessLogger = Logger.getLogger("UserAuthentication");
+    protected static Logger userAccessLogger = Logger.getLogger(UserAuthentication.class);
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
     private EmployeeDao employeeDao;
 
@@ -69,23 +69,6 @@ public class UserAuthentication implements AuthenticationManager, Authentication
         }
 
         /**
-         * Init a first entrance of default entity
-         *
-         * must be redirected to /employee/monitoring/password_update.ftl
-         * with message PLEASE CHANGE YOUR PASSWORD
-         */
-        if (auth.getName().equals("admin") & auth.getCredentials().equals("admin")) {
-            employeeEntity = employeeDao.findByLogin("admin");
-            if (employeeEntity.getPassword().equals(passwordEncoder.encodePassword("admin", null))) {
-                //  must be redirected to /employee/monitoring/password_update.ftl
-                userAccessLogger.debug("Admin is logged in");
-//                EmployeeController controller = new EmployeeController();
-//                controller.getPasswordUpdatePage();
-//                String message = "PLEASE CHANGE YOUR PASSWORD";
-            }
-        }
-
-        /**
          * main logic of authentication manager
          * Username and password must be the same to authenticate
          */
@@ -103,6 +86,7 @@ public class UserAuthentication implements AuthenticationManager, Authentication
 
     /**
      * Retrieves the correct ROLE type depending on the access level
+     * @return list of granted authorities
      */
     public Collection<GrantedAuthority> getAuthorities(Integer access) {
         // Create a list of grants for this user
@@ -119,8 +103,6 @@ public class UserAuthentication implements AuthenticationManager, Authentication
             userAccessLogger.debug("Grant ROLE_ADMIN to this user");
             authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
-        // Return list of granted authorities
         return authList;
     }
-
 }

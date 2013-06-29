@@ -14,7 +14,7 @@
         <welcome-file>index.ftl</welcome-file>
     </welcome-file-list>
 
-    <!-- ============================ Spring MVC configurations ============================ -->
+    <!-- ===================== Spring MVC configurations ========================================= -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
@@ -23,7 +23,7 @@
         </param-value>
     </context-param>
 
-    <!-- ============================ Spring Security WEB infrastructure configurations ============================ -->
+    <!-- ===================== Spring Security WEB infrastructure configurations ================= -->
     <filter>
         <!-- DelegatingFilterProxy -->
         <filter-name>springSecurityFilterChain</filter-name>
@@ -50,22 +50,22 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!-- ============================ Spring Security Context Loader Listener ============================ -->
+    <!-- ===================== Spring Security Context Loader Listener =========================== -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <!-- ============================ Spring Security debug logging ============================ -->
+    <!-- ===================== Spring Security debug logging ===================================== -->
     <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
 
-    <!-- ============================ Spring Security Concurrency Control ============================ -->
+    <!-- ===================== Spring Security Concurrency Control =============================== -->
     <listener>
         <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
     </listener>
 
-    <!-- ============================ Isolation of spring MVC servlet container ============================ -->
+    <!-- ===================== Isolation of spring MVC servlet container ========================= -->
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>ServerMonitoring</web-resource-name>
@@ -76,19 +76,19 @@
         </auth-constraint>
     </security-constraint>
 
-    <!-- ============================ Free Marker configurations ============================ -->
+    <!-- ===================== Free Marker configurations ======================================== -->
     <servlet>
         <servlet-name>freemarker</servlet-name>
         <servlet-class>freemarker.ext.servlet.FreemarkerServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
-    <!-- ============================ Session timeout configurations ============================ -->
+    <!-- ===================== Session timeout configurations ==================================== -->
     <session-config>
         <session-timeout>120</session-timeout>
     </session-config>
 
-    <!-- ============================ Error handling ============================ -->
+    <!-- ===================== Error handling configurations ===================================== -->
     <error-page>
         <exception-type>org.springframework.web.HttpSessionRequiredException</exception-type>
         <location>/index.ftl</location>
