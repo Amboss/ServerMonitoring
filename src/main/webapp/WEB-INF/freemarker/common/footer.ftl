@@ -11,16 +11,16 @@
                     <div class="block contact-block">
                         <h3>Contact Us</h3>
                         <address>
-                        <p><abbr title="Phone"><i class="icon-phone"></i></abbr> 019223 8092344</p>
-                        <p><abbr title="Email"><i class="icon-envelope"></i></abbr> info@appstrap.me</p>
-                        <p><abbr title="Address"><i class="icon-home"></i></abbr> Sunshine House, Sunville. SUN12 8LU.</p>
+                        <p><abbr title="Phone"><i class="icon-phone"></i></abbr>${my.phone}</p>
+                        <p><abbr title="Email"><i class="icon-envelope"></i></abbr>${my.mail}</p>
+                        <p><abbr title="Address"><i class="icon-home"></i></abbr>${my.address}</p>
                         </address>
                     </div>
                 </div><!-- /.span3 col -->
                 <div class="span5 col">
                     <div class="block">
                         <h3>About Us</h3>
-                        <p>Making the web a prettier place one template at a time! We make beautiful, quality, responsive Drupal & web templates!</p>
+                        <p>Making the web a prettier place one template at a time! We make beautiful, quality, responsive web applications!</p>
                     </div>
                 </div>
                 <div class="span4 col">

@@ -39,8 +39,6 @@ public class LoginLogoutController {
             logger.error("Invalid Credentials");
             mav.addObject("error", "Invalid login credentials");
         }
-
-        //for last login row("MsTime", System.currentTimeMillis());
         return mav;
     }
 

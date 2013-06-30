@@ -6,7 +6,7 @@ import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.serverStateEnum.ServerState;
 
 /**
- *  Interface for functionality of user with ROLE_USER access
+ * Interface for functionality of user with ROLE_USER access
  */
 @Secured("ROLE_USER")
 public interface EmployeeService {
@@ -22,6 +22,11 @@ public interface EmployeeService {
     public void changePassword(EmployeeEntity entity_id, String newPass);
 
     /*
+     * updating Employee Last Login timestamp
+     */
+    public void changeLastLogin(String userName);
+
+    /*
      * retrieve server status
      */
     public ServerState getServerState(ServerEntity entity);
@@ -30,4 +35,6 @@ public interface EmployeeService {
      * retrieve server details
      */
     public ServerEntity getServerDetails(ServerEntity entity);
+
+
 }

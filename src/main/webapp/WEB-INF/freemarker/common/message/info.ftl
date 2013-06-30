@@ -6,3 +6,5 @@
 <#assign mail="huskyserge@gmail.com">
 <#assign company_name="ServerManager">
 <#assign admin="Yevsyukov Sergey">
+<#assign address="Ukaine, Simferopol.">
+<#assign phone="0123456789">

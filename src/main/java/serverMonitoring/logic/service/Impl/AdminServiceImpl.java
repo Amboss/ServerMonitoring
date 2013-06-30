@@ -9,7 +9,6 @@ import serverMonitoring.logic.service.AdminService;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -104,13 +103,5 @@ public class AdminServiceImpl implements AdminService {
     public void deleteServer(Long entity_id) {
         adminLogger.debug("deleting Server with id: " + entity_id);
         serverDao.delete(entity_id);
-    }
-
-    /*
-     * getting current date & time for SQL
-     */
-    private static Timestamp getCurrentTimeStamp() {
-        java.util.Date today = new java.util.Date();
-        return new Timestamp(today.getTime());
     }
 }

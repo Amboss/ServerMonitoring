@@ -12,6 +12,7 @@ import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.serverStateEnum.ServerState;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * This class responsible for functionality of user with ROLE_USER access
@@ -61,11 +62,25 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     /**
+     * updating Employee Last Login timestamp
+     */
+    @Override
+    public void changeLastLogin(String userName) {
+        employeeLogger.debug("updating Employee LastLogin");
+        EmployeeEntity entity = new EmployeeEntity();
+        Date date = new Date();
+        Timestamp timestamp = new Timestamp(date.getTime());
+
+        entity.setLogin(userName);
+        entity.setLastLogin(timestamp);
+        employeeDao.update(entity);
+    }
+
+    /**
      * retrieve server status
      *
      * @return ServerEntity object
      */
-
     @Override
     public ServerState getServerState(ServerEntity entity_id) {
         employeeLogger.debug("retrieving Server status with id: " + entity_id.getId());
@@ -82,13 +97,5 @@ public class EmployeeServiceImpl implements EmployeeService {
     public ServerEntity getServerDetails(ServerEntity entity) {
         employeeLogger.debug("retrieving Server details with id: " + entity.getId());
         return serverDao.findByServerName(entity.getServer_name());
-    }
-
-    /*
-     * getting current date & time for SQL
-     */
-    private static Timestamp getCurrentTimeStamp() {
-        java.util.Date today = new java.util.Date();
-        return new Timestamp(today.getTime());
     }
 }

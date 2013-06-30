@@ -27,9 +27,9 @@
     <form action="<@spring.url value='/j_spring_security_check'/>"
                                 class="navbar-form pull-right" method="POST" >
         <input class="span2" id="j_username" name="j_username"
-                                id="focusedInput" type="text" placeholder="Username"/>
+                                id="focusedInput" type="text" placeholder="Username" />
         <input class="span2" id="j_password" name="j_password"
-                                id="focusedInput" type="password" placeholder="Password"/>
+                                id="focusedInput" type="password" placeholder="Password" />
         <input class="btn" type="submit"  value="Sign in"/>
     </form>
 </@security.authorize>
