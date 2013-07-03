@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import serverMonitoring.controller.CustomAbstractController;
 
 /**
  * Handles and retrieves the ROLE_ADMIN employee_management pages depending on the URI template.
@@ -15,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @Secured("ROLE_ADMIN")
 @RequestMapping("/employee_management")
-public class EmployeeManagementController {
+public class EmployeeManagementController extends CustomAbstractController {
 
     protected static Logger logger = Logger.getLogger(EmployeeManagementController.class);
     private String catalogPath = "admin/employee_management/";

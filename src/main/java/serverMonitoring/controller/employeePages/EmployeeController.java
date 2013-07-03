@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import serverMonitoring.controller.CustomAbstractController;
 import serverMonitoring.logic.service.EmployeeService;
-import serverMonitoring.logic.service.authentication.AdminHandler;
-
-import javax.servlet.http.HttpServletRequest;
+import serverMonitoring.logic.webFunctionality.FirstEntranceOfAdminFilter;
 
 /**
  * Handles and retrieves the ROLE_USER page depending on the URI template.
@@ -24,7 +22,7 @@ public class EmployeeController extends CustomAbstractController {
 
     protected static Logger logger = Logger.getLogger(EmployeeController.class);
     private String catalogPath = "employee/";
-    private AdminHandler handler;
+    private FirstEntranceOfAdminFilter handler;
     private EmployeeService employeeService;
 
     @Autowired
@@ -33,25 +31,22 @@ public class EmployeeController extends CustomAbstractController {
     }
 
     @Autowired
-    public AdminHandler getHandler() {
+    public FirstEntranceOfAdminFilter getHandler() {
         return handler;
     }
 
     /**
      * Handles and retrieves /WEB-INF/ftl/employee/monitoring.ftl
-     *  - Creating User name var
-     *  - Changing lastLogin row
+     * <p/>
+     * - Changing lastLogin row
      *
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(value = "/monitoring", method = RequestMethod.GET)
     public ModelAndView getMonitoringPage() {
-
         showRequestLog("monitoring");
 
-        /*
-         * Changing lastLogin row in authorized user
-         */
+        //Changing lastLogin row in authorized user
         employeeService.changeLastLogin(getUserName());
 
         return new ModelAndView(catalogPath + "monitoring");
@@ -64,9 +59,14 @@ public class EmployeeController extends CustomAbstractController {
      */
     @RequestMapping(value = "/password_update", method = RequestMethod.GET)
     public ModelAndView getPasswordUpdatePage() {
+//        @RequestParam(value = "old_password") String oldPassword,
+//        @RequestParam(value = "new_password") String newPassword,
+//        @RequestParam(value = "new_password2") String newPassword2
+//        PasswordChangeFunction passwordChange = new PasswordChangeFunction();
+//        passwordChange.setPasswordChange(getUserName(), oldPassword, newPassword, newPassword2);
         showRequestLog("password_update");
-        ModelAndView mav = new ModelAndView();
         return new ModelAndView(catalogPath + "password_update");
+        // response.sendRedirect("/j_spring_security_logout");
     }
 
     /**

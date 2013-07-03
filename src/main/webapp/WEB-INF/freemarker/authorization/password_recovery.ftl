@@ -12,7 +12,7 @@
     </div>
     <div class="row-fluid">
         <div class="span6">
-            <h2>Forget your password?</h2>
+            <h2>Forgot your password?</h2>
             <p>On this page you can recover your password to enter to
                 Server monitoring service. Your account have to be active
                  for successful recovery. If you don't receive any recovery

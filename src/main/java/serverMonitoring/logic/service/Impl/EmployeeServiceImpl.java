@@ -41,12 +41,12 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public EmployeeEntity getEmployeeByLogin(EmployeeEntity entity_login) {
-        employeeLogger.debug("updating Employee with login: " + entity_login.getLogin());
+        employeeLogger.debug("retrieving Employee with login: " + entity_login.getLogin());
         return employeeDao.findByLogin(entity_login.getLogin());
     }
 
     /**
-     * updating Employee
+     * updating Employee password
      */
     @Override
     public void changePassword(EmployeeEntity entity, String newPass) {

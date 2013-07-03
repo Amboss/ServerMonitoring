@@ -3,6 +3,7 @@
         Spring Security 3.1 configuration
              - annotations="enabled"
              - authentication-provider="customAuthenticationManager"
+             - first Entrance Of AdminHandler
      ================================================================================================== -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:security="http://www.springframework.org/schema/security"
@@ -17,7 +18,7 @@
     <security:global-method-security secured-annotations="enabled"/>
 
     <!--  Spring Security autowire the parent property  -->
-    <security:authentication-manager alias="authenticationManager">
+    <security:authentication-manager alias="authenticationManager"  erase-credentials="false">
         <security:authentication-provider ref="customAuthenticationManager"/>
     </security:authentication-manager>
 
@@ -30,7 +31,7 @@
         <security:intercept-url pattern="/auth/logout" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <security:intercept-url pattern="/auth/password_recovery" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 
-        <security:form-login always-use-default-target="true"
+        <security:form-login always-use-default-target="false"
                              authentication-failure-handler-ref="customAuthenticationFailureHandler"
                              login-page="/auth/login"
                              default-target-url="/employee/monitoring"
@@ -39,6 +40,7 @@
         <security:logout invalidate-session="true"
                          logout-success-url="/auth/login"
                          logout-url="/j_spring_security_logout"/>
+
         <security:session-management session-authentication-strategy-ref="sas"/>
 
     </security:http>
@@ -53,10 +55,10 @@
 
     <!-- Session Authentication Strategy -->
     <bean id="sas"
-          class="org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy">
+          class="org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy"
+          p:exceptionIfMaximumExceeded="true"
+          p:maximumSessions="1">
         <constructor-arg name="sessionRegistry" ref="sessionRegistry"/>
-        <property name="exceptionIfMaximumExceeded" value="true"/>
-        <property name="maximumSessions" value="1"/>
     </bean>
 
     <!-- Session Registry Implementation -->
@@ -71,11 +73,7 @@
 
     <!-- Custom authentication manager -->
     <bean id="customAuthenticationManager"
-          class="serverMonitoring.logic.service.authentication.UserAuthentication"/>
-
-    <!-- Admin first entrance manager-->
-    <bean id="AdminHandler"
-          class="serverMonitoring.logic.service.authentication.AdminHandler"/>
+          class="serverMonitoring.logic.webFunctionality.UserAuthentication"/>
 
     <!-- Default failure URL -->
     <bean id="customAuthenticationFailureHandler"

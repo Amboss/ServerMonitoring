@@ -1,4 +1,4 @@
-package serverMonitoring.logic.service.authentication;
+package serverMonitoring.logic.webFunctionality;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,19 +69,19 @@ public class UserAuthentication implements AuthenticationManager, Authentication
         }
 
         /**
-         * main logic of authentication manager
+         * main logic of Authentication manager
          * Username and password must be the same to authenticate
          */
-        if (auth.getName().equals(auth.getCredentials())) {
-
-            throw new BadCredentialsException("Entered login and password are the same!");
-        } else {
+//        if (!auth.getName().equals(auth.getCredentials())) {
+//
+//            throw new BadCredentialsException("Entered login and password are the same!");
+//        } else {
             userAccessLogger.debug("User is located!");
             return new UsernamePasswordAuthenticationToken(
                     auth.getName(),
                     auth.getCredentials(),
                     getAuthorities(employeeEntity.getAdmin()));
-        }
+//        }
     }
 
     /**

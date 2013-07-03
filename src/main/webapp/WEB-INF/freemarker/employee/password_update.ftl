@@ -18,25 +18,25 @@
     </div>
     <div class="row-fluid">
         <div class="span12">
-            <form action='updatePassword' id='passwordResetForm' autocomplete='off'>
+            <form action="updatePassword" id="passwordResetForm" autocomplete="off">
             <p>
-            <span class='text_'>Please enter requerd information:</span>
+            <span class='text_'>Please enter required information:</span>
+            </p>
+            <p>
+            <label for='password'>Current UserName</label>
+            <input class="span3" disabled name='username' value=${username} placeholder="username" />
             </p>
             <p>
             <label for='password'>Current Password</label>
-            <input class="span3" disabled name='password' value=${username} placeholder="name" />
-            </p>
-            <p>
-            <label for='password'>Current Password</label>
-            <input class="span3"  id="focusedInput" name='password' placeholder="Password" required/>
+            <input class="span3"  id="focusedInput" name='oldPassword' placeholder="old password" required/>
             </p>
             <p>
             <label for='password'>New Password</label>
-            <input class="span3"  id="focusedInput" name='password_new' placeholder="password_new" required/>
+            <input class="span3"  id="focusedInput" name='new_password' placeholder="new password" required/>
             </p>
             <p>
             <label for='password'>New Password (again)</label>
-            <input class="span3"  id="focusedInput" name='password_new_2' placeholder="password_new_2" required/>
+            <input class="span3"  id="focusedInput" name='new_password2' placeholder="new password" required/>
             </p>
             <p>
             <input class="btn" type='submit' value='Change password' /><input class="btn" type='reset' value='Cancel' />

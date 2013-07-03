@@ -50,6 +50,18 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <!-- ===================== Custom filter configurations ====================================== -->
+    <filter>
+        <filter-name>FirstEntranceOfAdminFilter</filter-name>
+        <filter-class>serverMonitoring.logic.webFunctionality.FirstEntranceOfAdminFilter</filter-class>
+
+    </filter>
+    <filter-mapping>
+        <filter-name>FirstEntranceOfAdminFilter</filter-name>
+        <url-pattern>/employee/monitoring</url-pattern>
+
+    </filter-mapping>
+
     <!-- ===================== Spring Security Context Loader Listener =========================== -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
