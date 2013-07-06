@@ -5,12 +5,12 @@
      ============================================================== -->
 <#macro page title>
 <#include "../common/header.ftl"/>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row-fluid">
-            <div class="span2">
+            <div class="span3">
                 <#include "../common/header/admin_sidebar1.ftl"/>
             </div>
-            <div class="span8">
+            <div class="span9">
                 <#nested/>
             </div>
         </div><!--/row-->

@@ -57,12 +57,13 @@ public class EmployeeController extends CustomAbstractController {
      *
      * @return the name of the FreeMarker template page
      */
+
     @RequestMapping(value = "/password_update", method = RequestMethod.GET)
     public ModelAndView getPasswordUpdatePage() {
 //        @RequestParam(value = "old_password") String oldPassword,
 //        @RequestParam(value = "new_password") String newPassword,
 //        @RequestParam(value = "new_password2") String newPassword2
-//        PasswordChangeFunction passwordChange = new PasswordChangeFunction();
+//        PasswordUpdateFunction passwordChange = new PasswordUpdateFunction();
 //        passwordChange.setPasswordChange(getUserName(), oldPassword, newPassword, newPassword2);
         showRequestLog("password_update");
         return new ModelAndView(catalogPath + "password_update");

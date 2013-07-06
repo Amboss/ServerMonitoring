@@ -13,7 +13,7 @@
 </@security.authorize>
 <@com.page title="Password change">
     <div class="hero-unit">
-        <h1>Please update your password</h1>
+        <h1>Password update page</h1>
         <#include "../common/message/validation_message.ftl"/>
     </div>
     <div class="row-fluid">
@@ -24,19 +24,19 @@
             </p>
             <p>
             <label for='password'>Current UserName</label>
-            <input class="span3" disabled name='username' value=${username} placeholder="username" />
+            <input class="span4" disabled name='username' value=${username} placeholder="username" />
             </p>
             <p>
             <label for='password'>Current Password</label>
-            <input class="span3"  id="focusedInput" name='oldPassword' placeholder="old password" required/>
+            <input class="span4"  id="focusedInput" name='oldPassword' placeholder="old password" required/>
             </p>
             <p>
             <label for='password'>New Password</label>
-            <input class="span3"  id="focusedInput" name='new_password' placeholder="new password" required/>
+            <input class="span4"  id="focusedInput" name='new_password' placeholder="new password" required/>
             </p>
             <p>
             <label for='password'>New Password (again)</label>
-            <input class="span3"  id="focusedInput" name='new_password2' placeholder="new password" required/>
+            <input class="span4"  id="focusedInput" name='new_password2' placeholder="new password" required/>
             </p>
             <p>
             <input class="btn" type='submit' value='Change password' /><input class="btn" type='reset' value='Cancel' />
