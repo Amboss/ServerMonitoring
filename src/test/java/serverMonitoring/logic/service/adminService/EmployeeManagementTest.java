@@ -58,8 +58,8 @@ public class EmployeeManagementTest extends AbstractJUnit4SpringContextTests {
     @After
     public void termination() {
         EmployeeEntity entity = new EmployeeEntity();
-        entity.setLogin("testUser");
-        entity = employeeService.getEmployeeByLogin(entity);
+        //entity.setLogin("testUser");
+        entity = employeeService.getEmployeeByLogin("testUser");
         adminService.deleteEmployee(entity.getId());
         //assertNull("the testUser2 is not empty", entity);
     }
@@ -84,7 +84,7 @@ public class EmployeeManagementTest extends AbstractJUnit4SpringContextTests {
         adminService.registerEmployee(entity);
 
         // selection and assert of test user
-        EmployeeEntity entity2 = employeeService.getEmployeeByLogin(entity);
+        EmployeeEntity entity2 = employeeService.getEmployeeByLogin("testUser");
         assertNotNull("failure - Employee entity2 must not be null", entity2);
         assertEquals("failure - entity_name should be same", "Service_Test_Register", entity2.getEmployee_name());
         assertEquals("failure - login should be same", "testUser", entity2.getLogin());
@@ -122,7 +122,7 @@ public class EmployeeManagementTest extends AbstractJUnit4SpringContextTests {
         adminService.updateEmployee(entity);
 
         // selection and assert of test user
-        EmployeeEntity entity2 = employeeService.getEmployeeByLogin(entity);
+        EmployeeEntity entity2 = employeeService.getEmployeeByLogin("testUser");
         assertNotNull(entity2);
         assertEquals("failure - password should be same", "new_test_email@mail.com", entity2.getEmail());
         assertEquals("failure - name should be same", "Service_Test_Update", entity2.getEmployee_name());

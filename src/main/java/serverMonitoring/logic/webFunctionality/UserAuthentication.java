@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Service;
 import serverMonitoring.logic.DAO.EmployeeDao;
 import serverMonitoring.model.EmployeeEntity;
@@ -26,14 +27,16 @@ import java.util.List;
  */
 
 @Service("userAuthentication")
-public class UserAuthentication implements AuthenticationManager, AuthenticationProvider, Serializable {
+public class UserAuthentication extends SimpleUrlAuthenticationSuccessHandler
+        implements AuthenticationManager, AuthenticationProvider, Serializable {
 
     protected static Logger userAccessLogger = Logger.getLogger(UserAuthentication.class);
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
     private EmployeeDao employeeDao;
+    private EmployeeEntity employeeEntity;
 
     @Autowired
-    public void setEmployeeDao(EmployeeDao employeeDao) {
+    public void initEmployeeDao(EmployeeDao employeeDao) {
         this.employeeDao = employeeDao;
     }
 
@@ -43,10 +46,10 @@ public class UserAuthentication implements AuthenticationManager, Authentication
     }
 
     public Authentication authenticate(Authentication auth) throws UsernameNotFoundException {
+
         /**
          * Init a database user object
          */
-        EmployeeEntity employeeEntity;
         try {
             employeeEntity = employeeDao.findByLogin(auth.getName());
         } catch (RuntimeException e) {
@@ -70,22 +73,18 @@ public class UserAuthentication implements AuthenticationManager, Authentication
 
         /**
          * main logic of Authentication manager
-         * Username and password must be the same to authenticate
+         * @return UsernamePasswordAuthenticationToken
          */
-//        if (!auth.getName().equals(auth.getCredentials())) {
-//
-//            throw new BadCredentialsException("Entered login and password are the same!");
-//        } else {
-            userAccessLogger.debug("User is located!");
-            return new UsernamePasswordAuthenticationToken(
-                    auth.getName(),
-                    auth.getCredentials(),
-                    getAuthorities(employeeEntity.getAdmin()));
-//        }
+        userAccessLogger.debug("User is located!");
+        return new UsernamePasswordAuthenticationToken(
+                auth.getName(),
+                auth.getCredentials(),
+                getAuthorities(employeeEntity.getAdmin()));
     }
 
     /**
      * Retrieves the correct ROLE type depending on the access level
+     *
      * @return list of granted authorities
      */
     public Collection<GrantedAuthority> getAuthorities(Integer access) {

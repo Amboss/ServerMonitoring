@@ -14,7 +14,7 @@ public interface EmployeeService {
     /*
      * retrieve Employee by login
      */
-    public EmployeeEntity getEmployeeByLogin(EmployeeEntity entity);
+    public EmployeeEntity getEmployeeByLogin(String entity_login) ;
 
     /*
      * change password

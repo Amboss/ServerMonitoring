@@ -40,9 +40,9 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return Employee Entity object
      */
     @Override
-    public EmployeeEntity getEmployeeByLogin(EmployeeEntity entity_login) {
-        employeeLogger.debug("retrieving Employee with login: " + entity_login.getLogin());
-        return employeeDao.findByLogin(entity_login.getLogin());
+    public EmployeeEntity getEmployeeByLogin(String entity_login) {
+        employeeLogger.debug("retrieving Employee with login: " + entity_login);
+        return employeeDao.findByLogin(entity_login);
     }
 
     /**

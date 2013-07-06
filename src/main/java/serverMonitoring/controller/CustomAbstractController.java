@@ -20,7 +20,7 @@ public abstract class CustomAbstractController {
     }
 
     /**
-     * Creating UserName var to be shown in header after authorisation on every page
+     * @return UserName var to be shown in header after authorisation on every page
      */
     @ModelAttribute("username")
     public String setUsername() {

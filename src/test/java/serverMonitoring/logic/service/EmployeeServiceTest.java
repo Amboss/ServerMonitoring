@@ -76,7 +76,7 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
         entity.setLogin("testUser");
         employeeService.changePassword(entity, "54321");
 
-        EmployeeEntity entity2 = employeeService.getEmployeeByLogin(entity);
+        EmployeeEntity entity2 = employeeService.getEmployeeByLogin("testUser");
         assertNotNull(entity2);
         String testPass = passwordEncoder.encodePassword("54321", null);
         // asserting password row

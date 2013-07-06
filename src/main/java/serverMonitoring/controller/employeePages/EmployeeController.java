@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import serverMonitoring.controller.CustomAbstractController;
 import serverMonitoring.logic.service.EmployeeService;
-import serverMonitoring.logic.webFunctionality.FirstEntranceOfAdminFilter;
+import serverMonitoring.logic.filters.CustomAuthenticationSuccessHandler;
 
 /**
  * Handles and retrieves the ROLE_USER page depending on the URI template.
@@ -22,7 +22,7 @@ public class EmployeeController extends CustomAbstractController {
 
     protected static Logger logger = Logger.getLogger(EmployeeController.class);
     private String catalogPath = "employee/";
-    private FirstEntranceOfAdminFilter handler;
+    private CustomAuthenticationSuccessHandler handler;
     private EmployeeService employeeService;
 
     @Autowired
@@ -31,7 +31,7 @@ public class EmployeeController extends CustomAbstractController {
     }
 
     @Autowired
-    public FirstEntranceOfAdminFilter getHandler() {
+    public CustomAuthenticationSuccessHandler getHandler() {
         return handler;
     }
 

@@ -10,7 +10,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-                http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                http://www.springframework.org/schema/beans/spring-beans.xsd
                 http://www.springframework.org/schema/security
                 http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
@@ -27,22 +27,22 @@
                    access-denied-page="/auth/access_denied"
                    entry-point-ref="authenticationEntryPoint">
 
-        <security:intercept-url pattern="/auth/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <security:intercept-url pattern="/auth/logout" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <security:intercept-url pattern="/auth/password_recovery" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <security:intercept-url pattern="/auth/login"
+                                access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <security:intercept-url pattern="/auth/logout"
+                                access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <security:intercept-url pattern="/auth/password_recovery"
+                                access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 
         <security:form-login always-use-default-target="false"
-                             authentication-failure-handler-ref="customAuthenticationFailureHandler"
                              login-page="/auth/login"
-                             default-target-url="/employee/monitoring"
+                             authentication-success-handler-ref="customAuthenticationSuccessHandler"
                              authentication-failure-url="/auth/login?error=true"/>
-
         <security:logout invalidate-session="true"
                          logout-success-url="/auth/login"
                          logout-url="/j_spring_security_logout"/>
 
         <security:session-management session-authentication-strategy-ref="sas"/>
-
     </security:http>
 
     <!-- Custom filter for username and password -->
@@ -53,19 +53,19 @@
           p:authenticationFailureHandler-ref="customAuthenticationFailureHandler"
           p:authenticationSuccessHandler-ref="customAuthenticationSuccessHandler"/>
 
-    <!-- Session Authentication Strategy -->
+    <!-- Session authentication strategy -->
     <bean id="sas"
           class="org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy"
           p:exceptionIfMaximumExceeded="true"
           p:maximumSessions="1">
-        <constructor-arg name="sessionRegistry" ref="sessionRegistry"/>
+        <constructor-arg ref="sessionRegistry"/>
     </bean>
 
-    <!-- Session Registry Implementation -->
+    <!-- Session registry implementation -->
     <bean id="sessionRegistry"
           class="org.springframework.security.core.session.SessionRegistryImpl"/>
 
-    <!--sessionRegistry Concurrency Control -->
+    <!--Session registry concurrency control -->
     <bean id="concurrencyFilter"
           class="org.springframework.security.web.session.ConcurrentSessionFilter"
           p:sessionRegistry-ref="sessionRegistry"
@@ -80,13 +80,14 @@
           class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler"
           p:defaultFailureUrl="/auth/login?error=true"/>
 
-    <!-- Default target URL -->
+    <!-- Custom authentication success handler -->
+    <!--class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler"-->
     <bean id="customAuthenticationSuccessHandler"
-          class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler"
-          p:defaultTargetUrl="/employee/monitoring"/>
+          class="serverMonitoring.logic.filters.CustomAuthenticationSuccessHandler"/>
 
-    <!-- The Authentication Entry Point -->
+    <!-- The authentication entry point -->
     <bean id="authenticationEntryPoint"
           class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint"
           p:loginFormUrl="/auth/login"/>
+
 </beans>

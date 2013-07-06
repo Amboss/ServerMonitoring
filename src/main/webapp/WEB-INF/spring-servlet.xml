@@ -3,7 +3,7 @@
         Spring Servlet Context: defines this servlet's request-processing infrastructure
              - error messages source support
              - freeMarker configuration
-             - freeMarker viewResolver
+             - freeMarker viewResolver configuration
      ================================================================================================== -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -11,20 +11,21 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
-    <!-- Load error messages-->
+    <!-- Load error messages configuration -->
     <bean id="messageSource"
-        class="org.springframework.context.support.ResourceBundleMessageSource"
-        p:basenames="errors"/>
+          class="org.springframework.context.support.ResourceBundleMessageSource"
+          p:basenames="errors"/>
 
-    <!-- Freemarker config -->
+    <!-- Freemarker configuration -->
     <bean id="freemarkerConfig"
-        class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"
-        p:templateLoaderPath="/WEB-INF/freemarker/"
-        p:defaultEncoding="UTF-8"/>
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"
+          p:templateLoaderPath="/WEB-INF/freemarker/"
+          p:defaultEncoding="UTF-8"/>
 
     <bean id="viewResolver"
-        class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
-        p:cache="true"
-        p:prefix=""
-        p:suffix=".ftl"/>
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
+          p:cache="true"
+          p:prefix=""
+          p:suffix=".ftl"/>
+
 </beans>

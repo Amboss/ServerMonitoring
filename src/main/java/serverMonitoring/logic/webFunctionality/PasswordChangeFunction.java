@@ -30,7 +30,7 @@ public class PasswordChangeFunction extends UserAuthentication{
                           String newPassword, String newPassword2) {
         entity = new EmployeeEntity();
         entity.setLogin(username);
-        entity = employeeService.getEmployeeByLogin(entity);
+        entity = employeeService.getEmployeeByLogin(username);
         try {
             if (validateNewPassword(newPassword)) {
                 if (newPassword.equals(newPassword2)) {
