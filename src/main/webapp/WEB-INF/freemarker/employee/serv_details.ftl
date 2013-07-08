@@ -3,6 +3,7 @@
         - give ability for user to to see precise info about specific server
         - for admin_role the layout wil contain service menu on side bar
      ===================================================================== -->
+<#import "/spring.ftl" as spring />
 <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
 
 <@security.authorize ifAnyGranted="ROLE_USER">
@@ -14,29 +15,35 @@
 
 <@com.page title="Server details">
     <div class="hero-unit">
-        <h1>Password update page</h1>
+        <h1>Server details page</h1>
         <#include "../common/message/validation_message.ftl"/>
     </div>
     <div class="row-fluid">
-        <span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-            sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-            aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-            exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-            commodo consequat. Duis autem vel eum iriure dolor in hendrerit
-            in vulputate velit esse molestie consequat, vel illum dolore eu
-            feugiat nulla facilisis at vero eros et accumsan et iusto odio
-            dignissim qui blandit praesent luptatum zzril delenit augue duis
-            dolore te feugait nulla facilisi. Nam liber tempor cum soluta
-            nobis eleifend option congue nihil imperdiet doming id quod mazim
-            placerat facer possim assum. Typi non habent claritatem insitam;
-            est usus legentis in iis qui facit eorum claritatem. Investigationes
-            demonstraverunt lectores legere me lius quod ii legunt saepius.
-            Claritas est etiam processus dynamicus, qui sequitur mutationem
-            consuetudium lectorum. Mirum est notare quam littera gothica,
-            quam nunc putamus parum claram, anteposuerit litterarum formas
-            humanitatis per seacula quarta decima et quinta decima. Eodem
-            modo typi, qui nunc nobis videntur parum clari, fiant sollemnes
-            in futurum.
-        </span>
+        <table>
+            <tr>
+                <th>Server name</th>
+                <th>Address</th>
+                <th>Port</th>
+                <th>URL</th>
+                <th>State</th>
+                <th>Response</th>
+                <th>Created</th>
+                <th>Last check</th>
+                <th>Active</th>
+            </tr>
+            <#--list ServerEntity as ServerEntity-->
+                <tr>
+                    <td>_ _ _ _ _ _</td>
+                    <td>_ _ _ _ _ _</td>
+                    <td>_ _ _ _ _ _</td>
+                    <td>_ _ _ _ _ _</td>
+                    <td>_ _ _ _ _ _</td>
+                    <td>_ _ _ _ _ _</td>
+                    <td>_ _ _ _ _ _</td>
+                    <td>_ _ _ _ _ _</td>
+                    <td>_ _ _ _ _ _</td>
+                </tr>
+            <#--/#list-->
+        </table>
     </div>
 </@com.page>

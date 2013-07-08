@@ -6,10 +6,14 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import serverMonitoring.controller.CustomAbstractController;
-import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.logic.filters.CustomAuthenticationSuccessHandler;
+import serverMonitoring.logic.service.EmployeeService;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Handles and retrieves the ROLE_USER page depending on the URI template.
@@ -37,7 +41,6 @@ public class EmployeeController extends CustomAbstractController {
 
     /**
      * Handles and retrieves /WEB-INF/ftl/employee/monitoring.ftl
-     * <p/>
      * - Changing lastLogin row
      *
      * @return the name of the FreeMarker template page
@@ -59,15 +62,14 @@ public class EmployeeController extends CustomAbstractController {
      */
 
     @RequestMapping(value = "/password_update", method = RequestMethod.GET)
-    public ModelAndView getPasswordUpdatePage() {
-//        @RequestParam(value = "old_password") String oldPassword,
-//        @RequestParam(value = "new_password") String newPassword,
-//        @RequestParam(value = "new_password2") String newPassword2
-//        PasswordUpdateFunction passwordChange = new PasswordUpdateFunction();
-//        passwordChange.setPasswordChange(getUserName(), oldPassword, newPassword, newPassword2);
+    public ModelAndView getPasswordUpdatePage(HttpServletRequest request,
+                                              HttpServletResponse response,
+                                              @RequestParam(value = "new_password") String newPassword) {
         showRequestLog("password_update");
+
+
+
         return new ModelAndView(catalogPath + "password_update");
-        // response.sendRedirect("/j_spring_security_logout");
     }
 
     /**

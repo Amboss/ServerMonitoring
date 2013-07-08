@@ -17,14 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginLogoutController extends CustomAbstractController {
 
     protected static Logger logger = Logger.getLogger(LoginLogoutController.class);
-//    private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
-//    private EmployeeService employeeService;
-//    private final String ENTITY_NAME = "admin";
-//
-//    @Autowired
-//    public void intiEmployeeService(EmployeeService employeeService) {
-//        this.employeeService = employeeService;
-//    }
 
     /**
      * Handles and retrieves /WEB-INF/ftl/index.ftl
@@ -35,18 +27,6 @@ public class LoginLogoutController extends CustomAbstractController {
     public ModelAndView getLoginPage() {
 
         logger.info("/index.ftl ");
-//        String shaPassword = passwordEncoder.encodePassword(ENTITY_NAME, null);
-
-//        if (auth.getName().equals(ENTITY_NAME) &&
-//                auth.getCredentials().toString().equals(shaPassword)) {
-//
-//            EmployeeEntity employeeEntity = employeeService.getEmployeeByLogin(auth.getName());
-//
-//            if (employeeEntity.getPassword().equals(shaPassword)) {
-//
-//                return new ModelAndView("redirect:employee/password_update");
-//            }
-//        }
         return new ModelAndView("index");
     }
 
