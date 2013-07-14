@@ -22,8 +22,7 @@ import java.io.IOException;
 public class CustomAuthenticationSuccessHandler
         extends SavedRequestAwareAuthenticationSuccessHandler {
 
-    protected static Logger userAccessLogger = Logger.getLogger(
-            CustomAuthenticationSuccessHandler.class);
+    protected static Logger userAccessLogger = Logger.getLogger(CustomAuthenticationSuccessHandler.class);
     private EmployeeService employeeService;
     private final String ENTITY_NAME = "admin";
 
@@ -59,18 +58,18 @@ public class CustomAuthenticationSuccessHandler
             ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
             String shaPassword = passwordEncoder.encodePassword(ENTITY_NAME, null);
 
-            if (authentication.getName().equals(ENTITY_NAME)) {
-                if (authentication.getCredentials().toString().equals(ENTITY_NAME)){
-                    if (employeeEntity.getPassword().equals(shaPassword)) {
+            if (authentication.getName().equals(ENTITY_NAME) && authentication.getCredentials()
+                                                                .toString().equals(ENTITY_NAME)) {
+                if (employeeEntity.getPassword().equals(shaPassword)) {
 
-                        // redirecting entity to change password
-                        redirect(request, response, "/admin/admin_update_pass");
-                    }
-                } else {
                     // redirecting entity to change password
-                    redirect(request, response, "/employee/monitoring");
+                    redirect(request, response, "/admin/admin_update_pass");
                 }
+            } else {
+                // redirecting default-target-url
+                redirect(request, response, "/employee/monitoring");
             }
+
         }
     }
 
@@ -90,5 +89,6 @@ public class CustomAuthenticationSuccessHandler
      * admin - 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
      * pass -  d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1
      * user -  04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb
+     * xxxx -  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
      */
 }

@@ -66,11 +66,10 @@
                     <h3>Please enter new password:</h3>
                         <#-- ===================== New Password ============================= -->
                         <div class="control-group info">
-                            <label class="control-label" for='new_password'>New Password</label>
+                            <label class="control-label" for='newPassword'>New Password</label>
                             <div class="controls">
                                 <input class="input-xlarge"
-                                id="new_password"
-                                name='new_password'
+                                name='newPassword'
                                 type='password'
                                 autofocus/>
                                 <#if RequestParameters['newPassword']??>
@@ -82,11 +81,10 @@
                         </div>
                         <#-- ===================== Confirm Password ========================= -->
                         <div class="control-group info">
-                            <label class="control-label" for="confirm_password">Confirm Password</label>
+                            <label class="control-label" for="confirmPassword">Confirm Password</label>
                             <div class="controls">
                                 <input class="input-xlarge"
-                                id="confirm_password"
-                                name='confirm_password'
+                                name='confirmPassword'
                                 type='password' />
                                 <#if RequestParameters['confirmPassword']??>
                                     <span class="help-inline alert alert-error" path="confirmPassword">

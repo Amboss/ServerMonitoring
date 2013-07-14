@@ -18,40 +18,36 @@
     <security:global-method-security secured-annotations="enabled"/>
 
     <!--  Spring Security autowire the parent property  -->
-    <security:authentication-manager alias="authenticationManager">
+    <security:authentication-manager>
         <security:authentication-provider ref="customAuthenticationManager"/>
     </security:authentication-manager>
 
     <!-- Configuration of Spring-Security. Set to false to assign custom filters  -->
     <security:http auto-config="false"
+                   authentication-manager-ref="customAuthenticationManager"
                    access-denied-page="/auth/access_denied"
-                   entry-point-ref="authenticationEntryPoint">
-
-        <security:intercept-url pattern="/j_spring_security_check"
-                                access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <security:intercept-url pattern="/auth/login"
-                                access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <security:intercept-url pattern="/j_spring_security_logout"
-                                access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <security:intercept-url pattern="/auth/password_recovery"
-                                access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+                   entry-point-ref="authenticationEntryPoint"
+                   use-expressions="true">
 
         <security:form-login always-use-default-target="false"
                              login-page="/auth/login"
+                             authentication-success-handler-ref="customAuthenticationSuccessHandler"
+                             authentication-failure-handler-ref="customAuthenticationFailureHandler"
+                             default-target-url="/employee/monitoring"
                              authentication-failure-url="/auth/login?error=true"/>
+
         <security:logout invalidate-session="true"
+                         delete-cookies="true"
                          logout-success-url="/auth/login"
                          logout-url="/j_spring_security_logout"/>
         <!--<security:session-management session-authentication-strategy-ref="sas"/>-->
     </security:http>
 
     <!-- Custom filter for username and password -->
-    <bean id="authenticationFilter"
-          class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"
-          p:authenticationManager-ref="customAuthenticationManager"
-          p:authenticationFailureHandler-ref="customAuthenticationFailureHandler"
-          p:authenticationSuccessHandler-ref="customAuthenticationSuccessHandler"
-          p:sessionAuthenticationStrategy-ref="sas"/>
+    <!--<bean id="authenticationFilter"-->
+    <!--class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"-->
+    <!--p:authenticationManager-ref="customAuthenticationManager"-->
+    <!--p:sessionAuthenticationStrategy-ref="sas"/>-->
 
     <!-- Session authentication strategy -->
     <bean id="sas"

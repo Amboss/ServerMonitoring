@@ -42,7 +42,7 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>/WEB-INF/spring-servlet.xml</param-value>
         </init-param>
-        <load-on-startup>1</load-on-startup>
+        <load-on-startup>2</load-on-startup>
     </servlet>
 
     <servlet-mapping>
@@ -85,7 +85,7 @@
 
     <!-- ===================== Session timeout configurations ==================================== -->
     <session-config>
-        <session-timeout>120</session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
 
     <!-- ===================== Error handling configurations ===================================== -->

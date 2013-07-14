@@ -30,7 +30,6 @@ public class adminUpdatePassController extends CustomAbstractController {
     private String catalogPath = "/admin";
     private EmployeeService employeeService;
     private PasswordValidator passwordValidator;
-    private EmployeeEntity entity;
 
     @Autowired
     public void setEmployeeService(EmployeeService employeeService) {
@@ -68,7 +67,8 @@ public class adminUpdatePassController extends CustomAbstractController {
             return new ModelAndView("/admin/admin_update_pass", "pass_object", errors);
         } else {
             EmployeeEntity entity = employeeService.getEmployeeByLogin(getUserName());
-            employeeService.changePassword(entity, changePasswordObject.getNewPassword());
+            String foo = changePasswordObject.getNewPassword();
+            employeeService.changePassword(entity, foo);
             status.setComplete();
         }
         return new ModelAndView("/employee/monitoring");
