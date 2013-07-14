@@ -17,11 +17,16 @@
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.css'/>"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.min.css'/>"/>
         <style type="text/css">
-          body {
-            padding-top: 60px;
-            padding-bottom: 40px;
-          }
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+            .hero-unit {
+                background-image: url("<@spring.url'/static/img/header_default2.png'/>");
+                background-repeat: repeat;
+            }
         </style>
+
         <script type="text/javascript" src="<@spring.url '/static/js/bootstrap.js'/>" ></script>
         <script type="text/javascript" src="<@spring.url '/static/js/bootstrap.min.js'/>" ></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>

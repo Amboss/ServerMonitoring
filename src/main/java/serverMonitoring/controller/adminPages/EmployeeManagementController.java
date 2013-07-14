@@ -76,10 +76,4 @@ public class EmployeeManagementController extends CustomAbstractController {
         return new ModelAndView(catalogPath + "serv_assignment");
     }
 
-    /*
-    * logger
-    */
-    protected void showRequestLog(String str) {
-        logger.debug("Received request to show " + str + " page");
-    }
 }

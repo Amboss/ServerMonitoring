@@ -25,7 +25,6 @@ public class LoginLogoutController extends CustomAbstractController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView getLoginPage() {
-
         logger.info("/index.ftl ");
         return new ModelAndView("index");
     }

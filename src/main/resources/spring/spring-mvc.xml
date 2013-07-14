@@ -11,8 +11,7 @@
 
     <mvc:annotation-driven/>
 
-    <!-- serving up static resources in the ${webappRoot}/resources directory -->
-    <mvc:resources mapping="/static/**" location="/static/"/>
+
 
     <!-- register "global" interceptor beans to apply to all registered HandlerMappings -->
     <!--<mvc:interceptors>-->

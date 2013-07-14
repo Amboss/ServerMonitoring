@@ -16,28 +16,17 @@
 <@com.page title="Server details">
     <div class="hero-unit">
         <h1>Server details page</h1>
-        <#include "../common/message/validation_message.ftl"/>
     </div>
     <div class="row-fluid">
         <table>
             <tr>
                 <th>Server name</th>
                 <th>Address</th>
-                <th>Port</th>
-                <th>URL</th>
                 <th>State</th>
-                <th>Response</th>
-                <th>Created</th>
                 <th>Last check</th>
-                <th>Active</th>
             </tr>
             <#--list ServerEntity as ServerEntity-->
                 <tr>
-                    <td>_ _ _ _ _ _</td>
-                    <td>_ _ _ _ _ _</td>
-                    <td>_ _ _ _ _ _</td>
-                    <td>_ _ _ _ _ _</td>
-                    <td>_ _ _ _ _ _</td>
                     <td>_ _ _ _ _ _</td>
                     <td>_ _ _ _ _ _</td>
                     <td>_ _ _ _ _ _</td>

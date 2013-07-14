@@ -27,12 +27,6 @@
                     <div class="block newsletter">
                         <h3>Newsletter</h3>
                         <p>Stay up to date with our latest news and product releases by signing up to our newsletter.</p>
-                        <form class="form-inline">
-                            <div class="input-append">
-                                <input class="input-medium" type="text" placeholder="Email" />
-                                <button class="btn btn-primary" type="button">Go!</button>
-                            </div>
-                        </form>
                     </div>
                 </div><!-- /.span4 col -->
             </div><!-- /.row -->

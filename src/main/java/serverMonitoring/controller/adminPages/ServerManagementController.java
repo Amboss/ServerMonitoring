@@ -64,12 +64,5 @@ public class ServerManagementController extends CustomAbstractController {
         showRequestLog("serv_manager");
         return new ModelAndView(catalogPath + "serv_manager");
     }
-
-    /*
-     * logger
-     */
-    protected void showRequestLog(String str) {
-        logger.debug("Received request to show " + str + " page");
-    }
 }
 

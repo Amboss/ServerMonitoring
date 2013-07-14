@@ -22,9 +22,12 @@
             <h2>Please enter your E-mail</h2>
             <p>A new password will be generated and sanded </br>
                 to your E-mail if access is active.</p>
-            <p><input class="span6" type="text" placeholder="E-mail" /></p>
+            <p><input class="span6"
+                type="text"
+                placeholder="E-mail"
+                autofocus/></p>
             <p>
-                <input class="btn" type='submit' value='Generate password' />
+                <input class="btn btn-primary" type='submit' value='Generate password' />
                 <input class="btn" type='reset' value='Cancel' />
             </p>
         </div><!--/span-->

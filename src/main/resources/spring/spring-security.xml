@@ -18,7 +18,7 @@
     <security:global-method-security secured-annotations="enabled"/>
 
     <!--  Spring Security autowire the parent property  -->
-    <security:authentication-manager alias="authenticationManager"  erase-credentials="false">
+    <security:authentication-manager alias="authenticationManager">
         <security:authentication-provider ref="customAuthenticationManager"/>
     </security:authentication-manager>
 
@@ -27,31 +27,31 @@
                    access-denied-page="/auth/access_denied"
                    entry-point-ref="authenticationEntryPoint">
 
+        <security:intercept-url pattern="/j_spring_security_check"
+                                access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <security:intercept-url pattern="/auth/login"
                                 access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <security:intercept-url pattern="/auth/logout"
+        <security:intercept-url pattern="/j_spring_security_logout"
                                 access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <security:intercept-url pattern="/auth/password_recovery"
                                 access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 
         <security:form-login always-use-default-target="false"
                              login-page="/auth/login"
-                             authentication-success-handler-ref="customAuthenticationSuccessHandler"
                              authentication-failure-url="/auth/login?error=true"/>
         <security:logout invalidate-session="true"
                          logout-success-url="/auth/login"
                          logout-url="/j_spring_security_logout"/>
-
-        <security:session-management session-authentication-strategy-ref="sas"/>
+        <!--<security:session-management session-authentication-strategy-ref="sas"/>-->
     </security:http>
 
     <!-- Custom filter for username and password -->
     <bean id="authenticationFilter"
           class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"
-          p:sessionAuthenticationStrategy-ref="sas"
           p:authenticationManager-ref="customAuthenticationManager"
           p:authenticationFailureHandler-ref="customAuthenticationFailureHandler"
-          p:authenticationSuccessHandler-ref="customAuthenticationSuccessHandler"/>
+          p:authenticationSuccessHandler-ref="customAuthenticationSuccessHandler"
+          p:sessionAuthenticationStrategy-ref="sas"/>
 
     <!-- Session authentication strategy -->
     <bean id="sas"
@@ -81,7 +81,6 @@
           p:defaultFailureUrl="/auth/login?error=true"/>
 
     <!-- Custom authentication success handler -->
-    <!--class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler"-->
     <bean id="customAuthenticationSuccessHandler"
           class="serverMonitoring.logic.filters.CustomAuthenticationSuccessHandler"/>
 

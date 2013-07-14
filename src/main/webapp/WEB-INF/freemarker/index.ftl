@@ -7,13 +7,14 @@
 
 <@com.page title="Login Page">
     <div class="hero-unit">
-        <h1>Login page!</h1>
-        <#include "common/message/login_message.ftl"/>
+        <h1>Login page</h1>
+
     </div>
     <div class="row-fluid">
         <div class="span6">
             <h2>Please login</h2>
             <p>Please login to enter the server monitoring service</p>
+            <#include "common/message/login_message.ftl"/>
         </div><!--/span-->
         <div class="span6">
             <h2>Password recovery</h2>

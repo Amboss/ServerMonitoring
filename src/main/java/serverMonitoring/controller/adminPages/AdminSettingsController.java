@@ -31,10 +31,4 @@ public class AdminSettingsController extends CustomAbstractController {
         return new ModelAndView(catalogPath + "change_settings");
     }
 
-    /*
-    * logger
-    */
-    protected void showRequestLog(String str) {
-        logger.debug("Received request to show " + str + " page");
-    }
 }

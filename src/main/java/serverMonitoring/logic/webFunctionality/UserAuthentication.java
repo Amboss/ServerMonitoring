@@ -67,7 +67,7 @@ public class UserAuthentication extends SimpleUrlAuthenticationSuccessHandler
          * Compare passwords
          * Make sure to encode the password first before comparing
          */
-        if (!passwordEncoder.isPasswordValid(employeeEntity.getPassword(), (String) auth.getCredentials(), null)) {
+        if (!passwordEncoder.isPasswordValid(employeeEntity.getPassword(), (String) auth.getCredentials(), null)){
             throw new BadCredentialsException("Access denied, wrong password!");
         }
 

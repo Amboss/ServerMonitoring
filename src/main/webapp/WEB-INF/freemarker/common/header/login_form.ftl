@@ -26,10 +26,19 @@
 <@security.authorize ifNotGranted="ROLE_ADMIN, ROLE_USER">
     <form action="<@spring.url value='/j_spring_security_check'/>"
                                 class="navbar-form pull-right" method="POST" >
-        <input class="span2" id="j_username" name="j_username"
-                                id="focusedInput" type="text" placeholder="Username" />
-        <input class="span2" id="j_password" name="j_password"
-                                id="focusedInput" type="password" placeholder="Password" />
-        <input class="btn" type="submit"  value="Sign in"/>
+        <input class="span2"
+                id="j_username"
+                name="j_username"
+                type="text"
+                placeholder="Username"
+                autofocus/>
+        <input class="span2"
+                id="j_password"
+                name="j_password"
+                type="password"
+                placeholder="Password" />
+        <input class="btn"
+                type="submit"
+                value="Sign in"/>
     </form>
 </@security.authorize>
