@@ -74,7 +74,7 @@ public class PasswordUpdatePage extends CustomAbstractController {
                                  BindingResult errors,
                                  SessionStatus status) {
 
-        //passwordValidator.validate(changePasswordObject, errors);
+        passwordValidator.validate(changePasswordObject, errors);
         if (errors.hasErrors()) {
             return new ModelAndView("/employee/password_update", "pass_object", errors);
         } else {

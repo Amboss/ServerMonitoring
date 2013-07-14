@@ -18,7 +18,7 @@
     <security:global-method-security secured-annotations="enabled"/>
 
     <!--  Spring Security autowire the parent property  -->
-    <security:authentication-manager>
+    <security:authentication-manager alias="AuthenticationManager">
         <security:authentication-provider ref="customAuthenticationManager"/>
     </security:authentication-manager>
 
@@ -43,7 +43,7 @@
         <!--<security:session-management session-authentication-strategy-ref="sas"/>-->
     </security:http>
 
-    <!-- Custom filter for username and password -->
+    <!-- Custom filter for username and password DELETED -->
     <!--<bean id="authenticationFilter"-->
     <!--class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"-->
     <!--p:authenticationManager-ref="customAuthenticationManager"-->

@@ -22,6 +22,7 @@ public class PasswordValidator implements Validator {
     protected static Logger userAccessLogger = Logger.getLogger(PasswordValidator.class);
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
     private EmployeeService employeeService;
+    private EmployeeEntity entity;
 
     @Autowired
     public PasswordValidator(EmployeeService employeeService) {
@@ -54,14 +55,18 @@ public class PasswordValidator implements Validator {
 
         /**
          *  check if current password is correct, while excluding "admin" entity.
+         *  04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb
+         *  04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb
          */
         if (!login.equals("admin")) {
-            EmployeeEntity entity = employeeService.getEmployeeByLogin(login);
+            entity = employeeService.getEmployeeByLogin(login);
             assert entity != null;
-            String pass = entity.getPassword();
             String pass2 = passwordEncoder.encodePassword(passwordObject.getCurrentPassword(), null);
+
             // check if DB pass equals entered old pass
-            if (!(passwordEncoder.isPasswordValid(pass, pass2, null))) {
+            if (!entity.getPassword().equals(passwordEncoder.encodePassword(passwordObject.getCurrentPassword(), null))){
+                userAccessLogger.error("wrong.currentPassword \n" + entity.getPassword()
+                + "\n\t" + pass2);
                 errors.rejectValue("currentPassword", "wrong.currentPassword");
             }
         }
@@ -69,9 +74,8 @@ public class PasswordValidator implements Validator {
         /**
          *  check if confirm password is correct
          */
-        String newPass = passwordObject.getNewPassword();
-        String confPass = passwordObject.getConfirmPassword();
-        if (!(newPass.equals(confPass))) {
+        if (!passwordObject.getNewPassword().equals(passwordObject.getConfirmPassword())) {
+            userAccessLogger.error("wrong.password");
             errors.rejectValue("confirmPassword", "wrong.password");
         }
     }

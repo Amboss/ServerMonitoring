@@ -62,7 +62,7 @@ public class adminUpdatePassController extends CustomAbstractController {
                                  BindingResult errors,
                                  SessionStatus status) {
 
-        //passwordValidator.validate(changePasswordObject, errors);
+        passwordValidator.validate(changePasswordObject, errors);
         if (errors.hasErrors()) {
             return new ModelAndView("/admin/admin_update_pass", "pass_object", errors);
         } else {
