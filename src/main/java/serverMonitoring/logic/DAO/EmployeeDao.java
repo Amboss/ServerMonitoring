@@ -12,5 +12,8 @@ public interface EmployeeDao extends Dao<EmployeeEntity> {
      */
     public EmployeeEntity findByLogin(String entity_login);
 
-
+    /**
+     * Query retrieves EmployeeEntity entity by E-mail
+     */
+    public EmployeeEntity findByEmail(String email);
 }

@@ -41,14 +41,14 @@ public class LoginLogoutController extends CustomAbstractController {
         return new ModelAndView("common/message/access_denied");
     }
 
-    /**
-     * Handles and retrieves /WEB-INF/ftl/authorization/password_recovery.ftl
-     *
-     * @return the name of the ftl page.
-     */
-    @RequestMapping(value = "/password_recovery", method = RequestMethod.GET)
-    public ModelAndView getPasswordRecoveryPage() {
-        logger.debug("Received request to show password_recovery page");
-        return new ModelAndView("authorization/password_recovery");
-    }
+//    /**
+//     * Handles and retrieves /WEB-INF/ftl/authorization/password_recovery.ftl
+//     *
+//     * @return the name of the ftl page.
+//     */
+//    @RequestMapping(value = "/password_recovery", method = RequestMethod.GET)
+//    public ModelAndView getPasswordRecoveryPage() {
+//        logger.debug("Received request to show password_recovery page");
+//        return new ModelAndView("authorization/password_recovery");
+//    }
 }

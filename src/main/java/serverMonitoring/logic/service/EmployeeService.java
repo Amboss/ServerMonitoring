@@ -11,27 +11,27 @@ import serverMonitoring.model.serverStateEnum.ServerState;
 @Secured("ROLE_USER")
 public interface EmployeeService {
 
-    /*
+    /**
      * retrieve Employee by login
      */
     public EmployeeEntity getEmployeeByLogin(String entity_login) ;
 
-    /*
-     * change password
+    /**
+     * update Employee Password
      */
-    public void changePassword(EmployeeEntity entity_id, String newPass);
+    public void updateEmployeePassword(EmployeeEntity entity_id, String newPass);
 
-    /*
+    /**
      * updating Employee Last Login timestamp
      */
     public void changeLastLogin(String userName);
 
-    /*
+    /**
      * retrieve server status
      */
     public ServerState getServerState(ServerEntity entity);
 
-    /*
+    /**
      * retrieve server details
      */
     public ServerEntity getServerDetails(ServerEntity entity);

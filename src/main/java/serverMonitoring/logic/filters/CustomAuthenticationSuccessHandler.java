@@ -18,11 +18,6 @@ import java.io.IOException;
  * Custom Authentication Success Handler
  * - Changing Last login
  * - Admin handler redirect
- * TODO - delete  sha translation
- * admin - 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
- * pass -  d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1
- * user -  04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb
- * xxxx -  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
  */
 public class CustomAuthenticationSuccessHandler
         extends SavedRequestAwareAuthenticationSuccessHandler {

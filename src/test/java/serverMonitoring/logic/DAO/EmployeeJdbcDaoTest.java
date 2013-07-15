@@ -24,6 +24,8 @@ import static org.junit.Assert.assertNotNull;
  * JUnit test for the {@link EmployeeJdbcDaoTest} class.
  * Testing DAO query to Data Base.
  * ApplicationContext will be loaded from "classpath:/application-context.xml"
+ * - employeeDao.findByLogin() and employeeDao.findAll() method are tested
+ *   inside methods and not separated
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -114,7 +116,7 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
 
 
     /**
-     * Testing selection of EmployeeEntity from Data Base
+     * Testing selection of EmployeeEntity from Data Base by ID
      */
     @Test
     public void testFindById() {
@@ -136,6 +138,40 @@ public class EmployeeJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         // selecting by ID
         Long id = entity2.getId();
         EmployeeEntity entity3 = employeeDao.findById(id);
+
+        // asserting
+        assertNotNull("failure - Employee entity must not be null", entity3);
+        assertEquals("failure - entity_name should be same", "Test_DAO_findById_Employee_Name", entity3.getEmployee_name());
+        assertEquals("failure - login should be same", "testDAOUser", entity3.getLogin());
+        assertEquals("failure - password should be same", pass, entity3.getPassword());
+        assertEquals("failure - password should be same", "test_email@mail.com", entity3.getEmail());
+        assertEquals("failure - isActive should be same", (Object) 1, entity3.getActive());
+        assertEquals("failure - isAdmin should be same", (Object) 0, entity3.getAdmin());
+    }
+
+    /**
+     * Testing selection of EmployeeEntity from Data Base by E-mail
+     */
+    @Test
+    public void testFindByEmail() {
+        EmployeeEntity entity = new EmployeeEntity();
+        String pass = passwordEncoder.encodePassword("testlalala", null);
+        entity.setEmployee_name("Test_DAO_findById_Employee_Name");
+        entity.setLogin("testDAOUser");
+        entity.setPassword(pass);
+        entity.setEmail("test_email@mail.com");
+        entity.setCreated(timestamp);
+        entity.setLastLogin(timestamp);
+        entity.setActive(1);
+        entity.setAdmin(0);
+        employeeDao.add(entity);
+
+        EmployeeEntity entity2 = employeeDao.findByLogin("testDAOUser");
+        assertNotNull("failure - Employee entity must not be null", entity2);
+
+        // selecting by ID
+        //String email = entity2.getEmail();
+        EmployeeEntity entity3 = employeeDao.findByEmail(entity2.getEmail());
 
         // asserting
         assertNotNull("failure - Employee entity must not be null", entity3);

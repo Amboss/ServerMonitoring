@@ -34,7 +34,7 @@ public class ServerEntity implements Serializable {
     //time of the the last status check.
     private Timestamp lastCheck;
 
-    /*
+    /**
     * The last state. The possible values ​​are:
     * OK   - server is up and responding correctly
     * WARN - server is running, but returns a response to the HTTP - code different than 200
@@ -42,7 +42,7 @@ public class ServerEntity implements Serializable {
     */
     private ServerState state;
 
-    /*
+    /**
     * If set to "0" - no need to carry out monitoring.
     * 0 = not active
     * 1 = active

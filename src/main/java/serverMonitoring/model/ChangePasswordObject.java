@@ -1,9 +1,11 @@
 package serverMonitoring.model;
 
+import java.io.Serializable;
+
 /**
  * Object for password change page
  */
-public class ChangePasswordObject {
+public class ChangePasswordObject implements Serializable {
 
     private String currentPassword;
 

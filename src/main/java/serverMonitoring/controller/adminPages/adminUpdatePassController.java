@@ -68,7 +68,7 @@ public class adminUpdatePassController extends CustomAbstractController {
         } else {
             EmployeeEntity entity = employeeService.getEmployeeByLogin(getUserName());
             String foo = changePasswordObject.getNewPassword();
-            employeeService.changePassword(entity, foo);
+            employeeService.updateEmployeePassword(entity, foo);
             status.setComplete();
         }
         return new ModelAndView("/employee/monitoring");

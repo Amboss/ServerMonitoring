@@ -20,6 +20,7 @@ import java.util.List;
 
 /**
  * This class embodies DAO functionality for EmployeeEntity
+ * TODO cleanup e.printStackTrace(); after production
  */
 @Transactional
 @Repository
@@ -198,6 +199,24 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
         String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE login= ?";
         try {
             Object[] args = {entity_login};
+            return this.jdbcTemplate.queryForObject(query, args, new EmployeeEntityMapper());
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+    }
+
+    /**
+     * Query retrieves EmployeeEntity entity by E-mail
+     *
+     * @return EmployeeEntity object
+     */
+    @Override
+    public EmployeeEntity findByEmail(String email) {
+        assert email != null;
+        String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE email= ?";
+        try {
+            Object[] args = {email};
             return this.jdbcTemplate.queryForObject(query, args, new EmployeeEntityMapper());
         } catch (RuntimeException e) {
             e.printStackTrace();

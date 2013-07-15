@@ -19,15 +19,13 @@ import serverMonitoring.util.web.validations.PasswordValidator;
 
 /**
  * Handles and retrieves /WEB-INF/ftl/employee/password_update.ftl
- *
- * @TODO fix error messages
  */
 @Controller
 @Secured("ROLE_USER")
 @RequestMapping("/employee/password_update")
-public class PasswordUpdatePage extends CustomAbstractController {
+public class PasswordUpdateController extends CustomAbstractController {
 
-    protected static Logger logger = Logger.getLogger(PasswordUpdatePage.class);
+    protected static Logger logger = Logger.getLogger(PasswordUpdateController.class);
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
     private String catalogPath = "employee/";
     private EmployeeService employeeService;
@@ -49,7 +47,7 @@ public class PasswordUpdatePage extends CustomAbstractController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView loadPage() {
-        showRequestLog("password_update");
+        showRequestLog("Received request to show password_update page");
         ModelAndView model = new ModelAndView("/employee/password_update");
         model.addObject("pass_object", new ChangePasswordObject());
         return model;
@@ -57,7 +55,9 @@ public class PasswordUpdatePage extends CustomAbstractController {
 
     /**
      * Action on button "Cancel" pressed.
-     *  - return redirect to monitoring page
+     *
+     * @return redirect to monitoring page
+     * TODO fix cancel button
      */
     @RequestMapping(params = "cancel", method = RequestMethod.POST)
     protected ModelAndView processCancel() {
@@ -67,6 +67,9 @@ public class PasswordUpdatePage extends CustomAbstractController {
 
     /**
      * Action on button "Change password" pressed.
+     *
+     * @return ftl page regarding of the validation result
+     * TODO fix error messages
      */
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView onSubmit(@ModelAttribute("pass_object")
@@ -75,11 +78,12 @@ public class PasswordUpdatePage extends CustomAbstractController {
                                  SessionStatus status) {
 
         passwordValidator.validate(changePasswordObject, errors);
+
         if (errors.hasErrors()) {
             return new ModelAndView("/employee/password_update", "pass_object", errors);
         } else {
             EmployeeEntity entity = employeeService.getEmployeeByLogin(getUserName());
-            employeeService.changePassword(entity, changePasswordObject.getNewPassword());
+            employeeService.updateEmployeePassword(entity, changePasswordObject.getNewPassword());
             status.setComplete();
         }
         return new ModelAndView("/employee/monitoring");

@@ -19,7 +19,7 @@ import serverMonitoring.model.EmployeeEntity;
 @Component
 public class PasswordValidator implements Validator {
 
-    protected static Logger userAccessLogger = Logger.getLogger(PasswordValidator.class);
+    protected static Logger passwordValidatorLogger = Logger.getLogger(PasswordValidator.class);
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
     private EmployeeService employeeService;
     private EmployeeEntity entity;
@@ -35,6 +35,10 @@ public class PasswordValidator implements Validator {
         return ChangePasswordObject.class.isAssignableFrom(clazz);
     }
 
+    /**
+     * @param target the object that is to be validated (can be {@code null})
+     * @param errors contextual state about the validation process (never {@code null})
+     */
     @Override
     public void validate(Object target, Errors errors) {
 
@@ -55,18 +59,13 @@ public class PasswordValidator implements Validator {
 
         /**
          *  check if current password is correct, while excluding "admin" entity.
-         *  04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb
-         *  04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb
          */
         if (!login.equals("admin")) {
             entity = employeeService.getEmployeeByLogin(login);
-            assert entity != null;
-            String pass2 = passwordEncoder.encodePassword(passwordObject.getCurrentPassword(), null);
 
             // check if DB pass equals entered old pass
             if (!entity.getPassword().equals(passwordEncoder.encodePassword(passwordObject.getCurrentPassword(), null))){
-                userAccessLogger.error("wrong.currentPassword \n" + entity.getPassword()
-                + "\n\t" + pass2);
+                passwordValidatorLogger.error("wrong.currentPassword");
                 errors.rejectValue("currentPassword", "wrong.currentPassword");
             }
         }
@@ -75,7 +74,7 @@ public class PasswordValidator implements Validator {
          *  check if confirm password is correct
          */
         if (!passwordObject.getNewPassword().equals(passwordObject.getConfirmPassword())) {
-            userAccessLogger.error("wrong.password");
+            passwordValidatorLogger.error("wrong.password");
             errors.rejectValue("confirmPassword", "wrong.password");
         }
     }

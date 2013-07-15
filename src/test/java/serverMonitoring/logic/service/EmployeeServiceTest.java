@@ -37,7 +37,7 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
     private AdminService adminService;
 
     @Autowired
-    public void setAdminService(EmployeeService employeeService) {
+    public void setEmployeeService(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
@@ -54,12 +54,11 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
     }
 
     /**
-     * Retrieving employee with login "user" and changing password to "54321",
-     * repeating retrieve again,"user" have to contain a new password
+     * Retrieving employee with login "testUser" and changing password to "54321",
      * Testing retrieved Employee entity.getPassword() value.
      */
     @Test
-    public void testChangePassword() {
+    public void testPasswordUpdate() {
         EmployeeEntity entity = new EmployeeEntity();
         String pass = passwordEncoder.encodePassword("testpass", null);
         entity.setEmployee_name("Service_Test_Register");
@@ -74,7 +73,7 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
 
         // updating entity password
         entity.setLogin("testUser");
-        employeeService.changePassword(entity, "54321");
+        employeeService.updateEmployeePassword(entity, "54321");
 
         EmployeeEntity entity2 = employeeService.getEmployeeByLogin("testUser");
         assertNotNull(entity2);

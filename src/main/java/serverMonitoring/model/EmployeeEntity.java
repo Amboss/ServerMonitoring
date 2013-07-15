@@ -29,14 +29,14 @@ public class EmployeeEntity implements Serializable {
     //date of last login.
     private Timestamp lastLogin;
 
-    /*
+    /**
      * Black List, an employee with a value of  "0" - can't log in.
      * 0 = not active
      * 1 = active
      */
     private Integer active;
 
-    /*
+    /**
      * Access level.
      * 0 = regular role
      * 1 = admin role

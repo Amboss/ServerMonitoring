@@ -49,7 +49,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * updating Employee password
      */
     @Override
-    public void changePassword(EmployeeEntity entity, String newPass) {
+    public void updateEmployeePassword(EmployeeEntity entity, String newPass) {
         employeeLogger.debug("updating Employee Password with login: " + entity.getLogin());
         // selecting target entity
 
