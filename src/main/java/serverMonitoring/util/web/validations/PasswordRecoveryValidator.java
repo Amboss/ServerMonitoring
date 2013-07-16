@@ -31,8 +31,6 @@ public class PasswordRecoveryValidator implements Validator {
         return PasswordRecoveryObject.class.isAssignableFrom(clazz);
     }
 
-
-
     /**
      * @param target the object that is to be validated (can be {@code null})
      * @param errors contextual state about the validation process (never {@code null})
@@ -42,23 +40,20 @@ public class PasswordRecoveryValidator implements Validator {
 
         PasswordRecoveryObject passwordRecoveryObject = (PasswordRecoveryObject) target;
 
-        String email = passwordRecoveryObject.getEmail();
-        assert email != null;
-
         /**
          *  check if any employee exists with provided E-mail
          */
         try {
             employeeEntity = anonymousService.getEmployeeByEmail(passwordRecoveryObject.getEmail());
-        } catch (NullPointerException e) {
+        } catch (RuntimeException e) {
             userAccessLogger.error("email.rejected");
             errors.rejectValue("email", "email.rejected");
         }
 
         /**
-         *  check if employee access is not expired
+         *  check if employee Active state is not expired
          */
-        if (employeeEntity.getActive().equals(0)) {
+        if (employeeEntity != null && employeeEntity.getActive().equals(0)) {
             userAccessLogger.error("email.access_denied");
             errors.rejectValue("email", "email.access_denied");
         }

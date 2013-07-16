@@ -19,6 +19,7 @@
                 Server monitoring service. Your account have to be active
                  for successful recovery. If you don't receive any recovery
                  E-mail please contact us.</p>
+            <#include "../common/message/login_message.ftl"/>
             <#if RequestParameters['email']??>
                 <span class="help-inline alert alert-error" path="confirmPassword">
                     <@spring.message "<br>", "errors"/>
@@ -43,9 +44,9 @@
                     <input class="btn btn-primary"
                             type='submit'
                             name='Generate password'
-                            value='Generate password' />
+                            value='Generate Password' />
                     <input class="btn"
-                            type='reset'
+                            type='submit'
                             name='cancel'
                             value='Cancel' />
                 </div>

@@ -17,6 +17,8 @@ import serverMonitoring.model.ChangePasswordObject;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.util.web.validations.PasswordValidator;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Handles and retrieves /WEB-INF/ftl/employee/password_update.ftl
  */
@@ -53,14 +55,13 @@ public class PasswordUpdateController extends CustomAbstractController {
         return model;
     }
 
+
     /**
      * Action on button "Cancel" pressed.
-     *
      * @return redirect to monitoring page
-     * TODO fix cancel button
      */
     @RequestMapping(params = "cancel", method = RequestMethod.POST)
-    protected ModelAndView processCancel() {
+    protected ModelAndView onCancel(HttpServletRequest request) {
         showRequestLog("monitoring");
         return new ModelAndView("/employee/monitoring");
     }

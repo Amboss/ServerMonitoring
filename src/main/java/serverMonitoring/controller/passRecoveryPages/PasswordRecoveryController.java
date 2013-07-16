@@ -18,6 +18,8 @@ import serverMonitoring.model.PasswordRecoveryObject;
 import serverMonitoring.util.CustomUtils;
 import serverMonitoring.util.web.validations.PasswordRecoveryValidator;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Handles and retrieves /WEB-INF/ftl/authorization/password_recovery.ftl
  */
@@ -62,11 +64,11 @@ public class PasswordRecoveryController extends CustomAbstractController {
 
     /**
      * Action on button "Cancel" pressed.
-     *  - return redirect to monitoring page
-     * TODO fix cancel button
+     * - return redirect to index page
+     *  TODO CLEAN type='submit' name='cancel'  value='Cancel'
      */
     @RequestMapping(params = "cancel", method = RequestMethod.POST)
-    protected ModelAndView processCancel() {
+    protected ModelAndView onCancel(HttpServletRequest request) {
         showRequestLog("monitoring");
         return new ModelAndView("index");
     }

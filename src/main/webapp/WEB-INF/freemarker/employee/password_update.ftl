@@ -75,7 +75,7 @@
                             name='update'
                             value='Change password'/>
                     <input class="btn"
-                            type='reset'
+                            type='submit'
                             name='cancel'
                             value='Cancel'/>
                 </div>

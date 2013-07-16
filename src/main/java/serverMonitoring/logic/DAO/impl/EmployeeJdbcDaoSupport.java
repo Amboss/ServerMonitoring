@@ -20,7 +20,6 @@ import java.util.List;
 
 /**
  * This class embodies DAO functionality for EmployeeEntity
- * TODO cleanup e.printStackTrace(); after production
  */
 @Transactional
 @Repository
@@ -151,7 +150,6 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
                     entity.getId()};
             this.jdbcTemplate.update(query, args);
         } catch (RuntimeException e) {
-            e.printStackTrace();
             throw new RuntimeException();
         }
     }
@@ -201,7 +199,6 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
             Object[] args = {entity_login};
             return this.jdbcTemplate.queryForObject(query, args, new EmployeeEntityMapper());
         } catch (RuntimeException e) {
-            e.printStackTrace();
             throw new RuntimeException();
         }
     }
@@ -219,7 +216,6 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
             Object[] args = {email};
             return this.jdbcTemplate.queryForObject(query, args, new EmployeeEntityMapper());
         } catch (RuntimeException e) {
-            e.printStackTrace();
             throw new RuntimeException();
         }
     }
