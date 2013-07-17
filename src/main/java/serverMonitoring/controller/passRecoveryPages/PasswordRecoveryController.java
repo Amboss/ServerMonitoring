@@ -19,6 +19,7 @@ import serverMonitoring.util.CustomUtils;
 import serverMonitoring.util.web.validations.PasswordRecoveryValidator;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Handles and retrieves /WEB-INF/ftl/authorization/password_recovery.ftl
@@ -29,9 +30,13 @@ import javax.servlet.http.HttpServletRequest;
 public class PasswordRecoveryController extends CustomAbstractController {
 
     protected static Logger logger = Logger.getLogger(PasswordRecoveryController.class);
+
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
+
     private AnonymousService anonymousService;
+
     private PasswordRecoveryValidator passwordRecoveryValidator;
+
     private CustomUtils customUtils;
 
     @Autowired
@@ -55,17 +60,19 @@ public class PasswordRecoveryController extends CustomAbstractController {
      * @return the name of the ftl page.
      */
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView loadPage() {
+    public ModelAndView loadPage(HttpServletRequest request,
+                                 HttpServletResponse response) {
         showRequestLog("Received request to show password_recovery page");
-        ModelAndView model = new ModelAndView("/authorization/password_recovery");
-        model.addObject("pass_recovery", new PasswordRecoveryObject());
-        return model;
+
+        return new ModelAndView("/authorization/password_recovery",
+                "passRecovery", new PasswordRecoveryObject());
+
     }
 
     /**
      * Action on button "Cancel" pressed.
-     * - return redirect to index page
-     *  TODO CLEAN type='submit' name='cancel'  value='Cancel'
+     * @return redirect to index page
+     *  TODO CLEAN AFTER PRODUCTION: type='submit' name='cancel'  value='Cancel'
      */
     @RequestMapping(params = "cancel", method = RequestMethod.POST)
     protected ModelAndView onCancel(HttpServletRequest request) {
@@ -79,15 +86,15 @@ public class PasswordRecoveryController extends CustomAbstractController {
      * @return ftl page regarding of the validation result
      */
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView onSubmit(@ModelAttribute("pass_recovery")
+    public ModelAndView onSubmit(@ModelAttribute("passRecovery")
                                  PasswordRecoveryObject passwordRecoveryObject,
-                                 BindingResult errors,
+                                 BindingResult result,
                                  SessionStatus status) {
 
-        passwordRecoveryValidator.validate(passwordRecoveryObject, errors);
+        passwordRecoveryValidator.validate(passwordRecoveryObject, result);
 
-        if (errors.hasErrors()) {
-            return new ModelAndView("/authorization/password_recovery", "pass_recovery", errors);
+        if (result.hasErrors()) {
+            return new ModelAndView("/authorization/password_recovery", "passRecovery", passwordRecoveryObject);
         } else {
             EmployeeEntity entity = anonymousService.getEmployeeByEmail(passwordRecoveryObject.getEmail());
             String newPass = customUtils.getNewRandomGeneratedPassword();

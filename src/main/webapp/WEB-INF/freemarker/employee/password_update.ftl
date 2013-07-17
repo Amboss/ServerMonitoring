@@ -16,14 +16,18 @@
 </@security.authorize>
 
 <@com.page title="Password change">
+
     <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
         <h1>Password update</h1>
     </div>
+
     <#-- ===================== Main row for Password update form ========================= -->
+    <#-- TODO fix error message view -->
     <div class="row-fluid">
-        <form class="form-horizontal" method="post" autocomplete="off" >
+        <form id="passUpdateForm" class="form-horizontal" method="post" autocomplete="off" >
             <h3>Please enter required information:</h3>
+
             <#-- ===================== Current Password ========================= -->
             <div class="control-group info">
                 <label class="control-label" for="current_password">Current Password</label>
@@ -39,6 +43,7 @@
                     </#if>
                 </div>
             </div>
+
             <#-- ===================== New Password ============================= -->
             <div class="control-group info">
                 <label class="control-label" for='new_password'>New Password</label>
@@ -53,6 +58,7 @@
                     </#if>
                 </div>
             </div>
+
             <#-- ===================== Confirm Password ========================= -->
             <div class="control-group info">
                 <label class="control-label" for="confirm_password">Confirm Password</label>
@@ -67,6 +73,7 @@
                     </#if>
                 </div>
             </div>
+
             <#-- ===================== Buttons ================================== -->
             <div class="control-group">
                 <div class="controls">

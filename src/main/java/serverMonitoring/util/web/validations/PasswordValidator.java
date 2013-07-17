@@ -20,8 +20,11 @@ import serverMonitoring.model.EmployeeEntity;
 public class PasswordValidator implements Validator {
 
     protected static Logger passwordValidatorLogger = Logger.getLogger(PasswordValidator.class);
+
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
+
     private EmployeeService employeeService;
+
     private EmployeeEntity entity;
 
     @Autowired

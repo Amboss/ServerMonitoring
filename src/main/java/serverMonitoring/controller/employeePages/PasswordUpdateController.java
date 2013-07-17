@@ -50,9 +50,7 @@ public class PasswordUpdateController extends CustomAbstractController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView loadPage() {
         showRequestLog("Received request to show password_update page");
-        ModelAndView model = new ModelAndView("/employee/password_update");
-        model.addObject("pass_object", new ChangePasswordObject());
-        return model;
+        return new ModelAndView("/employee/password_update", "pass_object", new ChangePasswordObject());
     }
 
 

@@ -16,8 +16,11 @@ import serverMonitoring.model.PasswordRecoveryObject;
  */
 @Component
 public class PasswordRecoveryValidator implements Validator {
+
     protected static Logger userAccessLogger = Logger.getLogger(PasswordRecoveryValidator.class);
+
     private AnonymousService anonymousService;
+
     private EmployeeEntity employeeEntity;
 
     @Autowired
@@ -41,21 +44,36 @@ public class PasswordRecoveryValidator implements Validator {
         PasswordRecoveryObject passwordRecoveryObject = (PasswordRecoveryObject) target;
 
         /**
+         *  check if E-mail form is not empty on submit
+         */
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email",
+//                "required.email", "Field name is required.");
+        /**
          *  check if any employee exists with provided E-mail
          */
-        try {
-            employeeEntity = anonymousService.getEmployeeByEmail(passwordRecoveryObject.getEmail());
-        } catch (RuntimeException e) {
-            userAccessLogger.error("email.rejected");
-            errors.rejectValue("email", "email.rejected");
+        if (passwordRecoveryObject.getEmail().isEmpty()) {
+            userAccessLogger.error("required.email");
+            errors.rejectValue("email", "required.email");
+        } else {
+            try {
+                employeeEntity = anonymousService.getEmployeeByEmail(passwordRecoveryObject.getEmail());
+            } catch (RuntimeException e) {
+                userAccessLogger.error("email.rejected");
+                errors.rejectValue("email", "email.rejected");
+            }
+
+            /**
+             *  check if employee Active state is not expired
+             */
+            if(employeeEntity != null && passwordRecoveryObject.getEmail().equals(employeeEntity.getEmail())) {
+                if (employeeEntity.getActive().equals(0)) {
+                    userAccessLogger.error("email.access_denied");
+                    errors.rejectValue("email", "email.access_denied");
+                }
+            }
         }
 
-        /**
-         *  check if employee Active state is not expired
-         */
-        if (employeeEntity != null && employeeEntity.getActive().equals(0)) {
-            userAccessLogger.error("email.access_denied");
-            errors.rejectValue("email", "email.access_denied");
-        }
+
+
     }
 }

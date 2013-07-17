@@ -24,8 +24,10 @@
         - disappears if user successfully logged in
      ============================================================== -->
 <@security.authorize ifNotGranted="ROLE_ADMIN, ROLE_USER">
-    <form action="<@spring.url value='/j_spring_security_check'/>"
-                                class="navbar-form pull-right" method="POST" >
+    <form  class="navbar-form pull-right"
+            id="loginForm"
+            method="POST"
+            action="<@spring.url value='/j_spring_security_check'/>" >
         <input class="span2"
                 id="j_username"
                 name="j_username"

@@ -43,6 +43,8 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
 
     /**
      * Adds new Employee entity with new Id assignment
+     * @param entity must contain all supported values
+     * @throws RuntimeException if query meets any error
      */
     @Override
     public void add(EmployeeEntity entity) {
@@ -71,6 +73,8 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
 
     /**
      * Adds group of Employee entities
+     * @param entity must contain list with all supported values
+     * @throws RuntimeException if query meets any error
      */
     @Override
     public void addGroup(final List<EmployeeEntity> entity) {
@@ -98,6 +102,9 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
 
     /**
      * Updating existing Employee entity
+     * @param entity didn't have to contain all supported values
+     *  - if any form is missing, it will be replaced with currant data base value
+     * @throws RuntimeException if query meets any error
      */
     @Override
     public void update(EmployeeEntity entity) {
@@ -156,6 +163,7 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
 
     /**
      * Deleting existing Employee entity
+     * @throws RuntimeException if query meets any error
      */
     @Override
     public void delete(Long entity_id) {
@@ -173,6 +181,7 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
      * Retrieves EmployeeEntity entity by Id
      *
      * @return EmployeeEntity object
+     * @throws RuntimeException if query meets any error
      */
     @Override
     public EmployeeEntity findById(Long entity_id) {
@@ -190,6 +199,7 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
      * Retrieves EmployeeEntity entity by login
      *
      * @return EmployeeEntity object
+     * @throws RuntimeException if query meets any error
      */
     @Override
     public EmployeeEntity findByLogin(String entity_login) {
@@ -207,6 +217,7 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
      * Query retrieves EmployeeEntity entity by E-mail
      *
      * @return EmployeeEntity object
+     * @throws RuntimeException if query meets any error
      */
     @Override
     public EmployeeEntity findByEmail(String email) {
@@ -224,6 +235,7 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
      * Retrieves all EmployeeEntity entity
      *
      * @return EmployeeEntity list
+     * @throws RuntimeException if query meets any error
      */
     @Override
     public List<EmployeeEntity> findAll() {
@@ -239,6 +251,7 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
      * Supporting inner class to retrieve EmployeeEntity objects
      *
      * @return EmployeeEntity RowMapp object
+     * @throws SQLException if query meets any error
      */
     private static final class EmployeeEntityMapper implements RowMapper<EmployeeEntity> {
         public EmployeeEntity mapRow(ResultSet rs, int rowNum) {

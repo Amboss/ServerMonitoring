@@ -9,6 +9,13 @@ public class PasswordRecoveryObject implements Serializable {
 
     private String email;
 
+    public PasswordRecoveryObject() {
+    }
+
+    public PasswordRecoveryObject(String email) {
+        this.email = email;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -17,5 +24,10 @@ public class PasswordRecoveryObject implements Serializable {
         this.email = email;
     }
 
-
+    @Override
+    public String toString() {
+        return "PasswordRecoveryObject{" +
+                "email='" + email + '\'' +
+                '}';
+    }
 }

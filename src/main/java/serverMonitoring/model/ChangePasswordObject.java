@@ -13,6 +13,17 @@ public class ChangePasswordObject implements Serializable {
 
     private String confirmPassword;
 
+    public ChangePasswordObject() {
+    }
+
+    public ChangePasswordObject(String currentPassword,
+                                String newPassword,
+                                String confirmPassword) {
+        this.currentPassword = currentPassword;
+        this.newPassword = newPassword;
+        this.confirmPassword = confirmPassword;
+    }
+
     public String getCurrentPassword() {
         return currentPassword;
     }
@@ -35,5 +46,14 @@ public class ChangePasswordObject implements Serializable {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    @Override
+    public String toString() {
+        return "ChangePasswordObject{" +
+                "currentPassword='" + currentPassword + '\'' +
+                ", newPassword='" + newPassword + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                '}';
     }
 }
