@@ -120,11 +120,11 @@ public class PasswordRecoveryController extends CustomAbstractController {
             /**
              * sending email with new password
              */
-            passwordRecoveryMail.sendMail("ServerMonitoringPassword Recovery",
+            passwordRecoveryMail.sendMail("huskyserge@gmail.com",
                     passwordRecoveryModel.getEmail(),
                     "Attention! Your password has been changed!",
                     "We have received your request for password recovery\n" +
-                    "\n" + "Your user name: " + getUserName() +
+                    "\n" + "Your user name: " + entity.getLogin() +
                     "\n" + "Your new password is: " + newPass +
                     "\n" + "\n" + "Server Monitoring Service");
 

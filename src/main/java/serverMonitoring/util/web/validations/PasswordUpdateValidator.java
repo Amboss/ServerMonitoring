@@ -9,8 +9,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import serverMonitoring.logic.service.EmployeeService;
-import serverMonitoring.model.PasswordUpdateModel;
 import serverMonitoring.model.EmployeeEntity;
+import serverMonitoring.model.PasswordUpdateModel;
 
 /**
  * Validator for change password page

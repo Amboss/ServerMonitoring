@@ -13,8 +13,8 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import serverMonitoring.controller.CustomAbstractController;
 import serverMonitoring.logic.service.EmployeeService;
-import serverMonitoring.model.PasswordUpdateModel;
 import serverMonitoring.model.EmployeeEntity;
+import serverMonitoring.model.PasswordUpdateModel;
 import serverMonitoring.util.web.validations.PasswordUpdateValidator;
 
 import javax.servlet.http.HttpServletRequest;

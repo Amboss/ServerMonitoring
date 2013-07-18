@@ -1,26 +1,31 @@
 package serverMonitoring.util.mail.impl;
 
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.stereotype.Component;
+import serverMonitoring.util.mail.PasswordRecoveryMail;
 
 import javax.mail.MessagingException;
 
 /**
  * Handel's mail sending functionality for password recover page.
  */
-@Component
-public class PasswordRecoveryMailImpl {
+
+public class PasswordRecoveryMailImpl implements PasswordRecoveryMail{
+
+    protected static Logger logger = Logger.getLogger(PasswordRecoveryMailImpl.class);
 
     private MailSender mailSender;
 
+    @Autowired
     public void setMailSender(MailSender mailSender) {
         this.mailSender = mailSender;
     }
 
     /**
-     * @param from    - must contain address of sender,
-     * @param to      - must contain address of target,
+     * @param from - must contain address of sender,
+     * @param to - must contain address of target,
      * @param subject - must be included with short description,
      * @param message - main message of mail.
      * @throws RuntimeException if any param is empty
@@ -37,6 +42,7 @@ public class PasswordRecoveryMailImpl {
                     simpleMessage.setSubject(subject);
                     simpleMessage.setText(message);
                     mailSender.send(simpleMessage);
+                    logger.debug("Mail has been sent successfully");
                 } else {
                     throw new MessagingException("Subject and message of mail is empty!");
                 }
@@ -44,8 +50,7 @@ public class PasswordRecoveryMailImpl {
                 throw new MessagingException("Address of object and target is empty!");
             }
         } catch (MessagingException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-
     }
 }
