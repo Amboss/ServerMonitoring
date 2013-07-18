@@ -5,14 +5,14 @@ import java.io.Serializable;
 /**
  * Object for password recovery page
  */
-public class PasswordRecoveryObject implements Serializable {
+public class PasswordRecoveryModel implements Serializable {
 
     private String email;
 
-    public PasswordRecoveryObject() {
+    public PasswordRecoveryModel() {
     }
 
-    public PasswordRecoveryObject(String email) {
+    public PasswordRecoveryModel(String email) {
         this.email = email;
     }
 
@@ -26,7 +26,7 @@ public class PasswordRecoveryObject implements Serializable {
 
     @Override
     public String toString() {
-        return "PasswordRecoveryObject{" +
+        return "PasswordRecoveryModel{" +
                 "email='" + email + '\'' +
                 '}';
     }

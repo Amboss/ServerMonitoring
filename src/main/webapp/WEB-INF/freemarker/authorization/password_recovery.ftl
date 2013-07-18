@@ -38,7 +38,7 @@
                     <p>A new password will be generated and will be sent to your E-mail </br>
                     if access is granted.</p>
                     <@spring.formInput "passRecovery.email", "placeholder='E-mail'"/>
-                    <@spring.showErrors " ", 'alert alert-error'/>
+                    <@spring.showErrors " ", "alert alert-error"/>
                 </div>
 
                 <#-- ===================== Buttons ================================== -->

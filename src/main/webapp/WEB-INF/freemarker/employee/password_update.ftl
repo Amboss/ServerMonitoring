@@ -4,9 +4,8 @@
         - for admin_role the layout wil contain service menu on left side bar
      ===================================================================== -->
 <#import "/spring.ftl" as spring />
-<#assign spring=JspTaglibs["/WEB-INF/tlds/spring.tld"] />
 <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
-<#assign form=JspTaglibs["/WEB-INF/tlds/spring-form.tld"] />
+<@spring.bind "passUpdate" />
 
 <@security.authorize ifAnyGranted="ROLE_USER">
     <#import "/layout/employee.ftl" as com>
@@ -23,7 +22,6 @@
     </div>
 
     <#-- ===================== Main row for Password update form ========================= -->
-    <#-- TODO fix error message view -->
     <div class="row-fluid">
         <form id="passUpdateForm" class="form-horizontal" method="post" autocomplete="off" >
             <h3>Please enter required information:</h3>
@@ -32,15 +30,8 @@
             <div class="control-group info">
                 <label class="control-label" for="current_password">Current Password</label>
                 <div class="controls">
-                    <input class="input-xlarge"
-                            name='currentPassword'
-                            type='password'
-                            autofocus/>
-                    <#if RequestParameters['currentPassword']??>
-                        <span class="help-inline alert alert-error" path="currentPassword">
-                            <@spring.message "<br>", "errors"/>
-                        </span>
-                    </#if>
+                   <@spring.formPasswordInput "passUpdate.currentPassword", "input-xlarge"/>
+                   <@spring.showErrors " ", "alert alert-error"/>
                 </div>
             </div>
 
@@ -48,14 +39,8 @@
             <div class="control-group info">
                 <label class="control-label" for='new_password'>New Password</label>
                 <div class="controls">
-                    <input class="input-xlarge"
-                            name='newPassword'
-                            type='password' />
-                    <#if RequestParameters['newPassword']??>
-                        <span class="help-inline alert alert-error" path="newPassword">
-                            <@spring.message "<br>", "errors"/>
-                        </span>
-                    </#if>
+                    <@spring.formPasswordInput "passUpdate.newPassword", "input-xlarge"/>
+                    <@spring.showErrors " ", "alert alert-error"/>
                 </div>
             </div>
 
@@ -63,14 +48,8 @@
             <div class="control-group info">
                 <label class="control-label" for="confirm_password">Confirm Password</label>
                 <div class="controls">
-                    <input class="input-xlarge"
-                            name='confirmPassword'
-                            type='password' />
-                    <#if RequestParameters['confirmPassword']??>
-                        <span class="help-inline alert alert-error" path="confirmPassword">
-                            <@spring.message "<br>", "errors"/>
-                        </span>
-                    </#if>
+                    <@spring.formPasswordInput "passUpdate.confirmPassword", "input-xlarge"/>
+                    <@spring.showErrors " ", "alert alert-error"/>
                 </div>
             </div>
 

@@ -14,8 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import serverMonitoring.controller.CustomAbstractController;
 import serverMonitoring.logic.service.AnonymousService;
 import serverMonitoring.model.EmployeeEntity;
-import serverMonitoring.model.PasswordRecoveryObject;
-import serverMonitoring.util.CustomUtils;
+import serverMonitoring.model.PasswordRecoveryModel;
+import serverMonitoring.util.common.CustomUtils;
+import serverMonitoring.util.mail.PasswordRecoveryMail;
 import serverMonitoring.util.web.validations.PasswordRecoveryValidator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +38,8 @@ public class PasswordRecoveryController extends CustomAbstractController {
 
     private PasswordRecoveryValidator passwordRecoveryValidator;
 
+    private PasswordRecoveryMail passwordRecoveryMail;
+
     private CustomUtils customUtils;
 
     @Autowired
@@ -54,6 +57,11 @@ public class PasswordRecoveryController extends CustomAbstractController {
         this.customUtils = customUtils;
     }
 
+    @Autowired
+    public void setPasswordRecoveryMail(PasswordRecoveryMail passwordRecoveryMail) {
+        this.passwordRecoveryMail = passwordRecoveryMail;
+    }
+
     /**
      * Retrieves /WEB-INF/ftl/authorization/password_recovery.ftl
      *
@@ -65,14 +73,14 @@ public class PasswordRecoveryController extends CustomAbstractController {
         showRequestLog("Received request to show password_recovery page");
 
         return new ModelAndView("/authorization/password_recovery",
-                "passRecovery", new PasswordRecoveryObject());
+                "passRecovery", new PasswordRecoveryModel());
 
     }
 
     /**
      * Action on button "Cancel" pressed.
+     *
      * @return redirect to index page
-     *  TODO CLEAN AFTER PRODUCTION: type='submit' name='cancel'  value='Cancel'
      */
     @RequestMapping(params = "cancel", method = RequestMethod.POST)
     protected ModelAndView onCancel(HttpServletRequest request) {
@@ -84,21 +92,42 @@ public class PasswordRecoveryController extends CustomAbstractController {
      * Action on button "Generate new password" pressed.
      *
      * @return ftl page regarding of the validation result
+     * - if no error:
+     *   >> will change employee password
+     *   >> will send to employee address e-mail with new password
      */
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView onSubmit(@ModelAttribute("passRecovery")
-                                 PasswordRecoveryObject passwordRecoveryObject,
+                                 PasswordRecoveryModel passwordRecoveryModel,
                                  BindingResult result,
                                  SessionStatus status) {
 
-        passwordRecoveryValidator.validate(passwordRecoveryObject, result);
+        passwordRecoveryValidator.validate(passwordRecoveryModel, result);
 
         if (result.hasErrors()) {
-            return new ModelAndView("/authorization/password_recovery", "passRecovery", passwordRecoveryObject);
+            return new ModelAndView("/authorization/password_recovery",
+                    "passRecovery", passwordRecoveryModel);
         } else {
-            EmployeeEntity entity = anonymousService.getEmployeeByEmail(passwordRecoveryObject.getEmail());
+            EmployeeEntity entity = anonymousService.getEmployeeByEmail(
+                    passwordRecoveryModel.getEmail());
             String newPass = customUtils.getNewRandomGeneratedPassword();
+
+            /**
+             * changing password of employee
+             */
             anonymousService.updateEmployeePassword(entity, newPass);
+
+            /**
+             * sending email with new password
+             */
+            passwordRecoveryMail.sendMail("ServerMonitoringPassword Recovery",
+                    passwordRecoveryModel.getEmail(),
+                    "Attention! Your password has been changed!",
+                    "We have received your request for password recovery\n" +
+                    "\n" + "Your user name: " + getUserName() +
+                    "\n" + "Your new password is: " + newPass +
+                    "\n" + "\n" + "Server Monitoring Service");
+
             status.setComplete();
         }
         return new ModelAndView("index");

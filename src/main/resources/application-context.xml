@@ -21,6 +21,7 @@
     <import resource="classpath:/spring/spring-data-source.xml"/>
     <import resource="classpath:/spring/spring-logging.xml"/>
     <import resource="classpath:/spring/spring-mvc.xml"/>
+    <import resource="classpath:/spring/spring-mail.xml"/>
 
     <!-- JNDI initiation  DEPRECATED  -->
     <!--<jee:jndi-lookup id="dataSource" jndi-name="jdbc/dbConnection"-->

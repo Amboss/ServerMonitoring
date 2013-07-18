@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Object for password change page
  */
-public class ChangePasswordObject implements Serializable {
+public class PasswordUpdateModel implements Serializable {
 
     private String currentPassword;
 
@@ -13,12 +13,12 @@ public class ChangePasswordObject implements Serializable {
 
     private String confirmPassword;
 
-    public ChangePasswordObject() {
+    public PasswordUpdateModel() {
     }
 
-    public ChangePasswordObject(String currentPassword,
-                                String newPassword,
-                                String confirmPassword) {
+    public PasswordUpdateModel(String currentPassword,
+                               String newPassword,
+                               String confirmPassword) {
         this.currentPassword = currentPassword;
         this.newPassword = newPassword;
         this.confirmPassword = confirmPassword;
@@ -50,7 +50,7 @@ public class ChangePasswordObject implements Serializable {
 
     @Override
     public String toString() {
-        return "ChangePasswordObject{" +
+        return "PasswordUpdateModel{" +
                 "currentPassword='" + currentPassword + '\'' +
                 ", newPassword='" + newPassword + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +

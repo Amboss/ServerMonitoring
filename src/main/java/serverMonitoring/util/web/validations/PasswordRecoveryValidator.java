@@ -7,7 +7,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import serverMonitoring.logic.service.AnonymousService;
 import serverMonitoring.model.EmployeeEntity;
-import serverMonitoring.model.PasswordRecoveryObject;
+import serverMonitoring.model.PasswordRecoveryModel;
 
 /**
  * Validator for password recovery page functionality
@@ -31,7 +31,7 @@ public class PasswordRecoveryValidator implements Validator {
     @Override
     public boolean supports(Class clazz) {
         //just validate the Customer instances
-        return PasswordRecoveryObject.class.isAssignableFrom(clazz);
+        return PasswordRecoveryModel.class.isAssignableFrom(clazz);
     }
 
     /**
@@ -41,22 +41,17 @@ public class PasswordRecoveryValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
 
-        PasswordRecoveryObject passwordRecoveryObject = (PasswordRecoveryObject) target;
+        PasswordRecoveryModel passwordRecoveryModel = (PasswordRecoveryModel) target;
 
-        /**
-         *  check if E-mail form is not empty on submit
-         */
-//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email",
-//                "required.email", "Field name is required.");
         /**
          *  check if any employee exists with provided E-mail
          */
-        if (passwordRecoveryObject.getEmail().isEmpty()) {
+        if (passwordRecoveryModel.getEmail().isEmpty()) {
             userAccessLogger.error("required.email");
             errors.rejectValue("email", "required.email");
         } else {
             try {
-                employeeEntity = anonymousService.getEmployeeByEmail(passwordRecoveryObject.getEmail());
+                employeeEntity = anonymousService.getEmployeeByEmail(passwordRecoveryModel.getEmail());
             } catch (RuntimeException e) {
                 userAccessLogger.error("email.rejected");
                 errors.rejectValue("email", "email.rejected");
@@ -65,7 +60,7 @@ public class PasswordRecoveryValidator implements Validator {
             /**
              *  check if employee Active state is not expired
              */
-            if(employeeEntity != null && passwordRecoveryObject.getEmail().equals(employeeEntity.getEmail())) {
+            if(employeeEntity != null && passwordRecoveryModel.getEmail().equals(employeeEntity.getEmail())) {
                 if (employeeEntity.getActive().equals(0)) {
                     userAccessLogger.error("email.access_denied");
                     errors.rejectValue("email", "email.access_denied");

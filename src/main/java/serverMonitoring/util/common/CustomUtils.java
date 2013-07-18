@@ -1,4 +1,4 @@
-package serverMonitoring.util;
+package serverMonitoring.util.common;
 
 import java.sql.Timestamp;
 

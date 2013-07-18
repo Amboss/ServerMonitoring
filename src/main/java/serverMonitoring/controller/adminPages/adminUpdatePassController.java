@@ -13,9 +13,9 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import serverMonitoring.controller.CustomAbstractController;
 import serverMonitoring.logic.service.EmployeeService;
-import serverMonitoring.model.ChangePasswordObject;
+import serverMonitoring.model.PasswordUpdateModel;
 import serverMonitoring.model.EmployeeEntity;
-import serverMonitoring.util.web.validations.PasswordValidator;
+import serverMonitoring.util.web.validations.PasswordUpdateValidator;
 
 /**
  * Handles and retrieves /WEB-INF/ftl/admin/admin_update_pass.ftl
@@ -29,7 +29,7 @@ public class adminUpdatePassController extends CustomAbstractController {
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
     private String catalogPath = "/admin";
     private EmployeeService employeeService;
-    private PasswordValidator passwordValidator;
+    private PasswordUpdateValidator passwordUpdateValidator;
 
     @Autowired
     public void setEmployeeService(EmployeeService employeeService) {
@@ -37,19 +37,19 @@ public class adminUpdatePassController extends CustomAbstractController {
     }
 
     @Autowired
-    public void setPasswordValidator(PasswordValidator passwordValidator) {
-        this.passwordValidator = passwordValidator;
+    public void setPasswordUpdateValidator(PasswordUpdateValidator passwordUpdateValidator) {
+        this.passwordUpdateValidator = passwordUpdateValidator;
     }
 
     /**
      * @return password_update page.
-     *  - adding ChangePasswordObject
+     *  - adding PasswordUpdateModel
      */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView loadPage() {
         showRequestLog("password_update");
         ModelAndView model = new ModelAndView("/admin/admin_update_pass");
-        model.addObject("pass_object", new ChangePasswordObject());
+        model.addObject("pass_object", new PasswordUpdateModel());
         return model;
     }
 
@@ -58,11 +58,11 @@ public class adminUpdatePassController extends CustomAbstractController {
      */
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView onSubmit(@ModelAttribute("pass_object")
-                                 ChangePasswordObject changePasswordObject,
+                                     PasswordUpdateModel changePasswordObject,
                                  BindingResult errors,
                                  SessionStatus status) {
 
-        passwordValidator.validate(changePasswordObject, errors);
+        passwordUpdateValidator.validate(changePasswordObject, errors);
         if (errors.hasErrors()) {
             return new ModelAndView("/admin/admin_update_pass", "pass_object", errors);
         } else {

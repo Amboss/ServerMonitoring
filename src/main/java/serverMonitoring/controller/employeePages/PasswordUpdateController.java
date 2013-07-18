@@ -13,11 +13,12 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import serverMonitoring.controller.CustomAbstractController;
 import serverMonitoring.logic.service.EmployeeService;
-import serverMonitoring.model.ChangePasswordObject;
+import serverMonitoring.model.PasswordUpdateModel;
 import serverMonitoring.model.EmployeeEntity;
-import serverMonitoring.util.web.validations.PasswordValidator;
+import serverMonitoring.util.web.validations.PasswordUpdateValidator;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Handles and retrieves /WEB-INF/ftl/employee/password_update.ftl
@@ -31,7 +32,7 @@ public class PasswordUpdateController extends CustomAbstractController {
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
     private String catalogPath = "employee/";
     private EmployeeService employeeService;
-    private PasswordValidator passwordValidator;
+    private PasswordUpdateValidator passwordUpdateValidator;
 
     @Autowired
     public void setEmployeeService(EmployeeService employeeService) {
@@ -39,18 +40,20 @@ public class PasswordUpdateController extends CustomAbstractController {
     }
 
     @Autowired
-    public void setPasswordValidator(PasswordValidator passwordValidator) {
-        this.passwordValidator = passwordValidator;
+    public void setPasswordUpdateValidator(PasswordUpdateValidator passwordUpdateValidator) {
+        this.passwordUpdateValidator = passwordUpdateValidator;
     }
 
     /**
      * @return password_update page.
-     *  - adding ChangePasswordObject
+     *  - adding PasswordUpdateModel
      */
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView loadPage() {
+    public ModelAndView loadPage(HttpServletRequest request,
+                                 HttpServletResponse response) {
         showRequestLog("Received request to show password_update page");
-        return new ModelAndView("/employee/password_update", "pass_object", new ChangePasswordObject());
+        return new ModelAndView("/employee/password_update",
+                "passUpdate", new PasswordUpdateModel());
     }
 
 
@@ -68,21 +71,21 @@ public class PasswordUpdateController extends CustomAbstractController {
      * Action on button "Change password" pressed.
      *
      * @return ftl page regarding of the validation result
-     * TODO fix error messages
      */
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView onSubmit(@ModelAttribute("pass_object")
-                                 ChangePasswordObject changePasswordObject,
+    public ModelAndView onSubmit(@ModelAttribute("passUpdate")
+                                 PasswordUpdateModel passwordUpdateModel,
                                  BindingResult errors,
                                  SessionStatus status) {
 
-        passwordValidator.validate(changePasswordObject, errors);
+        passwordUpdateValidator.validate(passwordUpdateModel, errors);
 
         if (errors.hasErrors()) {
-            return new ModelAndView("/employee/password_update", "pass_object", errors);
+            return new ModelAndView("/employee/password_update",
+                    "passUpdate", passwordUpdateModel);
         } else {
             EmployeeEntity entity = employeeService.getEmployeeByLogin(getUserName());
-            employeeService.updateEmployeePassword(entity, changePasswordObject.getNewPassword());
+            employeeService.updateEmployeePassword(entity, passwordUpdateModel.getNewPassword());
             status.setComplete();
         }
         return new ModelAndView("/employee/monitoring");
