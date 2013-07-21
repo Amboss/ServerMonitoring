@@ -18,21 +18,29 @@
         <h1>Server details page</h1>
     </div>
     <div class="row-fluid">
-        <table>
-            <tr>
-                <th>Server name</th>
-                <th>Address</th>
-                <th>State</th>
-                <th>Last check</th>
-            </tr>
-            <#--list ServerEntity as ServerEntity-->
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                    <td>_ _ _ _ _ _</td>
-                    <td>_ _ _ _ _ _</td>
-                    <td>_ _ _ _ _ _</td>
-                    <td>_ _ _ _ _ _</td>
+                    <th>Server name</th>
+                    <th>Address & Port</th>
+                    <th>URL</th>
+                    <th>State</th>
+                    <th>Last check</th>
+                    <th>Response</th>
                 </tr>
-            <#--/#list-->
+            </thead>
+            <#list targetServer as server>
+                <tbody>
+                    <tr>
+                        <td>${server.server_name!"- - -"}</td>
+                        <td>${server.address!"- - -"}:${server.port!"- - -"}</td>
+                        <td>${server.url!"- - -"}</td>
+                        <td>${server.state!"- - -"}</td>
+                        <td>${server.lastCheck!"- - -"}</td>
+                        <td>${server.state!"- - -"}</td>
+                    </tr>
+                </tbody>
+            </#list>
         </table>
     </div>
 </@com.page>

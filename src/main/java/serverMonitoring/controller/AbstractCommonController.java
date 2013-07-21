@@ -15,14 +15,11 @@ import javax.servlet.http.HttpServletResponse;
  * TODO pass: d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1
  */
 @Controller
-public abstract class CustomAbstractController {
+public abstract class AbstractCommonController {
 
-    protected static Logger logger = Logger.getLogger(CustomAbstractController.class);
+    protected static Logger logger = Logger.getLogger(AbstractCommonController.class);
+
     private String userName;
-
-    public String getUserName() {
-        return userName;
-    }
 
     /**
      * @return UserName var to be shown in header after authorisation on every page
@@ -35,6 +32,20 @@ public abstract class CustomAbstractController {
         } else {
             return getUserName();
         }
+    }
+
+    /**
+     * @return true if currant user has admin role
+     */
+    public boolean isUserIsAdmin(HttpServletRequest request) {
+        return request.isUserInRole("ROLE_ADMIN");
+    }
+
+    /**
+     * @return current Entity login
+     */
+    public String getUserName() {
+        return userName;
     }
 
     /**

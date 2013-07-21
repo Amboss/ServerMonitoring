@@ -60,7 +60,7 @@ public class ServerManagementTest extends AbstractJUnit4SpringContextTests {
     public void testDeleteServer() {
         ServerEntity entity = new ServerEntity();
         entity.setServer_name("Test_Server");
-        ServerEntity entity2 = employeeService.getServerDetails(entity);
+        ServerEntity entity2 = employeeService.getServerByName(entity.getServer_name());
         adminService.deleteServer(entity2.getId());
         //assertNull("the Test_Server is not empty", entity);
     }
@@ -87,7 +87,7 @@ public class ServerManagementTest extends AbstractJUnit4SpringContextTests {
         adminService.registerServer(entity);
 
         // selecting and asserting server entity
-        ServerEntity entity2 = employeeService.getServerDetails(entity);
+        ServerEntity entity2 = employeeService.getServerByName(entity.getServer_name());
         assertNotNull("failure - Server entity2 must not be null", entity2);
         assertEquals("failure - server_name should be same", "Test_Server", entity2.getServer_name());
         assertEquals("failure - address should be same", "255.255.255.0", entity2.getAddress());
@@ -128,7 +128,7 @@ public class ServerManagementTest extends AbstractJUnit4SpringContextTests {
 
         // selecting and asserting server entity
         entity.setServer_name("Test_Server");
-        ServerEntity entity2 = employeeService.getServerDetails(entity);
+        ServerEntity entity2 = employeeService.getServerByName(entity.getServer_name());
         assertNotNull(entity);
         assertEquals("failure - password should be same", "http://localhost/update", entity2.getUrl());
         assertEquals("failure - state should be same", serverState2, entity2.getState());

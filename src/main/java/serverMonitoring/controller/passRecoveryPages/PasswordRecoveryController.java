@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-import serverMonitoring.controller.CustomAbstractController;
+import serverMonitoring.controller.AbstractCommonController;
 import serverMonitoring.logic.service.AnonymousService;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.PasswordRecoveryModel;
@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 @RequestMapping("/auth/password_recovery")
-public class PasswordRecoveryController extends CustomAbstractController {
+public class PasswordRecoveryController extends AbstractCommonController {
 
     protected static Logger logger = Logger.getLogger(PasswordRecoveryController.class);
 

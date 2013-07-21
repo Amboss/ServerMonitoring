@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 @RequestMapping("/auth")
-public class LoginLogoutController extends CustomAbstractController {
+public class LoginLogoutController extends AbstractCommonController {
 
     protected static Logger logger = Logger.getLogger(LoginLogoutController.class);
 
@@ -40,15 +40,4 @@ public class LoginLogoutController extends CustomAbstractController {
         logger.debug("Received request to show denied page");
         return new ModelAndView("common/message/access_denied");
     }
-
-//    /**
-//     * Handles and retrieves /WEB-INF/ftl/authorization/password_recovery.ftl
-//     *
-//     * @return the name of the ftl page.
-//     */
-//    @RequestMapping(value = "/password_recovery", method = RequestMethod.GET)
-//    public ModelAndView getPasswordRecoveryPage() {
-//        logger.debug("Received request to show password_recovery page");
-//        return new ModelAndView("authorization/password_recovery");
-//    }
 }

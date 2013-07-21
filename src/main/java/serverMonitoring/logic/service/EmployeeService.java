@@ -3,7 +3,8 @@ package serverMonitoring.logic.service;
 import org.springframework.security.access.annotation.Secured;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
-import serverMonitoring.model.serverStateEnum.ServerState;
+
+import java.util.List;
 
 /**
  * Interface for functionality of user with ROLE_USER access
@@ -27,14 +28,14 @@ public interface EmployeeService {
     public void changeLastLogin(String userName);
 
     /**
-     * retrieve server status
+     * retrieve server details by provided Id
      */
-    public ServerState getServerState(ServerEntity entity);
+    public List<ServerEntity> getServerListById(Long id);
 
     /**
-     * retrieve server details
+     * retrieve server details by provided server name
      */
-    public ServerEntity getServerDetails(ServerEntity entity);
+    public ServerEntity getServerByName(String serverName);
 
 
 }

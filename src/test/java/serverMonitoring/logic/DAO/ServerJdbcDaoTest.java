@@ -111,7 +111,6 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         assertNotNull(entityList2);
     }
 
-
     /**
      * Testing selection of ServerEntity from Data Base by ID
      */
@@ -146,6 +145,35 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         assertEquals("failure - state should be same", serverState, entity3.getState());
         assertEquals("failure - state should be same", serverStateString, entity3.getResponse());
         assertEquals("failure - isActive should be same", (Object) 1, entity3.getActive());
+    }
+
+    /**
+     * Testing selection of ServerEntity from Data Base by ID
+     */
+    @Test
+    public void testFindAllById() {
+        ServerEntity entity = new ServerEntity();
+        ServerState serverState = ServerState.WARN;
+        String serverStateString = ServerState.getStringFromEnum(serverState);
+        entity.setServer_name("Test_Server");
+        entity.setAddress("255.255.255.0");
+        entity.setPort(8080);
+        entity.setUrl("http://localhost/");
+        entity.setState(serverState);
+        entity.setResponse(serverStateString);
+        entity.setCreated(timestamp);
+        entity.setLastCheck(timestamp);
+        entity.setActive(1);
+        serverDao.add(entity);
+
+        ServerEntity entity2 = serverDao.findByServerName("Test_Server");
+        assertNotNull("failure - Employee entity2 must not be null", entity2);
+
+        // selecting by ID
+        Long id = entity2.getId();
+        List<ServerEntity> entityList2 = serverDao.findAllById(id);
+        assertNotNull("failure - Server entity list must not be null", entityList2);
+
     }
 
     /**

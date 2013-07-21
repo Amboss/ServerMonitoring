@@ -94,7 +94,6 @@ public class ServerJdbcDaoSupport implements ServerDao {
                         foo.getCreated(),
                         foo.getLastCheck(),
                         foo.getActive()});
-
             }
             this.jdbcTemplate.batchUpdate(query, parameters);
         } catch (RuntimeException e) {
@@ -201,6 +200,24 @@ public class ServerJdbcDaoSupport implements ServerDao {
     }
 
     /**
+     * Retrieves List of Server entity with provided Id
+     *
+     * @return List<ServerEntity>
+     */
+    @Override
+    public List<ServerEntity> findAllById(Long entity_id) {
+        assert entity_id != null;
+        String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE id= ?";
+        try {
+            Object[] args = {entity_id};
+            return this.jdbcTemplate.query(query, args, new EmployeeEntityMapper());
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+    }
+
+    /**
      * Retrieves ServerEntity entity by Server Name
      *
      * @return ServerEntity object
@@ -216,7 +233,6 @@ public class ServerJdbcDaoSupport implements ServerDao {
             e.printStackTrace();
             throw new RuntimeException();
         }
-
     }
 
     /**

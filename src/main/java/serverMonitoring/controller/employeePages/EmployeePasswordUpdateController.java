@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-import serverMonitoring.controller.CustomAbstractController;
 import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.PasswordUpdateModel;
@@ -26,11 +25,10 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @Secured("ROLE_USER")
 @RequestMapping("/employee/password_update")
-public class PasswordUpdateController extends CustomAbstractController {
+public class EmployeePasswordUpdateController extends AbstractEmployeeController {
 
-    protected static Logger logger = Logger.getLogger(PasswordUpdateController.class);
+    protected static Logger logger = Logger.getLogger(EmployeePasswordUpdateController.class);
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
-    private String catalogPath = "employee/";
     private EmployeeService employeeService;
     private PasswordUpdateValidator passwordUpdateValidator;
 

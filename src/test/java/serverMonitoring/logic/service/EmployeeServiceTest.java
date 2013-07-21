@@ -105,7 +105,7 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
         entity.setActive(1);
         adminService.registerServer(entity);
 
-        ServerEntity entity2 = employeeService.getServerDetails(entity);
+        ServerEntity entity2 = employeeService.getServerByName("Test_Server");
         assertNotNull("failure - Server entity must not be null", entity2);
         assertEquals("failure - server_name should be same", "Test_Server", entity2.getServer_name());
         assertEquals("failure - address should be same", "255.255.255.6", entity2.getAddress());
@@ -140,7 +140,7 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
         adminService.registerServer(entity);
 
         // selecting and asserting server entity
-        ServerEntity entity2 = employeeService.getServerDetails(entity);
+        ServerEntity entity2 = employeeService.getServerByName(entity.getServer_name());
         assertNotNull("failure - Server entity must not be null", entity2);
         assertEquals("failure - server_name should be same", "Test_Server", entity2.getServer_name());
         assertEquals("failure - address should be same", "255.255.255.7", entity2.getAddress());

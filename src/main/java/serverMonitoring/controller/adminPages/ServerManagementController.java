@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import serverMonitoring.controller.CustomAbstractController;
 
 /**
  * Handles and retrieves the ROLE_ADMIN server_management pages depending on the URI template.
@@ -16,7 +15,7 @@ import serverMonitoring.controller.CustomAbstractController;
 @Controller
 @Secured("ROLE_ADMIN")
 @RequestMapping("/server_management")
-public class ServerManagementController extends CustomAbstractController {
+public class ServerManagementController extends AbstractAdminController {
 
     protected static Logger logger = Logger.getLogger(ServerManagementController.class);
     private String catalogPath = "admin/server_management/";

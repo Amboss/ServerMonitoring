@@ -7,7 +7,7 @@
 <@security.authorize ifAnyGranted="ROLE_USER">
     <ul class="nav">
         <li><a href="../employee/password_update.html">Password change</a></li>
-        <li><a href="../employee/serv_details.html">Server details</a></li>
+        <li><a href="#">Server details</a></li>
     </ul>
 </@security.authorize>
 
