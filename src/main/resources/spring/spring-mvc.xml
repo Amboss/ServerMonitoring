@@ -11,6 +11,9 @@
 
     <mvc:annotation-driven/>
 
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="useDefaultSuffixPattern" value="false" />
+    </bean>
 
 
     <!-- register "global" interceptor beans to apply to all registered HandlerMappings -->

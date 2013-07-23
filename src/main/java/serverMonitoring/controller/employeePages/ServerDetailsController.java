@@ -6,7 +6,6 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import serverMonitoring.logic.service.EmployeeService;
 
@@ -24,12 +23,12 @@ public class ServerDetailsController extends AbstractEmployeeController {
     private EmployeeService employeeService;
 
     /**
-     *
+     * server detail page with provided name of server
      */
-    @RequestMapping(value = "/{server_name}", method = RequestMethod.GET)
-    public ModelAndView loadPage(@PathVariable("{server_name}") String server_name) {
+    @RequestMapping(value = "/{serverName}")
+    public ModelAndView loadPage(@PathVariable("serverName") String serverName) {
         showRequestLog("serv_details");
         return new ModelAndView("employee/serv_details",
-                "targetServer", employeeService.getServerByName(server_name));
+                "server", employeeService.getServerByName(serverName));
     }
 }

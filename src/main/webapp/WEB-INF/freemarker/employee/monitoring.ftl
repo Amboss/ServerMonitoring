@@ -29,10 +29,11 @@
                 </tr>
             </thead>
             <#list availableServers as server >
+            <#assign serverName = server.server_name />
                 <tbody>
                     <tr>
-                        <td><a href="../employee/serv_details/${server.server_name?html}">
-                                ${server.server_name}
+                        <td><a href="../employee/serv_details/${serverName}.html">
+                                ${serverName}
                             <a/></td>
                         <#if "server.state"?contains("OK")>
                             <td class="success">${server.state}</td>

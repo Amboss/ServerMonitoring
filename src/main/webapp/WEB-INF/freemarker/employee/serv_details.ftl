@@ -29,7 +29,6 @@
                     <th>Response</th>
                 </tr>
             </thead>
-            <#list targetServer as server>
                 <tbody>
                     <tr>
                         <td>${server.server_name!"- - -"}</td>
@@ -40,7 +39,6 @@
                         <td>${server.state!"- - -"}</td>
                     </tr>
                 </tbody>
-            </#list>
         </table>
     </div>
 </@com.page>

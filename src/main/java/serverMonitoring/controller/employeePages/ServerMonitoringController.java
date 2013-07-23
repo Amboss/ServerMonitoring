@@ -12,6 +12,7 @@ import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.ServerEntity;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Collection;
 
 /**
@@ -35,7 +36,7 @@ public class ServerMonitoringController extends AbstractEmployeeController {
      *         - show full list of servers for user with admin role
      */
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView loadPage(HttpServletRequest request) {
+    public ModelAndView loadPage(HttpServletRequest request, HttpServletResponse response) {
 
         showRequestLog("monitoring");
 
