@@ -35,7 +35,7 @@ public class PasswordUpdateValidator implements Validator {
 
     @Override
     public boolean supports(Class clazz) {
-        //just validate the Customer instances
+        // validate the Password instances
         return PasswordUpdateModel.class.isAssignableFrom(clazz);
     }
 

@@ -16,7 +16,7 @@ import serverMonitoring.logic.service.AnonymousService;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.PasswordRecoveryModel;
 import serverMonitoring.util.common.CustomUtils;
-import serverMonitoring.util.mail.PasswordRecoveryMail;
+import serverMonitoring.util.mail.CustomMailDelivery;
 import serverMonitoring.util.web.validations.PasswordRecoveryValidator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +38,7 @@ public class PasswordRecoveryController extends AbstractCommonController {
 
     private PasswordRecoveryValidator passwordRecoveryValidator;
 
-    private PasswordRecoveryMail passwordRecoveryMail;
+    private CustomMailDelivery customMailDelivery;
 
     private CustomUtils customUtils;
 
@@ -58,8 +58,8 @@ public class PasswordRecoveryController extends AbstractCommonController {
     }
 
     @Autowired
-    public void setPasswordRecoveryMail(PasswordRecoveryMail passwordRecoveryMail) {
-        this.passwordRecoveryMail = passwordRecoveryMail;
+    public void setCustomMailDelivery(CustomMailDelivery customMailDelivery) {
+        this.customMailDelivery = customMailDelivery;
     }
 
     /**
@@ -120,13 +120,13 @@ public class PasswordRecoveryController extends AbstractCommonController {
             /**
              * sending email with new password
              */
-            passwordRecoveryMail.sendMail("huskyserge@gmail.com",
+            customMailDelivery.sendMail("huskyserge@gmail.com",
                     passwordRecoveryModel.getEmail(),
                     "Attention! Your password has been changed!",
                     "We have received your request for password recovery\n" +
-                    "\n" + "Your user name: " + entity.getLogin() +
-                    "\n" + "Your new password is: " + newPass +
-                    "\n" + "\n" + "Server Monitoring Service");
+                            "\n" + "Your user name: " + entity.getLogin() +
+                            "\n" + "Your new password is: " + newPass +
+                            "\n" + "\n" + "Server Monitoring Service");
 
             status.setComplete();
         }

@@ -1,32 +1,99 @@
-
+<#-- =====================================================================
+     Password update page
+        - give ability for user to change existing password
+        - for admin_role the layout wil contain service menu on left side bar
+     ===================================================================== -->
+<#import "/util/spring.ftl" as spring />
+<#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
 <#import "/layout/admin.ftl" as com>
+<@spring.bind "newEmployee" />
 
 <@com.page title="Employee registration">
-<div class="container">
-
-    <div clas="index_text">
-        <table>
-            <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-                exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-                commodo consequat. Duis autem vel eum iriure dolor in hendrerit
-                in vulputate velit esse molestie consequat, vel illum dolore eu
-                feugiat nulla facilisis at vero eros et accumsan et iusto odio
-                dignissim qui blandit praesent luptatum zzril delenit augue duis
-                dolore te feugait nulla facilisi. Nam liber tempor cum soluta
-                nobis eleifend option congue nihil imperdiet doming id quod mazim
-                placerat facer possim assum. Typi non habent claritatem insitam;
-                est usus legentis in iis qui facit eorum claritatem. Investigationes
-                demonstraverunt lectores legere me lius quod ii legunt saepius.
-                Claritas est etiam processus dynamicus, qui sequitur mutationem
-                consuetudium lectorum. Mirum est notare quam littera gothica,
-                quam nunc putamus parum claram, anteposuerit litterarum formas
-                humanitatis per seacula quarta decima et quinta decima. Eodem
-                modo typi, qui nunc nobis videntur parum clari, fiant sollemnes
-                in futurum.
-            </td></tr>
-        </table>
+<#-- ===================== Head with name of page ========================= -->
+    <div class="hero-unit">
+        <h2>Registration of new employee</h2>
     </div>
-</div>
+
+    <#-- ===================== Main row for Registration form ========================= -->
+    <div class="span12">
+        <form id="employeeRegistrationForm"
+                class="form-horizontal"
+                method="post"
+                autocomplete="off" >
+            <h3>Please fill in required information:</h3>
+
+            <#-- ===================== Name, lastName ========================= -->
+            <div class="control-group info">
+                <label class="control-label" for="employee_name">Employee name, lastName</label>
+                <div class="controls">
+                   <@spring.formInput "newEmployee.employee_name", "input-xlarge"/>
+                   <@spring.showErrors " ", "alert alert-error"/>
+                </div>
+            </div>
+
+            <#-- ===================== Login ========================= -->
+            <div class="control-group info">
+                <label class="control-label" for="login">Login</label>
+                <div class="controls">
+                   <@spring.formInput "newEmployee.login", "input-xlarge"/>
+                   <@spring.showErrors " ", "alert alert-error"/>
+                </div>
+            </div>
+
+            <#-- ===================== E-mail ========================= -->
+            <div class="control-group info">
+                <label class="control-label" for="email">E-mail</label>
+                <div class="controls">
+                   <@spring.formInput "newEmployee.email", "input-xlarge"/>
+                   <@spring.showErrors " ", "alert alert-error"/>
+                </div>
+            </div>
+
+            <#-- ===================== Active ========================= -->
+            <div class="control-group info">
+                <label class="control-label" for="active">Active</label>
+                <div class="controls">
+                    <@spring.formRadioButtons "newEmployee.active", activeMap, ""/>
+                </div>
+            </div>
+
+            <#-- ===================== Security level ========================= -->
+            <div class="control-group info">
+                <label class="control-label" for="active">Security level</label>
+                <div class="controls">
+                    <@spring.formRadioButtons "newEmployee.admin", adminMap, ""/>
+                </div>
+            </div>
+
+            <#-- ===================== Buttons ================================== -->
+            <div class="control-group">
+                <div class="controls">
+                    <input class="btn btn-primary"
+                            type='submit'
+                            name='create'
+                            value='Create'/>
+                    <input class="btn"
+                            type='submit'
+                            name='cancel'
+                            value='Cancel'/>
+                </div>
+            </div>
+        </form>
+    </div><!--/row-->
+
+    <#-- ===================== Information row for Registration page ========================= -->
+    <div class="row-fluid">
+        <div class="row-fluid">
+            <div class="span6">
+                <h3>Registration specifications</h3>
+                <p>To register a new employee you have to specify related info such as Name,
+                Last name, Login, Activation status, Security level. All other supported data will
+                be generated automatically.</p>
+            </div><!--/span-->
+            <div class="span6">
+                <h3>Informing new Employee</h3>
+                <p>After successful registration, system wil notify provided employee, by specified
+                 E-mail, with his new ability to access his workplace with new login and new password.</p>
+            </div><!--/span-->
+        </div><!--/row-->
 </@com.page>

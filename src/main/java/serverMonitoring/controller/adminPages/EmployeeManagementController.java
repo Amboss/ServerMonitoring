@@ -1,16 +1,17 @@
 package serverMonitoring.controller.adminPages;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import serverMonitoring.logic.service.AdminService;
 
 /**
- * Handles and retrieves the ROLE_ADMIN employee_management pages depending on the URI template.
- * A admin must be log-in first before he can access these pages.
+ * Handles and retrieves the ROLE_ADMIN admin/employee_management/employee_manager.ftl
+ * A admin must be log-in first before he can access these page.
  */
 @Controller
 @Secured("ROLE_ADMIN")
@@ -18,17 +19,21 @@ import org.springframework.web.servlet.ModelAndView;
 public class EmployeeManagementController extends AbstractAdminController {
 
     protected static Logger logger = Logger.getLogger(EmployeeManagementController.class);
+
     private String catalogPath = "admin/employee_management/";
 
+    @Autowired
+    private AdminService adminService;
+
     /**
-     * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_registr.ftl
+     * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_manager.ftl
      *
      * @return the name of the FreeMarker template page
      */
-    @RequestMapping(value = "/employee_registr", method = RequestMethod.GET)
-    public ModelAndView getEmployeeRegistrationPage(Model model) {
-        showRequestLog("employee_registr");
-        return new ModelAndView(catalogPath + "employee_registr");
+    @RequestMapping(value = "/employee_manager", method = RequestMethod.GET)
+    public ModelAndView getEmployeeManagerPage() {
+        showRequestLog("employee_manager");
+        return new ModelAndView(catalogPath + "employee_manager", "employee", adminService.getAllEmployee());
     }
 
     /**
@@ -53,16 +58,6 @@ public class EmployeeManagementController extends AbstractAdminController {
         return new ModelAndView(catalogPath + "employee_removal");
     }
 
-    /**
-     * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_manager.ftl
-     *
-     * @return the name of the FreeMarker template page
-     */
-    @RequestMapping(value = "/employee_manager", method = RequestMethod.GET)
-    public ModelAndView getEmployeeManagerPage() {
-        showRequestLog("employee_manager");
-        return new ModelAndView(catalogPath + "employee_manager");
-    }
 
     /**
      * Handles and retrieves /WEB-INF/ftl/admin/employee_management/serv_assignment.ftl

@@ -3,9 +3,8 @@
         - will appear after sign in page with server info purpose
         - for admin_role the layout wil contain service menu on side bar
      ===================================================================== -->
-<#import "/spring.ftl" as spring />
+<#import "/util/spring.ftl" as spring />
 <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
-
 
 <@security.authorize ifAnyGranted="ROLE_USER">
     <#import "/layout/employee.ftl" as com>
@@ -32,18 +31,10 @@
             <#assign serverName = server.server_name />
                 <tbody>
                     <tr>
-                        <td><a href="../employee/serv_details/${serverName}.html">
-                                ${serverName}
-                            <a/></td>
-                        <#if "server.state"?contains("OK")>
-                            <td class="success">${server.state}</td>
-                        <#elseif "server.state"?contains("WARN")>
-                            <td class="warning">${server.state}</td>
-                        <#else>
-                            <td class="error">${server.state}</td>
-                        </#if>
-                        <td>${server.lastCheck!"- - -"}</td>
-                        <td>${server.active!"- - -"}</td>
+                        <td><a href="../employee/serv_details/${serverName}.html">${serverName}<a/></td>
+                        <td>${server.state}</td>
+                        <td>${server.lastCheck}</td>
+                        <td>${server.active}</td>
                     </tr>
                 </tbody>
             </#list>

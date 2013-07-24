@@ -1,28 +1,12 @@
 /* ==========================================================================
-                                custom styles
+                                custom css
    ========================================================================== */
 body {
-    background-color:#b0c4de;
+    padding-top: 60px;
+    padding-bottom: 40px;
 }
-p {
-    background-color:#e0ffff;
-}
-.login_block{
 
-}
-.error_block{
-    color: #ff0000;
-    background-color: #ffEEEE;
-    border: 3px solid #ff0000;
-    padding: 8px;
-    margin: 16px;
- }
-.login_form_block{
-
-}
-.denied_message{
-
-}
-.admin_block{
-
-}
+table {
+    height: 100px !important;
+    overflow: scroll;
+}​

@@ -3,7 +3,7 @@
         - give ability for user to to see precise info about specific server
         - for admin_role the layout wil contain service menu on side bar
      ===================================================================== -->
-<#import "/spring.ftl" as spring />
+<#import "/util/spring.ftl" as spring />
 <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
 
 <@security.authorize ifAnyGranted="ROLE_USER">

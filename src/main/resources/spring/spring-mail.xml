@@ -22,7 +22,7 @@
         </property>
     </bean>
 
-    <bean id="PasswordRecoveryMail" class="serverMonitoring.util.mail.impl.PasswordRecoveryMailImpl">
+    <bean id="PasswordRecoveryMail" class="serverMonitoring.util.mail.impl.CustomMailDeliveryImpl">
         <property name="mailSender" ref="mailSender" />
     </bean>
 

@@ -2,7 +2,7 @@
      footer menu
         - for common layout
      ===================================================================== -->
-<#import "/spring.ftl" as spring />
+<#import "/util/spring.ftl" as spring />
 <#assign spring=JspTaglibs["/WEB-INF/tlds/spring.tld"] />
 
 <ul class="inline pull-right">

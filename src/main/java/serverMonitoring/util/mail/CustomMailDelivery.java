@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
-public interface PasswordRecoveryMail {
+public interface CustomMailDelivery {
 
     /**
      * sends mail with included params

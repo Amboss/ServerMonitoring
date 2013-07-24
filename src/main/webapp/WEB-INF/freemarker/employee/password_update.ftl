@@ -3,7 +3,7 @@
         - give ability for user to change existing password
         - for admin_role the layout wil contain service menu on left side bar
      ===================================================================== -->
-<#import "/spring.ftl" as spring />
+<#import "/util/spring.ftl" as spring />
 <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
 <@spring.bind "passUpdate" />
 
@@ -24,7 +24,7 @@
     <#-- ===================== Main row for Password update form ========================= -->
     <div class="row-fluid">
         <form id="passUpdateForm" class="form-horizontal" method="post" autocomplete="off" >
-            <h3>Please enter required information:</h3>
+            <h3>Please fill in required information:</h3>
 
             <#-- ===================== Current Password ========================= -->
             <div class="control-group info">

@@ -28,14 +28,13 @@ import javax.servlet.http.HttpServletResponse;
 public class EmployeePasswordUpdateController extends AbstractEmployeeController {
 
     protected static Logger logger = Logger.getLogger(EmployeePasswordUpdateController.class);
+
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
-    private EmployeeService employeeService;
+
     private PasswordUpdateValidator passwordUpdateValidator;
 
     @Autowired
-    public void setEmployeeService(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
+    private EmployeeService employeeService;
 
     @Autowired
     public void setPasswordUpdateValidator(PasswordUpdateValidator passwordUpdateValidator) {

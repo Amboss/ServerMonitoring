@@ -1,7 +1,7 @@
 <#-- ==============================================================
      validation massage handler
      ============================================================== -->
- <#import "/spring.ftl" as spring />
+<#import "/util/spring.ftl" as spring />
  <#assign spring=JspTaglibs["/WEB-INF/tlds/spring.tld"] />
  <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
 

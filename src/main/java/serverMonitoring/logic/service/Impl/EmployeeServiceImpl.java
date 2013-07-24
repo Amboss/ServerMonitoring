@@ -9,10 +9,10 @@ import serverMonitoring.logic.DAO.ServerDao;
 import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
-import serverMonitoring.model.serverStateEnum.ServerState;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /**
  * This class responsible for functionality of user with ROLE_USER access
@@ -77,25 +77,24 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     /**
-     * retrieve server status
+     * retrieve server details by provided Id
      *
      * @return ServerEntity object
      */
     @Override
-    public ServerState getServerState(ServerEntity entity_id) {
-        employeeLogger.debug("retrieving Server status with id: " + entity_id.getId());
-        ServerEntity serverEntity = serverDao.findById(entity_id.getId());
-        return serverEntity.getState();
+    public List<ServerEntity> getServerListById(Long id) {
+        employeeLogger.debug("retrieving Server status with id: " + id);
+        return serverDao.findAllById(id);
     }
 
     /**
-     * retrieve server details
+     * retrieve server details by provided server name
      *
      * @return ServerEntity object
      */
     @Override
-    public ServerEntity getServerDetails(ServerEntity entity) {
-        employeeLogger.debug("retrieving Server details with id: " + entity.getId());
-        return serverDao.findByServerName(entity.getServer_name());
+    public ServerEntity getServerByName(String serverName) {
+        employeeLogger.debug("retrieving Server details with id: " + serverName);
+        return serverDao.findByServerName(serverName);
     }
 }

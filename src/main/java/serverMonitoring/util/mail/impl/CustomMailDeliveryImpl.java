@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import serverMonitoring.util.mail.PasswordRecoveryMail;
+import serverMonitoring.util.mail.CustomMailDelivery;
 
 import javax.mail.MessagingException;
 
@@ -12,9 +12,9 @@ import javax.mail.MessagingException;
  * Handel's mail sending functionality for password recover page.
  */
 
-public class PasswordRecoveryMailImpl implements PasswordRecoveryMail{
+public class CustomMailDeliveryImpl implements CustomMailDelivery {
 
-    protected static Logger logger = Logger.getLogger(PasswordRecoveryMailImpl.class);
+    protected static Logger logger = Logger.getLogger(CustomMailDeliveryImpl.class);
 
     private MailSender mailSender;
 

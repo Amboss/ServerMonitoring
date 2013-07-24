@@ -1,7 +1,7 @@
 <#-- ==============================================================
      HEADER part of common layout
      ============================================================== -->
-<#import "/spring.ftl" as spring />
+<#import "/util/spring.ftl" as spring />
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
      "http://www.w3.org/TR/html4/loose.dtd">
@@ -16,14 +16,11 @@
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap-responsive.min.css'/>"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.css'/>"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.min.css'/>"/>
+        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/style.css'/>"/>
         <style type="text/css">
-            body {
-                padding-top: 60px;
-                padding-bottom: 40px;
-            }
             .hero-unit {
-                background-image: url("<@spring.url'/static/img/header_default2.png'/>");
-                background-repeat: repeat;
+                background-image: url("<@spring.url '/static/img/header_default2.png'/>");
+                background-repeat: no-repeat;
             }
         </style>
 
