@@ -4,7 +4,9 @@
         - for admin_role the layout wil contain service menu on side bar
      ===================================================================== -->
 <#import "/util/spring.ftl" as spring />
+
 <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
+
 
 <@security.authorize ifAnyGranted="ROLE_USER">
     <#import "/layout/employee.ftl" as com>
@@ -27,17 +29,28 @@
                     <th>Active</th>
                 </tr>
             </thead>
-            <#list availableServers as server >
-            <#assign serverName = server.server_name />
+            <#if availableServers?has_content>
+                <#list availableServers as server >
+                    <#assign serverName = server.server_name />
+                    <tbody>
+                        <tr>
+                            <td><a href="../employee/serv_details/${serverName}.html">${serverName}<a/></td>
+                            <td>${server.state}</td>
+                            <td>${server.lastCheck}</td>
+                            <td>${server.active}</td>
+                        </tr>
+                    </tbody>
+                </#list>
+            <#else>
                 <tbody>
                     <tr>
-                        <td><a href="../employee/serv_details/${serverName}.html">${serverName}<a/></td>
-                        <td>${server.state}</td>
-                        <td>${server.lastCheck}</td>
-                        <td>${server.active}</td>
+                        <td>- - -</td>
+                        <td>- - -</td>
+                        <td>- - -</td>
+                        <td>- - -</td>
                     </tr>
                 </tbody>
-            </#list>
+            </#if>
         </table>
     </div>
      <div class="row-fluid">

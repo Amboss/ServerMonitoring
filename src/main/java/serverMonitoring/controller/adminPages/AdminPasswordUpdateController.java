@@ -13,7 +13,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.EmployeeEntity;
-import serverMonitoring.model.PasswordUpdateModel;
+import serverMonitoring.model.ftl.PasswordUpdateModel;
 import serverMonitoring.util.web.validations.PasswordUpdateValidator;
 
 /**
@@ -42,34 +42,34 @@ public class AdminPasswordUpdateController extends AbstractAdminController {
 
     /**
      * @return password_update page.
-     *  - adding PasswordUpdateModel
+     *         - adding PasswordUpdateModel
      */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView loadPage() {
         showRequestLog("password_update");
-        ModelAndView model = new ModelAndView("/admin/admin_update_pass");
-        model.addObject("pass_object", new PasswordUpdateModel());
-        return model;
+        return new ModelAndView("/admin/admin_update_pass",
+                "pass_object", new PasswordUpdateModel());
     }
 
     /**
      * Action on button "Change password" pressed.
      */
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView onSubmit(@ModelAttribute("pass_object")
-                                     PasswordUpdateModel changePasswordObject,
+    public ModelAndView onSubmit(@ModelAttribute("passUpdate")
+                                 PasswordUpdateModel passUpdate,
                                  BindingResult errors,
                                  SessionStatus status) {
 
-        passwordUpdateValidator.validate(changePasswordObject, errors);
+        passwordUpdateValidator.validate(passUpdate, errors);
+
         if (errors.hasErrors()) {
-            return new ModelAndView("/admin/admin_update_pass", "pass_object", errors);
+            return new ModelAndView("/admin/admin_update_pass", "passUpdate", errors);
         } else {
             EmployeeEntity entity = employeeService.getEmployeeByLogin(getUserName());
-            String foo = changePasswordObject.getNewPassword();
+            String foo = passUpdate.getNewPassword();
             employeeService.updateEmployeePassword(entity, foo);
             status.setComplete();
         }
-        return new ModelAndView("/employee/monitoring");
+        return new ModelAndView("redirect:/employee/monitoring");
     }
 }

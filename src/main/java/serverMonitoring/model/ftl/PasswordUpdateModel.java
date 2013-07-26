@@ -1,4 +1,4 @@
-package serverMonitoring.model;
+package serverMonitoring.model.ftl;
 
 import java.io.Serializable;
 

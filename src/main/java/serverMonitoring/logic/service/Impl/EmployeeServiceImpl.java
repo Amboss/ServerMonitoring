@@ -35,6 +35,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     /**
+     * Retrieves EmployeeEntity entity by E-mail
+     *
+     * @return Employee Entity object
+     */
+    @Override
+    public EmployeeEntity getEmployeeByEmail(String email) {
+        employeeLogger.debug("retrieving Employee with e-mail: " + email);
+        return employeeDao.findByEmail(email);
+    }
+
+    /**
      * retrieve Employee by login
      *
      * @return Employee Entity object

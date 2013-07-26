@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import serverMonitoring.controller.AbstractCommonController;
 import serverMonitoring.logic.service.AnonymousService;
 import serverMonitoring.model.EmployeeEntity;
-import serverMonitoring.model.PasswordRecoveryModel;
+import serverMonitoring.model.ftl.PasswordRecoveryModel;
 import serverMonitoring.util.common.CustomUtils;
 import serverMonitoring.util.mail.CustomMailDelivery;
 import serverMonitoring.util.web.validations.PasswordRecoveryValidator;

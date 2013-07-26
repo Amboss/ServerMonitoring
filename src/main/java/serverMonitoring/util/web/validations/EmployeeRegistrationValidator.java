@@ -4,25 +4,26 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import serverMonitoring.logic.service.AdminService;
+import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.EmployeeEntity;
 
 /**
- * Validator for redistration of new employee page
+ * Validator for registration of new employee page
  */
 @Component
 public class EmployeeRegistrationValidator implements Validator {
 
-    protected static Logger passwordValidatorLogger = Logger.getLogger(EmployeeRegistrationValidator.class);
+    protected static Logger registrValidatorLogger = Logger.getLogger(EmployeeRegistrationValidator.class);
 
-    private AdminService adminService;
+    private EmployeeService employeeService;
 
     private EmployeeEntity entity;
 
     @Autowired
-    public void setAdminService(AdminService adminService) {
-        this.adminService = adminService;
+    public void setEmployeeService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @Override
@@ -40,6 +41,73 @@ public class EmployeeRegistrationValidator implements Validator {
 
         entity = (EmployeeEntity) target;
 
+        /**
+         *  check for empty Name
+         */
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "employee_name",
+                "employee_name.required", "Field name is required.");
 
+        /**
+         *  check for Name length
+         */
+//         if() {
+//
+//         }
+
+        /**
+         *  check for empty Login
+         */
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "login",
+                "login.required", "Field name is required.");
+
+        /**
+         *   check for duplicated "login"
+         */
+//        EmployeeEntity entity2 = new EmployeeEntity();
+        try {
+            employeeService.getEmployeeByLogin(entity.getLogin());
+            errors.rejectValue("login", "login.isTaken");
+        } catch (RuntimeException e) {
+            registrValidatorLogger.debug("Login is not occupied");
+        }
+
+//        if (entity2.getLogin() != null) {
+//
+//        }
+
+        /**
+         *  check for Login length
+         */
+//        if() {
+//
+//         }
+
+        /**
+         *  check for empty E-mail
+         */
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email",
+                "email.required", "Field name is required.");
+
+        /**
+         *  check for duplicated E-mail
+         */
+//        EmployeeEntity entity3 = new EmployeeEntity();
+        try {
+            employeeService.getEmployeeByEmail(entity.getEmail());
+            errors.rejectValue("email", "email.isTaken");
+        } catch (RuntimeException e) {
+            registrValidatorLogger.debug("email is not occupied");
+        }
+//        if (entity3.getEmail().equals(entity.getEmail())) {
+//
+//        }
+
+
+        /**
+         *  check for E-mail length
+         */
+//        if() {
+//
+//         }
     }
 }

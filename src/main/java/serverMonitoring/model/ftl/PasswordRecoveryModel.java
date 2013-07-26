@@ -1,4 +1,4 @@
-package serverMonitoring.model;
+package serverMonitoring.model.ftl;
 
 import java.io.Serializable;
 
@@ -16,6 +16,9 @@ public class PasswordRecoveryModel implements Serializable {
         this.email = email;
     }
 
+    /**
+     * email setter & getter
+     */
     public String getEmail() {
         return email;
     }

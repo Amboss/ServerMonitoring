@@ -28,7 +28,11 @@ public class ServerDetailsController extends AbstractEmployeeController {
     @RequestMapping(value = "/{serverName}")
     public ModelAndView loadPage(@PathVariable("serverName") String serverName) {
         showRequestLog("serv_details");
-        return new ModelAndView("employee/serv_details",
-                "server", employeeService.getServerByName(serverName));
+        if(serverName != null) {
+        return new ModelAndView("employee/serv_details", "server",
+                employeeService.getServerByName(serverName));
+        } else {
+            return new ModelAndView("redirect:/employee/monitoring");
+        }
     }
 }

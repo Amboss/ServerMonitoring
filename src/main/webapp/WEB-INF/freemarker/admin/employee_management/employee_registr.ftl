@@ -3,10 +3,14 @@
         - give ability for user to change existing password
         - for admin_role the layout wil contain service menu on left side bar
      ===================================================================== -->
-<#import "/util/spring.ftl" as spring />
+
 <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
+
+<#import "/util/spring.ftl" as spring />
 <#import "/layout/admin.ftl" as com>
-<@spring.bind "newEmployee" />
+
+
+
 
 <@com.page title="Employee registration">
 <#-- ===================== Head with name of page ========================= -->
@@ -22,11 +26,12 @@
                 autocomplete="off" >
             <h3>Please fill in required information:</h3>
 
+
             <#-- ===================== Name, lastName ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="employee_name">Employee name, lastName</label>
+                <label class="control-label" for="employee_name">Employee name</label>
                 <div class="controls">
-                   <@spring.formInput "newEmployee.employee_name", "input-xlarge"/>
+                   <@spring.formInput "newEmployee.employee_name", "input-xlarge" />
                    <@spring.showErrors " ", "alert alert-error"/>
                 </div>
             </div>
@@ -53,7 +58,7 @@
             <div class="control-group info">
                 <label class="control-label" for="active">Active</label>
                 <div class="controls">
-                    <@spring.formRadioButtons "newEmployee.active", activeMap, ""/>
+                    <@spring.formSingleSelect "activeState.state", activeMap, " "/>
                 </div>
             </div>
 
@@ -61,7 +66,7 @@
             <div class="control-group info">
                 <label class="control-label" for="active">Security level</label>
                 <div class="controls">
-                    <@spring.formRadioButtons "newEmployee.admin", adminMap, ""/>
+                    <@spring.formSingleSelect "activeState.level", adminMap, " "/>
                 </div>
             </div>
 
@@ -71,7 +76,7 @@
                     <input class="btn btn-primary"
                             type='submit'
                             name='create'
-                            value='Create'/>
+                            value='Create employee'/>
                     <input class="btn"
                             type='submit'
                             name='cancel'

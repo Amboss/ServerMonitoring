@@ -13,7 +13,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.EmployeeEntity;
-import serverMonitoring.model.PasswordUpdateModel;
+import serverMonitoring.model.ftl.PasswordUpdateModel;
 import serverMonitoring.util.web.validations.PasswordUpdateValidator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,9 +46,8 @@ public class EmployeePasswordUpdateController extends AbstractEmployeeController
      *  - adding PasswordUpdateModel
      */
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView loadPage(HttpServletRequest request,
-                                 HttpServletResponse response) {
-        showRequestLog("Received request to show password_update page");
+    public ModelAndView loadPage() {
+        showRequestLog("password_update");
         return new ModelAndView("/employee/password_update",
                 "passUpdate", new PasswordUpdateModel());
     }
@@ -59,9 +58,10 @@ public class EmployeePasswordUpdateController extends AbstractEmployeeController
      * @return redirect to monitoring page
      */
     @RequestMapping(params = "cancel", method = RequestMethod.POST)
-    protected ModelAndView onCancel(HttpServletRequest request) {
+    protected String onCancel(HttpServletRequest request,
+                              HttpServletResponse response) {
         showRequestLog("monitoring");
-        return new ModelAndView("/employee/monitoring");
+        return "redirect:/employee/monitoring";
     }
 
     /**
@@ -71,20 +71,20 @@ public class EmployeePasswordUpdateController extends AbstractEmployeeController
      */
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView onSubmit(@ModelAttribute("passUpdate")
-                                 PasswordUpdateModel passwordUpdateModel,
+                                 PasswordUpdateModel passUpdate,
                                  BindingResult errors,
                                  SessionStatus status) {
 
-        passwordUpdateValidator.validate(passwordUpdateModel, errors);
+        passwordUpdateValidator.validate(passUpdate, errors);
 
         if (errors.hasErrors()) {
             return new ModelAndView("/employee/password_update",
-                    "passUpdate", passwordUpdateModel);
+                    "passUpdate", passUpdate);
         } else {
             EmployeeEntity entity = employeeService.getEmployeeByLogin(getUserName());
-            employeeService.updateEmployeePassword(entity, passwordUpdateModel.getNewPassword());
+            employeeService.updateEmployeePassword(entity, passUpdate.getNewPassword());
             status.setComplete();
         }
-        return new ModelAndView("/employee/monitoring");
+        return new ModelAndView("redirect:/employee/monitoring");
     }
 }

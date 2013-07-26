@@ -1,5 +1,7 @@
 <#import "/layout/admin.ftl" as com>
 
+<#import "/util/spring.ftl" as spring />
+
 <@com.page title="Employee manager">
     <div class="hero-unit">
         <h2>Employee management</h2>
@@ -38,7 +40,7 @@
             <h3>Registration of new employee</h3>
             <p>You can register a new employee by clicking "Create" button, this will redirect you
             to registration form.</p>
-            <p><a class="btn" href="employee_registr.html">Create new employee &raquo;</a></p>
+            <p><a class="btn" href="<@spring.url '/employee_management/employee_registr' />">Create new employee &raquo;</a></p>
         </div><!--/span-->
     </div><!--/row-->
 </@com.page>

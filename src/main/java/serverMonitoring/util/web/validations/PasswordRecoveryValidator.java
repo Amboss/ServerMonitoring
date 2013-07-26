@@ -7,7 +7,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import serverMonitoring.logic.service.AnonymousService;
 import serverMonitoring.model.EmployeeEntity;
-import serverMonitoring.model.PasswordRecoveryModel;
+import serverMonitoring.model.ftl.PasswordRecoveryModel;
 
 /**
  * Validator for password recovery page functionality
@@ -17,7 +17,7 @@ import serverMonitoring.model.PasswordRecoveryModel;
 @Component
 public class PasswordRecoveryValidator implements Validator {
 
-    protected static Logger userAccessLogger = Logger.getLogger(PasswordRecoveryValidator.class);
+    protected static Logger passRecoveryLogger = Logger.getLogger(PasswordRecoveryValidator.class);
 
     private AnonymousService anonymousService;
 
@@ -47,13 +47,13 @@ public class PasswordRecoveryValidator implements Validator {
          *  check if any employee exists with provided E-mail
          */
         if (passwordRecoveryModel.getEmail().isEmpty()) {
-            userAccessLogger.error("required.email");
+            passRecoveryLogger.error("required.email");
             errors.rejectValue("email", "required.email");
         } else {
             try {
                 employeeEntity = anonymousService.getEmployeeByEmail(passwordRecoveryModel.getEmail());
             } catch (RuntimeException e) {
-                userAccessLogger.error("email.rejected");
+                passRecoveryLogger.error("email.rejected");
                 errors.rejectValue("email", "email.rejected");
             }
 
@@ -62,7 +62,7 @@ public class PasswordRecoveryValidator implements Validator {
              */
             if(employeeEntity != null && passwordRecoveryModel.getEmail().equals(employeeEntity.getEmail())) {
                 if (employeeEntity.getActive().equals(0)) {
-                    userAccessLogger.error("email.access_denied");
+                    passRecoveryLogger.error("email.access_denied");
                     errors.rejectValue("email", "email.access_denied");
                 }
             }

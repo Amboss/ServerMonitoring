@@ -6,7 +6,13 @@
 
 <@security.authorize ifAnyGranted="ROLE_USER">
     <ul class="nav">
-        <li><a href="../employee/password_update.html">Password change</a></li>
+        <li><a href="<@spring.url '/employee/password_update.html'/>">Password change</a></li>
+    </ul>
+</@security.authorize>
+<@security.authorize ifAnyGranted="ROLE_ADMIN">
+    <ul class="nav">
+        <li><a href="<@spring.url '/employee_management/employee_manager.html'/>"></i>Employee manager</a></li>
+        <li><a href="<@spring.url '/server_management/serv_manager.html'/>"></i>Server manager</a></li>
     </ul>
 </@security.authorize>
 

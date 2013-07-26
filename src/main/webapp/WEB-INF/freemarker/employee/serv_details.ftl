@@ -31,12 +31,12 @@
             </thead>
                 <tbody>
                     <tr>
-                        <td>${server.server_name!"- - -"}</td>
-                        <td>${server.address!"- - -"}:${server.port!"- - -"}</td>
-                        <td>${server.url!"- - -"}</td>
-                        <td>${server.state!"- - -"}</td>
-                        <td>${server.lastCheck!"- - -"}</td>
-                        <td>${server.state!"- - -"}</td>
+                        <td>${server.server_name}</td>
+                        <td>${server.address}:${server.port}</td>
+                        <td>${server.url}</td>
+                        <td>${server.state}</td>
+                        <td>${server.lastCheck!}</td>
+                        <td>${server.state}</td>
                     </tr>
                 </tbody>
         </table>

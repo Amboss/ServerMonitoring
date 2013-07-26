@@ -13,6 +13,11 @@ import java.util.List;
 public interface EmployeeService {
 
     /**
+     * Retrieves EmployeeEntity entity by E-mail
+     */
+    public EmployeeEntity getEmployeeByEmail(String email);
+
+    /**
      * retrieve Employee by login
      */
     public EmployeeEntity getEmployeeByLogin(String entity_login) ;
