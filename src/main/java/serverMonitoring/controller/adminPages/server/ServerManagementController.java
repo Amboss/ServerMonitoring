@@ -1,4 +1,4 @@
-package serverMonitoring.controller.adminPages;
+package serverMonitoring.controller.adminPages.server;
 
 import org.apache.log4j.Logger;
 import org.springframework.security.access.annotation.Secured;
@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import serverMonitoring.controller.adminPages.AbstractAdminController;
 
 /**
  * Handles and retrieves the ROLE_ADMIN server_management pages depending on the URI template.

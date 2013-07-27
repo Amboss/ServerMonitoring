@@ -66,7 +66,6 @@ public class EmployeePasswordUpdateController extends AbstractEmployeeController
 
     /**
      * Action on button "Change password" pressed.
-     *
      * @return ftl page regarding of the validation result
      */
     @RequestMapping(method = RequestMethod.POST)
@@ -75,6 +74,9 @@ public class EmployeePasswordUpdateController extends AbstractEmployeeController
                                  BindingResult errors,
                                  SessionStatus status) {
 
+        /**
+         * form validation
+         */
         passwordUpdateValidator.validate(passUpdate, errors);
 
         if (errors.hasErrors()) {

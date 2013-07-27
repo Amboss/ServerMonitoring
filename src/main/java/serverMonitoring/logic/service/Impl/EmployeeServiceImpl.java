@@ -57,6 +57,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     /**
+     * retrieve Employee by Id
+     *
+     * @return Employee Entity object
+     */
+    public EmployeeEntity getEmployeeById(Long entityId) {
+        employeeLogger.debug("retrieving Employee with Id: " + entityId);
+        return employeeDao.findById(entityId);
+    }
+
+    /**
      * updating Employee password
      */
     @Override
@@ -85,6 +95,21 @@ public class EmployeeServiceImpl implements EmployeeService {
         entity.setLogin(userName);
         entity.setLastLogin(timestamp);
         employeeDao.update(entity);
+    }
+
+    /**
+     * updating Employee Last Login timestamp
+     */
+    @Override
+    public void changeServerLastCheck(String serverName) {
+        employeeLogger.debug("updating Server LastChek");
+        ServerEntity entity = new ServerEntity();
+        Date date = new Date();
+        Timestamp timestamp = new Timestamp(date.getTime());
+
+        entity.setServer_name(serverName);
+        entity.setLastCheck(timestamp);
+        serverDao.update(entity);
     }
 
     /**

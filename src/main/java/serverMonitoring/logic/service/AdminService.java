@@ -40,7 +40,7 @@ public interface AdminService {
     /**
      * delete Server
      */
-    public void deleteServer(Long entity_id);
+    public void deleteServer(String serverName);
 
     /**
      * retrieve all Servers

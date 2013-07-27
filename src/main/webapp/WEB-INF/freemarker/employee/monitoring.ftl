@@ -7,7 +7,6 @@
 
 <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
 
-
 <@security.authorize ifAnyGranted="ROLE_USER">
     <#import "/layout/employee.ftl" as com>
 </@security.authorize>
@@ -34,7 +33,8 @@
                     <#assign serverName = server.server_name />
                     <tbody>
                         <tr>
-                            <td><a href="../employee/serv_details/${serverName}.html">${serverName}<a/></td>
+                            <td><a href="<@spring.url '/employee/serv_details/${serverName}.html' />">
+                                <i class=" icon-search" ></i>&nbsp;${serverName}<a/></td>
                             <td>${server.state}</td>
                             <td>${server.lastCheck}</td>
                             <td>${server.active}</td>

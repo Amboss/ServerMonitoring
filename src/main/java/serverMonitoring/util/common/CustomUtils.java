@@ -16,4 +16,10 @@ public interface CustomUtils {
      * Operation for random Strings generator
      */
     public String getNewRandomGeneratedPassword();
+
+    /**
+     * invalidate provided user session
+     */
+    public void setUserSessionInvalidated();
+
 }

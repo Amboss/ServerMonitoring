@@ -100,8 +100,8 @@ public class AdminServiceImpl implements AdminService {
      * deleting Server
      */
     @Override
-    public void deleteServer(Long entity_id) {
-        adminLogger.debug("deleting Server with id: " + entity_id);
-        serverDao.delete(entity_id);
+    public void deleteServer(String serverName) {
+        adminLogger.debug("deleting Server with id: " + serverName);
+        serverDao.delete(serverName);
     }
 }

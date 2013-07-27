@@ -20,17 +20,27 @@ public interface EmployeeService {
     /**
      * retrieve Employee by login
      */
-    public EmployeeEntity getEmployeeByLogin(String entity_login) ;
+    public EmployeeEntity getEmployeeByLogin(String entityLogin) ;
+
+    /**
+     * retrieve Employee by Id
+     */
+    public EmployeeEntity getEmployeeById(Long entityId);
 
     /**
      * update Employee Password
      */
-    public void updateEmployeePassword(EmployeeEntity entity_id, String newPass);
+    public void updateEmployeePassword(EmployeeEntity entityId, String newPass);
 
     /**
      * updating Employee Last Login timestamp
      */
     public void changeLastLogin(String userName);
+
+    /**
+     * updating Employee Last Login timestamp
+     */
+    public void changeServerLastCheck(String serverName);
 
     /**
      * retrieve server details by provided Id

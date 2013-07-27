@@ -110,7 +110,7 @@ public class ServerJdbcDaoSupport implements ServerDao {
         assert entity.getServer_name() != null;
 
         // updating with full list of rows
-        String query = "UPDATE " + db_table + " SET " + raw_list_update + " WHERE id = ? ";
+        String query = "UPDATE " + db_table + " SET " + raw_list_update + " WHERE server_name = ? ";
         try {
             // selecting existent entity & replacing null with existent match
             ServerEntity entityInDB = findByServerName(entity.getServer_name());
@@ -157,7 +157,7 @@ public class ServerJdbcDaoSupport implements ServerDao {
                     entity.getCreated(),
                     entity.getLastCheck(),
                     entity.getActive(),
-                    entity.getId()};
+                    entity.getServer_name()};
             this.jdbcTemplate.update(query, args);
         } catch (RuntimeException e) {
             e.printStackTrace();
@@ -169,11 +169,11 @@ public class ServerJdbcDaoSupport implements ServerDao {
      * Deleting existing Server entity
      */
     @Override
-    public void delete(Long entity_id) {
-        assert entity_id != null;
-        String query = "DELETE FROM " + db_table + " WHERE id= ?";
+    public void delete(String server_name) {
+        assert server_name != null;
+        String query = "DELETE FROM " + db_table + " WHERE server_name= ?";
         try {
-            Object[] args = {entity_id};
+            Object[] args = {server_name};
             this.jdbcTemplate.update(query, args);
         } catch (RuntimeException e) {
             e.printStackTrace();
@@ -181,23 +181,23 @@ public class ServerJdbcDaoSupport implements ServerDao {
         }
     }
 
-    /**
-     * Retrieves Server entity entity by Id
-     *
-     * @return ServerEntity object
-     */
-    @Override
-    public ServerEntity findById(Long entity_id) {
-        assert entity_id != null;
-        String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE id= ?";
-        try {
-            Object[] args = {entity_id};
-            return this.jdbcTemplate.queryForObject(query, args, new EmployeeEntityMapper());
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-            throw new RuntimeException();
-        }
-    }
+//    /**
+//     * Retrieves Server entity entity by Id
+//     *
+//     * @return ServerEntity object
+//     */
+//    @Override
+//    public ServerEntity findById(Long entity_id) {
+//        assert entity_id != null;
+//        String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE id= ?";
+//        try {
+//            Object[] args = {entity_id};
+//            return this.jdbcTemplate.queryForObject(query, args, new EmployeeEntityMapper());
+//        } catch (RuntimeException e) {
+//            e.printStackTrace();
+//            throw new RuntimeException();
+//        }
+//    }
 
     /**
      * Retrieves List of Server entity with provided Id
@@ -223,11 +223,11 @@ public class ServerJdbcDaoSupport implements ServerDao {
      * @return ServerEntity object
      */
     @Override
-    public ServerEntity findByServerName(String entity_name) {
-        assert entity_name != null;
+    public ServerEntity findByServerName(String server_name) {
+        assert server_name != null;
         String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE server_name= ?";
         try {
-            Object[] args = {entity_name};
+            Object[] args = {server_name};
             return this.jdbcTemplate.queryForObject(query, args, new EmployeeEntityMapper());
         } catch (RuntimeException e) {
             e.printStackTrace();

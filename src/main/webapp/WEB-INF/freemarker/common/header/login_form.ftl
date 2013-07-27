@@ -14,7 +14,7 @@
 <@security.authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">
     <form class="navbar-form pull-right" action=<@spring.url
                         value="/j_spring_security_logout" htmlEscape="true"/>  method="POST">
-        <button type="submit" class="btn">Sign out</button>
+        <button type="submit" class="btn"><i class="icon-off" ></i>&nbsp;Sign out</button>
     </form>
     <p class="navbar-text pull-right" style="padding-right: 20px;">Logged in as ${username!"Anonymous" }</p>
 </@security.authorize>

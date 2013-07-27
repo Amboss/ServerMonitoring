@@ -50,8 +50,7 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
      */
     @After
     public void testDelete() {
-        ServerEntity entity = serverDao.findByServerName("Test_Server");
-        serverDao.delete(entity.getId());
+        serverDao.delete("Test_Server");
     }
 
     /**
@@ -131,20 +130,15 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         serverDao.add(entity);
 
         ServerEntity entity2 = serverDao.findByServerName("Test_Server");
-        assertNotNull("failure - Employee entity2 must not be null", entity2);
-
-        // selecting by ID
-        Long id = entity2.getId();
-        ServerEntity entity3 = serverDao.findById(id);
 
         // asserting
-        assertNotNull("failure - Server entity must not be null", entity3);
-        assertEquals("failure - address should be same", "255.255.255.0", entity3.getAddress());
-        assertEquals("failure - port should be same", (Object) 8080, entity3.getPort());
-        assertEquals("failure - url should be same", "http://localhost/", entity3.getUrl());
-        assertEquals("failure - state should be same", serverState, entity3.getState());
-        assertEquals("failure - state should be same", serverStateString, entity3.getResponse());
-        assertEquals("failure - isActive should be same", (Object) 1, entity3.getActive());
+        assertNotNull("failure - Server entity must not be null", entity2);
+        assertEquals("failure - address should be same", "255.255.255.0", entity2.getAddress());
+        assertEquals("failure - port should be same", (Object) 8080, entity2.getPort());
+        assertEquals("failure - url should be same", "http://localhost/", entity2.getUrl());
+        assertEquals("failure - state should be same", serverState, entity2.getState());
+        assertEquals("failure - state should be same", serverStateString, entity2.getResponse());
+        assertEquals("failure - isActive should be same", (Object) 1, entity2.getActive());
     }
 
     /**
@@ -196,20 +190,21 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         serverDao.add(entity);
 
         // selecting existent entity
-        entity.setServer_name("Test_Server");
-        entity.setAddress("255.255.255.10");
-        entity.setPort(9090);
-        entity.setActive(0);
-        serverDao.update(entity);
+        ServerEntity entity2 = new ServerEntity();
+        entity2.setServer_name("Test_Server");
+        entity2.setAddress("255.255.255.10");
+        entity2.setPort(9090);
+        entity2.setActive(0);
+        serverDao.update(entity2);
 
         // selection and asserting
-        ServerEntity entity2 = serverDao.findByServerName("Test_Server");
-        assertNotNull("failure - Employee entity2 must not be null", entity2);
+        ServerEntity entity3 = serverDao.findByServerName("Test_Server");
+        assertNotNull("failure - Employee entity2 must not be null", entity3);
 
         // asserting
-        assertNotNull("failure - Server entity must not be null", entity2);
-        assertEquals("failure - address should be same", "255.255.255.10", entity2.getAddress());
-        assertEquals("failure - port should be same", (Object) 9090, entity2.getPort());
-        assertEquals("failure - isActive should be same", (Object) 0, entity2.getActive());
+        assertNotNull("failure - Server entity must not be null", entity3);
+        assertEquals("failure - address should be same", "255.255.255.10", entity3.getAddress());
+        assertEquals("failure - port should be same", (Object) 9090, entity3.getPort());
+        assertEquals("failure - isActive should be same", (Object) 0, entity3.getActive());
     }
 }

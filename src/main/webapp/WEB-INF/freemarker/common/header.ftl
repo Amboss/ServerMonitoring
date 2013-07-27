@@ -46,7 +46,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="brand" href="../employee/monitoring.html">Server Monitoring Service</a>
+                    <a class="brand" href="<@spring.url '/employee/monitoring.html' />">Server Monitoring Service</a>
                     <div class="nav-collapse collapse">
                         <div class="header_menu">
                             <#include "header/header_menu.ftl">

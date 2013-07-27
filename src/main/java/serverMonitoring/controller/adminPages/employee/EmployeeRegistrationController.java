@@ -1,4 +1,4 @@
-package serverMonitoring.controller.adminPages;
+package serverMonitoring.controller.adminPages.employee;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import serverMonitoring.controller.adminPages.AbstractAdminController;
 import serverMonitoring.logic.service.AdminService;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ftl.EmployeeRegistrSimplFormModel;
@@ -64,7 +65,7 @@ public class EmployeeRegistrationController extends AbstractAdminController {
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView setEmployeeRegistrationPage() {
+    public ModelAndView loadPage() {
 
         showRequestLog("employee_registr");
 
@@ -99,27 +100,34 @@ public class EmployeeRegistrationController extends AbstractAdminController {
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView getEmployeeRegistrationPage(
+    public ModelAndView onSubmit(
             @ModelAttribute("activeState") EmployeeRegistrSimplFormModel activeState,
             @ModelAttribute("newEmployee") EmployeeEntity newEmployee,
             BindingResult errors, SessionStatus status) {
 
         showRequestLog("employee_registr");
 
-        // translating active state to integer
+        /*
+         * translating active state to integer
+         */
         if (activeState.getState().equals("Active")) {
             newEmployee.setActive(1);
         } else {
             newEmployee.setActive(0);
         }
 
-        // translating role state to integer
+        /*
+         * translating role state to integer
+         */
         if (activeState.getLevel().equals("Admin")) {
             newEmployee.setAdmin(1);
         } else {
             newEmployee.setAdmin(0);
         }
 
+        /**
+         * form validation
+         */
         employeeRegistrationValidator.validate(newEmployee, errors);
 
         if (errors.hasErrors()) {
@@ -128,9 +136,10 @@ public class EmployeeRegistrationController extends AbstractAdminController {
             List<String> adminMap = Arrays.asList("Regular", "Admin");
 
             ModelAndView errorModelAndView = new ModelAndView("/admin/employee_management/employee_registr");
+            // providing form info
             errorModelAndView.addObject("newEmployee", newEmployee);
             errorModelAndView.addObject("activeState", activeState);
-
+            // providing list of options for "active" formRadioButtons
             errorModelAndView.addObject("activeMap", activeMap);
             errorModelAndView.addObject("adminMap", adminMap);
 
@@ -147,6 +156,7 @@ public class EmployeeRegistrationController extends AbstractAdminController {
             /**
              * sending email with new password
              */
+
             customMailDelivery.sendMail("huskyserge@gmail.com",
                     newEmployee.getEmail(),
                     "You are greeted by notifying system of Server Monitoring Service!",

@@ -59,7 +59,9 @@ public class AdminPasswordUpdateController extends AbstractAdminController {
                                  PasswordUpdateModel passUpdate,
                                  BindingResult errors,
                                  SessionStatus status) {
-
+        /**
+         * form validation
+         */
         passwordUpdateValidator.validate(passUpdate, errors);
 
         if (errors.hasErrors()) {
