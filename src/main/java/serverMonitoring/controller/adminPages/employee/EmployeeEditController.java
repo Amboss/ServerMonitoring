@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,8 +16,11 @@ import serverMonitoring.controller.adminPages.AbstractAdminController;
 import serverMonitoring.logic.service.AdminService;
 import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.EmployeeEntity;
-import serverMonitoring.model.ftl.EmployeeRegistrSimplFormModel;
+import serverMonitoring.model.ftl.RegistrSimplFormModel;
+import serverMonitoring.util.web.validations.EmployeeUpdateValidatior;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,7 +36,9 @@ public class EmployeeEditController extends AbstractAdminController {
 
     protected static Logger logger = Logger.getLogger(EmployeeEditController.class);
 
-//    private EmployeeRegistrationValidator employeeRegistrationValidator;
+    private List<String> activeMap = Arrays.asList("Active", "Not active");
+
+    private EmployeeUpdateValidatior employeeUpdateValidatior;
 
     @Autowired
     private EmployeeService employeeService;
@@ -40,10 +46,44 @@ public class EmployeeEditController extends AbstractAdminController {
     @Autowired
     private AdminService adminService;
 
-//    @Autowired
-//    public void setValidator(EmployeeRegistrationValidator employeeRegistrationValidator) {
-//        this.employeeRegistrationValidator = employeeRegistrationValidator;
-//    }
+    @Autowired
+    public void setValidator(EmployeeUpdateValidatior employeeUpdateValidatior) {
+        this.employeeUpdateValidatior = employeeUpdateValidatior;
+    }
+
+    /**
+     * Retrieves /admin/employee_management/employee_update.ftl
+     *
+     * @return the name of the FreeMarker template page
+     */
+    @RequestMapping(value = "/{id}")
+    public ModelAndView loadPage(@PathVariable("id") Long id) {
+
+        showRequestLog("employee_update");
+        if (id != null) {
+
+            EmployeeEntity employeeEntity = employeeService.getEmployeeById(id);
+            RegistrSimplFormModel simplFormModel = new RegistrSimplFormModel();
+
+            /*
+             * translating active state to integer
+             */
+            if (employeeEntity.getActive().equals(1)) {
+                simplFormModel.setState("Active");
+            } else {
+                simplFormModel.setState("Not active");
+            }
+
+            ModelAndView model = new ModelAndView("admin/employee_management/employee_update");
+            // providing form info
+            model.addObject("activeState", simplFormModel);
+            model.addObject("employeeEntity", new EmployeeEntity());
+            model.addObject("activeMap", activeMap);
+            return model;
+        } else {
+            return new ModelAndView("redirect:/employee_management/employee_manager");
+        }
+    }
 
     /**
      * Action on button "Cancel" pressed.
@@ -51,77 +91,31 @@ public class EmployeeEditController extends AbstractAdminController {
      * @return redirect to monitoring page
      */
     @RequestMapping(params = "cancel", method = RequestMethod.POST)
-    protected String onCancel() {
+    protected ModelAndView onCancel(HttpServletRequest request,
+                              HttpServletResponse response,
+                              Object command,
+                              BindException errors) {
         showRequestLog("monitoring");
-        return "redirect:/employee_management/employee_manager";
+        return new ModelAndView("redirect:/employee_management/employee_manager");
     }
 
     /**
-     * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_update.ftl
-     *
-     * @return the name of the FreeMarker template page
-     */
-    @RequestMapping(value = "/{id}")
-    public ModelAndView loadPage(@PathVariable("id") Long id) {
-        showRequestLog("employee_update");
-        if (id != null) {
-
-            EmployeeEntity employeeEntity = employeeService.getEmployeeById(id);
-            EmployeeRegistrSimplFormModel simplFormModel = new EmployeeRegistrSimplFormModel();
-
-            // providing list of options for "active" formRadioButtons
-            List<String> activeMap = Arrays.asList("Active", "Not active");
-
-            /*
-             * translating active state to integer
-             */
-            if (employeeEntity.getActive().equals(1)) {
-                simplFormModel.setState("Active");
-            } else {
-                simplFormModel.setState("Not active");
-            }
-
-            ModelAndView model = new ModelAndView("admin/employee_management/employee_update");
-            // providing form info
-            model.addObject("activeState", simplFormModel);
-            model.addObject("employeeEntity", employeeEntity);
-            model.addObject("activeMap", activeMap);
-            return model;
-
-        } else {
-            return new ModelAndView("redirect:/employee_management/employee_manager");
-        }
-    }
-
-    /**
-     * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_update.ftl
+     * Handles Submit action on /admin/employee_management/employee_update.ftl
      */
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView onSubmit(
-            @ModelAttribute("activeState") EmployeeRegistrSimplFormModel simplFormModel,
+            @ModelAttribute("activeState") RegistrSimplFormModel simplFormModel,
             @ModelAttribute("employeeEntity") EmployeeEntity employeeEntity,
             BindingResult errors, SessionStatus status) {
 
         showRequestLog("employee_registr");
 
-        /*
-         * translating active state to integer
-         */
-        if (simplFormModel.getState().equals("Active")) {
-            employeeEntity.setActive(1);
-        } else {
-            employeeEntity.setActive(0);
-        }
-
         /**
          * form validation
          */
-//        employeeRegistrationValidator.validate(employeeEntity, errors);
+        employeeUpdateValidatior.validate(employeeEntity, errors);
 
         if (errors.hasErrors()) {
-
-            // providing list of options for "active" formRadioButtons
-            List<String> activeMap = Arrays.asList("Active", "Not active");
 
             /*
              * translating active state to integer
@@ -132,20 +126,30 @@ public class EmployeeEditController extends AbstractAdminController {
                 simplFormModel.setState("Not active");
             }
 
-            ModelAndView model = new ModelAndView("admin/employee_management/employee_update");
+            ModelAndView errorModelAndView = new ModelAndView("admin/employee_management/employee_update");
             // providing form info
-            model.addObject("activeState", simplFormModel);
-            model.addObject("employeeEntity", employeeEntity);
-            model.addObject("activeMap", activeMap);
-            return model;
+            errorModelAndView.addObject("activeState", simplFormModel);
+            errorModelAndView.addObject("employeeEntity", employeeEntity);
+            errorModelAndView.addObject("activeMap", activeMap);
+            return errorModelAndView;
+
         } else {
+            /*
+             * translating active state to integer
+             */
+            if (simplFormModel.getState().equals("Active")) {
+                employeeEntity.setActive(1);
+            } else {
+                employeeEntity.setActive(0);
+            }
 
             /**
-             * registration of new employee
+             * updating employee
              */
             adminService.updateEmployee(employeeEntity);
             status.setComplete();
             return new ModelAndView("redirect:/employee_management/employee_manager");
+//        }
         }
     }
 }

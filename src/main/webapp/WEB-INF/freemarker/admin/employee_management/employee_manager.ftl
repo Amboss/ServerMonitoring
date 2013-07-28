@@ -23,23 +23,35 @@
                     <th>Active</th>
                     <th>lastLogin</th>
                     <th>Actions</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             <#list employee as employee >
             <#assign id = employee.id />
+
+                <#-- ===================== Employee active icons ========================= -->
+                <#if employee.active = 1>
+                    <#assign activeIcon><i class="icon-thumbs-up" ></#assign>
+                <#elseif employee.active = 0>
+                    <#assign activeIcon><i class="icon-ban-circle" ></#assign>
+                </#if>
+
                 <tbody>
                     <tr>
                         <td>${employee.employee_name}<a/></td>
-                        <td>${employee.active}</td>
+                        <td>${activeIcon}</td>
                         <td>${employee.lastLogin}</td>
                         <td>
                             <a href="<@spring.url '/employee_management/employee_update/${id}.html' />">
                                 <i class="icon-edit" ></i>&nbsp;Edit
                             <a/>
                         </td>
-                        <td><a href="<@spring.url '/employee_management/employee_removal/${id}.html' />">
+                        <td><a href="<@spring.url '/employee_management/employee_update/${id}.html' />">
                                <i class="icon-check" ></i>&nbsp;Assign
+                            <a/>
+                        </td>
+                        <td>
+                            <a href="<@spring.url '/employee_management/employee_removal/${id}.html' />">
+                                <i class="icon-trash" ></i>&nbsp;Delete
                             <a/>
                         </td>
                     </tr>
@@ -54,6 +66,9 @@
             <h3>List of employee</h3>
             <p>List on this page shows all employee with short information
             for general control.</p>
+            <p><i class="icon-thumbs-up" ></i>&nbsp;- icon shows that employee access is granted </P>
+            <p><i class="icon-ban-circle" ></i>&nbsp;- icon shows that employee access is denied</P>
+
         </div><!--/span-->
         <div class="span6">
             <h3>Registration of new employee</h3>

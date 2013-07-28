@@ -1,32 +1,100 @@
+<#-- =====================================================================
+     Server registration page
 
+     ===================================================================== -->
+
+<#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
+
+<#import "/util/spring.ftl" as spring />
 <#import "/layout/admin.ftl" as com>
 
 <@com.page title="Server registration">
-<div class="container">
-
-    <div clas="index_text">
-        <table>
-            <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-                exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-                commodo consequat. Duis autem vel eum iriure dolor in hendrerit
-                in vulputate velit esse molestie consequat, vel illum dolore eu
-                feugiat nulla facilisis at vero eros et accumsan et iusto odio
-                dignissim qui blandit praesent luptatum zzril delenit augue duis
-                dolore te feugait nulla facilisi. Nam liber tempor cum soluta
-                nobis eleifend option congue nihil imperdiet doming id quod mazim
-                placerat facer possim assum. Typi non habent claritatem insitam;
-                est usus legentis in iis qui facit eorum claritatem. Investigationes
-                demonstraverunt lectores legere me lius quod ii legunt saepius.
-                Claritas est etiam processus dynamicus, qui sequitur mutationem
-                consuetudium lectorum. Mirum est notare quam littera gothica,
-                quam nunc putamus parum claram, anteposuerit litterarum formas
-                humanitatis per seacula quarta decima et quinta decima. Eodem
-                modo typi, qui nunc nobis videntur parum clari, fiant sollemnes
-                in futurum.
-            </td></tr>
-        </table>
+<#-- ===================== Head with name of page ========================= -->
+    <div class="hero-unit">
+        <h2>Registration of new employee</h2>
     </div>
-</div>
+
+    <#-- ===================== Main row for Registration form ========================= -->
+    <div class="span12">
+        <form id="employeeRegistrationForm"
+                class="form-horizontal"
+                method="post"
+                autocomplete="off" >
+            <h3>Please fill in required information:</h3>
+
+
+            <#-- ===================== Server Name ========================= -->
+            <div class="control-group info">
+                <label class="control-label" for="server_name">Server name</label>
+                <div class="controls">
+                   <@spring.formInput "newServer.server_name", "input-xlarge" />
+                   <@spring.showErrors " ", "alert alert-error"/>
+                </div>
+            </div>
+
+            <#-- ===================== Server address ========================= -->
+            <div class="control-group info">
+                <label class="control-label" for="address">Server address</label>
+                <div class="controls">
+                   <@spring.formInput "newServer.address", "input-xlarge" />
+                   <@spring.showErrors " ", "alert alert-error"/>
+                </div>
+            </div>
+
+            <#-- ===================== Server port ========================= -->
+            <div class="control-group info">
+                <label class="control-label" for="port">Server port</label>
+                <div class="controls">
+                   <@spring.formInput "newServer.port", "input-xlarge" />
+                   <@spring.showErrors " ", "alert alert-error"/>
+                </div>
+            </div>
+
+            <#-- ===================== Server url ========================= -->
+            <div class="control-group info">
+                <label class="control-label" for="url">Server url</label>
+                <div class="controls">
+                   <@spring.formInput "newServer.url", "input-xlarge" />
+                   <@spring.showErrors " ", "alert alert-error"/>
+                </div>
+            </div>
+
+            <#-- ===================== Active ========================= -->
+            <div class="control-group info">
+                <label class="control-label" for="state">Active</label>
+                <div class="controls">
+                    <@spring.formSingleSelect "activeState.state", activeMap, " "/>
+                </div>
+            </div>
+
+            <#-- ===================== Buttons ================================== -->
+            <div class="control-group">
+                <div class="controls">
+                    <input class="btn btn-primary"
+                            type='submit'
+                            name='create'
+                            value='Create employee'/>
+                    <input class="btn"
+                            type='submit'
+                            name='cancel'
+                            value='Cancel'/>
+                </div>
+            </div>
+        </form>
+    </div><!--/row-->
+
+    <#-- ===================== Information row for Registration page ========================= -->
+    <div class="row-fluid">
+        <div class="span6">
+            <h3>Registration specifications</h3>
+            <p>To register a new employee you have to specify related info such as Name,
+            Last name, Login, Activation status, Security level. All other supported data will
+            be generated automatically.</p>
+        </div><!--/span-->
+        <div class="span6">
+            <h3>Informing new Employee</h3>
+            <p>After successful registration, system wil notify provided employee, by specified
+             E-mail, with his new ability to access his workplace with new login and new password.</p>
+        </div><!--/span-->
+    </div><!--/row-->
 </@com.page>

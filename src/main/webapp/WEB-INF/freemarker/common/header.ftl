@@ -22,6 +22,9 @@
                 background-image: url("<@spring.url '/static/img/header_default2.png'/>");
                 background-repeat: no-repeat;
             }
+            th {
+                text-align: center;
+            }
         </style>
 
         <script type="text/javascript" src="<@spring.url '/static/js/bootstrap.js'/>" ></script>

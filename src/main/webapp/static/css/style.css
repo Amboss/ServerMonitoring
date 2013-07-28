@@ -10,3 +10,6 @@ table {
     height: 100px !important;
     overflow: scroll;
 }​
+ thead tr th {
+    text-align: center;
+}

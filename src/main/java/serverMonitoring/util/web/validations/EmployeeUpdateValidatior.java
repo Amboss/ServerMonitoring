@@ -10,10 +10,10 @@ import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.EmployeeEntity;
 
 /**
- * Validator for registration of new employee
+ * Validator for Employee Update page
  */
 @Component
-public class EmployeeRegistrationValidator implements Validator {
+public class EmployeeUpdateValidatior implements Validator {
 
     protected static Logger registrValidatorLogger = Logger.getLogger(EmployeeRegistrationValidator.class);
 
@@ -39,8 +39,6 @@ public class EmployeeRegistrationValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
 
-        entity = (EmployeeEntity) target;
-
         /**
          *  check for empty Name
          */
@@ -48,60 +46,10 @@ public class EmployeeRegistrationValidator implements Validator {
                 "employee_name.required", "Field name is required.");
 
         /**
-         *  check for Name length
-         */
-//         if() {
-//
-//         }
-
-        /**
-         *  check for empty Login
-         */
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "login",
-                "login.required", "Field name is required.");
-
-        /**
-         *   check for duplicated "login"
-         */
-        try {
-            employeeService.getEmployeeByLogin(entity.getLogin());
-            errors.rejectValue("login", "login.isTaken");
-        } catch (RuntimeException e) {
-            registrValidatorLogger.debug("Login is not occupied");
-        }
-
-//        if (entity2.getLogin() != null) {
-//
-//        }
-
-        /**
-         *  check for Login length
-         */
-//        if() {
-//
-//         }
-
-        /**
          *  check for empty E-mail
          */
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email",
                 "email.required", "Field name is required.");
-
-        /**
-         *  check for duplicated E-mail
-         */
-        try {
-            employeeService.getEmployeeByEmail(entity.getEmail());
-            errors.rejectValue("email", "email.isTaken");
-        } catch (RuntimeException e) {
-            registrValidatorLogger.debug("email is not occupied");
-        }
-
-        /**
-         *  check for E-mail length
-         */
-//        if() {
-//
-//         }
     }
 }
+

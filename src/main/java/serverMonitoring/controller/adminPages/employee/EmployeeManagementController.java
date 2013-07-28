@@ -60,7 +60,7 @@ public class EmployeeManagementController extends AbstractAdminController {
      *
      * @return the name of the FreeMarker template page
      */
-    @RequestMapping(value = "/employee_removal", method = RequestMethod.GET)
+    @RequestMapping(value = "/employee_removal/{id}", method = RequestMethod.POST)
     public ModelAndView getEmployeeRemovalPage() {
         showRequestLog("employee_removal");
         return new ModelAndView(catalogPath + "employee_removal");

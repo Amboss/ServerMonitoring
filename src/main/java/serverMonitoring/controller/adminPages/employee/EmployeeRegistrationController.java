@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import serverMonitoring.controller.adminPages.AbstractAdminController;
 import serverMonitoring.logic.service.AdminService;
 import serverMonitoring.model.EmployeeEntity;
-import serverMonitoring.model.ftl.EmployeeRegistrSimplFormModel;
+import serverMonitoring.model.ftl.RegistrSimplFormModel;
 import serverMonitoring.util.common.CustomUtils;
 import serverMonitoring.util.mail.CustomMailDelivery;
 import serverMonitoring.util.web.validations.EmployeeRegistrationValidator;
@@ -60,30 +60,6 @@ public class EmployeeRegistrationController extends AbstractAdminController {
     }
 
     /**
-     * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_registr.ftl
-     *
-     * @return the name of the FreeMarker template page
-     */
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView loadPage() {
-
-        showRequestLog("employee_registr");
-
-        // providing list of options for "active" formRadioButtons
-        List<String> activeMap = Arrays.asList("Active", "Not active");
-        List<String> adminMap = Arrays.asList("Regular", "Admin");
-
-        ModelAndView model = new ModelAndView("admin/employee_management/employee_registr");
-        model.addObject("newEmployee", new EmployeeEntity());
-
-        model.addObject("activeMap", activeMap);
-        model.addObject("adminMap", adminMap);
-
-        model.addObject("activeState", new EmployeeRegistrSimplFormModel());
-        return model;
-    }
-
-    /**
      * Action on button "Cancel" pressed.
      *
      * @return redirect to monitoring page
@@ -99,9 +75,34 @@ public class EmployeeRegistrationController extends AbstractAdminController {
      *
      * @return the name of the FreeMarker template page
      */
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView loadPage() {
+
+        showRequestLog("employee_registr");
+
+        // providing list of options for "active" formRadioButtons
+        List<String> activeMap = Arrays.asList("Active", "Not active");
+        List<String> adminMap = Arrays.asList("Regular", "Admin");
+
+        ModelAndView model = new ModelAndView("admin/employee_management/employee_registr");
+        model.addObject("newEmployee", new EmployeeEntity());
+        model.addObject("activeMap", activeMap);
+        model.addObject("adminMap", adminMap);
+        model.addObject("activeState", new RegistrSimplFormModel());
+
+        return model;
+    }
+
+
+
+    /**
+     * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_registr.ftl
+     *
+     * @return the name of the FreeMarker template page
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView onSubmit(
-            @ModelAttribute("activeState") EmployeeRegistrSimplFormModel activeState,
+            @ModelAttribute("activeState") RegistrSimplFormModel activeState,
             @ModelAttribute("newEmployee") EmployeeEntity newEmployee,
             BindingResult errors, SessionStatus status) {
 

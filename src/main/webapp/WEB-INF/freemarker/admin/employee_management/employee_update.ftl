@@ -7,7 +7,7 @@
 <#import "/util/spring.ftl" as spring />
 
 <@com.page title="Employee update">
-<#-- ===================== Head with name of page ========================= -->
+    <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
         <h2>Employee update</h2>
     </div>
@@ -51,10 +51,10 @@
                 <div class="controls">
                     <input class="btn btn-primary"
                             type='submit'
-                            name='create'
-                            value='Change'/>
+                            name='update'
+                            value='Save changes'/>
                     <input class="btn"
-                            type='submit'
+                            type='reset'
                             name='cancel'
                             value='Cancel'/>
                 </div>

@@ -1,7 +1,6 @@
 <#-- =====================================================================
-     Password update page
-        - give ability for user to change existing password
-        - for admin_role the layout wil contain service menu on left side bar
+     Employee registration page
+
      ===================================================================== -->
 
 <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />

@@ -52,7 +52,6 @@ public class EmployeePasswordUpdateController extends AbstractEmployeeController
                 "passUpdate", new PasswordUpdateModel());
     }
 
-
     /**
      * Action on button "Cancel" pressed.
      * @return redirect to monitoring page
@@ -73,7 +72,6 @@ public class EmployeePasswordUpdateController extends AbstractEmployeeController
                                  PasswordUpdateModel passUpdate,
                                  BindingResult errors,
                                  SessionStatus status) {
-
         /**
          * form validation
          */

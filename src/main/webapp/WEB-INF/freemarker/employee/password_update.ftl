@@ -23,7 +23,10 @@
 
     <#-- ===================== Main row for Password update form ========================= -->
     <div class="row-fluid">
-        <form id="passUpdateForm" class="form-horizontal" method="post" autocomplete="off" >
+        <form id="passUpdateForm"
+                class="form-horizontal"
+                method="post"
+                autocomplete="off" >
             <h3>Please fill in required information:</h3>
 
             <#-- ===================== Current Password ========================= -->

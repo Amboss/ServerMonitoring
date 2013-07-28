@@ -5,16 +5,16 @@ import java.io.Serializable;
 /**
  * class formSingleSelect for employee registration page
  */
-public class EmployeeRegistrSimplFormModel implements Serializable {
+public class RegistrSimplFormModel implements Serializable {
 
     private String state;
 
     private String level;
 
-    public EmployeeRegistrSimplFormModel() {
+    public RegistrSimplFormModel() {
     }
 
-    public EmployeeRegistrSimplFormModel(String state, String level) {
+    public RegistrSimplFormModel(String state, String level) {
         this.state = state;
         this.level = level;
     }
@@ -43,7 +43,7 @@ public class EmployeeRegistrSimplFormModel implements Serializable {
 
     @Override
     public String toString() {
-        return "EmployeeRegistrSimplFormModel{" +
+        return "RegistrSimplFormModel{" +
                 "state='" + state + '\'' +
                 ", level='" + level + '\'' +
                 '}';
