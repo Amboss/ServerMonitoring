@@ -108,13 +108,19 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
      */
     @Override
     public void update(EmployeeEntity entity) {
-        assert entity.getLogin() != null;
+        //assert entity.getLogin() != null;
 
         // updating with full list of rows
         String query = "UPDATE " + db_table + " SET " + raw_list_update + " WHERE id = ? ";
         try {
             // selecting existent entity & replacing null with existent match
-            EmployeeEntity entityInDB = findByLogin(entity.getLogin());
+            EmployeeEntity entityInDB;
+            if (entity.getId() == null) {
+                entityInDB = findByLogin(entity.getLogin());
+
+            } else {
+                entityInDB = findById(entity.getId());
+            }
             assert entityInDB != null;
 
             if (entity.getId() == null) {
@@ -157,7 +163,8 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
                     entity.getId()};
             this.jdbcTemplate.update(query, args);
         } catch (RuntimeException e) {
-            throw new RuntimeException();
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

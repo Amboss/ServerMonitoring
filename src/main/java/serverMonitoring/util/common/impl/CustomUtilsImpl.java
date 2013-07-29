@@ -33,10 +33,10 @@ public class CustomUtilsImpl implements CustomUtils {
 
     /**
      * invalidate provided user session
-     * TODO invalidate session
+     * TODO finish invalidation
      */
     @Override
-    public void setUserSessionInvalidated() {
+    public void setUserSessionInvalidated(Long id) {
 
 //        HttpSession session = se.getSession();
 //        ServletContext context = session.getServletContext();

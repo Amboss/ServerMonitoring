@@ -54,7 +54,7 @@
                             name='update'
                             value='Save changes'/>
                     <input class="btn"
-                            type='reset'
+                            type='submit'
                             name='cancel'
                             value='Cancel'/>
                 </div>

@@ -37,6 +37,7 @@ public class ServerRegistrationValidator implements Validator {
      * @param errors contextual state about the validation process (never {@code null})
      */
     @Override
+    @SuppressWarnings("null")
     public void validate(Object target, Errors errors) {
 
         entity = (ServerEntity) target;
@@ -50,6 +51,7 @@ public class ServerRegistrationValidator implements Validator {
         /**
          *   check for duplicated server_name
          */
+
         try {
             employeeService.getServerByName(entity.getServer_name());
             errors.rejectValue("server_name", "server_name.isTaken");

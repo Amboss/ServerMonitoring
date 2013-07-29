@@ -20,6 +20,6 @@ public interface CustomUtils {
     /**
      * invalidate provided user session
      */
-    public void setUserSessionInvalidated();
+    public void setUserSessionInvalidated(Long id);
 
 }

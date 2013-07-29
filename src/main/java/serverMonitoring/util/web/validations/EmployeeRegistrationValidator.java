@@ -37,6 +37,7 @@ public class EmployeeRegistrationValidator implements Validator {
      * @param errors contextual state about the validation process (never {@code null})
      */
     @Override
+    @SuppressWarnings("null")
     public void validate(Object target, Errors errors) {
 
         entity = (EmployeeEntity) target;

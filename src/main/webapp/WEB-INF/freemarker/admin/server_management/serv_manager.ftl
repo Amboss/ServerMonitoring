@@ -9,7 +9,7 @@
 <@com.page title="Server manager">
  <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
-        <h2>Employee management</h2>
+        <h2>Server management</h2>
     </div>
 
      <#-- ===================== Main row for Server manager table ========================= -->
@@ -27,20 +27,28 @@
             <#list server as server >
             <#assign name = server.server_name />
 
-               <#-- ===================== Server response icons ========================= -->
-               <#if server.response = "OK">
-                   <#assign stateIcon><i class="icon-ok" ></#assign>
-               <#elseif server.response = "WARN">
-                   <#assign stateIcon><i class="icon-warning-sign" ></#assign>
-               <#elseif server.response = "FAIL">
-                   <#assign stateIcon><i class="icon-ban-circle" ></#assign>
-               </#if>
+                <#-- ===================== Server response icons ========================= -->
+                <#if server.response = "OK">
+                    <#assign responseIcon><i class="icon-ok" ></#assign>
+                <#elseif server.response = "WARN">
+                    <#assign responseIcon><i class="icon-warning-sign" ></#assign>
+                <#elseif server.response = "FAIL">
+                    <#assign responseIcon><i class="icon-ban-circle" ></#assign>
+                </#if>
+
+                <#-- ===================== Server active icons ========================= -->
+                <#if server.active = 1>
+                    <#assign activeIcon><i class="icon-thumbs-up" ></#assign>
+                <#elseif server.active = 0>
+                    <#assign activeIcon><i class="icon-ban-circle" ></#assign>
+                </#if>
 
                 <tbody>
                     <tr>
-                        <td>${name}<a/></td>
-                        <td>${activeIcon}</td>
+                        <td>${name}:${server.port}<a/></td>
+                        <td>${responseIcon}</td>
                         <td>${server.lastCheck}</td>
+                        <td>${activeIcon}</td>
                         <td>
                             <a href="<@spring.url '/server_management/serv_update/${name}.html' />">
                                 <i class="icon-edit" ></i>&nbsp;Edit
@@ -73,7 +81,7 @@
             <h3>Registration of new server</h3>
             <p>You can register a new server by clicking "Create" button, this will redirect you
             to registration form.</p>
-            <p><a class="btn" href="<@spring.url '/admin/server_management/serv_registr.ftl' />">
+            <p><a class="btn" href="<@spring.url '/server_management/serv_registr' />">
                     Create new server &raquo;</a></p>
         </div><!--/span-->
     </div><!--/row-->

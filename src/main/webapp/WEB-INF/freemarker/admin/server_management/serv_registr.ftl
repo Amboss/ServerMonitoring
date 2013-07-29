@@ -25,7 +25,7 @@
 
             <#-- ===================== Server Name ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="server_name">Server name</label>
+                <label class="control-label" for="server_name">Name</label>
                 <div class="controls">
                    <@spring.formInput "newServer.server_name", "input-xlarge" />
                    <@spring.showErrors " ", "alert alert-error"/>
@@ -34,7 +34,7 @@
 
             <#-- ===================== Server address ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="address">Server address</label>
+                <label class="control-label" for="address">Address</label>
                 <div class="controls">
                    <@spring.formInput "newServer.address", "input-xlarge" />
                    <@spring.showErrors " ", "alert alert-error"/>
@@ -43,7 +43,7 @@
 
             <#-- ===================== Server port ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="port">Server port</label>
+                <label class="control-label" for="port">Port</label>
                 <div class="controls">
                    <@spring.formInput "newServer.port", "input-xlarge" />
                    <@spring.showErrors " ", "alert alert-error"/>
@@ -52,7 +52,7 @@
 
             <#-- ===================== Server url ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="url">Server url</label>
+                <label class="control-label" for="url">URL</label>
                 <div class="controls">
                    <@spring.formInput "newServer.url", "input-xlarge" />
                    <@spring.showErrors " ", "alert alert-error"/>
@@ -61,7 +61,7 @@
 
             <#-- ===================== Active ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="state">Active</label>
+                <label class="control-label" for="state">Active status</label>
                 <div class="controls">
                     <@spring.formSingleSelect "activeState.state", activeMap, " "/>
                 </div>
@@ -73,7 +73,7 @@
                     <input class="btn btn-primary"
                             type='submit'
                             name='create'
-                            value='Create employee'/>
+                            value='Create server'/>
                     <input class="btn"
                             type='submit'
                             name='cancel'
@@ -87,12 +87,12 @@
     <div class="row-fluid">
         <div class="span6">
             <h3>Registration specifications</h3>
-            <p>To register a new employee you have to specify related info such as Name,
-            Last name, Login, Activation status, Security level. All other supported data will
-            be generated automatically.</p>
+            <p>To register a new server you have to specify related info such as Name,
+            Address, Port (80 by default), URL("/" by default), Activation status. All
+             other supported data will be generated automatically.</p>
         </div><!--/span-->
         <div class="span6">
-            <h3>Informing new Employee</h3>
+            <h3>unique server name</h3>
             <p>After successful registration, system wil notify provided employee, by specified
              E-mail, with his new ability to access his workplace with new login and new password.</p>
         </div><!--/span-->

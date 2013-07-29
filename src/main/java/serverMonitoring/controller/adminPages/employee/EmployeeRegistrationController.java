@@ -61,18 +61,16 @@ public class EmployeeRegistrationController extends AbstractAdminController {
 
     /**
      * Action on button "Cancel" pressed.
-     *
      * @return redirect to monitoring page
      */
     @RequestMapping(params = "cancel", method = RequestMethod.POST)
-    protected String onCancel() {
+    public String onCancel() {
         showRequestLog("monitoring");
         return "redirect:/employee_management/employee_manager";
     }
 
     /**
      * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_registr.ftl
-     *
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(method = RequestMethod.GET)
@@ -97,7 +95,6 @@ public class EmployeeRegistrationController extends AbstractAdminController {
 
     /**
      * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_registr.ftl
-     *
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(method = RequestMethod.POST)

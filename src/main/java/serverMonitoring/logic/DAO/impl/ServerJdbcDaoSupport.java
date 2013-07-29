@@ -69,7 +69,6 @@ public class ServerJdbcDaoSupport implements ServerDao {
                 insertEntity.execute(parameters);
             }
         } catch (RuntimeException e) {
-            e.printStackTrace();
             throw new RuntimeException();
         }
     }
@@ -97,7 +96,6 @@ public class ServerJdbcDaoSupport implements ServerDao {
             }
             this.jdbcTemplate.batchUpdate(query, parameters);
         } catch (RuntimeException e) {
-            e.printStackTrace();
             throw new RuntimeException();
         }
     }
@@ -160,7 +158,6 @@ public class ServerJdbcDaoSupport implements ServerDao {
                     entity.getServer_name()};
             this.jdbcTemplate.update(query, args);
         } catch (RuntimeException e) {
-            e.printStackTrace();
             throw new RuntimeException();
         }
     }
@@ -176,28 +173,9 @@ public class ServerJdbcDaoSupport implements ServerDao {
             Object[] args = {server_name};
             this.jdbcTemplate.update(query, args);
         } catch (RuntimeException e) {
-            e.printStackTrace();
             throw new RuntimeException();
         }
     }
-
-//    /**
-//     * Retrieves Server entity entity by Id
-//     *
-//     * @return ServerEntity object
-//     */
-//    @Override
-//    public ServerEntity findById(Long entity_id) {
-//        assert entity_id != null;
-//        String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE id= ?";
-//        try {
-//            Object[] args = {entity_id};
-//            return this.jdbcTemplate.queryForObject(query, args, new EmployeeEntityMapper());
-//        } catch (RuntimeException e) {
-//            e.printStackTrace();
-//            throw new RuntimeException();
-//        }
-//    }
 
     /**
      * Retrieves List of Server entity with provided Id
@@ -212,7 +190,6 @@ public class ServerJdbcDaoSupport implements ServerDao {
             Object[] args = {entity_id};
             return this.jdbcTemplate.query(query, args, new EmployeeEntityMapper());
         } catch (RuntimeException e) {
-            e.printStackTrace();
             throw new RuntimeException();
         }
     }
@@ -230,7 +207,6 @@ public class ServerJdbcDaoSupport implements ServerDao {
             Object[] args = {server_name};
             return this.jdbcTemplate.queryForObject(query, args, new EmployeeEntityMapper());
         } catch (RuntimeException e) {
-            e.printStackTrace();
             throw new RuntimeException();
         }
     }
@@ -246,7 +222,6 @@ public class ServerJdbcDaoSupport implements ServerDao {
         try {
             return this.jdbcTemplate.query(query, new EmployeeEntityMapper());
         } catch (RuntimeException e) {
-            e.printStackTrace();
             throw new RuntimeException();
         }
     }
@@ -272,7 +247,6 @@ public class ServerJdbcDaoSupport implements ServerDao {
                 entity.setActive(rs.getInt("active"));
                 return entity;
             } catch (SQLException e) {
-                e.printStackTrace();
                 throw new RuntimeException();
             }
         }

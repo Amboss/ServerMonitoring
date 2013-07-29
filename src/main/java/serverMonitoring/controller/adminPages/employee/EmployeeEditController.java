@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,10 +16,9 @@ import serverMonitoring.logic.service.AdminService;
 import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ftl.RegistrSimplFormModel;
+import serverMonitoring.util.common.CustomUtils;
 import serverMonitoring.util.web.validations.EmployeeUpdateValidatior;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,6 +38,8 @@ public class EmployeeEditController extends AbstractAdminController {
 
     private EmployeeUpdateValidatior employeeUpdateValidatior;
 
+    private CustomUtils utils;
+
     @Autowired
     private EmployeeService employeeService;
 
@@ -51,9 +51,13 @@ public class EmployeeEditController extends AbstractAdminController {
         this.employeeUpdateValidatior = employeeUpdateValidatior;
     }
 
+    @Autowired
+    public void setUtils(CustomUtils utils) {
+        this.utils = utils;
+    }
+
     /**
      * Retrieves /admin/employee_management/employee_update.ftl
-     *
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(value = "/{id}")
@@ -74,35 +78,24 @@ public class EmployeeEditController extends AbstractAdminController {
                 simplFormModel.setState("Not active");
             }
 
-            ModelAndView model = new ModelAndView("admin/employee_management/employee_update");
+            ModelAndView model = new ModelAndView("/admin/employee_management/employee_update");
             // providing form info
             model.addObject("activeState", simplFormModel);
-            model.addObject("employeeEntity", new EmployeeEntity());
+            model.addObject("employeeEntity", employeeEntity);
             model.addObject("activeMap", activeMap);
             return model;
+
         } else {
             return new ModelAndView("redirect:/employee_management/employee_manager");
         }
     }
 
-    /**
-     * Action on button "Cancel" pressed.
-     *
-     * @return redirect to monitoring page
-     */
-    @RequestMapping(params = "cancel", method = RequestMethod.POST)
-    protected ModelAndView onCancel(HttpServletRequest request,
-                              HttpServletResponse response,
-                              Object command,
-                              BindException errors) {
-        showRequestLog("monitoring");
-        return new ModelAndView("redirect:/employee_management/employee_manager");
-    }
+
 
     /**
      * Handles Submit action on /admin/employee_management/employee_update.ftl
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public ModelAndView onSubmit(
             @ModelAttribute("activeState") RegistrSimplFormModel simplFormModel,
             @ModelAttribute("employeeEntity") EmployeeEntity employeeEntity,
@@ -110,10 +103,19 @@ public class EmployeeEditController extends AbstractAdminController {
 
         showRequestLog("employee_registr");
 
+        /*
+         * translating active state to integer
+         */
+        if (simplFormModel.getState().equals("Active")) {
+            employeeEntity.setActive(1);
+        } else {
+            employeeEntity.setActive(0);
+        }
+
         /**
          * form validation
          */
-        employeeUpdateValidatior.validate(employeeEntity, errors);
+        //employeeUpdateValidatior.validate(employeeEntity, errors);
 
         if (errors.hasErrors()) {
 
@@ -126,7 +128,7 @@ public class EmployeeEditController extends AbstractAdminController {
                 simplFormModel.setState("Not active");
             }
 
-            ModelAndView errorModelAndView = new ModelAndView("admin/employee_management/employee_update");
+            ModelAndView errorModelAndView = new ModelAndView("/admin/employee_management/employee_update");
             // providing form info
             errorModelAndView.addObject("activeState", simplFormModel);
             errorModelAndView.addObject("employeeEntity", employeeEntity);
@@ -134,13 +136,12 @@ public class EmployeeEditController extends AbstractAdminController {
             return errorModelAndView;
 
         } else {
-            /*
-             * translating active state to integer
+
+            /**
+             * invalidating employee session
              */
-            if (simplFormModel.getState().equals("Active")) {
-                employeeEntity.setActive(1);
-            } else {
-                employeeEntity.setActive(0);
+            if(employeeEntity.getActive().equals(0)) {
+                utils.setUserSessionInvalidated(employeeEntity.getId());
             }
 
             /**
@@ -151,5 +152,15 @@ public class EmployeeEditController extends AbstractAdminController {
             return new ModelAndView("redirect:/employee_management/employee_manager");
 //        }
         }
+    }
+
+    /**
+     * Action on button "Cancel" pressed.
+     * @return redirect to monitoring page
+     */
+    @RequestMapping(value = "/{id}", params="cancel", method = RequestMethod.POST)
+    public ModelAndView onCancel() {
+        showRequestLog("monitoring");
+        return new ModelAndView("redirect:/employee_management/employee_manager");
     }
 }

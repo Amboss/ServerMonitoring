@@ -58,7 +58,7 @@
                                 <i class="icon-search" ></i>&nbsp;${serverName}<a/></td>
                             <td style="text-align:center;">${stateIcon}</td>
                             <td>${server.lastCheck}</td>
-                            <td style="text-align:center;">${activeIcon}</td>
+                            <td>${activeIcon}</td>
                         </tr>
                     </tbody>
                 </#list>

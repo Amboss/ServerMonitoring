@@ -65,7 +65,7 @@ public class ServerRegistrationController extends AbstractAdminController {
      * @return redirect to monitoring page
      */
     @RequestMapping(params = "cancel", method = RequestMethod.POST)
-    protected String onCancel() {
+    public String onCancel() {
         showRequestLog("monitoring");
         return "redirect:/server_management/serv_manager";
     }
@@ -82,11 +82,19 @@ public class ServerRegistrationController extends AbstractAdminController {
             BindingResult errors, SessionStatus status) {
 
         showRequestLog("employee_registr");
+             /*
+             * translating active state to integer
+             */
+        if (simplFormModel.getState().equals("Active")) {
+            newServer.setActive(1);
+        } else {
+            newServer.setActive(0);
+        }
 
         /**
          * form validation
          */
-        serverRegistrationValidator.validate(newServer, errors);
+        //serverRegistrationValidator.validate(newServer, errors);
 
         if (errors.hasErrors()) {
 
@@ -106,15 +114,6 @@ public class ServerRegistrationController extends AbstractAdminController {
 
             return errorModelAndView;
         } else {
-
-            /*
-             * translating active state to integer
-             */
-            if (simplFormModel.getState().equals("Active")) {
-                newServer.setActive(1);
-            } else {
-                newServer.setActive(0);
-            }
 
             /**
              * registration of new employee
