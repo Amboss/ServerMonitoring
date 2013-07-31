@@ -59,7 +59,6 @@ public class EmployeeEditController extends AbstractAdminController {
 
     /**
      * Retrieves /admin/employee_management/employee_update.ftl
-     *
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(value = "/{id}")

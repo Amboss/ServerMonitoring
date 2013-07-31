@@ -43,8 +43,7 @@ public class EmployeeDeleteController extends AbstractAdminController {
     }
 
     /**
-     * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_removal.ftl
-     *
+     * Retrieves /WEB-INF/ftl/admin/employee_management/employee_removal.ftl
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(value = "/{id}")
@@ -55,6 +54,9 @@ public class EmployeeDeleteController extends AbstractAdminController {
                 "employee", employeeService.getEmployeeById(id));
     }
 
+    /**
+     * Handles Submit action on /admin/employee_management/employee_removal.ftl
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public ModelAndView onSubmit(@ModelAttribute("id") Long id, BindingResult result,
                                  HttpServletRequest request,
@@ -71,7 +73,6 @@ public class EmployeeDeleteController extends AbstractAdminController {
 
     /**
      * Action on button "Cancel" pressed.
-     *
      * @return redirect to monitoring page
      */
     @RequestMapping(value = "/{id}", params = "cancel", method = RequestMethod.POST)
