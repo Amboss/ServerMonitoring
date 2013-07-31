@@ -53,16 +53,7 @@ public class ServerManagementController extends AbstractAdminController {
         return new ModelAndView(catalogPath + "serv_update");
     }
 
-    /**
-     * Handles and retrieves /WEB-INF/ftl/admin/server_management/serv_removal.ftl
-     *
-     * @return the name of the FreeMarker template page
-     */
-    @RequestMapping(value = "/serv_removal", method = RequestMethod.GET)
-    public ModelAndView getServerRemovalPage() {
-        showRequestLog("serv_removal");
-        return new ModelAndView(catalogPath + "serv_removal");
-    }
+
 
 
 }

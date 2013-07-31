@@ -55,12 +55,12 @@
                             <a/>
                         </td>
                         <td>
-                            <a href="<@spring.url '/server_management/serv_update/${name}.html' />">
+                            <a href="<@spring.url '/employee_management/serv_assignment/${name}.html' />">
                                <i class="icon-check" ></i>&nbsp;Assign
                             <a/>
                         </td>
                         <td>
-                            <a href="<@spring.url '/server_management/serv_removal.ftl/${name}.html' />">
+                            <a href="<@spring.url '/server_management/serv_removal/${name}.html' />">
                                 <i class="icon-trash" ></i>&nbsp;Delete
                             <a/>
                         </td>

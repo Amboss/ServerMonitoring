@@ -1,31 +1,33 @@
-<#import "/layout/admin.ftl" as com>
+<#-- =====================================================================
+     Server delete page
 
-<@com.page title="Server removal">
-<div class="container">
+     ===================================================================== -->
 
-    <div clas="index_text">
-        <table>
-            <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-                exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-                commodo consequat. Duis autem vel eum iriure dolor in hendrerit
-                in vulputate velit esse molestie consequat, vel illum dolore eu
-                feugiat nulla facilisis at vero eros et accumsan et iusto odio
-                dignissim qui blandit praesent luptatum zzril delenit augue duis
-                dolore te feugait nulla facilisi. Nam liber tempor cum soluta
-                nobis eleifend option congue nihil imperdiet doming id quod mazim
-                placerat facer possim assum. Typi non habent claritatem insitam;
-                est usus legentis in iis qui facit eorum claritatem. Investigationes
-                demonstraverunt lectores legere me lius quod ii legunt saepius.
-                Claritas est etiam processus dynamicus, qui sequitur mutationem
-                consuetudium lectorum. Mirum est notare quam littera gothica,
-                quam nunc putamus parum claram, anteposuerit litterarum formas
-                humanitatis per seacula quarta decima et quinta decima. Eodem
-                modo typi, qui nunc nobis videntur parum clari, fiant sollemnes
-                in futurum.
-            </td></tr>
-        </table>
-    </div>
-</div>
+<#import "/layout/simple.ftl" as com>
+
+<#import "/util/spring.ftl" as spring />
+
+<@com.page title="Server delete">
+        <div class="modal" id="employee_removal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel" aria-hidden="true" >
+
+            <form class="modal-body" method="post">
+                <h3>Are you shore you want to delete this server?</h3>
+                <p>Name: ${server.server_name}</p>
+                <p>Address: ${server.address}</p>
+                <p>URL: ${server.url}</p>
+                <p>Created: ${server.created}</p>
+
+                <input class='btn btn-primary'
+                        type='submit'
+                        name='delete'
+                        value='Delete employee' />
+                <input class="btn"
+                        data-dismiss='modal'
+                        type='submit'
+                        aria-hidden='true'
+                        name='cancel'
+                        value='Cancel' />
+             </form>
+        </div>
 </@com.page>

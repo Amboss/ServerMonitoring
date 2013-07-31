@@ -58,7 +58,8 @@ public class EmployeeDeleteController extends AbstractAdminController {
      * Handles Submit action on /admin/employee_management/employee_removal.ftl
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public ModelAndView onSubmit(@ModelAttribute("id") Long id, BindingResult result,
+    public ModelAndView onSubmit(@ModelAttribute("id") Long id,
+                                 BindingResult result,
                                  HttpServletRequest request,
                                  SessionStatus status) {
         showRequestLog("employee_removal");
