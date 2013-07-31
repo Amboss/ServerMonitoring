@@ -41,16 +41,16 @@
                         <td>${activeIcon}</td>
                         <td>${employee.lastLogin}</td>
                         <td>
-                            <a href="<@spring.url '/employee_management/employee_update/${id}.html' />">
+                            <a href="<@spring.url '/employee_management/employee_update/${id}' />">
                                 <i class="icon-edit" ></i>&nbsp;Edit
                             <a/>
                         </td>
-                        <td><a href="<@spring.url '/employee_management/employee_update/${id}.html' />">
+                        <td><a href="<@spring.url '/employee_management/serv_assignment/${id}' />">
                                <i class="icon-check" ></i>&nbsp;Assign
                             <a/>
                         </td>
                         <td>
-                            <a href="<@spring.url '/employee_management/employee_removal/${id}.html' />">
+                            <a href="<@spring.url '/employee_management/employee_removal/${id}' />">
                                 <i class="icon-trash" ></i>&nbsp;Delete
                             <a/>
                         </td>

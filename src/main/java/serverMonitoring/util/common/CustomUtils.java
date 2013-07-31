@@ -1,5 +1,6 @@
 package serverMonitoring.util.common;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 
 /**
@@ -20,6 +21,6 @@ public interface CustomUtils {
     /**
      * invalidate provided user session
      */
-    public void setUserSessionInvalidated(Long id);
+    public void setUserSessionInvalidated(Long id, HttpServletRequest request);
 
 }

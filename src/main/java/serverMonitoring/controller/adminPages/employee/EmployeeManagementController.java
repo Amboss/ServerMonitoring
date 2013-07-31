@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import serverMonitoring.controller.adminPages.AbstractAdminController;
 import serverMonitoring.logic.service.AdminService;
+import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.EmployeeEntity;
+import serverMonitoring.util.common.CustomUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +27,18 @@ public class EmployeeManagementController extends AbstractAdminController {
 
     protected static Logger logger = Logger.getLogger(EmployeeManagementController.class);
 
-    private String catalogPath = "admin/employee_management/";
+    private CustomUtils utils;
 
     @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private EmployeeService employeeService;
+
+    @Autowired
+    public void setUtils(CustomUtils utils) {
+        this.utils = utils;
+    }
 
     /**
      * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_manager.ftl
@@ -51,20 +61,10 @@ public class EmployeeManagementController extends AbstractAdminController {
             }
         }
 
-        return new ModelAndView(catalogPath + "employee_manager", "employee", filteredList);
+        return new ModelAndView("admin/employee_management/employee_manager", "employee", filteredList);
     }
 
 
-    /**
-     * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_removal.ftl
-     *
-     * @return the name of the FreeMarker template page
-     */
-    @RequestMapping(value = "/employee_removal/{id}", method = RequestMethod.POST)
-    public ModelAndView getEmployeeRemovalPage() {
-        showRequestLog("employee_removal");
-        return new ModelAndView(catalogPath + "employee_removal");
-    }
 
 
     /**
@@ -75,7 +75,7 @@ public class EmployeeManagementController extends AbstractAdminController {
     @RequestMapping(value = "/serv_assignment", method = RequestMethod.GET)
     public ModelAndView getServerAssignmentPage() {
         showRequestLog("serv_assignment");
-        return new ModelAndView(catalogPath + "serv_assignment");
+        return new ModelAndView("admin/employee_management/serv_assignment");
     }
 
 }

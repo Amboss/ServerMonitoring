@@ -4,7 +4,11 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Component;
 import serverMonitoring.util.common.CustomUtils;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.util.HashMap;
 
 /**
  * Class handel's  methods for common functionality
@@ -36,20 +40,17 @@ public class CustomUtilsImpl implements CustomUtils {
      * TODO finish invalidation
      */
     @Override
-    public void setUserSessionInvalidated(Long id) {
+    public void setUserSessionInvalidated(Long id, HttpServletRequest request) {
 
-//        HttpSession session = se.getSession();
-//        ServletContext context = session.getServletContext();
-//        HashMap activeUsers = (HashMap)context.getAttribute("activeUsers");
-//        activeUsers.put(session.getId(), session);
-//        context.setAttribute("activeUsers", activeUsers);
 
-        //in sessionCreated method of sessionListner in i successsfully get the list of active user's name and there session id but when i do like that
-
-//        HttpSessionContext context=request.getSession().getSessionContext();
-//        ServletContext sc=request.getSession().getServletContext();
-//        HashMap activeUsers = (HashMap)sc.getAttribute("activeUsers");
-//        HttpSession session=request.getSession();
-//        if(activeUsers.containsKey(this.sessionID)==true){ session.invalidate();
+        ServletContext servletContext = request.getSession().getServletContext();
+        HashMap activeUsers = (HashMap) servletContext.getAttribute("activeUsers");
+        HttpSession session = request.getSession(false);
+        if (activeUsers.containsKey(id)) {
+            session.removeAttribute("loggedUser");
+            session.invalidate();
         }
+    }
+
+
 }

@@ -19,13 +19,14 @@ import serverMonitoring.model.ftl.RegistrSimplFormModel;
 import serverMonitoring.util.common.CustomUtils;
 import serverMonitoring.util.web.validations.EmployeeUpdateValidatior;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 
 /**
  * Handles and retrieves the ROLE_ADMIN admin/employee_management/employee_manager.ftl
  * A admin must be log-in first before he can access these page.
- * TODO add validation
  */
 @Controller
 @Secured("ROLE_ADMIN")
@@ -58,6 +59,7 @@ public class EmployeeEditController extends AbstractAdminController {
 
     /**
      * Retrieves /admin/employee_management/employee_update.ftl
+     *
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(value = "/{id}")
@@ -90,8 +92,6 @@ public class EmployeeEditController extends AbstractAdminController {
         }
     }
 
-
-
     /**
      * Handles Submit action on /admin/employee_management/employee_update.ftl
      */
@@ -99,7 +99,9 @@ public class EmployeeEditController extends AbstractAdminController {
     public ModelAndView onSubmit(
             @ModelAttribute("activeState") RegistrSimplFormModel simplFormModel,
             @ModelAttribute("employeeEntity") EmployeeEntity employeeEntity,
-            BindingResult errors, SessionStatus status) {
+            BindingResult errors,
+            SessionStatus status,
+            HttpServletRequest request) {
 
         showRequestLog("employee_registr");
 
@@ -115,7 +117,7 @@ public class EmployeeEditController extends AbstractAdminController {
         /**
          * form validation
          */
-        //employeeUpdateValidatior.validate(employeeEntity, errors);
+        employeeUpdateValidatior.validate(employeeEntity, errors);
 
         if (errors.hasErrors()) {
 
@@ -140,8 +142,9 @@ public class EmployeeEditController extends AbstractAdminController {
             /**
              * invalidating employee session
              */
-            if(employeeEntity.getActive().equals(0)) {
-                utils.setUserSessionInvalidated(employeeEntity.getId());
+            if (employeeEntity.getActive().equals(0)) {
+                HttpSession session = request.getSession();
+                session.invalidate();
             }
 
             /**
@@ -150,15 +153,15 @@ public class EmployeeEditController extends AbstractAdminController {
             adminService.updateEmployee(employeeEntity);
             status.setComplete();
             return new ModelAndView("redirect:/employee_management/employee_manager");
-//        }
         }
     }
 
     /**
      * Action on button "Cancel" pressed.
+     *
      * @return redirect to monitoring page
      */
-    @RequestMapping(value = "/{id}", params="cancel", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", params = "cancel", method = RequestMethod.POST)
     public ModelAndView onCancel() {
         showRequestLog("monitoring");
         return new ModelAndView("redirect:/employee_management/employee_manager");

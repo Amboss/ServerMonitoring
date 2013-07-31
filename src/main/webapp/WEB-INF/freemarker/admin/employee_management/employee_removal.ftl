@@ -1,32 +1,63 @@
+<#-- =====================================================================
+     Employee removal page
 
-<#import "/layout/admin.ftl" as com>
+     ===================================================================== -->
 
-<@com.page title="Employee removal">
-<div class="container">
+<#import "/util/spring.ftl" as spring />
 
-    <div clas="index_text">
-        <table>
-            <tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-                exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-                commodo consequat. Duis autem vel eum iriure dolor in hendrerit
-                in vulputate velit esse molestie consequat, vel illum dolore eu
-                feugiat nulla facilisis at vero eros et accumsan et iusto odio
-                dignissim qui blandit praesent luptatum zzril delenit augue duis
-                dolore te feugait nulla facilisi. Nam liber tempor cum soluta
-                nobis eleifend option congue nihil imperdiet doming id quod mazim
-                placerat facer possim assum. Typi non habent claritatem insitam;
-                est usus legentis in iis qui facit eorum claritatem. Investigationes
-                demonstraverunt lectores legere me lius quod ii legunt saepius.
-                Claritas est etiam processus dynamicus, qui sequitur mutationem
-                consuetudium lectorum. Mirum est notare quam littera gothica,
-                quam nunc putamus parum claram, anteposuerit litterarum formas
-                humanitatis per seacula quarta decima et quinta decima. Eodem
-                modo typi, qui nunc nobis videntur parum clari, fiant sollemnes
-                in futurum.
-            </td></tr>
-        </table>
-    </div>
-</div>
-</@com.page>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+     "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+    <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+    <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+    <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <link rel="shortcut icon" href="<@spring.url '/static/img/favicon_02.ico'/>" type="image/x-icon"/>
+        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap-responsive.css'/>"/>
+        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap-responsive.min.css'/>"/>
+        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.css'/>"/>
+        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.min.css'/>"/>
+        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/style.css'/>"/>
+        <style type="text/css">
+
+        </style>
+
+        <script type="text/javascript" src="<@spring.url '/static/js/bootstrap.js'/>" ></script>
+        <script type="text/javascript" src="<@spring.url '/static/js/bootstrap.min.js'/>" ></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"; charset="utf-8">
+        <meta name="description" content="Server Monitoring Service">
+        <title>Employee removal</title>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">
+            Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">
+            install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
+
+        <div class="modal" id="employee_removal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel" aria-hidden="true" >
+
+            <form class="modal-body" method="post">
+                <h3>Are you shore you want to delete this employee?</h3>
+                <p>Name: ${employee.employee_name}</p>
+                <p>Login: ${employee.login}</p>
+                <p>Created: ${employee.created}</p>
+
+                <input class='btn btn-primary'
+                        type='submit'
+                        name='delete'
+                        value='Delete employee' />
+                <input class="btn"
+                        data-dismiss='modal'
+                        type='submit'
+                        aria-hidden='true'
+                        name='cancel'
+                        value='Cancel' />
+             </form>
+        </div>
+    <body>
+</html>
