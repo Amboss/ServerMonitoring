@@ -21,37 +21,22 @@ public class ServerManagementController extends AbstractAdminController {
 
     protected static Logger logger = Logger.getLogger(ServerManagementController.class);
 
-    private String catalogPath = "admin/server_management/";
-
-
-
     @Autowired
     private AdminService adminService;
 
-
     /**
-     * Handles and retrieves /WEB-INF/ftl/admin/server_management/serv_manager.ftl
-     *
+     * Retrieves /WEB-INF/ftl/admin/server_management/serv_manager.ftl
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(value = "/serv_manager", method = RequestMethod.GET)
     public ModelAndView getServerManagerPage() {
         showRequestLog("serv_manager");
 
-        return new ModelAndView(catalogPath + "serv_manager", "server",
+        return new ModelAndView("admin/server_management/serv_manager", "server",
                 adminService.getAllServers() );
     }
 
-    /**
-     * Handles and retrieves /WEB-INF/ftl/admin/server_management/serv_update.ftl
-     *
-     * @return the name of the FreeMarker template page
-     */
-    @RequestMapping(value = "/serv_update", method = RequestMethod.GET)
-    public ModelAndView getServerUpdatePage() {
-        showRequestLog("serv_update");
-        return new ModelAndView(catalogPath + "serv_update");
-    }
+
 
 
 

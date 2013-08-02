@@ -66,7 +66,7 @@ public class ServerDeleteController extends AbstractAdminController {
      */
     @RequestMapping(value = "/{id}", params = "cancel", method = RequestMethod.POST)
     public ModelAndView onCancel() {
-        showRequestLog("monitoring");
+        showRequestLog("serv_manager");
         return new ModelAndView("redirect:/server_management/serv_manager");
     }
 }

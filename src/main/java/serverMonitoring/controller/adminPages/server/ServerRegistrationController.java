@@ -44,7 +44,6 @@ public class ServerRegistrationController extends AbstractAdminController {
 
     /**
      * Handles /admin/server_management/serv_registr.ftl
-     *
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(method = RequestMethod.GET)
@@ -60,19 +59,7 @@ public class ServerRegistrationController extends AbstractAdminController {
     }
 
     /**
-     * Action on button "Cancel" pressed.
-     *
-     * @return redirect to monitoring page
-     */
-    @RequestMapping(params = "cancel", method = RequestMethod.POST)
-    public String onCancel() {
-        showRequestLog("monitoring");
-        return "redirect:/server_management/serv_manager";
-    }
-
-    /**
-     * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_registr.ftl
-     *
+     * Handles and retrieves /admin/employee_management/employee_registr.ftl
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(method = RequestMethod.POST)
@@ -82,19 +69,11 @@ public class ServerRegistrationController extends AbstractAdminController {
             BindingResult errors, SessionStatus status) {
 
         showRequestLog("employee_registr");
-             /*
-             * translating active state to integer
-             */
-        if (simplFormModel.getState().equals("Active")) {
-            newServer.setActive(1);
-        } else {
-            newServer.setActive(0);
-        }
 
         /**
          * form validation
          */
-        //serverRegistrationValidator.validate(newServer, errors);
+        serverRegistrationValidator.validate(newServer, errors);
 
         if (errors.hasErrors()) {
 
@@ -108,18 +87,36 @@ public class ServerRegistrationController extends AbstractAdminController {
             }
 
             ModelAndView errorModelAndView = new ModelAndView("/admin/server_management/serv_registr");
+            // providing form info
             errorModelAndView.addObject("newServer", newServer);
             errorModelAndView.addObject("activeMap", activeMap);
             errorModelAndView.addObject("activeState", simplFormModel);
-
             return errorModelAndView;
         } else {
-
+            /*
+             * translating active state to integer
+             */
+            if (simplFormModel.getState().equals("Active")) {
+                newServer.setActive(1);
+            } else {
+                newServer.setActive(0);
+            }
             /**
-             * registration of new employee
+             * registration of new server
              */
             adminService.registerServer(newServer);
+            status.setComplete();
             return new ModelAndView("redirect:/server_management/serv_manager");
         }
+    }
+
+    /**
+     * Action on button "Cancel" pressed.
+     * @return redirect to monitoring page
+     */
+    @RequestMapping(params = "cancel", method = RequestMethod.POST)
+    public ModelAndView onCancel() {
+        showRequestLog("serv_manager");
+        return new ModelAndView("redirect:/server_management/serv_manager");
     }
 }

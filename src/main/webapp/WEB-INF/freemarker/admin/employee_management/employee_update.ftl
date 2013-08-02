@@ -62,7 +62,7 @@
         </form>
     </div><!--/row-->
 
-    <#-- ===================== Information row for Registration page ========================= -->
+    <#-- ===================== Information row for Update page ========================= -->
     <div class="row-fluid">
         <div class="span6">
             <h3>Edit specifications</h3>

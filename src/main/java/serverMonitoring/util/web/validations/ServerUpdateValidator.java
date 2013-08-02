@@ -6,24 +6,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import serverMonitoring.logic.service.EmployeeService;
+import serverMonitoring.logic.service.AdminService;
 import serverMonitoring.model.ServerEntity;
+
+import java.util.List;
 
 /**
  * Validator for registration of new server
  */
 @Controller
-public class ServerRegistrationValidator implements Validator {
+public class ServerUpdateValidator implements Validator {
 
-    protected static Logger registrValidatorLogger = Logger.getLogger(ServerRegistrationValidator.class);
+    protected static Logger registrValidatorLogger = Logger.getLogger(ServerUpdateValidator.class);
 
-    private EmployeeService employeeService;
+    private AdminService adminService;
 
     private ServerEntity entity;
 
     @Autowired
-    public void setEmployeeService(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public void setAdminService(AdminService adminService) {
+        this.adminService = adminService;
     }
 
     @Override
@@ -37,10 +39,7 @@ public class ServerRegistrationValidator implements Validator {
      * @param errors contextual state about the validation process (never {@code null})
      */
     @Override
-
     public void validate(Object target, Errors errors) {
-
-        entity = (ServerEntity) target;
 
         /**
          *  check for empty server_name
@@ -51,13 +50,19 @@ public class ServerRegistrationValidator implements Validator {
         /**
          *   check for duplicated server_name
          */
+        if (target != null) {
 
-        if (entity.getServer_name() != null) {
-            try {
-                employeeService.getServerByName(entity.getServer_name());
-                errors.rejectValue("server_name", "server_name.isTaken");
-            } catch (RuntimeException e) {
-                registrValidatorLogger.debug("Server_name is not occupied");
+            entity = (ServerEntity) target;
+            List<ServerEntity> dbEntity = adminService.getAllServers();
+
+            for (ServerEntity foo : dbEntity) {
+                if (foo.getServer_name().equals(entity.getServer_name())) {
+                    if (!foo.getPort().equals(entity.getPort())
+                            && !foo.getAddress().equals(entity.getAddress())) {
+
+                        errors.rejectValue("server_name", "server_name.isTaken");
+                    }
+                }
             }
         }
 
@@ -78,5 +83,7 @@ public class ServerRegistrationValidator implements Validator {
          */
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "url",
                 "url.required", "Field url is required.");
+
+
     }
 }

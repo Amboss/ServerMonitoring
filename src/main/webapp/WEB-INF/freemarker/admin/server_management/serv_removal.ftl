@@ -21,7 +21,7 @@
                 <input class='btn btn-primary'
                         type='submit'
                         name='delete'
-                        value='Delete employee' />
+                        value='Delete server' />
                 <input class="btn"
                         data-dismiss='modal'
                         type='submit'
