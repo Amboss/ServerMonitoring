@@ -40,13 +40,13 @@
 
             <#-- ===================== Active ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="active">Active</label>
+                <label class="control-label" for="activeState">Active</label>
                 <div class="controls">
-                    <@spring.formSingleSelect "activeState.state", activeMap, " "/>
+                    <@spring.formSingleSelect "simplFormModel.activeState", activeMap, " "/>
                 </div>
             </div>
 
-            <#-- ===================== Buttons ================================== -->
+            <#-- ===================== Buttons ======================== -->
             <div class="control-group">
                 <div class="controls">
                     <input class="btn btn-primary"

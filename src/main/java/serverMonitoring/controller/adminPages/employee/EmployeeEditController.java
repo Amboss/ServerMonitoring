@@ -74,14 +74,14 @@ public class EmployeeEditController extends AbstractAdminController {
              * translating active state to integer
              */
             if (employeeEntity.getActive().equals(1)) {
-                simplFormModel.setState("Active");
+                simplFormModel.setActiveState("Active");
             } else {
-                simplFormModel.setState("Not active");
+                simplFormModel.setActiveState("Not active");
             }
 
             ModelAndView model = new ModelAndView("/admin/employee_management/employee_update");
             // providing form info
-            model.addObject("activeState", simplFormModel);
+            model.addObject("simplFormModel", simplFormModel);
             model.addObject("employeeEntity", employeeEntity);
             model.addObject("activeMap", activeMap);
             return model;
@@ -96,7 +96,7 @@ public class EmployeeEditController extends AbstractAdminController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public ModelAndView onSubmit(
-            @ModelAttribute("activeState") RegistrSimplFormModel simplFormModel,
+            @ModelAttribute("simplFormModel") RegistrSimplFormModel simplFormModel,
             @ModelAttribute("employeeEntity") EmployeeEntity employeeEntity,
             BindingResult errors,
             SessionStatus status,
@@ -113,7 +113,7 @@ public class EmployeeEditController extends AbstractAdminController {
 
             ModelAndView errorModelAndView = new ModelAndView("/admin/employee_management/employee_update");
             // providing form info
-            errorModelAndView.addObject("activeState", simplFormModel);
+            errorModelAndView.addObject("simplFormModel", simplFormModel);
             errorModelAndView.addObject("employeeEntity", employeeEntity);
             errorModelAndView.addObject("activeMap", activeMap);
             return errorModelAndView;
@@ -121,7 +121,7 @@ public class EmployeeEditController extends AbstractAdminController {
             /*
              * translating active state to integer
              */
-            if (simplFormModel.getState().equals("Active")) {
+            if (simplFormModel.getActiveState().equals("Active")) {
                 employeeEntity.setActive(1);
             } else {
                 employeeEntity.setActive(0);

@@ -52,17 +52,17 @@
 
             <#-- ===================== Active ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="active">Active</label>
+                <label class="control-label" for="activeState">Active</label>
                 <div class="controls">
-                    <@spring.formSingleSelect "activeState.state", activeMap, " "/>
+                    <@spring.formSingleSelect "simplFormModel.activeState", activeMap, " "/>
                 </div>
             </div>
 
             <#-- ===================== Security level ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="active">Security level</label>
+                <label class="control-label" for="level">Security level</label>
                 <div class="controls">
-                    <@spring.formSingleSelect "activeState.level", adminMap, " "/>
+                    <@spring.formSingleSelect "simplFormModel.level", adminMap, " "/>
                 </div>
             </div>
 

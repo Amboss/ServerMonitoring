@@ -11,12 +11,15 @@ public class RegistrSimplFormModel implements Serializable {
 
     private String level;
 
+    private String activeState;
+
     public RegistrSimplFormModel() {
     }
 
-    public RegistrSimplFormModel(String state, String level) {
+    public RegistrSimplFormModel(String state, String level, String activeState) {
         this.state = state;
         this.level = level;
+        this.activeState = activeState;
     }
 
     /**
@@ -41,11 +44,23 @@ public class RegistrSimplFormModel implements Serializable {
         this.level = level;
     }
 
+    /**
+     * activeState setter & getter
+     */
+    public String getActiveState() {
+        return activeState;
+    }
+
+    public void setActiveState(String activeState) {
+        this.activeState = activeState;
+    }
+
     @Override
     public String toString() {
         return "RegistrSimplFormModel{" +
                 "state='" + state + '\'' +
                 ", level='" + level + '\'' +
+                ", activeState='" + activeState + '\'' +
                 '}';
     }
 }

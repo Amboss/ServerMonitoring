@@ -41,6 +41,11 @@ public class EmployeeRegistrationController extends AbstractAdminController {
 
     private CustomUtils customUtils;
 
+    // providing list of options for "active" formRadioButtons
+    private List<String> activeMap = Arrays.asList("Active", "Not active");
+
+    private List<String> adminMap = Arrays.asList("Regular", "Admin");
+
     @Autowired
     private AdminService adminService;
 
@@ -78,20 +83,14 @@ public class EmployeeRegistrationController extends AbstractAdminController {
 
         showRequestLog("employee_registr");
 
-        // providing list of options for "active" formRadioButtons
-        List<String> activeMap = Arrays.asList("Active", "Not active");
-        List<String> adminMap = Arrays.asList("Regular", "Admin");
-
         ModelAndView model = new ModelAndView("admin/employee_management/employee_registr");
         model.addObject("newEmployee", new EmployeeEntity());
         model.addObject("activeMap", activeMap);
         model.addObject("adminMap", adminMap);
-        model.addObject("activeState", new RegistrSimplFormModel());
+        model.addObject("simplFormModel", new RegistrSimplFormModel());
 
         return model;
     }
-
-
 
     /**
      * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_registr.ftl
@@ -99,29 +98,11 @@ public class EmployeeRegistrationController extends AbstractAdminController {
      */
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView onSubmit(
-            @ModelAttribute("activeState") RegistrSimplFormModel activeState,
+            @ModelAttribute("simplFormModel") RegistrSimplFormModel simplFormModel,
             @ModelAttribute("newEmployee") EmployeeEntity newEmployee,
             BindingResult errors, SessionStatus status) {
 
         showRequestLog("employee_registr");
-
-        /*
-         * translating active state to integer
-         */
-        if (activeState.getState().equals("Active")) {
-            newEmployee.setActive(1);
-        } else {
-            newEmployee.setActive(0);
-        }
-
-        /*
-         * translating role state to integer
-         */
-        if (activeState.getLevel().equals("Admin")) {
-            newEmployee.setAdmin(1);
-        } else {
-            newEmployee.setAdmin(0);
-        }
 
         /**
          * form validation
@@ -130,13 +111,10 @@ public class EmployeeRegistrationController extends AbstractAdminController {
 
         if (errors.hasErrors()) {
 
-            List<String> activeMap = Arrays.asList("Active", "Not active");
-            List<String> adminMap = Arrays.asList("Regular", "Admin");
-
             ModelAndView errorModelAndView = new ModelAndView("/admin/employee_management/employee_registr");
             // providing form info
             errorModelAndView.addObject("newEmployee", newEmployee);
-            errorModelAndView.addObject("activeState", activeState);
+            errorModelAndView.addObject("simplFormModel", simplFormModel);
             // providing list of options for "active" formRadioButtons
             errorModelAndView.addObject("activeMap", activeMap);
             errorModelAndView.addObject("adminMap", adminMap);
@@ -145,7 +123,23 @@ public class EmployeeRegistrationController extends AbstractAdminController {
         } else {
             String newPass = customUtils.getNewRandomGeneratedPassword();
             newEmployee.setPassword(passwordEncoder.encodePassword(newPass, null));
+            /*
+             * translating active state to integer
+             */
+            if (simplFormModel.getActiveState().equals("Active")) {
+                newEmployee.setActive(1);
+            } else {
+                newEmployee.setActive(0);
+            }
 
+            /*
+             * translating role state to integer
+             */
+            if (simplFormModel.getLevel().equals("Admin")) {
+                newEmployee.setAdmin(1);
+            } else {
+                newEmployee.setAdmin(0);
+            }
             /**
              * registration of new employee
              */

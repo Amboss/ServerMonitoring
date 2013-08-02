@@ -94,7 +94,7 @@ public class EmployeeManagementTest extends AbstractJUnit4SpringContextTests {
     /**
      * Retrieving employee with login "testUser" and changing email and active rows
      * updating entity and repeating retrieve again, "testUser" have to contain a new email and active rows
-     * Testing retrieved Employee entity.getEmail() and entity.getActive() value.
+     * Testing retrieved Employee entity.getEmail() and entity.getActiveState() value.
      */
     @Test
     public void testUpdateEmployee() {

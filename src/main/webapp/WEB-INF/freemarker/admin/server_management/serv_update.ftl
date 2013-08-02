@@ -58,9 +58,9 @@
 
             <#-- ===================== Active ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="state">Active</label>
-                <div class="controls">
-                    <@spring.formSingleSelect "activeState.state", activeMap, " "/>
+                <label class="control-label" for="activeState">Active status</label>
+                 <div class="controls">
+                    <@spring.formSingleSelect "simplFormModel.activeState", activeMap, " "/>
                 </div>
             </div>
 

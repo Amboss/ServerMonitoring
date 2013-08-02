@@ -14,6 +14,7 @@ import serverMonitoring.controller.adminPages.AbstractAdminController;
 import serverMonitoring.logic.service.AdminService;
 import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.ftl.RegistrSimplFormModel;
+import serverMonitoring.model.serverStateEnum.ServerState;
 import serverMonitoring.util.web.validations.ServerRegistrationValidator;
 
 import java.util.Arrays;
@@ -52,8 +53,8 @@ public class ServerRegistrationController extends AbstractAdminController {
 
         ModelAndView model = new ModelAndView("/admin/server_management/serv_registr");
         model.addObject("newServer", new ServerEntity());
+        model.addObject("simplFormModel", new RegistrSimplFormModel());
         model.addObject("activeMap", activeMap);
-        model.addObject("activeState", new RegistrSimplFormModel());
 
         return model;
     }
@@ -64,7 +65,7 @@ public class ServerRegistrationController extends AbstractAdminController {
      */
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView onSubmit(
-            @ModelAttribute("activeState") RegistrSimplFormModel simplFormModel,
+            @ModelAttribute("simplFormModel") RegistrSimplFormModel simplFormModel,
             @ModelAttribute("newServer") ServerEntity newServer,
             BindingResult errors, SessionStatus status) {
 
@@ -81,26 +82,30 @@ public class ServerRegistrationController extends AbstractAdminController {
              * translating active state to integer
              */
             if (newServer.getActive().equals(1)) {
-                simplFormModel.setState("Active");
+                simplFormModel.setActiveState("Active");
             } else {
-                simplFormModel.setState("Not active");
+                simplFormModel.setActiveState("Not active");
             }
 
             ModelAndView errorModelAndView = new ModelAndView("/admin/server_management/serv_registr");
             // providing form info
+            errorModelAndView.addObject("simplFormModel", simplFormModel);
             errorModelAndView.addObject("newServer", newServer);
             errorModelAndView.addObject("activeMap", activeMap);
-            errorModelAndView.addObject("activeState", simplFormModel);
+
             return errorModelAndView;
         } else {
             /*
              * translating active state to integer
              */
-            if (simplFormModel.getState().equals("Active")) {
+            if (simplFormModel.getActiveState().equals("Active")) {
                 newServer.setActive(1);
             } else {
                 newServer.setActive(0);
             }
+
+            newServer.setState(ServerState.FAIL);
+            newServer.setResponse("FAIL");
             /**
              * registration of new server
              */

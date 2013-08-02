@@ -64,14 +64,14 @@ public class ServerEditController extends AbstractAdminController {
              * translating active state to integer
              */
             if (serverEntity.getActive().equals(1)) {
-                simplFormModel.setState("Active");
+                simplFormModel.setActiveState("Active");
             } else {
-                simplFormModel.setState("Not active");
+                simplFormModel.setActiveState("Not active");
             }
 
             ModelAndView model = new ModelAndView("/admin/server_management/serv_update");
             // providing form info
-            model.addObject("activeState", simplFormModel);
+            model.addObject("simplFormModel", simplFormModel);
             model.addObject("serverEntity", serverEntity);
             model.addObject("activeMap", activeMap);
             return model;
@@ -86,7 +86,7 @@ public class ServerEditController extends AbstractAdminController {
      */
     @RequestMapping(value = "/{name}", method = RequestMethod.POST)
     public ModelAndView onSubmit(
-            @ModelAttribute("activeState") RegistrSimplFormModel simplFormModel,
+            @ModelAttribute("simplFormModel") RegistrSimplFormModel simplFormModel,
             @ModelAttribute("serverEntity") ServerEntity serverEntity,
             BindingResult errors,
             SessionStatus status,
@@ -97,25 +97,27 @@ public class ServerEditController extends AbstractAdminController {
         /**
          * form validation
          */
-        this.serverUpdateValidator.validate(serverEntity, errors);
+        serverUpdateValidator.validate(serverEntity, errors);
 
         if (errors.hasErrors()) {
 
             ModelAndView errorModelAndView = new ModelAndView("/admin/server_management/serv_update");
             // providing form info
-            errorModelAndView.addObject("activeState", simplFormModel);
+            errorModelAndView.addObject("simplFormModel", simplFormModel);
             errorModelAndView.addObject("serverEntity", serverEntity);
             errorModelAndView.addObject("activeMap", activeMap);
             return errorModelAndView;
         } else {
+
             /*
              * translating active state to integer
              */
-            if (simplFormModel.getState().equals("Active")) {
+            if (simplFormModel.getActiveState().equals("Active")) {
                 serverEntity.setActive(1);
             } else {
                 serverEntity.setActive(0);
             }
+
             /**
              * updating server
              */
