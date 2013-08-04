@@ -48,19 +48,7 @@ public class EmployeePasswordUpdateController extends AbstractEmployeeController
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView loadPage() {
         showRequestLog("password_update");
-        return new ModelAndView("/employee/password_update",
-                "passUpdate", new PasswordUpdateModel());
-    }
-
-    /**
-     * Action on button "Cancel" pressed.
-     * @return redirect to monitoring page
-     */
-    @RequestMapping(params = "cancel", method = RequestMethod.POST)
-    protected String onCancel(HttpServletRequest request,
-                              HttpServletResponse response) {
-        showRequestLog("monitoring");
-        return "redirect:/employee/monitoring";
+        return new ModelAndView("/employee/password_update", "passUpdate", new PasswordUpdateModel());
     }
 
     /**
@@ -78,13 +66,23 @@ public class EmployeePasswordUpdateController extends AbstractEmployeeController
         passwordUpdateValidator.validate(passUpdate, errors);
 
         if (errors.hasErrors()) {
-            return new ModelAndView("/employee/password_update",
-                    "passUpdate", passUpdate);
+            return new ModelAndView("/employee/password_update", "passUpdate", passUpdate);
         } else {
             EmployeeEntity entity = employeeService.getEmployeeByLogin(getUserName());
             employeeService.updateEmployeePassword(entity, passUpdate.getNewPassword());
             status.setComplete();
         }
+        return new ModelAndView("redirect:/employee/monitoring");
+    }
+
+    /**
+     * Action on button "Cancel" pressed.
+     * @return redirect to monitoring page
+     */
+    @RequestMapping(params = "cancel", method = RequestMethod.POST)
+    protected ModelAndView onCancel(HttpServletRequest request,
+                                    HttpServletResponse response) {
+        showRequestLog("monitoring");
         return new ModelAndView("redirect:/employee/monitoring");
     }
 }

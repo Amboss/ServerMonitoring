@@ -43,14 +43,17 @@ public interface EmployeeService {
     public void changeServerLastCheck(String serverName);
 
     /**
-     * retrieve server details by provided Id
+     * retrieve server details by provided responsible_id
      */
-    public List<ServerEntity> getServerListById(Long id);
+    public List<ServerEntity> findAllByResponsibleId(Long responsible_id);
 
     /**
      * retrieve server details by provided server name
      */
     public ServerEntity getServerByName(String serverName);
 
-
+    /**
+     * retrieve server details by provided server id
+     */
+    public ServerEntity getServerById(Long id);
 }

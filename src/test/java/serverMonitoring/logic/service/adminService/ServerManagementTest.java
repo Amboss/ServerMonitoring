@@ -61,7 +61,7 @@ public class ServerManagementTest extends AbstractJUnit4SpringContextTests {
         ServerEntity entity = new ServerEntity();
         entity.setServer_name("Test_Server");
         ServerEntity entity2 = employeeService.getServerByName(entity.getServer_name());
-        adminService.deleteServer(entity2.getServer_name());
+        adminService.deleteServer(entity2.getId());
         //assertNull("the Test_Server is not empty", entity);
     }
 

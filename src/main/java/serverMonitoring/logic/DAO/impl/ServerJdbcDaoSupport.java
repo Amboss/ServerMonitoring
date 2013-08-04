@@ -32,9 +32,9 @@ public class ServerJdbcDaoSupport implements ServerDao {
 
     private String nullError = "ServerEntity entity is empty!";
     private String db_table = "server_entity";
-    private String raw_list = "id, server_name, address, port, url, state, response, created, lastCheck, active";
+    private String raw_list = "id, server_name, address, port, url, state, response, created, lastCheck, active, responsible";
     private String raw_list_update = "id = ?, server_name = ?, address = ?, port = ?, url = ?, " +
-            "state = ?, response = ?, created = ?, lastCheck = ?, active = ?";
+            "state = ?, response = ?, created = ?, lastCheck = ?, active = ?, responsible = ?";
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
@@ -48,7 +48,7 @@ public class ServerJdbcDaoSupport implements ServerDao {
      * Adds new Server entity with new Id assignment
      */
     @Override
-    public void add(ServerEntity entity) {
+    public void addServer(ServerEntity entity) {
         assert entity != null;
         try {
             SqlParameterSource parameters = new MapSqlParameterSource()
@@ -61,7 +61,8 @@ public class ServerJdbcDaoSupport implements ServerDao {
                     .addValue("response", entity.getResponse())
                     .addValue("created", entity.getCreated())
                     .addValue("lastCheck", entity.getLastCheck())
-                    .addValue("active", entity.getActive());
+                    .addValue("active", entity.getActive())
+                    .addValue("responsible", entity.getResponsible());
             if (entity.getId() == null) {
                 Number newId = insertEntity.executeAndReturnKey(parameters);
                 entity.setId(newId.longValue());
@@ -69,6 +70,7 @@ public class ServerJdbcDaoSupport implements ServerDao {
                 insertEntity.execute(parameters);
             }
         } catch (RuntimeException e) {
+            e.printStackTrace();
             throw new RuntimeException();
         }
     }
@@ -77,9 +79,9 @@ public class ServerJdbcDaoSupport implements ServerDao {
      * Adds group of Server entities
      */
     @Override
-    public void addGroup(final List<ServerEntity> entity) {
+    public void addGroupOfServers(final List<ServerEntity> entity) {
         assert entity != null;
-        String query = "INSERT INTO " + db_table + " (" + raw_list + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO " + db_table + " (" + raw_list + ") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             List<Object[]> parameters = new ArrayList<>();
             for (ServerEntity foo : entity) {
@@ -92,10 +94,12 @@ public class ServerJdbcDaoSupport implements ServerDao {
                         foo.getResponse(),
                         foo.getCreated(),
                         foo.getLastCheck(),
-                        foo.getActive()});
+                        foo.getActive(),
+                        foo.getResponsible()});
             }
             this.jdbcTemplate.batchUpdate(query, parameters);
         } catch (RuntimeException e) {
+            e.printStackTrace();
             throw new RuntimeException();
         }
     }
@@ -104,14 +108,14 @@ public class ServerJdbcDaoSupport implements ServerDao {
      * Updating existing Server entity
      */
     @Override
-    public void update(ServerEntity entity) {
-        assert entity.getServer_name() != null;
+    public void updateServer(ServerEntity entity) {
+        assert entity.getId() != null;
 
         // updating with full list of rows
-        String query = "UPDATE " + db_table + " SET " + raw_list_update + " WHERE server_name = ? ";
+        String query = "UPDATE " + db_table + " SET " + raw_list_update + " WHERE id = ? ";
         try {
             // selecting existent entity & replacing null with existent match
-            ServerEntity entityInDB = findByServerName(entity.getServer_name());
+            ServerEntity entityInDB = findServerById(entity.getId());
             assert entityInDB != null;
 
             if (entity.getId() == null) {
@@ -144,6 +148,9 @@ public class ServerJdbcDaoSupport implements ServerDao {
             if (entity.getActive() == null) {
                 entity.setActive(entityInDB.getActive());
             }
+            if (entity.getResponsible() == null) {
+                entity.setResponsible(entityInDB.getResponsible());
+            }
             // creating entity fill in arguments
             Object[] args = {entity.getId(),
                     entity.getServer_name(),
@@ -155,7 +162,8 @@ public class ServerJdbcDaoSupport implements ServerDao {
                     entity.getCreated(),
                     entity.getLastCheck(),
                     entity.getActive(),
-                    entity.getServer_name()};
+                    entity.getResponsible(),
+                    entity.getId()};
             this.jdbcTemplate.update(query, args);
         } catch (RuntimeException e) {
             throw new RuntimeException();
@@ -166,12 +174,26 @@ public class ServerJdbcDaoSupport implements ServerDao {
      * Deleting existing Server entity
      */
     @Override
-    public void delete(String server_name) {
-        assert server_name != null;
-        String query = "DELETE FROM " + db_table + " WHERE server_name= ?";
+    public void deleteServer(Long id) {
+        assert id != null;
+        String query = "DELETE FROM " + db_table + " WHERE id= ?";
         try {
-            Object[] args = {server_name};
+            Object[] args = {id};
             this.jdbcTemplate.update(query, args);
+        } catch (RuntimeException e) {
+            throw new RuntimeException();
+        }
+    }
+
+    /**
+     * Retrieves Server entity by Id
+     */
+    public ServerEntity findServerById(Long id) {
+        assert id != null;
+        String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE id= ?";
+        try {
+            Object[] args = {id};
+            return this.jdbcTemplate.queryForObject(query, args, new EmployeeEntityMapper());
         } catch (RuntimeException e) {
             throw new RuntimeException();
         }
@@ -183,11 +205,11 @@ public class ServerJdbcDaoSupport implements ServerDao {
      * @return List<ServerEntity>
      */
     @Override
-    public List<ServerEntity> findAllById(Long entity_id) {
-        assert entity_id != null;
-        String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE id= ?";
+    public List<ServerEntity> findAllByResponsibleId(Long responsible_id) {
+        assert responsible_id != null;
+        String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE responsible= ?";
         try {
-            Object[] args = {entity_id};
+            Object[] args = {responsible_id};
             return this.jdbcTemplate.query(query, args, new EmployeeEntityMapper());
         } catch (RuntimeException e) {
             throw new RuntimeException();
@@ -217,7 +239,7 @@ public class ServerJdbcDaoSupport implements ServerDao {
      * @return ServerEntity list
      */
     @Override
-    public List<ServerEntity> findAll() {
+    public List<ServerEntity> findAllServers() {
         String query = "SELECT * FROM " + db_table;
         try {
             return this.jdbcTemplate.query(query, new EmployeeEntityMapper());
@@ -245,6 +267,7 @@ public class ServerJdbcDaoSupport implements ServerDao {
                 entity.setCreated(rs.getTimestamp("created"));
                 entity.setLastCheck(rs.getTimestamp("lastCheck"));
                 entity.setActive(rs.getInt("active"));
+                entity.setResponsible(rs.getLong("responsible"));
                 return entity;
             } catch (SQLException e) {
                 throw new RuntimeException();

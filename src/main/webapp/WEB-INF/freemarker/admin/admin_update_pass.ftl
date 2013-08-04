@@ -2,8 +2,8 @@
      Password update page for first admin entrance
         - force admin to change existing password
      ===================================================================== -->
-<#import "/spring.ftl" as spring />
-<#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
+<#import "/util/spring.ftl" as spring />
+
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
      "http://www.w3.org/TR/html4/loose.dtd">
@@ -25,7 +25,6 @@
                     }
                     .hero-unit {
                         background-image: url("<@spring.url'/static/img/header_default2.png'/>");
-                        background-repeat: repeat;
                     }
                 </style>
         <script type="text/javascript" src="<@spring.url '/static/js/bootstrap.js'/>" ></script>
@@ -59,40 +58,30 @@
                 </div><!-- /.navbar-inner -->
             </div><!-- /.navbar navbar-inverse -->
             <div class="hero-unit">
-                <h1>Admin first entrance</h1>
+                <h2>Admin first entrance</h2>
             </div>
             <div class="row-fluid">
                 <form class="form-horizontal" method="post" autocomplete="off" >
                     <h3>Please enter new password:</h3>
+
                         <#-- ===================== New Password ============================= -->
                         <div class="control-group info">
                             <label class="control-label" for='newPassword'>New Password</label>
                             <div class="controls">
-                                <input class="input-xlarge"
-                                name='newPassword'
-                                type='password'
-                                autofocus/>
-                                <#if RequestParameters['newPassword']??>
-                                    <span class="help-inline alert alert-error" path="newPassword">
-                                        <@spring.message "<br>", "errors"/>
-                                    </span>
-                                </#if>
+                                <@spring.formPasswordInput "passUpdate.newPassword", "input-xlarge"/>
+                                <@spring.showErrors " ", "alert alert-error"/>
                             </div>
                         </div>
+
                         <#-- ===================== Confirm Password ========================= -->
                         <div class="control-group info">
                             <label class="control-label" for="confirmPassword">Confirm Password</label>
                             <div class="controls">
-                                <input class="input-xlarge"
-                                name='confirmPassword'
-                                type='password' />
-                                <#if RequestParameters['confirmPassword']??>
-                                    <span class="help-inline alert alert-error" path="confirmPassword">
-                                        <@spring.message "<br>", "errors"/>
-                                    </span>
-                                </#if>
+                                <@spring.formPasswordInput "passUpdate.confirmPassword", "input-xlarge"/>
+                                <@spring.showErrors " ", "alert alert-error"/>
                             </div>
                         </div>
+
                         <#-- ===================== Buttons ================================== -->
                         <div class="control-group">
                             <div class="controls">

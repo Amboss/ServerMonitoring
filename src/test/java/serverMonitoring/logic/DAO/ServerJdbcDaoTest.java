@@ -50,7 +50,8 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
      */
     @After
     public void testDelete() {
-        serverDao.delete("Test_Server");
+        ServerEntity entity = serverDao.findByServerName("Test_Server");
+        serverDao.deleteServer(entity.getId());
     }
 
     /**
@@ -71,7 +72,7 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         entity.setCreated(timestamp);
         entity.setLastCheck(timestamp);
         entity.setActive(1);
-        serverDao.add(entity);
+        serverDao.addServer(entity);
 
         // selecting by login & asserting
         ServerEntity entity2 = serverDao.findByServerName("Test_Server");
@@ -102,11 +103,12 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         entity.setCreated(timestamp);
         entity.setLastCheck(timestamp);
         entity.setActive(1);
+        entity.setResponsible(null);
         entityList.add(entity);
-        serverDao.addGroup(entityList);
+        serverDao.addGroupOfServers(entityList);
 
         // testing selection off all entities
-        List<ServerEntity> entityList2 = serverDao.findAll();
+        List<ServerEntity> entityList2 = serverDao.findAllServers();
         assertNotNull(entityList2);
     }
 
@@ -114,7 +116,7 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
      * Testing selection of ServerEntity from Data Base by ID
      */
     @Test
-    public void testFindById() {
+    public void testFindByServerName() {
         ServerEntity entity = new ServerEntity();
         ServerState serverState = ServerState.WARN;
         String serverStateString = ServerState.getStringFromEnum(serverState);
@@ -127,7 +129,8 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         entity.setCreated(timestamp);
         entity.setLastCheck(timestamp);
         entity.setActive(1);
-        serverDao.add(entity);
+        entity.setResponsible(null);
+        serverDao.addServer(entity);
 
         ServerEntity entity2 = serverDao.findByServerName("Test_Server");
 
@@ -158,14 +161,15 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         entity.setCreated(timestamp);
         entity.setLastCheck(timestamp);
         entity.setActive(1);
-        serverDao.add(entity);
+        entity.setResponsible(null);
+        serverDao.addServer(entity);
 
         ServerEntity entity2 = serverDao.findByServerName("Test_Server");
         assertNotNull("failure - Employee entity2 must not be null", entity2);
 
         // selecting by ID
         Long id = entity2.getId();
-        List<ServerEntity> entityList2 = serverDao.findAllById(id);
+        List<ServerEntity> entityList2 = serverDao.findAllByResponsibleId(id);
         assertNotNull("failure - Server entity list must not be null", entityList2);
 
     }
@@ -187,15 +191,15 @@ public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
         entity.setCreated(timestamp);
         entity.setLastCheck(timestamp);
         entity.setActive(1);
-        serverDao.add(entity);
+        entity.setResponsible(null);
+        serverDao.addServer(entity);
 
         // selecting existent entity
-        ServerEntity entity2 = new ServerEntity();
-        entity2.setServer_name("Test_Server");
+        ServerEntity entity2 = serverDao.findByServerName("Test_Server");
         entity2.setAddress("255.255.255.10");
         entity2.setPort(9090);
         entity2.setActive(0);
-        serverDao.update(entity2);
+        serverDao.updateServer(entity2);
 
         // selection and asserting
         ServerEntity entity3 = serverDao.findByServerName("Test_Server");

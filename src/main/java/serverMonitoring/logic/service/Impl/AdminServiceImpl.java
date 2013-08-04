@@ -75,7 +75,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void registerServer(ServerEntity entity) {
         adminLogger.debug("registration of new Server");
-        serverDao.add(entity);
+        serverDao.addServer(entity);
     }
 
     /**
@@ -84,7 +84,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void updateServer(ServerEntity entity) {
         adminLogger.debug("updating Server with id: " + entity.getId());
-        serverDao.update(entity);
+        serverDao.updateServer(entity);
     }
 
     /**
@@ -93,15 +93,15 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<ServerEntity> getAllServers() {
         adminLogger.debug("retrieving list of servers");
-        return serverDao.findAll();
+        return serverDao.findAllServers();
     }
 
     /**
      * deleting Server
      */
     @Override
-    public void deleteServer(String serverName) {
-        adminLogger.debug("deleting Server with id: " + serverName);
-        serverDao.delete(serverName);
+    public void deleteServer(Long id) {
+        adminLogger.debug("deleting Server with id: " + id);
+        serverDao.deleteServer(id);
     }
 }

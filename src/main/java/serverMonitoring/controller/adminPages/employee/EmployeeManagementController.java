@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import serverMonitoring.controller.adminPages.AbstractAdminController;
 import serverMonitoring.logic.service.AdminService;
-import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.util.common.CustomUtils;
 
@@ -18,7 +17,7 @@ import java.util.List;
 
 /**
  * Handles and retrieves the ROLE_ADMIN admin/employee_management/employee_manager.ftl
- * A admin must be log-in first before he can access these page.
+ * Admin must be log-in first before he can access these page.
  */
 @Controller
 @Secured("ROLE_ADMIN")
@@ -32,17 +31,8 @@ public class EmployeeManagementController extends AbstractAdminController {
     @Autowired
     private AdminService adminService;
 
-    @Autowired
-    private EmployeeService employeeService;
-
-    @Autowired
-    public void setUtils(CustomUtils utils) {
-        this.utils = utils;
-    }
-
     /**
-     * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_manager.ftl
-     *
+     * Retrieves /admin/employee_management/employee_manager.ftl
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(value = "/employee_manager", method = RequestMethod.GET)
@@ -60,22 +50,6 @@ public class EmployeeManagementController extends AbstractAdminController {
                 filteredList.add(entity);
             }
         }
-
         return new ModelAndView("admin/employee_management/employee_manager", "employee", filteredList);
     }
-
-
-
-
-    /**
-     * Handles and retrieves /WEB-INF/ftl/admin/employee_management/serv_assignment.ftl
-     *
-     * @return the name of the FreeMarker template page
-     */
-    @RequestMapping(value = "/serv_assignment", method = RequestMethod.GET)
-    public ModelAndView getServerAssignmentPage() {
-        showRequestLog("serv_assignment");
-        return new ModelAndView("admin/employee_management/serv_assignment");
-    }
-
 }

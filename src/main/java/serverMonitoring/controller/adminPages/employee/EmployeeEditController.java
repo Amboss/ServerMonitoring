@@ -65,7 +65,7 @@ public class EmployeeEditController extends AbstractAdminController {
     public ModelAndView loadPage(@PathVariable("id") Long id) {
 
         showRequestLog("employee_update");
-        if (id != null) {
+        if (id != null && employeeService.getEmployeeById(id) != null) {
 
             EmployeeEntity employeeEntity = employeeService.getEmployeeById(id);
             RegistrSimplFormModel simplFormModel = new RegistrSimplFormModel();

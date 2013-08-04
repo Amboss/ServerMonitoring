@@ -31,29 +31,29 @@ public class ServerDeleteController extends AbstractAdminController {
     private AdminService adminService;
 
     /**
-     * Retrieves /WEB-INF/ftl/admin/server_management/serv_removal.ftl
+     * Retrieves /admin/server_management/serv_removal.ftl
      * @return the name of the FreeMarker template page
      */
-    @RequestMapping(value = "{name}")
-    public ModelAndView loadPage(@PathVariable("name") String name){
+    @RequestMapping(value = "{id}")
+    public ModelAndView loadPage(@PathVariable("id") Long id){
         showRequestLog("serv_removal");
         return new ModelAndView("admin/server_management/serv_removal",
-                "server", employeeService.getServerByName(name));
+                "server", employeeService.getServerById(id));
     }
 
     /**
      * Handles Submit action on /admin/server_management/serv_removal.ftl
      */
-    @RequestMapping(value = "/{name}", method = RequestMethod.POST)
-    public ModelAndView onSubmit(@ModelAttribute("name") String name,
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    public ModelAndView onSubmit(@ModelAttribute("id") Long id,
                                  BindingResult result,
                                  HttpServletRequest request,
                                  SessionStatus status) {
         showRequestLog("serv_removal");
 
-        if (employeeService.getServerByName(name) != null) {
+        if (employeeService.getServerById(id) != null) {
 
-            adminService.deleteServer(name);
+            adminService.deleteServer(id);
             status.setComplete();
         }
         return new ModelAndView("redirect:/server_management/serv_manager");
@@ -62,7 +62,7 @@ public class ServerDeleteController extends AbstractAdminController {
 
     /**
      * Action on button "Cancel" pressed.
-     * @return redirect to monitoring page
+     * @return redirect to serv_manager page
      */
     @RequestMapping(value = "/{id}", params = "cancel", method = RequestMethod.POST)
     public ModelAndView onCancel() {

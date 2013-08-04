@@ -36,7 +36,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * Retrieves EmployeeEntity entity by E-mail
-     *
      * @return Employee Entity object
      */
     @Override
@@ -58,7 +57,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * retrieve Employee by Id
-     *
      * @return Employee Entity object
      */
     public EmployeeEntity getEmployeeById(Long entityId) {
@@ -103,34 +101,41 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void changeServerLastCheck(String serverName) {
         employeeLogger.debug("updating Server LastChek");
-        ServerEntity entity = new ServerEntity();
+
         Date date = new Date();
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        entity.setServer_name(serverName);
+        ServerEntity entity = serverDao.findByServerName(serverName);
         entity.setLastCheck(timestamp);
-        serverDao.update(entity);
+        serverDao.updateServer(entity);
     }
 
     /**
-     * retrieve server details by provided Id
-     *
+     * retrieve server details by provided responsible_id
      * @return ServerEntity object
      */
     @Override
-    public List<ServerEntity> getServerListById(Long id) {
-        employeeLogger.debug("retrieving Server status with id: " + id);
-        return serverDao.findAllById(id);
+    public List<ServerEntity> findAllByResponsibleId(Long responsible_id) {
+        employeeLogger.debug("retrieving Server status with id: " + responsible_id);
+        return serverDao.findAllByResponsibleId(responsible_id);
     }
 
     /**
      * retrieve server details by provided server name
-     *
      * @return ServerEntity object
      */
     @Override
     public ServerEntity getServerByName(String serverName) {
         employeeLogger.debug("retrieving Server details with id: " + serverName);
         return serverDao.findByServerName(serverName);
+    }
+    /**
+     * retrieve server details by provided server id
+     @return ServerEntity object
+     */
+    @Override
+    public ServerEntity getServerById(Long id) {
+        employeeLogger.debug("retrieving Server details with id: " + id);
+        return serverDao.findServerById(id);
     }
 }

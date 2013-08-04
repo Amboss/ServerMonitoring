@@ -116,7 +116,7 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
         assertEquals("failure - isActive should be same", (Object) 1, entity2.getActive());
 
         // eliminating test entity
-        adminService.deleteServer(entity.getServer_name());
+        adminService.deleteServer(entity2.getId());
     }
 
     /**
@@ -151,7 +151,7 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
         assertEquals("failure - isActive should be same", (Object) 0, entity2.getActive());
 
         // eliminating test entity
-        adminService.deleteServer(entity2.getServer_name());
+        adminService.deleteServer(entity2.getId());
     }
 
 

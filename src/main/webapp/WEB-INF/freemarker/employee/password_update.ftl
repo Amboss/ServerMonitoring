@@ -4,7 +4,9 @@
         - for admin_role the layout wil contain service menu on left side bar
      ===================================================================== -->
 <#import "/util/spring.ftl" as spring />
+
 <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
+
 <@spring.bind "passUpdate" />
 
 <@security.authorize ifAnyGranted="ROLE_USER">
@@ -18,7 +20,7 @@
 
     <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
-        <h1>Password update</h1>
+        <h2>Password update</h2>
     </div>
 
     <#-- ===================== Main row for Password update form ========================= -->
@@ -31,7 +33,7 @@
 
             <#-- ===================== Current Password ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="current_password">Current Password</label>
+                <label class="control-label" for="currentPassword">Current Password</label>
                 <div class="controls">
                    <@spring.formPasswordInput "passUpdate.currentPassword", "input-xlarge"/>
                    <@spring.showErrors " ", "alert alert-error"/>
@@ -40,7 +42,7 @@
 
             <#-- ===================== New Password ============================= -->
             <div class="control-group info">
-                <label class="control-label" for='new_password'>New Password</label>
+                <label class="control-label" for='newPassword'>New Password</label>
                 <div class="controls">
                     <@spring.formPasswordInput "passUpdate.newPassword", "input-xlarge"/>
                     <@spring.showErrors " ", "alert alert-error"/>
@@ -49,7 +51,7 @@
 
             <#-- ===================== Confirm Password ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="confirm_password">Confirm Password</label>
+                <label class="control-label" for="confirmPassword">Confirm Password</label>
                 <div class="controls">
                     <@spring.formPasswordInput "passUpdate.confirmPassword", "input-xlarge"/>
                     <@spring.showErrors " ", "alert alert-error"/>

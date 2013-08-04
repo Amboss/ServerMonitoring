@@ -47,16 +47,14 @@ public class AdminPasswordUpdateController extends AbstractAdminController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView loadPage() {
         showRequestLog("password_update");
-        return new ModelAndView("/admin/admin_update_pass",
-                "pass_object", new PasswordUpdateModel());
+        return new ModelAndView("/admin/admin_update_pass", "passUpdate", new PasswordUpdateModel());
     }
 
     /**
      * Action on button "Change password" pressed.
      */
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView onSubmit(@ModelAttribute("passUpdate")
-                                 PasswordUpdateModel passUpdate,
+    public ModelAndView onSubmit(@ModelAttribute("passUpdate") PasswordUpdateModel passUpdate,
                                  BindingResult errors,
                                  SessionStatus status) {
         /**
@@ -65,7 +63,7 @@ public class AdminPasswordUpdateController extends AbstractAdminController {
         passwordUpdateValidator.validate(passUpdate, errors);
 
         if (errors.hasErrors()) {
-            return new ModelAndView("/admin/admin_update_pass", "passUpdate", errors);
+            return new ModelAndView("/admin/admin_update_pass", "passUpdate", passUpdate);
         } else {
             EmployeeEntity entity = employeeService.getEmployeeByLogin(getUserName());
             String foo = passUpdate.getNewPassword();

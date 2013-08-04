@@ -57,7 +57,7 @@ public class ServerMonitoringController extends AbstractEmployeeController {
             return new ModelAndView("employee/monitoring", "availableServers",
                     adminService.getAllServers());
         } else {
-            Collection<ServerEntity> resultsList = employeeService.getServerListById(getUserId());
+            Collection<ServerEntity> resultsList = employeeService.findAllByResponsibleId(getUserId());
             return new ModelAndView("employee/monitoring", "availableServers", resultsList);
         }
     }

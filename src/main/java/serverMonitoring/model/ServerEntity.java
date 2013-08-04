@@ -49,12 +49,14 @@ public class ServerEntity implements Serializable {
     */
     private Integer active;
 
+    private Long responsible;
+
     public ServerEntity() {
     }
 
     public ServerEntity(Long id, String server_name, String address, Integer port,
-                        String url, ServerState state, String response,
-                        Timestamp created, Timestamp lastCheck, Integer active) {
+                        String url, ServerState state, String response, Timestamp created,
+                        Timestamp lastCheck, Integer active, Long responsible) {
         this.id = id;
         this.server_name = server_name;
         this.address = address;
@@ -65,6 +67,7 @@ public class ServerEntity implements Serializable {
         this.created = created;
         this.lastCheck = lastCheck;
         this.active = active;
+        this.responsible = responsible;
     }
 
     public Long getId() {
@@ -147,6 +150,14 @@ public class ServerEntity implements Serializable {
         this.active = active;
     }
 
+    public Long getResponsible() {
+        return responsible;
+    }
+
+    public void setResponsible(Long responsible) {
+        this.responsible = responsible;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -168,11 +179,12 @@ public class ServerEntity implements Serializable {
                 ", address='" + address + '\'' +
                 ", port=" + port +
                 ", url='" + url + '\'' +
-                ", state=" + state +
                 ", response='" + response + '\'' +
                 ", created=" + created +
                 ", lastCheck=" + lastCheck +
+                ", state=" + state +
                 ", active=" + active +
+                ", responsible=" + responsible +
                 '}';
     }
 }

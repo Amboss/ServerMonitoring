@@ -25,7 +25,7 @@
                 </tr>
             </thead>
             <#list server as server >
-            <#assign name = server.server_name />
+            <#assign id = server.id />
 
                 <#-- ===================== Server response icons ========================= -->
                 <#if server.response = "OK">
@@ -45,22 +45,17 @@
 
                 <tbody>
                     <tr>
-                        <td>${name}:${server.port}<a/></td>
+                        <td>${server.server_name}:${server.port}<a/></td>
                         <td>${responseIcon}</td>
                         <td>${server.lastCheck}</td>
                         <td>${activeIcon}</td>
                         <td>
-                            <a href="<@spring.url '/server_management/serv_update/${name}.html' />">
+                            <a href="<@spring.url '/server_management/serv_update/${id}.html' />">
                                 <i class="icon-edit" ></i>&nbsp;Edit
                             <a/>
                         </td>
                         <td>
-                            <a href="<@spring.url '/employee_management/serv_assignment/${name}.html' />">
-                               <i class="icon-check" ></i>&nbsp;Assign
-                            <a/>
-                        </td>
-                        <td>
-                            <a href="<@spring.url '/server_management/serv_removal/${name}.html' />">
+                            <a href="<@spring.url '/server_management/serv_removal/${id}.html' />">
                                 <i class="icon-trash" ></i>&nbsp;Delete
                             <a/>
                         </td>

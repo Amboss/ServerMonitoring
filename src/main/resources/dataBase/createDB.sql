@@ -28,6 +28,7 @@ response VARCHAR(255),
 created TIMESTAMP,
 lastCheck TIMESTAMP,
 active INT NOT NULL,
+responsible INT,
 INDEX(id),
 UNIQUE (server_name)
 ) engine=InnoDB;

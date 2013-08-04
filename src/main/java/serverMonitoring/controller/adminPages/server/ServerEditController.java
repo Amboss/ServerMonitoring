@@ -18,7 +18,6 @@ import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.ftl.RegistrSimplFormModel;
 import serverMonitoring.util.web.validations.ServerUpdateValidator;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,6 +36,8 @@ public class ServerEditController extends AbstractAdminController {
 
     private ServerUpdateValidator serverUpdateValidator;
 
+    private ServerEntity entityToUpdate;
+
     @Autowired
     private EmployeeService employeeService;
 
@@ -52,12 +53,12 @@ public class ServerEditController extends AbstractAdminController {
      * Retrieves /admin/server_management/serv_update.ftl
      * @return the name of the FreeMarker template page
      */
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
-    public ModelAndView loadPage(@PathVariable("name") String name) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ModelAndView loadPage(@PathVariable("id") Long id) {
         showRequestLog("serv_update");
 
-        if (name != null && employeeService.getServerByName(name) != null) {
-            ServerEntity serverEntity = employeeService.getServerByName(name);
+        if (id != null) {
+            ServerEntity serverEntity = employeeService.getServerById(id);
             RegistrSimplFormModel simplFormModel = new RegistrSimplFormModel();
 
             /*
@@ -84,13 +85,13 @@ public class ServerEditController extends AbstractAdminController {
     /**
      * Handles Submit action on /admin/server_management/serv_update.ftl
      */
-    @RequestMapping(value = "/{name}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public ModelAndView onSubmit(
+            @PathVariable("id") Long id,
             @ModelAttribute("simplFormModel") RegistrSimplFormModel simplFormModel,
             @ModelAttribute("serverEntity") ServerEntity serverEntity,
             BindingResult errors,
-            SessionStatus status,
-            HttpServletRequest request) {
+            SessionStatus status) {
 
         showRequestLog("serv_update");
 
@@ -121,6 +122,7 @@ public class ServerEditController extends AbstractAdminController {
             /**
              * updating server
              */
+            serverEntity.setId(id);
             adminService.updateServer(serverEntity);
             status.setComplete();
             return new ModelAndView("redirect:/server_management/serv_manager");
@@ -129,10 +131,9 @@ public class ServerEditController extends AbstractAdminController {
 
     /**
      * Action on button "Cancel" pressed.
-     *
      * @return redirect to monitoring page
      */
-    @RequestMapping(value = "/{name}", params = "cancel", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", params = "cancel", method = RequestMethod.POST)
     public ModelAndView onCancel() {
         showRequestLog("serv_manager");
         return new ModelAndView("redirect:/server_management/serv_manager");

@@ -78,15 +78,6 @@ public class ServerRegistrationController extends AbstractAdminController {
 
         if (errors.hasErrors()) {
 
-            /*
-             * translating active state to integer
-             */
-            if (newServer.getActive().equals(1)) {
-                simplFormModel.setActiveState("Active");
-            } else {
-                simplFormModel.setActiveState("Not active");
-            }
-
             ModelAndView errorModelAndView = new ModelAndView("/admin/server_management/serv_registr");
             // providing form info
             errorModelAndView.addObject("simplFormModel", simplFormModel);
@@ -103,7 +94,7 @@ public class ServerRegistrationController extends AbstractAdminController {
             } else {
                 newServer.setActive(0);
             }
-
+            newServer.setId((long) 0);
             newServer.setState(ServerState.FAIL);
             newServer.setResponse("FAIL");
             /**
@@ -117,7 +108,7 @@ public class ServerRegistrationController extends AbstractAdminController {
 
     /**
      * Action on button "Cancel" pressed.
-     * @return redirect to monitoring page
+     * @return redirect to serv_manager page
      */
     @RequestMapping(params = "cancel", method = RequestMethod.POST)
     public ModelAndView onCancel() {

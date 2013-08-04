@@ -12,40 +12,42 @@ public interface ServerDao{
     /**
      * Adds new Server entity with new Id assignment
      */
-    public void add(ServerEntity entity);
+    public void addServer(ServerEntity entity);
 
     /**
      * Adds group of Server entities
      */
-    public void addGroup(final List<ServerEntity> entity);
+    public void addGroupOfServers(final List<ServerEntity> entity);
 
     /**
      * Updating existing Server entity
      */
-    public void update(ServerEntity entity);
-
-//    /**
-//     * Retrieves Server entity entity by Id
-//     */
-//    public ServerEntity findById(Long entity_id);
+    public void updateServer(ServerEntity entity);
 
     /**
-     * Query retrieves ServerEntity entity by server name
+     * Deleting existing Server entity
+     */
+    public void deleteServer(Long id);
+
+    /**
+     * Retrieves Server entity by Id
+     */
+    public ServerEntity findServerById(Long id);
+
+    /**
+     * Query retrieves ServerEntity by server name
      */
     public ServerEntity findByServerName(String entity_name);
 
     /**
      * Retrieves List of Server entity with provided Id
      */
-    public List<ServerEntity> findAllById(Long entity_id);
+    public List<ServerEntity> findAllByResponsibleId(Long responsible_id);
 
     /**
-     * Retrieves all Server entity entity
+     * Retrieves all Server entity
      */
-    public List<ServerEntity> findAll();
+    public List<ServerEntity> findAllServers();
 
-    /**
-     * Deleting existing Server entity
-     */
-    public void delete(String server_name);
+
 }
