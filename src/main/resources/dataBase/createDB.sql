@@ -18,8 +18,8 @@ UNIQUE (id)
 ) engine=InnoDB;
 
 CREATE TABLE IF NOT EXISTS server_entity (
-id INT(50) UNSIGNED NOT NULL AUTO_INCREMENT,
-server_name VARCHAR(50) NOT NULL PRIMARY KEY,
+id INT(50) UNSIGNED NOT NULL AUTO_INCREMENT NULL PRIMARY KEY,
+server_name VARCHAR(50) NOT,
 address VARCHAR(50) NOT NULL,
 port INT(16) NOT NULL,
 url VARCHAR(255) NOT NULL,
@@ -31,4 +31,15 @@ active INT NOT NULL,
 responsible INT,
 INDEX(id),
 UNIQUE (server_name)
+) engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS system_settings (
+id INT(50) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+scan_interval INT(50),
+timeout INT(50),
+reload_time INT(50),
+smtp_adress VARCHAR(50),
+smtp_port INT (16),
+INDEX(id),
+UNIQUE (id)
 ) engine=InnoDB;

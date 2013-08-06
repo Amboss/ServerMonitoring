@@ -21,6 +21,15 @@ public abstract class AbstractCommonController {
 
     private String userName;
 
+
+
+    /**
+     * @return current Entity login
+     */
+    public String getUserName() {
+        return userName;
+    }
+
     /**
      * @return UserName var to be shown in header after authorisation on every page
      */
@@ -35,18 +44,21 @@ public abstract class AbstractCommonController {
     }
 
     /**
+     * @return reloadTable for estimated reload time for data tables
+     */
+    @ModelAttribute("reloadTable")
+    public Integer setReloadTable() {
+       return null;
+    }
+
+    /**
      * @return true if currant user has admin role
      */
     public boolean isUserIsAdmin(HttpServletRequest request) {
         return request.isUserInRole("ROLE_ADMIN");
     }
 
-    /**
-     * @return current Entity login
-     */
-    public String getUserName() {
-        return userName;
-    }
+
 
     /**
      * customised logger

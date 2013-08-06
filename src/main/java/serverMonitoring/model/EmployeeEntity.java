@@ -43,6 +43,9 @@ public class EmployeeEntity implements Serializable {
      */
     private Integer admin;
 
+    /**
+     * Employee entity constructor
+     */
     public EmployeeEntity() {
     }
 
@@ -60,6 +63,9 @@ public class EmployeeEntity implements Serializable {
         this.admin = admin;
     }
 
+    /**
+     * getters & setters
+     */
     public Long getId() {
         return id;
     }

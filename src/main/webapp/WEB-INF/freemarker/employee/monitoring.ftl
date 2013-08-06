@@ -15,6 +15,10 @@
 </@security.authorize>
 
 <@com.page title="Monitoring service">
+    <#-- ===================== reloading page ========================= -->
+    <#assign reloadTime = 5000 />
+    <#include "/util/reloadTable.ftl"/>
+
     <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
         <h1>Server monitoring</h1>
@@ -22,7 +26,7 @@
 
     <#-- ===================== Main row for Server Monitoring table ========================= -->
     <div class="row-fluid">
-        <table class="table table-bordered">
+        <table id="monitoringTable" class="table table-bordered">
             <thead >
                 <tr>
                     <th>Server name</th>

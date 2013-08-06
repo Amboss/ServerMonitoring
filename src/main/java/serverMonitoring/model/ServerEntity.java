@@ -51,6 +51,9 @@ public class ServerEntity implements Serializable {
 
     private Long responsible;
 
+    /**
+     * Server entity constructor
+     */
     public ServerEntity() {
     }
 
@@ -70,6 +73,9 @@ public class ServerEntity implements Serializable {
         this.responsible = responsible;
     }
 
+    /**
+     * getters & setters
+     */
     public Long getId() {
         return id;
     }

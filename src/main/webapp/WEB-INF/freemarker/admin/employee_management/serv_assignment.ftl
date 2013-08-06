@@ -10,7 +10,18 @@
 <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
 
 <@com.page title="Server assignment">
-<#-- ===================== Head with name of page ========================= -->
+
+    <script type="text/javascript">
+       function ReloadPage() {
+          location.reload();
+       };
+
+       $('table').ready(function() {
+         setTimeout("ReloadPage()", 5000);
+       });
+    </script>
+
+    <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
         <h2>Server assignment</h2>
     </div>

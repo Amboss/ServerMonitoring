@@ -14,6 +14,10 @@
 </@security.authorize>
 
 <@com.page title="Server details">
+
+    <#assign reloadTime = 5000 />
+    <#include "/util/reloadTable.ftl"/>
+
     <div class="hero-unit">
         <h1>Server details page</h1>
     </div>
@@ -36,7 +40,7 @@
                         <td>${server.url}</td>
                         <td>${server.state}</td>
                         <td>${server.lastCheck!}</td>
-                        <td>${server.state}</td>
+                        <td>${server.response}</td>
                     </tr>
                 </tbody>
         </table>

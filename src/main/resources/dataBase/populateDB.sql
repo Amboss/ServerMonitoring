@@ -35,3 +35,6 @@ INSERT IGNORE INTO `server_entity`(`id`, `server_name`, `address`, `port`, `url`
 INSERT IGNORE INTO `server_entity`(`id`, `server_name`, `address`, `port`, `url`, `state`, `response`,
  `created`, `lastCheck`, `active`, `responsible`) VALUES (08, 'localhost8', '255.255.255.0', 8080,
  'http://localhost/', 'OK', 'OK', '2013-05-19 00:00:01', '2038-01-09 03:14:07', 1, 03);
+
+INSERT IGNORE INTO `system_settings`(`id`, `scan_interval`,`timeout`,`reload_time`,`smtp_adress`,`smtp_port`)
+VALUES (01, 5000, 5000, 5000, 'huskyserge@gmail.com', 587);

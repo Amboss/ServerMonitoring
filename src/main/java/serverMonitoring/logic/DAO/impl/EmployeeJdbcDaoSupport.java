@@ -25,7 +25,7 @@ import java.util.List;
 @Repository
 public class EmployeeJdbcDaoSupport implements EmployeeDao {
 
-    protected static Logger daoSupportLogger = Logger.getLogger("EmployeeJdbcDaoSupport");
+    protected static Logger daoSupportLogger = Logger.getLogger(EmployeeJdbcDaoSupport.class);
     private SimpleJdbcInsert insertEntity;
     private JdbcTemplate jdbcTemplate;
     private String db_table = "employee_entity";
@@ -108,7 +108,6 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
      */
     @Override
     public void update(EmployeeEntity entity) {
-        //assert entity.getLogin() != null;
 
         // updating with full list of rows
         String query = "UPDATE " + db_table + " SET " + raw_list_update + " WHERE id = ? ";
@@ -163,7 +162,6 @@ public class EmployeeJdbcDaoSupport implements EmployeeDao {
                     entity.getId()};
             this.jdbcTemplate.update(query, args);
         } catch (RuntimeException e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
