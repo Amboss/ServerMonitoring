@@ -25,17 +25,16 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <#list employee as employee >
-            <#assign id = employee.id />
+            <tbody>
+                <#list employee as employee >
+                    <#assign id = employee.id />
 
-                <#-- ===================== Employee active icons ========================= -->
-                <#if employee.active = 1>
-                    <#assign activeIcon><i class="icon-thumbs-up" ></#assign>
-                <#elseif employee.active = 0>
-                    <#assign activeIcon><i class="icon-ban-circle" ></#assign>
-                </#if>
-
-                <tbody>
+                    <#-- ===================== Employee active icons ========================= -->
+                    <#if employee.active = 1>
+                        <#assign activeIcon><i class="icon-thumbs-up" ></#assign>
+                    <#elseif employee.active = 0>
+                        <#assign activeIcon><i class="icon-ban-circle" ></#assign>
+                    </#if>
                     <tr>
                         <td>${employee.employee_name}<a/></td>
                         <td>${activeIcon}</td>
@@ -55,8 +54,8 @@
                             <a/>
                         </td>
                     </tr>
-                </tbody>
-            </#list>
+                </#list>
+            </tbody>
         </table>
     </div>
 

@@ -16,7 +16,7 @@
 <@com.page title="Server details">
 
     <#assign reloadTime = 5000 />
-    <#include "/util/reloadTable.ftl"/>
+    <#include "/util/js/reloadTable.ftl"/>
 
     <div class="hero-unit">
         <h1>Server details page</h1>

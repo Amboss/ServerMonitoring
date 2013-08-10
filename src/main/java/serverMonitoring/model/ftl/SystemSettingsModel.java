@@ -9,13 +9,15 @@ public class SystemSettingsModel implements Serializable {
 
     private Long id;
 
+    private String settings_name;
+
     private Integer serverScanInterval;
 
-    private Integer timeoutOfRespound;
+    private Integer timeoutOfRespond;
 
     private Integer pageReloadTime;
 
-    private String smtpServerAdress;
+    private String smtpServerAddress;
 
     private Integer smtpServerPort;
 
@@ -25,14 +27,15 @@ public class SystemSettingsModel implements Serializable {
     public SystemSettingsModel() {
     }
 
-    public SystemSettingsModel(Long id, Integer serverScanInterval,
-                               Integer timeoutOfRespound, Integer pageReloadTime,
-                               String smtpServerAdress, Integer smtpServerPort) {
+    public SystemSettingsModel(Long id, Integer serverScanInterval, String settings_name,
+                               Integer timeoutOfRespond, Integer pageReloadTime,
+                               String smtpServerAddress, Integer smtpServerPort) {
         this.id = id;
+        this.settings_name = settings_name;
         this.serverScanInterval = serverScanInterval;
-        this.timeoutOfRespound = timeoutOfRespound;
+        this.timeoutOfRespond = timeoutOfRespond;
         this.pageReloadTime = pageReloadTime;
-        this.smtpServerAdress = smtpServerAdress;
+        this.smtpServerAddress = smtpServerAddress;
         this.smtpServerPort = smtpServerPort;
     }
 
@@ -47,6 +50,14 @@ public class SystemSettingsModel implements Serializable {
         this.id = id;
     }
 
+    public String getSettings_name() {
+        return settings_name;
+    }
+
+    public void setSettings_name(String settings_name) {
+        this.settings_name = settings_name;
+    }
+
     public Integer getServerScanInterval() {
         return serverScanInterval;
     }
@@ -55,12 +66,12 @@ public class SystemSettingsModel implements Serializable {
         this.serverScanInterval = serverScanInterval;
     }
 
-    public Integer getTimeoutOfRespound() {
-        return timeoutOfRespound;
+    public Integer getTimeoutOfRespond() {
+        return timeoutOfRespond;
     }
 
-    public void setTimeoutOfRespound(Integer timeoutOfRespound) {
-        this.timeoutOfRespound = timeoutOfRespound;
+    public void setTimeoutOfRespond(Integer timeoutOfRespond) {
+        this.timeoutOfRespond = timeoutOfRespond;
     }
 
     public Integer getPageReloadTime() {
@@ -71,12 +82,12 @@ public class SystemSettingsModel implements Serializable {
         this.pageReloadTime = pageReloadTime;
     }
 
-    public String getSmtpServerAdress() {
-        return smtpServerAdress;
+    public String getSmtpServerAddress() {
+        return smtpServerAddress;
     }
 
-    public void setSmtpServerAdress(String smtpServerAdress) {
-        this.smtpServerAdress = smtpServerAdress;
+    public void setSmtpServerAddress(String smtpServerAddress) {
+        this.smtpServerAddress = smtpServerAddress;
     }
 
     public Integer getSmtpServerPort() {
@@ -91,9 +102,9 @@ public class SystemSettingsModel implements Serializable {
     public String toString() {
         return "SystemSettingsModel{" +
                 "serverScanInterval=" + serverScanInterval +
-                ", timeoutOfRespound=" + timeoutOfRespound +
+                ", timeoutOfRespond=" + timeoutOfRespond +
                 ", pageReloadTime=" + pageReloadTime +
-                ", smtpServerAdress='" + smtpServerAdress + '\'' +
+                ", smtpServerAddress='" + smtpServerAddress + '\'' +
                 ", smtpServerPort=" + smtpServerPort +
                 '}';
     }

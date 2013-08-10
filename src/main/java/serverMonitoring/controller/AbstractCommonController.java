@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Abstract controller for common pages functionality.
  * - Creating userName var
- * TODO pass: d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1
  */
 @Controller
 public abstract class AbstractCommonController {
@@ -20,8 +19,6 @@ public abstract class AbstractCommonController {
     protected static Logger logger = Logger.getLogger(AbstractCommonController.class);
 
     private String userName;
-
-
 
     /**
      * @return current Entity login
@@ -57,8 +54,6 @@ public abstract class AbstractCommonController {
     public boolean isUserIsAdmin(HttpServletRequest request) {
         return request.isUserInRole("ROLE_ADMIN");
     }
-
-
 
     /**
      * customised logger

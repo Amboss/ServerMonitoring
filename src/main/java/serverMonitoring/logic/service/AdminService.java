@@ -3,6 +3,7 @@ package serverMonitoring.logic.service;
 import org.springframework.security.access.annotation.Secured;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
+import serverMonitoring.model.ftl.SystemSettingsModel;
 
 import java.util.List;
 
@@ -51,4 +52,29 @@ public interface AdminService {
      * retrieve all Employees
      */
     public List<EmployeeEntity> getAllEmployee();
+
+    /**
+     * Retrieves Settings
+     */
+    public SystemSettingsModel getSettingsByName(String name) ;
+
+    /**
+     * Updating existing Settings
+     */
+    public void updateSettings(SystemSettingsModel model);
+
+    /**
+     * Retrieves Settings
+     */
+    public SystemSettingsModel getSettings(String name);
+
+    /**
+     * Adds new Settings with new Id assignment
+     */
+    public void addSettings(SystemSettingsModel model);
+
+    /**
+     * Deleting Settings entity
+     */
+    public void deleteSettings(Long id);
 }

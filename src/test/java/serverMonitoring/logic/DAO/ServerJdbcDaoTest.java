@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * JUnit test for the {@link ServerJdbcDaoTest} class.
+ * JUnit test for the {@link serverMonitoring.logic.DAO.impl.ServerJdbcDaoSupport} class.
  * ApplicationContext will be loaded from "classpath:/application-context.xml"
  */
 
@@ -30,8 +30,8 @@ import static org.junit.Assert.assertNotNull;
 @ContextConfiguration(locations = {"classpath:application-context.xml"})
 public class ServerJdbcDaoTest extends AbstractJUnit4SpringContextTests {
 
-    // protected static Logger employeeLogger = Logger.getLogger("EmployeeServiceImpl");
     private static Timestamp timestamp;
+
     private ServerDao serverDao;
 
     @Autowired

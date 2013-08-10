@@ -15,9 +15,12 @@
 </@security.authorize>
 
 <@com.page title="Monitoring service">
+
     <#-- ===================== reloading page ========================= -->
     <#assign reloadTime = 5000 />
-    <#include "/util/reloadTable.ftl"/>
+    <#--include "/util/js/reloadTable.ftl"/-->
+
+    <#--include "/util/js/sortTable.ftl"/-->
 
     <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
@@ -26,8 +29,9 @@
 
     <#-- ===================== Main row for Server Monitoring table ========================= -->
     <div class="row-fluid">
+
         <table id="monitoringTable" class="table table-bordered">
-            <thead >
+            <thead> <#-- ===================== thead ========================= -->
                 <tr>
                     <th>Server name</th>
                     <th>State</th>
@@ -35,47 +39,47 @@
                     <th>Active</th>
                 </tr>
             </thead>
-            <#if availableServers?has_content>
-                <#list availableServers as server >
 
-                    <#-- ===================== Server state icons ========================= -->
-                    <#if server.state = "OK">
-                        <#assign stateIcon><i class="icon-ok" ></#assign>
-                    <#elseif server.state = "WARN">
-                        <#assign stateIcon><i class="icon-warning-sign" ></#assign>
-                    <#elseif server.state = "FAIL">
-                        <#assign stateIcon><i class="icon-ban-circle" ></#assign>
-                    </#if>
+            <tbody> <#-- ===================== tbody ========================= -->
+                <#if availableServers?has_content>
 
-                    <#-- ===================== Server active icons ========================= -->
-                    <#if server.active = 1>
-                        <#assign activeIcon><i class="icon-thumbs-up" ></#assign>
-                    <#elseif server.active = 0>
-                        <#assign activeIcon><i class="icon-ban-circle" ></#assign>
-                    </#if>
+                    <#list availableServers as server >
 
-                    <#-- ===================== tbody ========================= -->
-                    <#assign serverName = server.server_name />
-                    <tbody>
+                        <#-- ===================== Server state icons ========================= -->
+                        <#if server.state = "OK">
+                            <#assign stateIcon><i class="icon-ok" ></#assign>
+                        <#elseif server.state = "WARN">
+                            <#assign stateIcon><i class="icon-warning-sign" ></#assign>
+                        <#elseif server.state = "FAIL">
+                            <#assign stateIcon><i class="icon-ban-circle" ></#assign>
+                        </#if>
+
+                        <#-- ===================== Server active icons ========================= -->
+                        <#if server.active = 1>
+                            <#assign activeIcon><i class="icon-thumbs-up" ></#assign>
+                        <#elseif server.active = 0>
+                            <#assign activeIcon><i class="icon-ban-circle" ></#assign>
+                        </#if>
+
+                        <#assign serverName = server.server_name />
+
                         <tr>
                             <td><a href="<@spring.url '/employee/serv_details/${serverName}.html' />">
                                 <i class="icon-search" ></i>&nbsp;${serverName}<a/></td>
-                            <td style="text-align:center;">${stateIcon}</td>
+                            <td>${server.state}</td>
                             <td>${server.lastCheck}</td>
                             <td>${activeIcon}</td>
                         </tr>
-                    </tbody>
-                </#list>
-            <#else>
-                <tbody>
+                    </#list>
+                <#else>
                     <tr>
                         <td>- - -</td>
                         <td>- - -</td>
                         <td>- - -</td>
                         <td>- - -</td>
                     </tr>
-                </tbody>
-            </#if>
+                </#if>
+        </tbody>
         </table>
     </div>
 

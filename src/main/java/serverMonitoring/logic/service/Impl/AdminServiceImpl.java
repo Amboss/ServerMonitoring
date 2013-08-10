@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import serverMonitoring.logic.DAO.EmployeeDao;
 import serverMonitoring.logic.DAO.ServerDao;
+import serverMonitoring.logic.DAO.SettingsDao;
 import serverMonitoring.logic.service.AdminService;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
+import serverMonitoring.model.ftl.SystemSettingsModel;
 
 import java.util.List;
 
@@ -18,8 +20,12 @@ import java.util.List;
 public class AdminServiceImpl implements AdminService {
 
     protected static Logger adminLogger = Logger.getLogger("AdminServiceImpl");
+
     private EmployeeDao employeeDao;
+
     private ServerDao serverDao;
+
+    private SettingsDao settingsDao;
 
     @Autowired
     public void setEmployeeDao(EmployeeDao employeeDao) {
@@ -29,6 +35,11 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     public void setServerDao(ServerDao serverDao) {
         this.serverDao = serverDao;
+    }
+
+    @Autowired
+    public void setSettingsDao(SettingsDao settingsDao) {
+        this.settingsDao = settingsDao;
     }
 
     /**
@@ -103,5 +114,48 @@ public class AdminServiceImpl implements AdminService {
     public void deleteServer(Long id) {
         adminLogger.debug("deleting Server with id: " + id);
         serverDao.deleteServer(id);
+    }
+
+    /**
+     * Retrieves Settings
+     */
+    public SystemSettingsModel getSettingsByName(String name) {
+        adminLogger.debug("Retrieving Settings");
+        return settingsDao.getSettingsByName(name);
+    }
+
+    /**
+     * Updating existing Settings
+     * @param model must be SystemSettingsModel type
+     */
+    @Override
+    public void updateSettings(SystemSettingsModel model) {
+        adminLogger.debug("updating Settings");
+        settingsDao.updateSettings(model);
+    }
+
+    /**
+     * Retrieves Settings
+     */
+    @Override
+    public SystemSettingsModel getSettings(String name) {
+        adminLogger.debug("Retrieving settings");
+        return settingsDao.getSettingsByName(name);
+    }
+
+    /**
+     * Adds new Settings with new Id assignment
+     */
+    public void addSettings(SystemSettingsModel model) {
+        adminLogger.debug("Creating new settings");
+        settingsDao.addSettings(model);
+    }
+
+    /**
+     * Deleting Settings entity
+     */
+    public void deleteSettings(Long id) {
+        adminLogger.debug("Deleting new settings");
+        settingsDao.deleteSettings(id);
     }
 }

@@ -5,6 +5,8 @@
 <#import "/util/spring.ftl" as spring />
 
 <script type="text/javascript">
+
+    /*  reloadTime passed from freeMarker */
     var jQreloadTime = ${reloadTime?c};
 
     function ReloadPage() {

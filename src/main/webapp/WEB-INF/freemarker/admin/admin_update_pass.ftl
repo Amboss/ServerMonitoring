@@ -15,9 +15,8 @@
     <head>
         <link rel="shortcut icon" href="<@spring.url '/static/img/favicon_02.ico'/>" type="image/x-icon"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap-responsive.css'/>"/>
-        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap-responsive.min.css'/>"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.css'/>"/>
-        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.min.css'/>"/>
+
         <style type="text/css">
                     body {
                         padding-top: 60px;
@@ -28,7 +27,6 @@
                     }
                 </style>
         <script type="text/javascript" src="<@spring.url '/static/js/bootstrap.js'/>" ></script>
-        <script type="text/javascript" src="<@spring.url '/static/js/bootstrap.min.js'/>" ></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"; charset="utf-8">

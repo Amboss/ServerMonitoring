@@ -4,8 +4,12 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import serverMonitoring.logic.DAO.SettingsDAO;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+import serverMonitoring.logic.DAO.SettingsDao;
 import serverMonitoring.model.ftl.SystemSettingsModel;
 
 import javax.sql.DataSource;
@@ -15,14 +19,16 @@ import java.sql.SQLException;
 /**
  * This class embodies DAO functionality for Settings Model
  */
-public class SettingsJdbcDaoSupport implements SettingsDAO {
+@Transactional
+@Repository
+public class SettingsJdbcDaoSupport implements SettingsDao {
 
     protected static Logger daoSupportLogger = Logger.getLogger(SettingsJdbcDaoSupport.class);
     private SimpleJdbcInsert insertEntity;
     private JdbcTemplate jdbcTemplate;
     private String db_table = "system_settings";
-    private String raw_list = "id, scan_interval, timeout, reload_time, smtp_adress, smtp_port";
-    private String raw_list_update = "id = ?, scan_interval = ?, timeout = ?, reload_time = ?, " +
+    private String raw_list = "id, settings_name, scan_interval, timeout, reload_time, smtp_adress, smtp_port";
+    private String raw_list_update = "id = ?, settings_name = ?, scan_interval = ?, timeout = ?, reload_time = ?, " +
             "smtp_adress = ?, smtp_port = ?";
 
     @Autowired
@@ -34,6 +40,33 @@ public class SettingsJdbcDaoSupport implements SettingsDAO {
     }
 
     /**
+     * Adds new Settings with new Id assignment
+     */
+    @Override
+    public void addSettings(SystemSettingsModel model) {
+        assert model != null;
+        try {
+            SqlParameterSource parameters = new MapSqlParameterSource()
+                    .addValue("id", model.getId())
+                    .addValue("settings_name", model.getSettings_name())
+                    .addValue("scan_interval", model.getServerScanInterval())
+                    .addValue("timeout", model.getTimeoutOfRespond())
+                    .addValue("reload_time", model.getPageReloadTime())
+                    .addValue("smtp_adress", model.getSmtpServerAddress())
+                    .addValue("smtp_port", model.getSmtpServerPort());
+            if (model.getId() == null) {
+                Number newId = insertEntity.executeAndReturnKey(parameters);
+                model.setId(newId.longValue());
+            } else {
+                insertEntity.execute(parameters);
+            }
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+    }
+
+    /**
      * Updating existing Settings
      */
     @Override
@@ -42,29 +75,35 @@ public class SettingsJdbcDaoSupport implements SettingsDAO {
         SystemSettingsModel dBmodel;
         try {
             assert model.getId() != null;
-            dBmodel = getSettings(model.getId());
-
+            dBmodel = getSettingsByName(model.getSettings_name());
+            if (model.getId() == null) {
+                model.setId(dBmodel.getId());
+            }
+            if(model.getSettings_name() == null) {
+                model.setSettings_name(dBmodel.getSettings_name());
+            }
             if (model.getServerScanInterval() == null) {
                 model.setServerScanInterval(dBmodel.getServerScanInterval());
             }
-            if (model.getTimeoutOfRespound() == null) {
-                model.setTimeoutOfRespound(dBmodel.getTimeoutOfRespound());
+            if (model.getTimeoutOfRespond() == null) {
+                model.setTimeoutOfRespond(dBmodel.getTimeoutOfRespond());
             }
             if (model.getPageReloadTime() == null) {
                 model.setPageReloadTime(dBmodel.getPageReloadTime());
             }
-            if (model.getSmtpServerAdress() == null) {
-                model.setSmtpServerAdress(dBmodel.getSmtpServerAdress());
+            if (model.getSmtpServerAddress() == null) {
+                model.setSmtpServerAddress(dBmodel.getSmtpServerAddress());
             }
             if (model.getSmtpServerPort() == null) {
                 model.setSmtpServerPort(dBmodel.getSmtpServerPort());
             }
             // creating entity fill in arguments
             Object[] args = {model.getId(),
+                    model.getSettings_name(),
                     model.getServerScanInterval(),
-                    model.getTimeoutOfRespound(),
+                    model.getTimeoutOfRespond(),
                     model.getPageReloadTime(),
-                    model.getSmtpServerAdress(),
+                    model.getSmtpServerAddress(),
                     model.getSmtpServerPort(),
                     model.getId()};
             this.jdbcTemplate.update(query, args);
@@ -79,34 +118,52 @@ public class SettingsJdbcDaoSupport implements SettingsDAO {
      * Retrieves Settings
      */
     @Override
-    public SystemSettingsModel getSettings(Long id) {
-        assert id != null;
-        String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE id= ?";
+    public SystemSettingsModel getSettingsByName(String settings_name) {
+        assert settings_name != null;
+        String query = "SELECT " + raw_list + " FROM " + db_table + " WHERE settings_name= ?";
         try {
-            Object[] args = {id};
+            Object[] args = {settings_name};
             return this.jdbcTemplate.queryForObject(query, args, new SettingsModelMapper());
         } catch (RuntimeException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+    }
+
+    /**
+     * Deleting Settings entity
+     */
+    @Override
+    public void deleteSettings(Long id) {
+        assert id != null;
+        String query = "DELETE FROM " + db_table + " WHERE id= ?";
+        try {
+            Object[] args = {id};
+            this.jdbcTemplate.update(query, args);
+        } catch (RuntimeException e) {
+            e.printStackTrace();
             throw new RuntimeException();
         }
     }
 
     /*
-   * Supporting inner class for retrieves EmployeeEntity objects
-   *
-   * @return EmployeeEntity object
-   */
+     * Supporting inner class for retrieves SystemSettingsModel objects
+     * @return SystemSettingsModel object
+     */
     private static final class SettingsModelMapper implements RowMapper<SystemSettingsModel> {
         public SystemSettingsModel mapRow(ResultSet rs, int rowNum) {
             try {
                 SystemSettingsModel model = new SystemSettingsModel();
                 model.setId(rs.getLong("id"));
-                model.setServerScanInterval(rs.getInt("serverScanInterval"));
-                model.setTimeoutOfRespound(rs.getInt("timeoutOfRespound"));
-                model.setPageReloadTime(rs.getInt("pageReloadTime"));
-                model.setSmtpServerAdress(rs.getString("smtpServerAdress"));
-                model.setSmtpServerPort(rs.getInt("smtpServerPort"));
+                model.setSettings_name(rs.getString("settings_name"));
+                model.setServerScanInterval(rs.getInt("scan_interval"));
+                model.setTimeoutOfRespond(rs.getInt("timeout"));
+                model.setPageReloadTime(rs.getInt("reload_time"));
+                model.setSmtpServerAddress(rs.getString("smtp_adress"));
+                model.setSmtpServerPort(rs.getInt("smtp_port"));
                 return model;
             } catch (SQLException e) {
+                e.printStackTrace();
                 throw new RuntimeException();
             }
         }
