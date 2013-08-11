@@ -35,8 +35,7 @@ public class SettingsJdbcDaoTest extends AbstractJUnit4SpringContextTests {
      */
     @After
     public void testDelete() {
-        SystemSettingsModel model = settingsDao.getSettingsByName("newSetting");
-        settingsDao.deleteSettings(model.getId());
+        settingsDao.deleteSettings("newSetting");
     }
 
     /**

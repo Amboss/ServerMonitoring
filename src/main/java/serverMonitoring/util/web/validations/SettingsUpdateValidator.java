@@ -19,8 +19,6 @@ public class SettingsUpdateValidator implements Validator {
 
     private AdminService adminService;
 
-    private SystemSettingsModel settingsModel;
-
     @Autowired
     public void setAdminService(AdminService adminService) {
         this.adminService = adminService;
@@ -39,7 +37,7 @@ public class SettingsUpdateValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
 
-        SystemSettingsModel model = (SystemSettingsModel) target;
+       // SystemSettingsModel model = (SystemSettingsModel) target;
 
         /**
          *  check for serverScanInterval

@@ -31,8 +31,7 @@ public class SettingsManagmentTest extends AbstractJUnit4SpringContextTests {
      */
     @After
     public void testDelete() {
-        SystemSettingsModel model = adminService.getSettingsByName("newSetting");
-        adminService.deleteSettings(model.getId());
+        adminService.deleteSettings("newSetting");
     }
 
     /**

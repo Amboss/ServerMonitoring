@@ -25,5 +25,5 @@ public interface SettingsDao {
     /**
      * Deleting Settings entity
      */
-    public void deleteSettings(Long id);
+    public void deleteSettings(String settings_name);
 }

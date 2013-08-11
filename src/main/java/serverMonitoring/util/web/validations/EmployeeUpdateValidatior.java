@@ -19,8 +19,6 @@ public class EmployeeUpdateValidatior implements Validator {
 
     private EmployeeService employeeService;
 
-    private EmployeeEntity entity;
-
     @Autowired
     public void setEmployeeService(EmployeeService employeeService) {
         this.employeeService = employeeService;

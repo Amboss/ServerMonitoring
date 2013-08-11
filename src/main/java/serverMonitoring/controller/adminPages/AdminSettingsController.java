@@ -31,8 +31,8 @@ public class AdminSettingsController extends AbstractAdminController {
     private AdminService adminService;
 
     @Autowired
-    public void setValidator(AdminService adminService) {
-        this.adminService = adminService;
+    public void setValidator(SettingsUpdateValidator settingsUpdateValidator) {
+        this.settingsUpdateValidator = settingsUpdateValidator;
     }
 
     /**
@@ -43,32 +43,31 @@ public class AdminSettingsController extends AbstractAdminController {
     public ModelAndView loadPage() {
         showRequestLog("change_settings");
 
-        return new ModelAndView("admin/settings/change_settings",
-                "settings", adminService.getSettings("default"));
+        SystemSettingsModel settingsModel = adminService.getSettings("default");
+        return new ModelAndView("/admin/settings/change_settings", "settings", settingsModel);
     }
 
     /**
      * Retrieves /WEB-INF/ftl/admin/settings/change_settings.ftl
-     * @return the name of the FreeMarker template page
      */
-
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView onSubmit(
-            @ModelAttribute("settings") SystemSettingsModel model,
-                    BindingResult errors,
-                    SessionStatus status) {
+            @ModelAttribute("settings") SystemSettingsModel settingsModel,
+            BindingResult errors,
+            SessionStatus status) {
         showRequestLog("change_settings");
 
         /**
          * form validation
          */
-        settingsUpdateValidator.validate(model, errors);
+        settingsUpdateValidator.validate(settingsModel, errors);
 
-        if(errors.hasErrors()) {
-            return new ModelAndView("admin/settings/change_settings", "settings", model);
+        if (errors.hasErrors()) {
+            return new ModelAndView("/admin/settings/change_settings", "settings", settingsModel);
         } else {
-            adminService.updateSettings(model);
-            return new ModelAndView("redirect:/employee_management/employee_manager");
+            adminService.updateSettings(settingsModel);
+            status.setComplete();
+            return new ModelAndView("redirect:/employee/monitoring");
         }
     }
 
@@ -79,6 +78,6 @@ public class AdminSettingsController extends AbstractAdminController {
     @RequestMapping(params = "cancel", method = RequestMethod.POST)
     public ModelAndView onCancel() {
         showRequestLog("monitoring");
-        return new ModelAndView("redirect:/employee_management/employee_manager");
+        return new ModelAndView("redirect:/employee/monitoring");
     }
 }

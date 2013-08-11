@@ -36,8 +36,6 @@ public class ServerEditController extends AbstractAdminController {
 
     private ServerUpdateValidator serverUpdateValidator;
 
-    private ServerEntity entityToUpdate;
-
     @Autowired
     private EmployeeService employeeService;
 

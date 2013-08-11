@@ -71,10 +71,10 @@ public class SettingsJdbcDaoSupport implements SettingsDao {
      */
     @Override
     public void updateSettings(SystemSettingsModel model) {
-        String query = "UPDATE " + db_table + " SET " + raw_list_update + " WHERE id = ? ";
+        String query = "UPDATE " + db_table + " SET " + raw_list_update + " WHERE settings_name= ? ";
         SystemSettingsModel dBmodel;
         try {
-            assert model.getId() != null;
+            assert model.getSettings_name() != null;
             dBmodel = getSettingsByName(model.getSettings_name());
             if (model.getId() == null) {
                 model.setId(dBmodel.getId());
@@ -105,7 +105,7 @@ public class SettingsJdbcDaoSupport implements SettingsDao {
                     model.getPageReloadTime(),
                     model.getSmtpServerAddress(),
                     model.getSmtpServerPort(),
-                    model.getId()};
+                    model.getSettings_name()};
             this.jdbcTemplate.update(query, args);
         } catch (RuntimeException e) {
             e.printStackTrace();
@@ -134,11 +134,11 @@ public class SettingsJdbcDaoSupport implements SettingsDao {
      * Deleting Settings entity
      */
     @Override
-    public void deleteSettings(Long id) {
-        assert id != null;
-        String query = "DELETE FROM " + db_table + " WHERE id= ?";
+    public void deleteSettings(String settings_name) {
+        assert settings_name != null;
+        String query = "DELETE FROM " + db_table + " WHERE settings_name= ?";
         try {
-            Object[] args = {id};
+            Object[] args = {settings_name};
             this.jdbcTemplate.update(query, args);
         } catch (RuntimeException e) {
             e.printStackTrace();

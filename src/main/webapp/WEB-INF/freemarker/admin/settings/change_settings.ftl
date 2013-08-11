@@ -7,6 +7,8 @@
 <#import "/util/spring.ftl" as spring />
 
 <@com.page title="Settings">
+
+
 <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
         <h2>System settings</h2>
@@ -18,6 +20,11 @@
                 class="form-horizontal"
                 method="post"
                 autocomplete="off" >
+
+            <#-- passing id and name -->
+            <@spring.formHiddenInput "settings.id", "input-xlarge" />
+            <@spring.formHiddenInput "settings.settings_name", "input-xlarge" />
+
             <h3>Current settings: ${settings.settings_name}</h3>
 
             <#-- ===================== Server Scan Interval ========================= -->
