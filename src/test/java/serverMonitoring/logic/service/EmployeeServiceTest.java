@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import serverMonitoring.logic.service.impl.EmployeeServiceImpl;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
+import serverMonitoring.model.ftl.SystemSettingsModel;
 import serverMonitoring.model.serverStateEnum.ServerState;
 
 import java.sql.Timestamp;
@@ -154,5 +155,35 @@ public class EmployeeServiceTest extends AbstractJUnit4SpringContextTests {
         adminService.deleteServer(entity2.getId());
     }
 
+    /**
+     * Testing selection of settings from Data Base
+     */
+    @Test
+    public void testGetSettings() {
 
+        // updating settings
+        SystemSettingsModel settingsModel = new SystemSettingsModel();
+        settingsModel.setSettings_name("newSetting");
+        settingsModel.setServerScanInterval(10000);
+        settingsModel.setTimeoutOfRespond(20000);
+        settingsModel.setPageReloadTime(5000);
+        settingsModel.setSmtpServerAddress("http://address.com");
+        settingsModel.setSmtpServerPort(80);
+        adminService.addSettings(settingsModel);
+
+        // selecting settings
+        SystemSettingsModel settingsModel2 = employeeService.getSettingsByName("newSetting");
+
+        // assertion
+        assertNotNull("failure - settingsModel2 must not be null", settingsModel2);
+        assertEquals("failure - Settings_name should be same", "newSetting", settingsModel2.getSettings_name());
+        assertEquals("failure - ServerScanInterval should be same", (Object) 10000, settingsModel2.getServerScanInterval());
+        assertEquals("failure - TimeoutOfRespound should be same", (Object) 20000, settingsModel2.getTimeoutOfRespond());
+        assertEquals("failure - PageReloadTime should be same", (Object) 5000, settingsModel2.getPageReloadTime());
+        assertEquals("failure - SmtpServerAdress should be same", "http://address.com", settingsModel2.getSmtpServerAddress());
+        assertEquals("failure - SmtpServerPort should be same", (Object) 80, settingsModel2.getSmtpServerPort());
+
+        // eliminating test entity
+        adminService.deleteSettings("newSetting");
+    }
 }

@@ -117,14 +117,6 @@ public class AdminServiceImpl implements AdminService {
     }
 
     /**
-     * Retrieves Settings
-     */
-    public SystemSettingsModel getSettingsByName(String name) {
-        adminLogger.debug("Retrieving Settings");
-        return settingsDao.getSettingsByName(name);
-    }
-
-    /**
      * Updating existing Settings
      * @param model must be SystemSettingsModel type
      */
@@ -132,15 +124,6 @@ public class AdminServiceImpl implements AdminService {
     public void updateSettings(SystemSettingsModel model) {
         adminLogger.debug("updating Settings");
         settingsDao.updateSettings(model);
-    }
-
-    /**
-     * Retrieves Settings
-     */
-    @Override
-    public SystemSettingsModel getSettings(String name) {
-        adminLogger.debug("Retrieving settings");
-        return settingsDao.getSettingsByName(name);
     }
 
     /**
@@ -154,8 +137,8 @@ public class AdminServiceImpl implements AdminService {
     /**
      * Deleting Settings entity
      */
-    public void deleteSettings(Long id) {
+    public void deleteSettings(String settings_name) {
         adminLogger.debug("Deleting new settings");
-        settingsDao.deleteSettings(id);
+        settingsDao.deleteSettings(settings_name);
     }
 }

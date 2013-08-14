@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Class handel's  methods for common functionality
@@ -52,5 +54,26 @@ public class CustomUtilsImpl implements CustomUtils {
         }
     }
 
+    /**
+     * invalidate provided user session
+     */
+    @Override
+    public boolean scanForDigits(Object value) {
 
+        String targetValue = value.toString();
+
+        Pattern textPattern = Pattern.compile("[0-9]");
+        Matcher valueMatcher = textPattern.matcher(targetValue);
+
+        if (!valueMatcher.matches()) {
+            return false;
+        }
+
+        for (int i = 0; i < targetValue.length(); i++) {
+            if (!Character.isDigit(targetValue.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

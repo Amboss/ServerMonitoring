@@ -10,21 +10,16 @@ import serverMonitoring.model.EmployeeEntity;
 
 /**
  * Abstract controller for Employee pages.
- *  - sets EmployeeService
  */
 @Controller
 public abstract class AbstractEmployeeController extends AbstractCommonController {
 
     protected static Logger logger = Logger.getLogger(AbstractEmployeeController.class);
 
+    @Autowired
     private EmployeeService employeeService;
 
     private AdminService adminService;
-
-    @Autowired
-    public void setEmployeeService(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
 
     @Autowired
     public void setAdminService(AdminService adminService) {
@@ -32,7 +27,7 @@ public abstract class AbstractEmployeeController extends AbstractCommonControlle
     }
 
     /**
-     * @return current Entity login
+     * @return current Entity id
      */
     public Long getUserId() {
         EmployeeEntity entity = employeeService.getEmployeeByLogin(getUserName());

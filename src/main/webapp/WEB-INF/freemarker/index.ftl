@@ -19,7 +19,7 @@
         <div class="span6">
             <h2>Password recovery</h2>
             <p><p>If you forgot your password you can recover it here</p>
-            <p><a class="btn" href="password_recovery.html">Password recovery &raquo;</a></p>
+            <p><a class="btn" href="password_recovery">Password recovery &raquo;</a></p>
         </div><!--/span-->
     </div><!--/row-->
 </@com.page>

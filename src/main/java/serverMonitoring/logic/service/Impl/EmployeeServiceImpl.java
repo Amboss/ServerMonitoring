@@ -6,9 +6,11 @@ import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
 import serverMonitoring.logic.DAO.EmployeeDao;
 import serverMonitoring.logic.DAO.ServerDao;
+import serverMonitoring.logic.DAO.SettingsDao;
 import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
+import serverMonitoring.model.ftl.SystemSettingsModel;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -21,8 +23,12 @@ import java.util.List;
 public class EmployeeServiceImpl implements EmployeeService {
 
     protected static Logger employeeLogger = Logger.getLogger("EmployeeServiceImpl");
+
     private EmployeeDao employeeDao;
+
     private ServerDao serverDao;
+
+    private SettingsDao settingsDao;
 
     @Autowired
     public void setEmployeeDao(EmployeeDao employeeDao) {
@@ -32,6 +38,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     public void setServerDao(ServerDao serverDao) {
         this.serverDao = serverDao;
+    }
+
+    @Autowired
+    public void setSettingsDao(SettingsDao settingsDao) {
+        this.settingsDao = settingsDao;
     }
 
     /**
@@ -137,5 +148,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     public ServerEntity getServerById(Long id) {
         employeeLogger.debug("retrieving Server details with id: " + id);
         return serverDao.findServerById(id);
+    }
+
+    /**
+     * Retrieves Settings
+     */
+    @Override
+    public SystemSettingsModel getSettingsByName(String name) {
+        employeeLogger.debug("Retrieving settings");
+        return settingsDao.getSettingsByName(name);
     }
 }

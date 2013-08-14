@@ -1,13 +1,13 @@
 package serverMonitoring.controller;
 
 import org.apache.log4j.Logger;
-import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import serverMonitoring.logic.service.EmployeeService;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Abstract controller for common pages functionality.
@@ -20,6 +20,13 @@ public abstract class AbstractCommonController {
 
     private String userName;
 
+    private EmployeeService employeeService;
+
+    @Autowired
+    public void setEmployeeService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
+
     /**
      * @return current Entity login
      */
@@ -29,6 +36,7 @@ public abstract class AbstractCommonController {
 
     /**
      * @return UserName var to be shown in header after authorisation on every page
+     * attribute "username" cached in login_form.ftl
      */
     @ModelAttribute("username")
     public String setUsername() {
@@ -43,9 +51,9 @@ public abstract class AbstractCommonController {
     /**
      * @return reloadTable for estimated reload time for data tables
      */
-    @ModelAttribute("reloadTable")
-    public Integer setReloadTable() {
-       return null;
+    @ModelAttribute("tableReloadTime")
+    public Integer getTableReloadTime() {
+        return employeeService.getSettingsByName("default").getPageReloadTime();
     }
 
     /**
@@ -65,11 +73,13 @@ public abstract class AbstractCommonController {
     /**
      * customised redirect
      */
-    public void redirect(HttpServletRequest request, HttpServletResponse response, String path) {
-        try {
-            response.sendRedirect(request.getContextPath() + path);
-        } catch (java.io.IOException e) {
-            throw new BadCredentialsException("Error!");
-        }
-    }
+//    public void redirect(HttpServletRequest request,
+//                         HttpServletResponse response,
+//                         String path) {
+//        try {
+//            response.sendRedirect(request.getContextPath() + path);
+//        } catch (java.io.IOException e) {
+//            throw new BadCredentialsException("Redirect error!");
+//        }
+//    }
 }

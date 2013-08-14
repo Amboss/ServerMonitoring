@@ -7,6 +7,10 @@
 <#import "/util/spring.ftl" as spring />
 
 <@com.page title="Server manager">
+ <#-- ===================== JQuery functions ========================= -->
+     <#assign reloadTime = tableReloadTime />
+     <#include "/util/js/reloadTable.ftl"/>
+
  <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
         <h2>Server management</h2>

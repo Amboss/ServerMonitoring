@@ -3,6 +3,7 @@ package serverMonitoring.logic.service;
 import org.springframework.security.access.annotation.Secured;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ServerEntity;
+import serverMonitoring.model.ftl.SystemSettingsModel;
 
 import java.util.List;
 
@@ -56,4 +57,9 @@ public interface EmployeeService {
      * retrieve server details by provided server id
      */
     public ServerEntity getServerById(Long id);
+
+    /**
+     * Retrieves Settings
+     */
+    public SystemSettingsModel getSettingsByName(String name);
 }

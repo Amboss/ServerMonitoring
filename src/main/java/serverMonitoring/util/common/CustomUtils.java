@@ -23,4 +23,8 @@ public interface CustomUtils {
      */
     public void setUserSessionInvalidated(Long id, HttpServletRequest request);
 
+    /**
+     * scan object to contain Digits
+     */
+    public boolean scanForDigits(Object value);
 }

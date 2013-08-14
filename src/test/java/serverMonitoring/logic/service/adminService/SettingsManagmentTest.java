@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import serverMonitoring.logic.service.AdminService;
+import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.ftl.SystemSettingsModel;
 
 import static org.junit.Assert.assertEquals;
@@ -21,9 +22,16 @@ public class SettingsManagmentTest extends AbstractJUnit4SpringContextTests {
 
     private AdminService adminService;
 
+    private EmployeeService employeeService;
+
     @Autowired
     public void setAdminService(AdminService adminService) {
         this.adminService = adminService;
+    }
+
+    @Autowired
+    public void setEmployeeService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     /**
@@ -51,7 +59,7 @@ public class SettingsManagmentTest extends AbstractJUnit4SpringContextTests {
         adminService.addSettings(settingsModel);
 
         // selecting settings
-        SystemSettingsModel settingsModel2 = adminService.getSettingsByName("newSetting");
+        SystemSettingsModel settingsModel2 = employeeService.getSettingsByName("newSetting");
 
         // assertion
         assertNotNull("failure - settingsModel2 must not be null", settingsModel2);
@@ -88,7 +96,7 @@ public class SettingsManagmentTest extends AbstractJUnit4SpringContextTests {
         adminService.updateSettings(settingsModel);
 
         // selecting settings
-        SystemSettingsModel settingsModel2 = adminService.getSettingsByName("newSetting");
+        SystemSettingsModel settingsModel2 = employeeService.getSettingsByName("newSetting");
 
         // assertion
         assertNotNull("failure - settingsModel2 must not be null", settingsModel2);

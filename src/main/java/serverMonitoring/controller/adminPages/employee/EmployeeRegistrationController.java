@@ -19,6 +19,7 @@ import serverMonitoring.util.common.CustomUtils;
 import serverMonitoring.util.mail.CustomMailDelivery;
 import serverMonitoring.util.web.validations.EmployeeRegistrationValidator;
 
+import javax.mail.SendFailedException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -149,13 +150,16 @@ public class EmployeeRegistrationController extends AbstractAdminController {
              * sending email with new password
              */
 
-            customMailDelivery.sendMail("huskyserge@gmail.com",
-                    newEmployee.getEmail(),
-                    "You are greeted by notifying system of Server Monitoring Service!",
-                    "Congratulations, you've got access to the system and can now get to work.\n" +
-                            "\n" + "Your user name: " + newEmployee.getLogin() +
-                            "\n" + "Your new password is: " + newPass +
-                            "\n" + "\n" + "Server Monitoring Service");
+            try {
+                customMailDelivery.sendMail("huskyserge@gmail.com",
+                        newEmployee.getEmail(),
+                        "You are greeted by notifying system of Server Monitoring Service!",
+                        "Congratulations, you've got access to the system and can now get to work.\n" +
+                                "\n" + "Your user name: " + newEmployee.getLogin() +
+                                "\n" + "Your new password is: " + newPass +
+                                "\n" + "\n" + "Server Monitoring Service");
+            } catch (SendFailedException ignore) {
+            }
             status.setComplete();
             return new ModelAndView("redirect:/employee_management/employee_manager");
         }

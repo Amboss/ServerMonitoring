@@ -54,19 +54,9 @@ public interface AdminService {
     public List<EmployeeEntity> getAllEmployee();
 
     /**
-     * Retrieves Settings
-     */
-    public SystemSettingsModel getSettingsByName(String name) ;
-
-    /**
      * Updating existing Settings
      */
     public void updateSettings(SystemSettingsModel model);
-
-    /**
-     * Retrieves Settings
-     */
-    public SystemSettingsModel getSettings(String name);
 
     /**
      * Adds new Settings with new Id assignment

@@ -27,12 +27,13 @@
             }
         </style>
 
-        <#--script type="text/javascript" src="<@spring.url '/static/js/bootstrap.js'/>" ></script-->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" /script
+        <script type="text/javascript" src="<@spring.url '/static/js/bootstrap.js'/>" ></script>
         <script type="text/javascript" src="<@spring.url '/static/js/jquery.tablesorter.js'/>" ></script>
         <script type="text/javascript" src="<@spring.url '/static/js/jquery.tablesorter.widgets.js'/>" ></script>
 
         <script type="text/javascript">
-            debugger
+            <#-- debugger -->
             $.tablesorter.addParser({
                 id: 'state',
                 is: function(s) {

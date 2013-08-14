@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-import serverMonitoring.controller.AbstractCommonController;
 import serverMonitoring.logic.service.AnonymousService;
 import serverMonitoring.model.EmployeeEntity;
 import serverMonitoring.model.ftl.PasswordRecoveryModel;
@@ -19,6 +18,7 @@ import serverMonitoring.util.common.CustomUtils;
 import serverMonitoring.util.mail.CustomMailDelivery;
 import serverMonitoring.util.web.validations.PasswordRecoveryValidator;
 
+import javax.mail.SendFailedException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 @RequestMapping("/auth/password_recovery")
-public class PasswordRecoveryController extends AbstractCommonController {
+public class PasswordRecoveryController {
 
     protected static Logger logger = Logger.getLogger(PasswordRecoveryController.class);
 
@@ -63,38 +63,33 @@ public class PasswordRecoveryController extends AbstractCommonController {
     }
 
     /**
-     * Retrieves /WEB-INF/ftl/authorization/password_recovery.ftl
-     *
+     * Retrieves /authorization/password_recovery.ftl
      * @return the name of the ftl page.
      */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView loadPage(HttpServletRequest request,
                                  HttpServletResponse response) {
-        showRequestLog("Received request to show password_recovery page");
+        logger.debug("Received request to show password_recovery page");
 
         return new ModelAndView("/authorization/password_recovery",
                 "passRecovery", new PasswordRecoveryModel());
-
     }
 
     /**
      * Action on button "Cancel" pressed.
-     *
      * @return redirect to index page
      */
     @RequestMapping(params = "cancel", method = RequestMethod.POST)
     protected ModelAndView onCancel(HttpServletRequest request) {
-        showRequestLog("monitoring");
+        logger.debug("monitoring");
         return new ModelAndView("index");
     }
 
     /**
      * Action on button "Generate new password" pressed.
-     *
-     * @return ftl page regarding of the validation result
      * - if no error:
-     *   >> will change employee password
-     *   >> will send to employee address e-mail with new password
+     * >> will change employee password
+     * >> will send to employee address e-mail with new password
      */
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView onSubmit(@ModelAttribute("passRecovery")
@@ -112,21 +107,20 @@ public class PasswordRecoveryController extends AbstractCommonController {
                     passwordRecoveryModel.getEmail());
             String newPass = customUtils.getNewRandomGeneratedPassword();
 
-            /**
-             * changing password of employee
-             */
+            // changing password of employee
             anonymousService.updateEmployeePassword(entity, newPass);
 
-            /**
-             * sending email with new password
-             */
-            customMailDelivery.sendMail("huskyserge@gmail.com",
-                    passwordRecoveryModel.getEmail(),
-                    "Attention! Your password has been changed!",
-                    "We have received your request for password recovery\n" +
-                            "\n" + "Your user name: " + entity.getLogin() +
-                            "\n" + "Your new password is: " + newPass +
-                            "\n" + "\n" + "Server Monitoring Service");
+            // sending email with new password
+            try {
+                customMailDelivery.sendMail("huskyserge@gmail.com",
+                        passwordRecoveryModel.getEmail(),
+                        "Attention! Your password has been changed!",
+                        "We have received your request for password recovery\n" +
+                                "\n" + "Your user name: " + entity.getLogin() +
+                                "\n" + "Your new password is: " + newPass +
+                                "\n" + "\n" + "Server Monitoring Service");
+            } catch (SendFailedException ignore) {
+            }
 
             status.setComplete();
         }

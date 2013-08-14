@@ -14,13 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 @RequestMapping("/auth")
-public class LoginLogoutController extends AbstractCommonController {
+public class LoginLogoutController {
 
     protected static Logger logger = Logger.getLogger(LoginLogoutController.class);
 
     /**
      * Handles and retrieves /WEB-INF/ftl/index.ftl
-     *
      * @return the name of the ftl page.
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -32,12 +31,11 @@ public class LoginLogoutController extends AbstractCommonController {
     /**
      * Handles and retrieves /WEB-INF/ftl/common/message/access_denied.ftl
      * shown whenever a access denied.
-     *
      * @return the name of the ftl page.
      */
     @RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
     public ModelAndView getDeniedPage() {
         logger.debug("Received request to show denied page");
-        return new ModelAndView("common/message/access_denied");
+        return new ModelAndView("/common/message/access_denied");
     }
 }

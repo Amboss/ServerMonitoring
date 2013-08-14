@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import serverMonitoring.logic.service.AdminService;
+import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.ftl.SystemSettingsModel;
 import serverMonitoring.util.web.validations.SettingsUpdateValidator;
 
@@ -31,19 +32,26 @@ public class AdminSettingsController extends AbstractAdminController {
     private AdminService adminService;
 
     @Autowired
+    private EmployeeService employeeService;
+
+    /**
+     * Initiating SettingsUpdateValidator
+     */
+    @Autowired
     public void setValidator(SettingsUpdateValidator settingsUpdateValidator) {
         this.settingsUpdateValidator = settingsUpdateValidator;
     }
 
     /**
      * Retrieves /WEB-INF/ftl/admin/settings/change_settings.ftl
+     *
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView loadPage() {
         showRequestLog("change_settings");
 
-        SystemSettingsModel settingsModel = adminService.getSettings("default");
+        SystemSettingsModel settingsModel = employeeService.getSettingsByName("default");
         return new ModelAndView("/admin/settings/change_settings", "settings", settingsModel);
     }
 
@@ -55,6 +63,7 @@ public class AdminSettingsController extends AbstractAdminController {
             @ModelAttribute("settings") SystemSettingsModel settingsModel,
             BindingResult errors,
             SessionStatus status) {
+
         showRequestLog("change_settings");
 
         /**

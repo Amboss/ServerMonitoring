@@ -8,6 +8,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import serverMonitoring.logic.service.AdminService;
 import serverMonitoring.model.ftl.SystemSettingsModel;
+import serverMonitoring.util.common.CustomUtils;
 
 /**
  * Validator for Settings Update page
@@ -19,9 +20,16 @@ public class SettingsUpdateValidator implements Validator {
 
     private AdminService adminService;
 
+    private CustomUtils utils;
+
     @Autowired
     public void setAdminService(AdminService adminService) {
         this.adminService = adminService;
+    }
+
+    @Autowired
+    public void setUtils(CustomUtils utils) {
+        this.utils = utils;
     }
 
     @Override
@@ -37,7 +45,7 @@ public class SettingsUpdateValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
 
-       // SystemSettingsModel model = (SystemSettingsModel) target;
+        SystemSettingsModel model = (SystemSettingsModel) target;
 
         /**
          *  check for serverScanInterval
@@ -48,7 +56,11 @@ public class SettingsUpdateValidator implements Validator {
         /**
          *  check if timeoutOfRespond is integer
          */
-
+//        if (model.getServerScanInterval() != null) {
+//            if (StringUtils.isNumeric(model.getServerScanInterval())) {
+//                errors.rejectValue("serverScanInterval", "serverScanInterval.isNotDigits");
+//            }
+//        }
 
 
         /**
@@ -62,7 +74,6 @@ public class SettingsUpdateValidator implements Validator {
          */
 
 
-
         /**
          *  check for pageReloadTime
          */
@@ -74,14 +85,11 @@ public class SettingsUpdateValidator implements Validator {
          */
 
 
-
-
         /**
          *  check for smtpServerAddress
          */
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "smtpServerAddress",
                 "smtpServerAddress.required", "Field name is required.");
-
 
 
         /**
@@ -96,4 +104,6 @@ public class SettingsUpdateValidator implements Validator {
 
 
     }
+
+
 }

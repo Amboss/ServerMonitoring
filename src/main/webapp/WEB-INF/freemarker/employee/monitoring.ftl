@@ -16,11 +16,10 @@
 
 <@com.page title="Monitoring service">
 
-    <#-- ===================== reloading page ========================= -->
-    <#assign reloadTime = 5000 />
-    <#--include "/util/js/reloadTable.ftl"/-->
-
-    <#--include "/util/js/sortTable.ftl"/-->
+    <#-- ===================== JQuery functions ========================= -->
+    <#assign reloadTime = tableReloadTime />
+    <#include "/util/js/reloadTable.ftl"/>
+    <#include "/util/js/sortTable.ftl"/>
 
     <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
