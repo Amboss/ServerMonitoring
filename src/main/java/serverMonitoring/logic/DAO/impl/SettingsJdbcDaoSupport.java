@@ -24,12 +24,32 @@ import java.sql.SQLException;
 public class SettingsJdbcDaoSupport implements SettingsDao {
 
     protected static Logger daoSupportLogger = Logger.getLogger(SettingsJdbcDaoSupport.class);
+
     private SimpleJdbcInsert insertEntity;
+
     private JdbcTemplate jdbcTemplate;
+
     private String db_table = "system_settings";
-    private String raw_list = "id, settings_name, scan_interval, timeout, reload_time, smtp_adress, smtp_port";
-    private String raw_list_update = "id = ?, settings_name = ?, scan_interval = ?, timeout = ?, reload_time = ?, " +
-            "smtp_adress = ?, smtp_port = ?";
+
+    private String raw_list = "id, " +
+            "settings_name, " +
+            "scan_interval, " +
+            "timeout, " +
+            "reload_time, " +
+            "smtp_host, " +
+            "smtp_port, " +
+            "username, " +
+            "password";
+
+    private String raw_list_update = "id = ?, " +
+            "settings_name = ?, " +
+            "scan_interval = ?, " +
+            "timeout = ?, " +
+            "reload_time = ?, " +
+            "smtp_host = ?, " +
+            "smtp_port = ?, " +
+            "username = ?, " +
+            "password = ?";
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
@@ -52,8 +72,10 @@ public class SettingsJdbcDaoSupport implements SettingsDao {
                     .addValue("scan_interval", model.getServerScanInterval())
                     .addValue("timeout", model.getTimeoutOfRespond())
                     .addValue("reload_time", model.getPageReloadTime())
-                    .addValue("smtp_adress", model.getSmtpServerAddress())
-                    .addValue("smtp_port", model.getSmtpServerPort());
+                    .addValue("smtp_host", model.getSmtpServerHost())
+                    .addValue("smtp_port", model.getSmtpServerPort())
+                    .addValue("username", model.getUsername())
+                    .addValue("password", model.getPassword());
             if (model.getId() == null) {
                 Number newId = insertEntity.executeAndReturnKey(parameters);
                 model.setId(newId.longValue());
@@ -91,11 +113,17 @@ public class SettingsJdbcDaoSupport implements SettingsDao {
             if (model.getPageReloadTime() == null) {
                 model.setPageReloadTime(dBmodel.getPageReloadTime());
             }
-            if (model.getSmtpServerAddress() == null) {
-                model.setSmtpServerAddress(dBmodel.getSmtpServerAddress());
+            if (model.getSmtpServerHost() == null) {
+                model.setSmtpServerHost(dBmodel.getSmtpServerHost());
             }
             if (model.getSmtpServerPort() == null) {
                 model.setSmtpServerPort(dBmodel.getSmtpServerPort());
+            }
+            if (model.getUsername() == null) {
+                model.setUsername(dBmodel.getUsername());
+            }
+            if (model.getPassword() == null) {
+                model.setPassword(dBmodel.getPassword());
             }
             // creating entity fill in arguments
             Object[] args = {model.getId(),
@@ -103,8 +131,10 @@ public class SettingsJdbcDaoSupport implements SettingsDao {
                     model.getServerScanInterval(),
                     model.getTimeoutOfRespond(),
                     model.getPageReloadTime(),
-                    model.getSmtpServerAddress(),
+                    model.getSmtpServerHost(),
                     model.getSmtpServerPort(),
+                    model.getUsername(),
+                    model.getPassword(),
                     model.getSettings_name()};
             this.jdbcTemplate.update(query, args);
         } catch (RuntimeException e) {
@@ -159,8 +189,10 @@ public class SettingsJdbcDaoSupport implements SettingsDao {
                 model.setServerScanInterval(rs.getInt("scan_interval"));
                 model.setTimeoutOfRespond(rs.getInt("timeout"));
                 model.setPageReloadTime(rs.getInt("reload_time"));
-                model.setSmtpServerAddress(rs.getString("smtp_adress"));
+                model.setSmtpServerHost(rs.getString("smtp_host"));
                 model.setSmtpServerPort(rs.getInt("smtp_port"));
+                model.setUsername(rs.getString("username"));
+                model.setPassword(rs.getString("password"));
                 return model;
             } catch (SQLException e) {
                 e.printStackTrace();

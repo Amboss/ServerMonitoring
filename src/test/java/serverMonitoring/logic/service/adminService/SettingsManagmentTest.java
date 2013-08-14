@@ -54,7 +54,7 @@ public class SettingsManagmentTest extends AbstractJUnit4SpringContextTests {
         settingsModel.setServerScanInterval(10000);
         settingsModel.setTimeoutOfRespond(20000);
         settingsModel.setPageReloadTime(5000);
-        settingsModel.setSmtpServerAddress("http://address.com");
+        settingsModel.setSmtpServerHost("http://address.com");
         settingsModel.setSmtpServerPort(80);
         adminService.addSettings(settingsModel);
 
@@ -67,7 +67,7 @@ public class SettingsManagmentTest extends AbstractJUnit4SpringContextTests {
         assertEquals("failure - ServerScanInterval should be same", (Object) 10000, settingsModel2.getServerScanInterval());
         assertEquals("failure - TimeoutOfRespound should be same", (Object) 20000, settingsModel2.getTimeoutOfRespond());
         assertEquals("failure - PageReloadTime should be same", (Object) 5000, settingsModel2.getPageReloadTime());
-        assertEquals("failure - SmtpServerAdress should be same", "http://address.com", settingsModel2.getSmtpServerAddress());
+        assertEquals("failure - SmtpServerAdress should be same", "http://address.com", settingsModel2.getSmtpServerHost());
         assertEquals("failure - SmtpServerPort should be same", (Object) 80, settingsModel2.getSmtpServerPort());
     }
 
@@ -83,7 +83,7 @@ public class SettingsManagmentTest extends AbstractJUnit4SpringContextTests {
         settingsModel.setServerScanInterval(10000);
         settingsModel.setTimeoutOfRespond(20000);
         settingsModel.setPageReloadTime(5000);
-        settingsModel.setSmtpServerAddress("http://address.com");
+        settingsModel.setSmtpServerHost("http://address.com");
         settingsModel.setSmtpServerPort(80);
         adminService.addSettings(settingsModel);
 
@@ -91,7 +91,7 @@ public class SettingsManagmentTest extends AbstractJUnit4SpringContextTests {
         settingsModel.setServerScanInterval(40000);
         settingsModel.setTimeoutOfRespond(40000);
         settingsModel.setPageReloadTime(4000);
-        settingsModel.setSmtpServerAddress("http://address4444.com");
+        settingsModel.setSmtpServerHost("http://address4444.com");
         settingsModel.setSmtpServerPort(40);
         adminService.updateSettings(settingsModel);
 
@@ -104,7 +104,7 @@ public class SettingsManagmentTest extends AbstractJUnit4SpringContextTests {
         assertEquals("failure - ServerScanInterval should be same", (Object) 40000, settingsModel2.getServerScanInterval());
         assertEquals("failure - TimeoutOfRespound should be same", (Object) 40000, settingsModel2.getTimeoutOfRespond());
         assertEquals("failure - PageReloadTime should be same", (Object) 4000, settingsModel2.getPageReloadTime());
-        assertEquals("failure - SmtpServerAdress should be same", "http://address4444.com", settingsModel2.getSmtpServerAddress());
+        assertEquals("failure - SmtpServerAdress should be same", "http://address4444.com", settingsModel2.getSmtpServerHost());
         assertEquals("failure - SmtpServerPort should be same", (Object) 40, settingsModel2.getSmtpServerPort());
     }
 }

@@ -45,23 +45,11 @@ public class SettingsUpdateValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
 
-        SystemSettingsModel model = (SystemSettingsModel) target;
-
         /**
          *  check for serverScanInterval
          */
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "serverScanInterval",
                 "serverScanInterval.required", "Field name is required.");
-
-        /**
-         *  check if timeoutOfRespond is integer
-         */
-//        if (model.getServerScanInterval() != null) {
-//            if (StringUtils.isNumeric(model.getServerScanInterval())) {
-//                errors.rejectValue("serverScanInterval", "serverScanInterval.isNotDigits");
-//            }
-//        }
-
 
         /**
          *  check for timeoutOfRespond
@@ -70,40 +58,33 @@ public class SettingsUpdateValidator implements Validator {
                 "timeoutOfRespond.required", "Field name is required.");
 
         /**
-         *  check if timeoutOfRespond is integer
-         */
-
-
-        /**
          *  check for pageReloadTime
          */
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pageReloadTime",
                 "pageReloadTime.required", "Field name is required.");
 
         /**
-         *  check if pageReloadTime is integer
+         *  check for smtp Host    TODO !!!!!!!!!!!
          */
-
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "smtpServerHost",
+                "smtpServerHost.required", "Field name is required.");
 
         /**
-         *  check for smtpServerAddress
-         */
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "smtpServerAddress",
-                "smtpServerAddress.required", "Field name is required.");
-
-
-        /**
-         *  check for smtpServerPort
+         *  check for smtp Port
          */
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "smtpServerPort",
                 "smtpServerPort.required", "Field name is required.");
 
         /**
-         *  check if smtpServerPort is integer
+         *  check for smtp username   TODO !!!!!!!!!!!
          */
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username",
+                "smtpUsername.required", "Field name is required.");
 
-
+        /**
+         *  check for smtp password   TODO !!!!!!!!!!!
+         */
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password",
+                "smtpPassword.required", "Field name is required.");
     }
-
-
 }

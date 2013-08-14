@@ -39,8 +39,10 @@ settings_name VARCHAR(50) NOT NULL,
 scan_interval INT(50),
 timeout INT(50),
 reload_time INT(50),
-smtp_adress VARCHAR(50),
+smtp_host VARCHAR(50),
 smtp_port INT (16),
+username VARCHAR(50),
+password VARCHAR(50),
 INDEX(settings_name),
 UNIQUE (settings_name)
 ) engine=InnoDB;

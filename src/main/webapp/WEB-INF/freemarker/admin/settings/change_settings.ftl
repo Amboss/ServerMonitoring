@@ -54,20 +54,38 @@
                 </div>
             </div>
 
-            <#-- ===================== smtp Server Address ========================= -->
+            <#-- ===================== SMTP Server Host ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="smtpServerAddress">SMTP Server Address</label>
+                <label class="control-label" for="smtpServerHost">SMTP Server Host</label>
                 <div class="controls">
-                   <@spring.formInput "settings.smtpServerAddress", "input-xlarge" />
+                   <@spring.formInput "settings.smtpServerHost", "input-xlarge" />
                    <@spring.showErrors " ", "alert alert-error"/>
                 </div>
             </div>
 
-            <#-- ===================== smtp Server Port ========================= -->
+            <#-- ===================== SMTP Server Port ========================= -->
             <div class="control-group info">
                 <label class="control-label" for="smtpServerPort">SMTP Server Port</label>
                 <div class="controls">
                    <@spring.formInput "settings.smtpServerPort", "input-xlarge" />
+                   <@spring.showErrors " ", "alert alert-error"/>
+                </div>
+            </div>
+
+            <#-- ===================== SMTP Username ========================= -->
+            <div class="control-group info">
+                <label class="control-label" for="username">SMTP Username</label>
+                <div class="controls">
+                   <@spring.formInput "settings.username", "input-xlarge" />
+                   <@spring.showErrors " ", "alert alert-error"/>
+                </div>
+            </div>
+
+            <#-- ===================== SMTP Password ========================= -->
+            <div class="control-group info">
+                <label class="control-label" for="password">SMTP Password</label>
+                <div class="controls">
+                   <@spring.formInput "settings.password", "input-xlarge" />
                    <@spring.showErrors " ", "alert alert-error"/>
                 </div>
             </div>

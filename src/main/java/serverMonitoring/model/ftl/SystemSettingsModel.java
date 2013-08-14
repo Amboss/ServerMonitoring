@@ -17,9 +17,13 @@ public class SystemSettingsModel implements Serializable {
 
     private Integer pageReloadTime;
 
-    private String smtpServerAddress;
+    private String smtpServerHost;
 
     private Integer smtpServerPort;
+
+    private String username;
+
+    private String password;
 
     /**
      * Server entity constructor
@@ -29,14 +33,17 @@ public class SystemSettingsModel implements Serializable {
 
     public SystemSettingsModel(Long id, Integer serverScanInterval, String settings_name,
                                Integer timeoutOfRespond, Integer pageReloadTime,
-                               String smtpServerAddress, Integer smtpServerPort) {
+                               String smtpServerHost, Integer smtpServerPort,
+                               String username, String password) {
         this.id = id;
         this.settings_name = settings_name;
         this.serverScanInterval = serverScanInterval;
         this.timeoutOfRespond = timeoutOfRespond;
         this.pageReloadTime = pageReloadTime;
-        this.smtpServerAddress = smtpServerAddress;
+        this.smtpServerHost = smtpServerHost;
         this.smtpServerPort = smtpServerPort;
+        this.username = username;
+        this.password = password;
     }
 
     /**
@@ -82,12 +89,12 @@ public class SystemSettingsModel implements Serializable {
         this.pageReloadTime = pageReloadTime;
     }
 
-    public String getSmtpServerAddress() {
-        return smtpServerAddress;
+    public String getSmtpServerHost() {
+        return smtpServerHost;
     }
 
-    public void setSmtpServerAddress(String smtpServerAddress) {
-        this.smtpServerAddress = smtpServerAddress;
+    public void setSmtpServerHost(String smtpServerHost) {
+        this.smtpServerHost = smtpServerHost;
     }
 
     public Integer getSmtpServerPort() {
@@ -98,14 +105,34 @@ public class SystemSettingsModel implements Serializable {
         this.smtpServerPort = smtpServerPort;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "SystemSettingsModel{" +
-                "serverScanInterval=" + serverScanInterval +
+                "id=" + id +
+                ", settings_name='" + settings_name + '\'' +
+                ", serverScanInterval=" + serverScanInterval +
                 ", timeoutOfRespond=" + timeoutOfRespond +
                 ", pageReloadTime=" + pageReloadTime +
-                ", smtpServerAddress='" + smtpServerAddress + '\'' +
+                ", smtpServerHost='" + smtpServerHost + '\'' +
                 ", smtpServerPort=" + smtpServerPort +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

@@ -26,10 +26,6 @@ public class CustomMailDeliveryImpl implements CustomMailDelivery {
 
     private Transport transport;
 
-    private String username = "huskyserge@gmail.com";
-
-    private String password = "jjbjuprebgexilfa";
-
     private SystemSettingsModel settingsModel;
 
     private Session session;
@@ -50,7 +46,7 @@ public class CustomMailDeliveryImpl implements CustomMailDelivery {
      * @param to      - must contain address of target,
      * @param subject - must be included with short description,
      * @param body    - main message of mail.
-     * @throws RuntimeException if any param is empty.
+     * @throws SendFailedException if any param is empty.
      */
     public void sendMail(String from, String to, String subject, String body) throws SendFailedException {
 
@@ -58,10 +54,10 @@ public class CustomMailDeliveryImpl implements CustomMailDelivery {
 
         // defining properties
         properties = new Properties();
-        properties.put("mail.smtp.host", settingsModel.getSmtpServerAddress());
+        properties.put("mail.smtp.host", settingsModel.getSmtpServerHost());
         properties.put("mail.smtp.port", settingsModel.getSmtpServerPort());
-        properties.put("mail.smtp.user", username);
-        properties.put("mail.smtp.password", password);
+        properties.put("mail.smtp.user", settingsModel.getUsername());
+        properties.put("mail.smtp.password", settingsModel.getPassword());
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
 
@@ -90,16 +86,19 @@ public class CustomMailDeliveryImpl implements CustomMailDelivery {
                     message.setSubject(subject);
                     message.setText(body);
                     message.setSentDate(new Date());
-                    message.setHeader("MIME-Version" , "1.0" );
-                    message.setHeader("Content-Type" , "text/html" );
+                    message.setHeader("MIME-Version", "1.0");
+                    message.setHeader("Content-Type", "text/html");
 
                     // Transport initialisation
                     if (transport == null) {
                         transport = session.getTransport("smtp");
+
                         if (!transport.isConnected())
-//                            transport.connect("smtp.gmail.com", 587, username, password);
-                        transport.connect(settingsModel.getSmtpServerAddress(),
-                           settingsModel.getSmtpServerPort(), username, password);
+                            transport.connect(
+                                    settingsModel.getSmtpServerHost(),
+                                    settingsModel.getSmtpServerPort(),
+                                    settingsModel.getUsername(),
+                                    settingsModel.getPassword());
                     }
 
                     transport.sendMessage(message, message.getAllRecipients());
