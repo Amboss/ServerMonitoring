@@ -64,7 +64,7 @@ public class SettingsUpdateValidator implements Validator {
                 "pageReloadTime.required", "Field name is required.");
 
         /**
-         *  check for smtp Host    TODO !!!!!!!!!!!
+         *  check for smtp Host
          */
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "smtpServerHost",
                 "smtpServerHost.required", "Field name is required.");
@@ -76,13 +76,13 @@ public class SettingsUpdateValidator implements Validator {
                 "smtpServerPort.required", "Field name is required.");
 
         /**
-         *  check for smtp username   TODO !!!!!!!!!!!
+         *  check for smtp username
          */
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username",
                 "smtpUsername.required", "Field name is required.");
 
         /**
-         *  check for smtp password   TODO !!!!!!!!!!!
+         *  check for smtp password
          */
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password",
                 "smtpPassword.required", "Field name is required.");

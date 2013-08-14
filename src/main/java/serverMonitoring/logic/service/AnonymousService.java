@@ -2,6 +2,7 @@ package serverMonitoring.logic.service;
 
 import org.springframework.security.access.annotation.Secured;
 import serverMonitoring.model.EmployeeEntity;
+import serverMonitoring.model.ftl.SystemSettingsModel;
 
 /**
  * Handel's functionality for access with Anonymous role
@@ -20,4 +21,9 @@ public interface AnonymousService {
      * TODO >>> NOT SURE IF THIS IS SAFE <<<
      */
     public void updateEmployeePassword(EmployeeEntity entity, String newPass);
+
+    /**
+     * Retrieves Settings
+     */
+    public SystemSettingsModel getSettingsByName(String name);
 }

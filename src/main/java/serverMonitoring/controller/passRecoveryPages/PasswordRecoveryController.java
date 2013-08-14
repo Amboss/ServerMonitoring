@@ -121,9 +121,8 @@ public class PasswordRecoveryController {
                                 "\n" + "\n" + "Server Monitoring Service");
             } catch (SendFailedException ignore) {
             }
-
             status.setComplete();
         }
-        return new ModelAndView("index");
+        return new ModelAndView("redirect:/index");
     }
 }

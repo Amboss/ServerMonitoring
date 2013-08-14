@@ -67,6 +67,7 @@ public class EmployeeRegistrationController extends AbstractAdminController {
 
     /**
      * Action on button "Cancel" pressed.
+     *
      * @return redirect to monitoring page
      */
     @RequestMapping(params = "cancel", method = RequestMethod.POST)
@@ -77,6 +78,7 @@ public class EmployeeRegistrationController extends AbstractAdminController {
 
     /**
      * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_registr.ftl
+     *
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(method = RequestMethod.GET)
@@ -95,6 +97,7 @@ public class EmployeeRegistrationController extends AbstractAdminController {
 
     /**
      * Handles and retrieves /WEB-INF/ftl/admin/employee_management/employee_registr.ftl
+     *
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(method = RequestMethod.POST)
@@ -116,6 +119,7 @@ public class EmployeeRegistrationController extends AbstractAdminController {
             // providing form info
             errorModelAndView.addObject("newEmployee", newEmployee);
             errorModelAndView.addObject("simplFormModel", simplFormModel);
+
             // providing list of options for "active" formRadioButtons
             errorModelAndView.addObject("activeMap", activeMap);
             errorModelAndView.addObject("adminMap", adminMap);
@@ -124,32 +128,25 @@ public class EmployeeRegistrationController extends AbstractAdminController {
         } else {
             String newPass = customUtils.getNewRandomGeneratedPassword();
             newEmployee.setPassword(passwordEncoder.encodePassword(newPass, null));
-            /*
-             * translating active state to integer
-             */
+
+            //translating active state to integer
             if (simplFormModel.getActiveState().equals("Active")) {
                 newEmployee.setActive(1);
             } else {
                 newEmployee.setActive(0);
             }
 
-            /*
-             * translating role state to integer
-             */
+            // translating role state to integer
             if (simplFormModel.getLevel().equals("Admin")) {
                 newEmployee.setAdmin(1);
             } else {
                 newEmployee.setAdmin(0);
             }
-            /**
-             * registration of new employee
-             */
+
+            // registration of new employee
             adminService.registerEmployee(newEmployee);
 
-            /**
-             * sending email with new password
-             */
-
+            // sending email with new password
             try {
                 customMailDelivery.sendMail("huskyserge@gmail.com",
                         newEmployee.getEmail(),
@@ -163,6 +160,5 @@ public class EmployeeRegistrationController extends AbstractAdminController {
             status.setComplete();
             return new ModelAndView("redirect:/employee_management/employee_manager");
         }
-
     }
 }

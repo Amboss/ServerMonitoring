@@ -2,8 +2,9 @@ package serverMonitoring.util.mail.impl;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
-import serverMonitoring.logic.service.EmployeeService;
+import serverMonitoring.logic.service.AnonymousService;
 import serverMonitoring.model.ftl.SystemSettingsModel;
 import serverMonitoring.util.mail.CustomMailDelivery;
 
@@ -17,12 +18,13 @@ import java.util.Properties;
 /**
  * Handel's mail sending functionality.
  */
+@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 @Component("CustomMailDeliveryImpl")
 public class CustomMailDeliveryImpl implements CustomMailDelivery {
 
     protected static Logger logger = Logger.getLogger(CustomMailDeliveryImpl.class);
 
-    private EmployeeService employeeService;
+    private AnonymousService anonymousService;
 
     private Transport transport;
 
@@ -37,8 +39,8 @@ public class CustomMailDeliveryImpl implements CustomMailDelivery {
     private Properties properties;
 
     @Autowired
-    public void setEmployeeService(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public void setAnonymousService(AnonymousService anonymousService) {
+        this.anonymousService = anonymousService;
     }
 
     /**
@@ -50,7 +52,7 @@ public class CustomMailDeliveryImpl implements CustomMailDelivery {
      */
     public void sendMail(String from, String to, String subject, String body) throws SendFailedException {
 
-        settingsModel = employeeService.getSettingsByName("default");
+        settingsModel = anonymousService.getSettingsByName("default");
 
         // defining properties
         properties = new Properties();
