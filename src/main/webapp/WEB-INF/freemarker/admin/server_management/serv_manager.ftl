@@ -10,7 +10,7 @@
  <#-- ===================== JQuery functions ========================= -->
      <#assign reloadTime = tableReloadTime />
      <#include "/util/js/reloadTable.ftl"/>
-
+     <#include "/util/js/sortServerTable.ftl"/>
  <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
         <h2>Server management</h2>
@@ -18,7 +18,7 @@
 
      <#-- ===================== Main row for Server manager table ========================= -->
     <div class="row-fluid">
-        <table class="table table-bordered">
+        <table id="serverManager" class="ui-corner-tl ui-corner-bl fg-button ui-state-default">
             <thead>
                 <tr>
                     <th>Address & Port</th>

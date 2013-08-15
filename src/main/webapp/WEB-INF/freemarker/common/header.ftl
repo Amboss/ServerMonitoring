@@ -14,8 +14,8 @@
         <link rel="shortcut icon" href="<@spring.url '/static/img/favicon_02.ico'/>" type="image/x-icon"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap-responsive.css'/>"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.css'/>"/>
+        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/dataTables.css'/>"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/style.css'/>"/>
-        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/theme.bootstrap.css'/>"/>
 
         <style type="text/css">
             .hero-unit {
@@ -27,35 +27,9 @@
             }
         </style>
 
-        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" /script
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
         <script type="text/javascript" src="<@spring.url '/static/js/bootstrap.js'/>" ></script>
-        <script type="text/javascript" src="<@spring.url '/static/js/jquery.tablesorter.js'/>" ></script>
-        <script type="text/javascript" src="<@spring.url '/static/js/jquery.tablesorter.widgets.js'/>" ></script>
-
-        <script type="text/javascript">
-            <#-- debugger -->
-            $.tablesorter.addParser({
-                id: 'state',
-                is: function(s) {
-                    return false;
-                },
-
-                format: function(s) {
-                    if ( s == '' )
-                    return 0;
-
-                    return parseInt(s.replace(/OK/,2).replace(/WARN/,1).replace(/FAIL/,0));
-                },
-
-                type: 'numeric'
-            });
-
-             $(function() {
-                   $('#monitoringTable').tablesorter({
-                    headers: { 2: { sorter: 'state' } }
-                });
-            });
-        </script>
+        <script type="text/javascript" src="<@spring.url '/static/js/dataTables.js'/>" ></script>
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"; charset="utf-8">
         <meta name="description" content="Server Monitoring Service">

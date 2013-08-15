@@ -57,7 +57,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * retrieve Employee by login
-     *
      * @return Employee Entity object
      */
     @Override
@@ -152,6 +151,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * Retrieves Settings
+     * @return System Settings Model object
      */
     @Override
     public SystemSettingsModel getSettingsByName(String name) {

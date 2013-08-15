@@ -15,11 +15,15 @@
 </@security.authorize>
 
 <@com.page title="Monitoring service">
+    <script type="text/javascript">
+
+
+    </script>
 
     <#-- ===================== JQuery functions ========================= -->
     <#assign reloadTime = tableReloadTime />
     <#include "/util/js/reloadTable.ftl"/>
-    <#include "/util/js/sortTable.ftl"/>
+    <#include "/util/js/sortServerTable.ftl"/>
 
     <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
@@ -61,7 +65,6 @@
                         </#if>
 
                         <#assign serverName = server.server_name />
-
                         <tr>
                             <td><a href="<@spring.url '/employee/serv_details/${serverName}.html' />">
                                 <i class="icon-search" ></i>&nbsp;${serverName}<a/></td>
