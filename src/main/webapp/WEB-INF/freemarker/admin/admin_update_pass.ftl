@@ -14,18 +14,17 @@
     <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <link rel="shortcut icon" href="<@spring.url '/static/img/favicon_02.ico'/>" type="image/x-icon"/>
-        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap-responsive.css'/>"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.css'/>"/>
 
         <style type="text/css">
-                    body {
-                        padding-top: 60px;
-                        padding-bottom: 40px;
-                    }
-                    .hero-unit {
-                        background-image: url("<@spring.url'/static/img/header_default2.png'/>");
-                    }
-                </style>
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+            .hero-unit {
+                background-image: url("<@spring.url'/static/img/header_default2.png'/>");
+            }
+        </style>
         <script type="text/javascript" src="<@spring.url '/static/js/bootstrap.js'/>" ></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 

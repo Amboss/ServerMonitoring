@@ -15,9 +15,7 @@
     <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <link rel="shortcut icon" href="<@spring.url '/static/img/favicon_02.ico'/>" type="image/x-icon"/>
-        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap-responsive.css'/>"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.css'/>"/>
-        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/style.css'/>"/>
 
         <script type="text/javascript" src="<@spring.url '/static/js/bootstrap.js'/>" ></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>

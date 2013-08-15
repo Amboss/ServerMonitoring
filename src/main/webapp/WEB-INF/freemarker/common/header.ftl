@@ -15,6 +15,7 @@
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.css'/>"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/DT_bootstrap.css'/>"/>
 
+
         <style type="text/css">
             body {
                 padding-top: 60px;

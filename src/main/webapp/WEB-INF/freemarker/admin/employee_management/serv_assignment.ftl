@@ -11,14 +11,32 @@
 
 <@com.page title="Server assignment">
 
-    <script type="text/javascript">
-       function ReloadPage() {
-          location.reload();
-       };
+    <#-- ===================== JQuery functions ========================= -->
 
-       $('table').ready(function() {
-         setTimeout("ReloadPage()", 5000);
-       });
+    <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/ui.css'/>"/>
+    <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/ui_theme.css'/>"/>
+    <style>
+        #sortable1, #sortable2 {
+            list-style-type: none; margin: 0;
+            padding: 0 0 2.5em; float: left;
+            margin-right: 10px;
+        }
+
+        #sortable1 li, #sortable2 li {
+            margin: 0 5px 5px 5px;
+            padding: 5px;
+            font-size: 1.2em;
+            width: 120px;
+        }
+    </style>
+
+    <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $( "#sortable1, #sortable2" ).sortable({
+                connectWith: ".connectedSortable"
+            }).disableSelection();
+        });
     </script>
 
     <#-- ===================== Head with name of page ========================= -->
@@ -29,119 +47,36 @@
     <#-- ===================== Row for assigned servers table ========================= -->
     <div class="row-fluid">
         <h3>Assigned servers for user ${employee.employee_name}:</h3>
-        <table class="table table-bordered">
-            <thead >
-                <tr>
-                    <th>Server name</th>
-                    <th>State</th>
-                    <th>Active</th>
-                    <td>assignment</td>
-                </tr>
-            </thead>
-            <#if assignedServers?has_content>
-                <#list assignedServers as assigned >
-
-                    <#-- ===================== Server state icons ========================= -->
-                    <#if assigned.state = "OK">
-                        <#assign stateIcon><i class="icon-ok" ></#assign>
-                    <#elseif assigned.state = "WARN">
-                        <#assign stateIcon><i class="icon-warning-sign" ></#assign>
-                    <#elseif assigned.state = "FAIL">
-                        <#assign stateIcon><i class="icon-ban-circle" ></#assign>
-                    </#if>
-
-                    <#-- ===================== Server active icons ========================= -->
-                    <#if assigned.active = 1>
-                        <#assign activeIcon><i class="icon-thumbs-up" ></#assign>
-                    <#elseif assigned.active = 0>
-                        <#assign activeIcon><i class="icon-ban-circle" ></#assign>
-                    </#if>
-
-                    <#-- ===================== tbody ========================= -->
-                    <#assign unassignId = assigned.id />
-                    <tbody>
-                        <tr>
-                            <td>${assigned.server_name}</td>
-                            <td>${stateIcon}</td>
-                            <td>${activeIcon}</td>
-                            <td><a href="<@spring.url '/employee_management/serv_assignment/${unassignId}.html' />">
-                                 <i class="icon-remove-circle" ></i>&nbsp;unassign<a/>
-                            </td>
-                        </tr>
-                    </tbody>
-                </#list>
-            <#else>
-                <tbody>
-                    <tr>
-                        <td>- - -</td>
-                        <td>- - -</td>
-                        <td>- - -</td>
-                        <td>- - -</td>
-                    </tr>
-                </tbody>
-            </#if>
-        </table>
     </div>
 
     <#-- ===================== Row for available servers table ========================= -->
-        <div class="row-fluid">
+    <div class="row-fluid">
         <h3>Available servers:</h3>
-            <table class="table table-bordered">
-                <thead >
-                    <tr>
-                        <th>Server name</th>
-                        <th>State</th>
-                        <th>Active</th>
-                        <td>assignment</td>
-                    </tr>
-                </thead>
-                <#if availableServers?has_content>
-                    <#list availableServers as available >
 
-                        <#-- ===================== Server state icons ========================= -->
-                        <#if available.state = "OK">
-                            <#assign stateIcon><i class="icon-ok" ></#assign>
-                        <#elseif available.state = "WARN">
-                            <#assign stateIcon><i class="icon-warning-sign" ></#assign>
-                        <#elseif available.state = "FAIL">
-                            <#assign stateIcon><i class="icon-ban-circle" ></#assign>
-                        </#if>
+        <#if assignedServers?has_content>
 
-                        <#-- ===================== Server active icons ========================= -->
-                        <#if available.active = 1>
-                            <#assign activeIcon><i class="icon-thumbs-up" ></#assign>
-                        <#elseif available.active = 0>
-                            <#assign activeIcon><i class="icon-ban-circle" ></#assign>
-                        </#if>
+            <#list assignedServers as responsible >
+                <ul id="sortable1" class="connectedSortable">
+                    <li class="ui-state-default">${responsible.server_name}</li>
+                </ul>
+            </#list>
 
-                        <#-- ===================== tbody ========================= -->
-                        <#assign assignId = available.id />
-                        <tbody>
-                            <tr>
-                                <td>${available.server_name}</td>
-                                <td>${stateIcon}</td>
-                                <td>${activeIcon}</td>
-                                <td><a href="<@spring.url '/employee_management/serv_assignment/${assignId}.html' />">
-                                     <i class="icon-ok-circle" ></i>&nbsp;assign<a/>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </#list>
-                <#else>
-                    <tbody>
-                        <tr>
-                            <td>- - -</td>
-                            <td>- - -</td>
-                            <td>- - -</td>
-                            <td>- - -</td>
-                            <td>- - -</td>
-                        </tr>
-                    </tbody>
-                </#if>
-            </table>
-        </div>
+            <#if availableServers?has_content>
 
-        <#-- ===================== Buttons ======================== -->
+                <#list availableServers as available >
+                    <ul id="sortable2" class="connectedSortable">
+                        <li class="ui-state-default">${available.server_name}</li>
+                    </ul>
+                </#list>
+
+            <#else>
+                <h4>There is no available servers to assign.</h4>
+            </#if>
+        <#else>
+            <h4>This employee have no assigned servers yet.</h4>
+        </#if>
+
+        <#-- ===================== Buttons ================================== -->
         <div class="control-group">
             <div class="controls">
                 <input class="btn btn-primary"
@@ -154,6 +89,8 @@
                         value='Cancel'/>
             </div>
         </div>
+    </div>
+
     <#-- ===================== Icon Information row  ========================= -->
 
     <div class="row-fluid">
