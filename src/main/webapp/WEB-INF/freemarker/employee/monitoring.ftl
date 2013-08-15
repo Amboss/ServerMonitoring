@@ -15,15 +15,12 @@
 </@security.authorize>
 
 <@com.page title="Monitoring service">
-    <script type="text/javascript">
-
-
-    </script>
 
     <#-- ===================== JQuery functions ========================= -->
     <#assign reloadTime = tableReloadTime />
     <#include "/util/js/reloadTable.ftl"/>
-    <#include "/util/js/sortServerTable.ftl"/>
+
+    <#include "/util/js/sortMonitoringTable.ftl"/>
 
     <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
@@ -33,7 +30,11 @@
     <#-- ===================== Main row for Server Monitoring table ========================= -->
     <div class="row-fluid">
 
-        <table id="monitoringTable" class="table table-bordered">
+        <table cellpadding="0"
+                cellspacing="0"
+                border="0"
+                id="monitoringTable"
+                class="table table-striped table-bordered">
             <thead> <#-- ===================== thead ========================= -->
                 <tr>
                     <th>Server name</th>

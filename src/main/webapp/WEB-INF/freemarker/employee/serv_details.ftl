@@ -22,7 +22,11 @@
         <h1>Server details page</h1>
     </div>
     <div class="row-fluid">
-        <table class="table table-bordered">
+         <table cellpadding="0"
+                cellspacing="0"
+                border="0"
+                id="serverManager"
+                class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th>Server name</th>

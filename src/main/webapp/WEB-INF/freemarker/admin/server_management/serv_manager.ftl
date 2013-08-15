@@ -7,18 +7,23 @@
 <#import "/util/spring.ftl" as spring />
 
 <@com.page title="Server manager">
- <#-- ===================== JQuery functions ========================= -->
+    <#-- ===================== JQuery functions ========================= -->
      <#assign reloadTime = tableReloadTime />
      <#include "/util/js/reloadTable.ftl"/>
-     <#include "/util/js/sortServerTable.ftl"/>
- <#-- ===================== Head with name of page ========================= -->
+
+
+    <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
         <h2>Server management</h2>
     </div>
 
      <#-- ===================== Main row for Server manager table ========================= -->
     <div class="row-fluid">
-        <table id="serverManager" class="ui-corner-tl ui-corner-bl fg-button ui-state-default">
+        <table cellpadding="0"
+                cellspacing="0"
+                border="0"
+                id="serverManager"
+                class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th>Address & Port</th>

@@ -12,24 +12,29 @@
     <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <link rel="shortcut icon" href="<@spring.url '/static/img/favicon_02.ico'/>" type="image/x-icon"/>
-        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap-responsive.css'/>"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.css'/>"/>
-        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/dataTables.css'/>"/>
-        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/style.css'/>"/>
+        <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/DT_bootstrap.css'/>"/>
 
         <style type="text/css">
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
             .hero-unit {
                 background-image: url("<@spring.url '/static/img/header_default2.png'/>");
                 background-repeat: no-repeat;
             }
-            th {
+            table.table thead tr th {
+                text-align: center;
+            }
+            table.table tbody tr td {
                 text-align: center;
             }
         </style>
 
-        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
-        <script type="text/javascript" src="<@spring.url '/static/js/bootstrap.js'/>" ></script>
-        <script type="text/javascript" src="<@spring.url '/static/js/dataTables.js'/>" ></script>
+        <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery-latest.js" ></script>
+        <script type="text/javascript" charset="utf-8" src="<@spring.url '/static/js/dataTables.js'/>" ></script>
+        <script type="text/javascript" charset="utf-8" src="<@spring.url '/static/js/DT_bootstrap.js'/>" ></script>
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"; charset="utf-8">
         <meta name="description" content="Server Monitoring Service">
