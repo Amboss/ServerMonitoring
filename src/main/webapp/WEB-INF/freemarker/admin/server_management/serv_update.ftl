@@ -19,6 +19,7 @@
                 method="post"
                 autocomplete="off" >
             <h3>Please fill in required information:</h3>
+            <hr></br>
 
             <#-- ===================== Name ========================= -->
             <div class="control-group info">
@@ -78,6 +79,7 @@
                 </div>
             </div>
         </form>
+        </br><hr>
     </div><!--/row-->
 
     <#-- ===================== Information row for Update page ========================= -->

@@ -3,7 +3,7 @@ package serverMonitoring.model.ftl;
 import java.io.Serializable;
 
 /**
- * Object for password recovery page
+ * POJO for password recovery page
  */
 public class PasswordRecoveryModel implements Serializable {
 

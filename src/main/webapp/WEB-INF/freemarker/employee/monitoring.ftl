@@ -21,7 +21,9 @@
     <#include "/util/js/reloadTable.ftl"/>
 
     <#include "/util/js/sortMonitoringTable.ftl"/>
+    <script type="text/javascript">
 
+    </script>
     <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
         <h1>Server monitoring</h1>
@@ -29,7 +31,7 @@
 
     <#-- ===================== Main row for Server Monitoring table ========================= -->
     <div class="row-fluid">
-
+        <hr>
         <table cellpadding="0"
                 cellspacing="0"
                 border="0"
@@ -84,6 +86,7 @@
                 </#if>
         </tbody>
         </table>
+        </br><hr>
     </div>
 
     <#-- ===================== Information row for Registration page ========================= -->
@@ -98,6 +101,7 @@
             <p>You can get close look to certain server by clicking on his name, this will
             redirect you to server details page with more precise information of certain server.</p>
         </div><!--/span-->
+        <hr>
     </div><!--/row-->
 
     <#-- ===================== Icon Information row  ========================= -->

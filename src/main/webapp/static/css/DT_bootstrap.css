@@ -50,6 +50,11 @@ table.dataTable th:active {
 	outline: none;
 }
 
+
+table.table tr td:hover,
+table.table tr td:focus {
+    color: #808080;
+}
 /* Scrolling */
 div.dataTables_scrollHead table {
 	margin-bottom: 0 !important;

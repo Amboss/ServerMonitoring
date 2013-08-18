@@ -22,7 +22,6 @@
                 autocomplete="off" >
             <h3>Please fill in required information:</h3>
 
-
             <#-- ===================== Server Name ========================= -->
             <div class="control-group info">
                 <label class="control-label" for="server_name">Name</label>

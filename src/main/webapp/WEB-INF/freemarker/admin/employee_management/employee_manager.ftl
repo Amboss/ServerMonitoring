@@ -16,6 +16,9 @@
 
      <#-- ===================== Main row for Employee manager table ========================= -->
     <div class="row-fluid">
+         <h3>List of all registered employee</h3>
+         <hr></br>
+
          <table cellpadding="0"
                 cellspacing="0"
                 border="0"
@@ -61,6 +64,7 @@
                 </#list>
             </tbody>
         </table>
+        </br><hr>
     </div>
 
     <#-- ===================== Information row for Employee manager page ========================= -->

@@ -22,10 +22,11 @@
                 autocomplete="off" >
 
             <#-- passing id and name -->
-            <@spring.formHiddenInput "settings.id", "input-xlarge" />
-            <@spring.formHiddenInput "settings.settings_name", "input-xlarge" />
+            <@spring.formHiddenInput "settings.id"/>
+            <@spring.formHiddenInput "settings.settings_name"/>
 
             <h3>Current settings: ${settings.settings_name}</h3>
+            <hr>
 
             <#-- ===================== Server Scan Interval ========================= -->
             <div class="control-group info">
@@ -104,19 +105,29 @@
                 </div>
             </div>
         </form>
+        <hr>
     </div><!--/row-->
 
     <#-- ===================== Information row for Update page ========================= -->
     <div class="row-fluid">
         <div class="span6">
-            <h3>Edit specifications</h3>
-            <p>To edit server you can change supplied info such as Name,
-            Address, Port, URL or Activation status.</p>
+            <h3>Edit settings</h3>
+            <p>To edit server you can change supplied info such as: </p>
+            <ul>
+                <li>Scan Interval - digits in seconds</li>
+                <li>Respond timeout - digits in seconds</li>
+                <li>Page Reload Time - digits in seconds</li>
+                <li>SMTP Host - mail server host address</li>
+                <li>SMTP Port - digits</li>
+                <li>SMTP UserName - name of mail account</li>
+                <li>SMTP Password - for mail account</li>
+            </ul>
+
         </div><!--/span-->
         <div class="span6">
-            <h3><i class="icon-warning-sign" ></i>Active status</h3>
-            <p>If current active status set to "not active" monitoring
-                of provided server will be shut down.</p>
+            <h3><i class="icon-warning-sign" ></i>Notice</h3>
+            <p>Please be sure to use digits for Interval, Timeout and Reload.</p>
+            <p>Notice, that 1sec = 1000.</p>
         </div><!--/span-->
     </div><!--/row-->
 </@com.page>

@@ -11,7 +11,6 @@
      <#assign reloadTime = tableReloadTime />
      <#include "/util/js/reloadTable.ftl"/>
 
-
     <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
         <h2>Server management</h2>
@@ -19,6 +18,9 @@
 
      <#-- ===================== Main row for Server manager table ========================= -->
     <div class="row-fluid">
+        <h3>List of all registered servers</h3>
+        <hr></br>
+
         <table cellpadding="0"
                 cellspacing="0"
                 border="0"
@@ -72,6 +74,7 @@
                 </tbody>
             </#list>
         </table>
+        </br><hr>
     </div>
 
     <#-- ===================== Information row for Server manager page ========================= -->

@@ -3,7 +3,7 @@ package serverMonitoring.model.ftl;
 import java.io.Serializable;
 
 /**
- * class formSingleSelect for employee registration page
+ * POJO for employee registration page
  */
 public class RegistrSimplFormModel implements Serializable {
 

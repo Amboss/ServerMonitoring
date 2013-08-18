@@ -3,7 +3,7 @@ package serverMonitoring.model.ftl;
 import java.io.Serializable;
 
 /**
- * System Settings model
+ * POJO for System Settings page
  */
 public class SystemSettingsModel implements Serializable {
 

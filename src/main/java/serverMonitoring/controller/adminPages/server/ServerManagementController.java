@@ -35,11 +35,5 @@ public class ServerManagementController extends AbstractAdminController {
         return new ModelAndView("admin/server_management/serv_manager", "server",
                 adminService.getAllServers() );
     }
-
-
-
-
-
-
 }
 

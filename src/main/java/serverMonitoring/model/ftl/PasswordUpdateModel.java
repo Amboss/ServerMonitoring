@@ -3,7 +3,7 @@ package serverMonitoring.model.ftl;
 import java.io.Serializable;
 
 /**
- * Object for password change page
+ * POJO for password change page
  */
 public class PasswordUpdateModel implements Serializable {
 
