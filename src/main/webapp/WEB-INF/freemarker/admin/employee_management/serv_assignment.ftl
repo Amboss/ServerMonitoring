@@ -47,14 +47,26 @@
                 var available = "";
 
                 $('#sortable1').sortable({
-                    connectWith: '#sortable2',
+                    connectWith: '.connectedSortable',
+                    start: function (e, ui) {
+                            $('.connectedSortable').css('min-height', '40px');
+                            $('.connectedSortable').css('min-width', '190px');
+                            $('.connectedSortable').sortable('refreshPositions');
+                    },
+                    dropOnEmpty: true,
                     update: function(event, ui) {
                         assigned = $(this).sortable("toArray", { key: "id" });
                         }
                 }).disableSelection();
 
                 $('#sortable2').sortable({
-                    connectWith: '#sortable1',
+                    connectWith: '.connectedSortable',
+                    start: function (e, ui) {
+                           $('.connectedSortable').css('min-height', '40px');
+                           $('.connectedSortable').css('min-width', '190px');
+                           $('.connectedSortable').sortable('refreshPositions');
+                    },
+                    dropOnEmpty: true,
                     update: function(event, ui) {
                         available = $(this).sortable("toArray", { key: "id" });
                         }
@@ -65,18 +77,17 @@
                         type: "POST",
                         url: "/ServerMonitoring/employee_management/serv_assignment/2",
                         data: JSON.stringify({
-                             serversListModel: {
-                                 "assignedServers": assigned,
-                                 "availableServers": available
-                             }
-                         }),
-                        datatype: "jsondata",
-                        contentType: 'application/json',
+                                assignedServers: assigned,
+                                availableServers: available
+                        }),
+                        datatype: "json",
+                        'scriptCharset': "utf-8",
+                        'contentType': "application/json;charset=UTF-8",
                         success: function(data) {
-                            alert("Success");
+                            //alert("Success");
                         },
                         error: function (e) {
-                            alert("Error: " + e);
+                            //alert("Error: " + e);
                         }
                     });
                     return false;
@@ -100,30 +111,20 @@
         <form id="serverAssignmentForm" method="post" >
             <div class="span5" id="listBox">
                 <h3>Assigned Servers</h3>
-                <#if assignedServers?has_content>
-                    <ul id="sortable1" class="connectedSortable">
-                        <#list assignedServers as responsible >
-                            <li class="ui-state-default"
-                                id="${responsible.id}" >${responsible.server_name}</li>
-                        </#list>
-                    </ul>
-                <#else>
-                    <h4>This employee have no assigned servers yet.</h4>
-                </#if>
+                <ul id="sortable1" class="connectedSortable">
+                    <#list assignedServers as responsible >
+                        <li class="ui-state-default" id="${responsible.id}" >${responsible.server_name}</li>
+                    </#list>
+                </ul>
             </div>
 
             <div class="span5" id="listBox">
                 <h3>Available Servers</h3>
-                <#if availableServers?has_content>
-                    <ul id="sortable2" class="connectedSortable">
-                        <#list availableServers as available >
-                            <li class="ui-state-default"
-                                id="${available.id}" >${available.server_name}</li>
-                        </#list>
-                    </ul>
-                <#else>
-                    <h4>There is no available servers to assign.</h4>
-                </#if>
+                <ul id="sortable2" class="connectedSortable">
+                    <#list availableServers as available >
+                        <li class="ui-state-default" id="${available.id}" >${available.server_name}</li>
+                    </#list>
+                </ul>
             </div>
             <#-- ===================== Buttons ================================== -->
 
@@ -155,8 +156,7 @@
     <div class="row-fluid">
         <div class="span6">
             <h3>List</h3>
-            <p>On left side of upper row you can find Assigned Servers for current employee, if
-            employee have to assigned server - the row will contain message no notify about that.</P>
+            <p>On left side of upper row you can find Assigned Servers for current employee.</P>
         </div>
         <div class="span6">
             <h3>How to</h3>

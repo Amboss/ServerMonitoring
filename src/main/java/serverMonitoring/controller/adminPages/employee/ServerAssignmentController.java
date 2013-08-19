@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ParseException;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +15,7 @@ import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.ftl.ServersListModel;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
+import java.io.IOException;
 
 /**
  * Handles and retrieves /admin/employee_management/serv_assignment.ftl
@@ -63,41 +60,34 @@ public class ServerAssignmentController extends AbstractAdminController {
      *
      * @return the name of the FreeMarker template page
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST,
-            consumes = "application/json", produces = "application/json")
-    public @ResponseBody Map<String, ? extends Object> onSubmit(
-            @ModelAttribute("serversListModel") ServersListModel serversListModel,
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    public @ResponseBody  ModelAndView onSubmit(
+            @RequestBody ServersListModel serversListModel,
             @PathVariable("id") Long responsibleId,
             BindingResult result,
-            HttpServletRequest request,
-            HttpServletResponse response,
-            SessionStatus status) throws ParseException {
+            SessionStatus status) throws ParseException, IOException {
 
         if (!result.hasErrors()) {
-            if (serversListModel.getAvailableServers() != null) {
-                for (String id : serversListModel.getAvailableServers()) {
-                    ServerEntity entity = employeeService.getServerById((long)Integer.parseInt(id));
+            if (serversListModel.getAssignedServers() != null) {
+                for (Long id : serversListModel.getAssignedServers()) {
+                    ServerEntity entity = employeeService.getServerById(id);
                     entity.setResponsible(responsibleId);
                     adminService.updateServer(entity);
                 }
             }
 
-            if (serversListModel.getAssignedServers() != null) {
-                for (String id : serversListModel.getAssignedServers()) {
-                    ServerEntity entity = employeeService.getServerById((long)Integer.parseInt(id));
-                    entity.setResponsible((long) 0);
-                    adminService.updateServer(entity);
+            if (serversListModel.getAvailableServers() != null) {
+                for (Long id : serversListModel.getAvailableServers()) {
+                    ServerEntity entity2 = employeeService.getServerById(id);
+                    entity2.setResponsible((long) 0);
+                    adminService.updateServer(entity2);
                 }
             }
             status.setComplete();
-            //return new ModelAndView("redirect:/employee_management/employee_manager");
-
-
+            return new ModelAndView("redirect:/employee_management/employee_manager");
         } else {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            //return new ModelAndView("redirect:/employee_management/serv_assignment");
+            return new ModelAndView("redirect:/employee_management/serv_assignment");
         }
-            return null;
     }
 
     /**
@@ -109,15 +99,5 @@ public class ServerAssignmentController extends AbstractAdminController {
     public ModelAndView onCancel() {
         showRequestLog("serv_assignment");
         return new ModelAndView("redirect:/employee_management/employee_manager");
-    }
-
-        public void redirect(HttpServletRequest request,
-                         HttpServletResponse response,
-                         String path) {
-        try {
-            response.sendRedirect(request.getContextPath() + path);
-        } catch (java.io.IOException e) {
-            throw new BadCredentialsException("Redirect error!");
-        }
     }
 }

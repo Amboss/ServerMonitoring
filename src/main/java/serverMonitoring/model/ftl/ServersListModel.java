@@ -7,30 +7,30 @@ import java.util.List;
  */
 public class ServersListModel {
 
-    private List<String> assignedServers;
+    private List<Long> assignedServers;
 
-    private List<String> availableServers;
+    private List<Long> availableServers;
 
     public ServersListModel() {}
 
-    public ServersListModel(List<String> assignedServers, List<String> availableServers) {
+    public ServersListModel(List<Long> assignedServers, List<Long> availableServers) {
         this.assignedServers = assignedServers;
         this.availableServers = availableServers;
     }
 
-    public List<String> getAssignedServers() {
+    public List<Long> getAssignedServers() {
         return assignedServers;
     }
 
-    public void setAssignedServers(List<String> assignedServers) {
+    public void setAssignedServers(List<Long> assignedServers) {
         this.assignedServers = assignedServers;
     }
 
-    public List<String> getAvailableServers() {
+    public List<Long> getAvailableServers() {
         return availableServers;
     }
 
-    public void setAvailableServers(List<String> availableServers) {
+    public void setAvailableServers(List<Long> availableServers) {
         this.availableServers = availableServers;
     }
 }
