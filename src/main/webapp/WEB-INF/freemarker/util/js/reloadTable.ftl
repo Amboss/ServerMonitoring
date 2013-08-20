@@ -13,4 +13,7 @@
         location.reload();
     };
 
+    $('#monitoringTable').ready(function() {
+        setTimeout("ReloadPage()", jQreloadTime);
+    });
 </script>

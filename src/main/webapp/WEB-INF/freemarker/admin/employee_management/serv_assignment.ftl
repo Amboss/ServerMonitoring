@@ -83,9 +83,9 @@
                         datatype: "json",
                         'scriptCharset': "utf-8",
                         'contentType': "application/json;charset=UTF-8",
-                        success: function(data) {
-                            //alert("Success");
-                        },
+                        success: function(data, textStatus) {
+                            window.location.replace("/ServerMonitoring/employee_management/employee_manager");
+                            },
                         error: function (e) {
                             //alert("Error: " + e);
                         }

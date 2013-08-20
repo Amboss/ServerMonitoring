@@ -21,9 +21,6 @@
     <#include "/util/js/reloadTable.ftl"/>
 
     <#include "/util/js/sortMonitoringTable.ftl"/>
-    <script type="text/javascript">
-
-    </script>
     <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
         <h1>Server monitoring</h1>

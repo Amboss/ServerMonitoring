@@ -15,6 +15,8 @@ import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.ftl.ServersListModel;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -28,6 +30,8 @@ public class ServerAssignmentController extends AbstractAdminController {
 
     protected static Logger logger = Logger.getLogger(EmployeeManagementController.class);
 
+    private Long idOfEmployee;
+
     @Autowired
     private AdminService adminService;
 
@@ -40,14 +44,15 @@ public class ServerAssignmentController extends AbstractAdminController {
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ModelAndView loadPage(@PathVariable("id") Long id) {
+    public ModelAndView loadPage(@PathVariable("id") Long onLoadId) {
 
+        this.idOfEmployee = onLoadId;
         showRequestLog("serv_assignment");
-        if (id != null) {
+        if (onLoadId != null) {
 
             ModelAndView model = new ModelAndView("admin/employee_management/serv_assignment");
-            model.addObject("employee", employeeService.getEmployeeById(id));
-            model.addObject("assignedServers", employeeService.findAllByResponsibleId(id));
+            model.addObject("employee", employeeService.getEmployeeById(onLoadId));
+            model.addObject("assignedServers", employeeService.findAllByResponsibleId(onLoadId));
             model.addObject("availableServers", employeeService.findAllByResponsibleId((long) 0));
             return model;
         } else {
@@ -61,17 +66,19 @@ public class ServerAssignmentController extends AbstractAdminController {
      * @return the name of the FreeMarker template page
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public @ResponseBody  ModelAndView onSubmit(
-            @RequestBody ServersListModel serversListModel,
-            @PathVariable("id") Long responsibleId,
-            BindingResult result,
-            SessionStatus status) throws ParseException, IOException {
+    public
+    @ResponseBody
+    void onSubmit(@RequestBody ServersListModel serversListModel,
+                          BindingResult result,
+                          SessionStatus status,
+                          HttpServletRequest request,
+                          HttpServletResponse response) throws ParseException, IOException {
 
         if (!result.hasErrors()) {
             if (serversListModel.getAssignedServers() != null) {
                 for (Long id : serversListModel.getAssignedServers()) {
                     ServerEntity entity = employeeService.getServerById(id);
-                    entity.setResponsible(responsibleId);
+                    entity.setResponsible(idOfEmployee); // used global var to exclude ID bug
                     adminService.updateServer(entity);
                 }
             }
@@ -84,9 +91,9 @@ public class ServerAssignmentController extends AbstractAdminController {
                 }
             }
             status.setComplete();
-            return new ModelAndView("redirect:/employee_management/employee_manager");
+            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
         } else {
-            return new ModelAndView("redirect:/employee_management/serv_assignment");
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
 
