@@ -2,6 +2,8 @@ package serverMonitoring.logic.webFunctionality;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -20,6 +22,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * this class responsible for the Authorized System Access
@@ -31,9 +34,19 @@ public class UserAuthentication extends SimpleUrlAuthenticationSuccessHandler
         implements AuthenticationManager, AuthenticationProvider, Serializable {
 
     protected static Logger userAccessLogger = Logger.getLogger(UserAuthentication.class);
+
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
+
     private EmployeeDao employeeDao;
+
     private EmployeeEntity employeeEntity;
+
+    private MessageSource messageSource;
+
+    @Autowired
+    public void setMessageSource(MessageSource messageSourcePar) {
+        messageSource = messageSourcePar;
+    }
 
     @Autowired
     public void initEmployeeDao(EmployeeDao employeeDao) {
@@ -53,22 +66,40 @@ public class UserAuthentication extends SimpleUrlAuthenticationSuccessHandler
         try {
             employeeEntity = employeeDao.findByLogin(auth.getName());
         } catch (RuntimeException e) {
-            throw new BadCredentialsException("Access denied, user not located!");
+            throw new BadCredentialsException(
+                    messageSource.getMessage(
+                            "auth.no_user",
+                            new Object[]{new DefaultMessageSourceResolvable("auth.no_user")},
+                            "Access denied",
+                            Locale.getDefault())
+            );
         }
 
         /**
          * Checking if user account is active
          */
         if (employeeEntity.getActive() == 0) {
-            throw new BadCredentialsException("Access denied, your permission expired!");
+            throw new BadCredentialsException(
+                    messageSource.getMessage(
+                            "auth.expired",
+                            new Object[]{new DefaultMessageSourceResolvable("auth.expired")},
+                            "Access denied",
+                            Locale.getDefault())
+            );
         }
 
         /**
          * Compare passwords
          * Make sure to encode the password first before comparing
          */
-        if (!passwordEncoder.isPasswordValid(employeeEntity.getPassword(), (String) auth.getCredentials(), null)){
-            throw new BadCredentialsException("Access denied, wrong password!");
+        if (!passwordEncoder.isPasswordValid(employeeEntity.getPassword(), (String) auth.getCredentials(), null)) {
+            throw new BadCredentialsException(
+                    messageSource.getMessage(
+                            "auth.wrong",
+                            new Object[]{new DefaultMessageSourceResolvable("auth.wrong")},
+                            "Access denied",
+                            Locale.getDefault())
+            );
         }
 
         /**

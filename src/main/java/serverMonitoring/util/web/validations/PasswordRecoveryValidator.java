@@ -47,13 +47,11 @@ public class PasswordRecoveryValidator implements Validator {
          *  check if any employee exists with provided E-mail
          */
         if (passwordRecoveryModel.getEmail().isEmpty()) {
-            passRecoveryLogger.error("required.email");
             errors.rejectValue("email", "required.email");
         } else {
             try {
                 employeeEntity = anonymousService.getEmployeeByEmail(passwordRecoveryModel.getEmail());
             } catch (RuntimeException e) {
-                passRecoveryLogger.error("email.rejected");
                 errors.rejectValue("email", "email.rejected");
             }
 
@@ -62,7 +60,6 @@ public class PasswordRecoveryValidator implements Validator {
              */
             if(employeeEntity != null && passwordRecoveryModel.getEmail().equals(employeeEntity.getEmail())) {
                 if (employeeEntity.getActive().equals(0)) {
-                    passRecoveryLogger.error("email.access_denied");
                     errors.rejectValue("email", "email.access_denied");
                 }
             }

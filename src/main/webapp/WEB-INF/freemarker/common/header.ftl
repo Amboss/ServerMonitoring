@@ -36,6 +36,7 @@
         <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery-latest.js" ></script>
         <script type="text/javascript" charset="utf-8" src="<@spring.url '/static/js/dataTables.js'/>" ></script>
         <script type="text/javascript" charset="utf-8" src="<@spring.url '/static/js/DT_bootstrap.js'/>" ></script>
+        <script type="text/javascript" charset="utf-8" src="<@spring.url '/static/js/bootstrap.js'/>" ></script>
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"; charset="utf-8">
         <meta name="description" content="Server Monitoring Service">
@@ -50,11 +51,6 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
                     <a class="brand" href="<@spring.url '/employee/monitoring.html' />">Server Monitoring Service</a>
                     <div class="nav-collapse collapse">
                         <div class="header_menu">

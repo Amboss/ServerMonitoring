@@ -11,11 +11,6 @@
 </@security.authorize>
 <@security.authorize ifAnyGranted="ROLE_ADMIN">
     <ul class="nav">
-        <#--  ====================  management removed du to look of free space =========== -->
-        <#--li><a href="<@spring.url '/employee_management/employee_manager.html'/>"></i>Employee manager</a></li-->
-        <#--li><a href="<@spring.url '/server_management/serv_manager.html'/>"></i>Server manager</a></li-->
-        <#--  ====================  management removed du to look of free space =========== -->
-
         <li><a href="<@spring.url '/settings/change_settings.html'/>"></i>Settings</a></li>
     </ul>
 </@security.authorize>

@@ -2,16 +2,22 @@ package serverMonitoring.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import serverMonitoring.logic.service.EmployeeService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Abstract controller for common pages functionality.
  * - Creating userName var
+ * - Creating tableReloadTime var
+ * - isUserIsAdmin()
+ * - common showRequestLog()
+ * - customised redirect()
  */
 @Controller
 public abstract class AbstractCommonController {
@@ -73,13 +79,11 @@ public abstract class AbstractCommonController {
     /**
      * customised redirect
      */
-//    public void redirect(HttpServletRequest request,
-//                         HttpServletResponse response,
-//                         String path) {
-//        try {
-//            response.sendRedirect(request.getContextPath() + path);
-//        } catch (java.io.IOException e) {
-//            throw new BadCredentialsException("Redirect error!");
-//        }
-//    }
+    public void redirect(HttpServletRequest request, HttpServletResponse response, String path) {
+        try {
+            response.sendRedirect(request.getContextPath() + path);
+        } catch (java.io.IOException e) {
+            throw new BadCredentialsException("Redirect error!");
+        }
+    }
 }
