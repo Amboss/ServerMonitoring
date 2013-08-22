@@ -6,8 +6,9 @@
 
 <#import "/util/spring.ftl" as spring />
 
-<@com.page title="Settings">
+<#assign pageTitle><@spring.message "settings.title" /></#assign>
 
+<@com.page title="${pageTitle}">
 
 <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
@@ -25,12 +26,13 @@
             <@spring.formHiddenInput "settings.id"/>
             <@spring.formHiddenInput "settings.settings_name"/>
 
-            <h3>Current settings: ${settings.settings_name}</h3>
+            <h3><@spring.message "settings.current.title" />: ${settings.settings_name}</h3>
             <hr>
 
             <#-- ===================== Server Scan Interval ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="serverScanInterval">Server Scan Interval</label>
+                <label class="control-label" for="serverScanInterval">
+                    <@spring.message "settings_label.scan_interval" /></label>
                 <div class="controls">
                    <@spring.formInput "settings.serverScanInterval", "input-xlarge" />
                    <@spring.showErrors " ", "alert alert-error"/>
@@ -39,7 +41,8 @@
 
             <#-- ===================== Respond timeout ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="timeoutOfRespond">Respond timeout</label>
+                <label class="control-label" for="timeoutOfRespond">
+                    <@spring.message "settings_label.respond" /></label>
                 <div class="controls">
                    <@spring.formInput "settings.timeoutOfRespond", "input-xlarge" />
                    <@spring.showErrors " ", "alert alert-error"/>
@@ -48,7 +51,8 @@
 
             <#-- ===================== Page Reload Time ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="pageReloadTime">Page Reload Time</label>
+                <label class="control-label" for="pageReloadTime">
+                    <@spring.message "settings_label.reload" /></label>
                 <div class="controls">
                    <@spring.formInput "settings.pageReloadTime", "input-xlarge" />
                    <@spring.showErrors " ", "alert alert-error"/>
@@ -57,7 +61,8 @@
 
             <#-- ===================== SMTP Server Host ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="smtpServerHost">SMTP Server Host</label>
+                <label class="control-label" for="smtpServerHost">
+                    <@spring.message "settings_label.host" /></label>
                 <div class="controls">
                    <@spring.formInput "settings.smtpServerHost", "input-xlarge" />
                    <@spring.showErrors " ", "alert alert-error"/>
@@ -66,7 +71,8 @@
 
             <#-- ===================== SMTP Server Port ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="smtpServerPort">SMTP Server Port</label>
+                <label class="control-label" for="smtpServerPort">
+                    <@spring.message "settings_label.port" /></label>
                 <div class="controls">
                    <@spring.formInput "settings.smtpServerPort", "input-xlarge" />
                    <@spring.showErrors " ", "alert alert-error"/>
@@ -75,7 +81,8 @@
 
             <#-- ===================== SMTP Username ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="username">SMTP Username</label>
+                <label class="control-label" for="username">
+                    <@spring.message "settings_label.username" /></label>
                 <div class="controls">
                    <@spring.formInput "settings.username", "input-xlarge" />
                    <@spring.showErrors " ", "alert alert-error"/>
@@ -84,7 +91,8 @@
 
             <#-- ===================== SMTP Password ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="password">SMTP Password</label>
+                <label class="control-label" for="password">
+                    <@spring.message "settings_label.pass" /></label>
                 <div class="controls">
                    <@spring.formInput "settings.password", "input-xlarge" />
                    <@spring.showErrors " ", "alert alert-error"/>
@@ -97,11 +105,11 @@
                     <input class="btn btn-primary"
                             type='submit'
                             name='update'
-                            value='Save changes'/>
+                            value='<@spring.message "settings_label.btn_save" />'/>
                     <input class="btn"
                             type='submit'
                             name='cancel'
-                            value='Cancel'/>
+                            value='<@spring.message "settings_label.btn_cancel" />'/>
                 </div>
             </div>
         </form>
@@ -111,23 +119,22 @@
     <#-- ===================== Information row for Update page ========================= -->
     <div class="row-fluid">
         <div class="span6">
-            <h3>Edit settings</h3>
-            <p>To edit server you can change supplied info such as: </p>
+            <h3><@spring.message "settings.inf.title" /></h3>
+            <p><@spring.message "settings.inf.list_text" />: </p>
             <ul>
-                <li>Scan Interval - digits in seconds</li>
-                <li>Respond timeout - digits in seconds</li>
-                <li>Page Reload Time - digits in seconds</li>
-                <li>SMTP Host - mail server host address</li>
-                <li>SMTP Port - digits</li>
-                <li>SMTP UserName - name of mail account</li>
-                <li>SMTP Password - for mail account</li>
+                <li><@spring.message "settings.inf.scan_int" /></li>
+                <li><@spring.message "settings.inf.respond" /></li>
+                <li><@spring.message "settings.inf.reload" /></li>
+                <li><@spring.message "settings.inf.host" /></li>
+                <li><@spring.message "settings.inf.port" /></li>
+                <li><@spring.message "settings.inf.username" /></li>
+                <li><@spring.message "settings.inf.pass" /></li>
             </ul>
-
         </div><!--/span-->
         <div class="span6">
-            <h3><i class="icon-warning-sign" ></i>Notice</h3>
-            <p>Please be sure to use digits for Interval, Timeout and Reload.</p>
-            <p>Notice, that 1sec = 1000.</p>
+            <h3><i class="icon-warning-sign" ></i><@spring.message "settings.notice.title" /></h3>
+            <p><@spring.message "settings.notice.text" /></p>
+            <p><@spring.message "settings.notice.text_notice" /></p>
         </div><!--/span-->
     </div><!--/row-->
 </@com.page>

@@ -1,7 +1,6 @@
 <#-- ==============================================================
      HEADER part of common layout
      ============================================================== -->
-<#import "/util/spring.ftl" as spring />
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
      "http://www.w3.org/TR/html4/loose.dtd">
@@ -51,7 +50,7 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="<@spring.url '/employee/monitoring.html' />">Server Monitoring Service</a>
+                    <a class="brand" href="<@spring.url '/employee/monitoring.html' />"><@spring.message "header.title" /></a>
                     <div class="nav-collapse collapse">
                         <div class="header_menu">
                             <#include "header/header_menu.ftl">

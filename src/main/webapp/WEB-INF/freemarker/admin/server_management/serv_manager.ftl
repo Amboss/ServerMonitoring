@@ -6,19 +6,22 @@
 
 <#import "/util/spring.ftl" as spring />
 
-<@com.page title="Server manager">
+<#assign pageTitle><@spring.message "settings.title" /></#assign>
+
+<@com.page title="${pageTitle}">
+
     <#-- ===================== JQuery functions ========================= -->
      <#assign reloadTime = tableReloadTime />
      <#include "/util/js/reloadTable.ftl"/>
 
     <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
-        <h2>Server management</h2>
+        <h2>${pageTitle}</h2>
     </div>
 
      <#-- ===================== Main row for Server manager table ========================= -->
     <div class="row-fluid">
-        <h3>List of all registered servers</h3>
+        <h3><@spring.message "serv_mager.main_row.title" /></h3>
         <hr></br>
 
         <table cellpadding="0"
@@ -28,11 +31,11 @@
                 class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Address & Port</th>
-                    <th>Response</th>
-                    <th>LastCheck</th>
-                    <th>Active</th>
-                    <th>Actions</th>
+                    <th><@spring.message "serv_mager.table.address_port" /></th>
+                    <th><@spring.message "serv_mager.table.response" /></th>
+                    <th><@spring.message "serv_mager.table.last_check" /></th>
+                    <th><@spring.message "serv_mager.table.active" /></th>
+                    <th><@spring.message "serv_mager.table.actions" /></th>
                 </tr>
             </thead>
             <#list server as server >
@@ -80,16 +83,14 @@
     <#-- ===================== Information row for Server manager page ========================= -->
     <div class="row-fluid">
         <div class="span6">
-            <h3>List of servers</h3>
-            <p>List on this page shows all servers with short information
-            for general control.</p>
+            <h3><@spring.message "serv_mager.inf.list.title" /></h3>
+            <p><@spring.message "serv_mager.inf.list.text" /></p>
         </div><!--/span-->
         <div class="span6">
-            <h3>Registration of new server</h3>
-            <p>You can register a new server by clicking "Create" button, this will redirect you
-            to registration form.</p>
+            <h3><@spring.message "serv_mager.inf.registr.title" />Registration of new server</h3>
+            <p><@spring.message "serv_mager.inf.registr.text" /></p>
             <p><a class="btn" href="<@spring.url '/server_management/serv_registr' />">
-                    Create new server &raquo;</a></p>
+                    <@spring.message "serv_mager.inf.btn" />&raquo;</a></p>
         </div><!--/span-->
     </div><!--/row-->
 
@@ -97,17 +98,15 @@
 
         <div class="row-fluid">
             <div class="span6">
-                <h3>Response icons</h3>
-                <p><i class="icon-ok" ></i>&nbsp;- icon shows that server have no errors</P>
-                <p><i class="icon-warning-sign" ></i>&nbsp;- icon shows that server are working with HTTP
-                response other than 200</P>
-                <p><i class="icon-ban-circle" ></i>&nbsp;icon shows that server is not responding to request,
-                 or responding with HTTP 500 error</P>
+                <h3><@spring.message "serv_mager.resp_icon.title" /></h3>
+                <p><i class="icon-ok" ></i>&nbsp;- <@spring.message "serv_mager.resp_icon.ok" /></P>
+                <p><i class="icon-warning-sign" ></i>&nbsp;- <@spring.message "serv_mager.resp_icon.war" /></P>
+                <p><i class="icon-ban-circle" ></i>&nbsp;- <@spring.message "serv_mager.resp_icon.fail" />r</P>
             </div><!--/span-->
             <div class="span6">
-                <h3>Active icons</h3>
-                <p><i class="icon-thumbs-up" ></i>&nbsp;- icon shows that current server is under monitoring</P>
-                <p><i class="icon-ban-circle" ></i>&nbsp;- icon shows that current server is not under monitoring</P>
+                <h3><@spring.message "serv_mager.activ_icon.title" /></h3>
+                <p><i class="icon-thumbs-up" ></i>&nbsp;- <@spring.message "serv_mager.activ_icon.thumbs" /></P>
+                <p><i class="icon-ban-circle" ></i>&nbsp;- <@spring.message "serv_mager.activ_icon.circul" /></P>
             </div><!--/span-->
         </div><!--/row-->
 </@com.page>

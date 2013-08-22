@@ -3,9 +3,13 @@
         - will appear as start page with authentication purpose
      ===================================================================== -->
 <#import "/util/spring.ftl" as spring />
+
 <#import "/layout/default.ftl" as com>
 
+<#import "/layout/default.ftl" as com />
+
 <#assign pageTitle><@spring.message "index.title" /></#assign>
+
 <@com.page title="${pageTitle}">
     <div class="hero-unit">
         <h1>${pageTitle}</h1>

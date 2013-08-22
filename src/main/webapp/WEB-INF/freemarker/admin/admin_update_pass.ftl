@@ -4,7 +4,6 @@
      ===================================================================== -->
 <#import "/util/spring.ftl" as spring />
 
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
      "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -30,7 +29,7 @@
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"; charset="utf-8">
         <meta name="description" content="Server Monitoring Service">
-        <title>Password update</title>
+        <title><@spring.message "pass_update.title" /></title>
     </head>
     <body>
         <div class="container">
@@ -42,28 +41,25 @@
             <div class="navbar navbar-inverse navbar-fixed-top">
                 <div class="navbar-inner">
                     <div class="container">
-                        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="brand" href="#">Server Monitoring Service</a>
+                        <a class="brand" href="#"><@spring.message "header.title" /></a>
                         <div class="nav-collapse collapse">
-                            <p class="navbar-text pull-right" style="padding-right: 20px;">Welcome ${username!"Anonymous" }!</p>
+                            <p class="navbar-text pull-right" style="padding-right: 20px;">
+                                <@spring.message "admin_pass_update.welcome" /></p>
                         </div>
                     </div><!-- /.container -->
                 </div><!-- /.navbar-inner -->
             </div><!-- /.navbar navbar-inverse -->
             <div class="hero-unit">
-                <h2>Admin first entrance</h2>
+                <h2><@spring.message "admin_pass_update.title" /></h2>
             </div>
             <div class="row-fluid">
                 <form class="form-horizontal" method="post" autocomplete="off" >
-                    <h3>Please enter new password:</h3>
+                    <h3><@spring.message "admin_pass_update.pass_change.title" /></h3>
 
                         <#-- ===================== New Password ============================= -->
                         <div class="control-group info">
-                            <label class="control-label" for='newPassword'>New Password</label>
+                            <label class="control-label" for='newPassword'>
+                                <@spring.message "admin_pass_update.form.newpass" /></label>
                             <div class="controls">
                                 <@spring.formPasswordInput "passUpdate.newPassword", "input-xlarge"/>
                                 <@spring.showErrors " ", "alert alert-error"/>
@@ -72,7 +68,8 @@
 
                         <#-- ===================== Confirm Password ========================= -->
                         <div class="control-group info">
-                            <label class="control-label" for="confirmPassword">Confirm Password</label>
+                            <label class="control-label" for="confirmPassword">
+                                <@spring.message "admin_pass_update.form.confirm" /></label>
                             <div class="controls">
                                 <@spring.formPasswordInput "passUpdate.confirmPassword", "input-xlarge"/>
                                 <@spring.showErrors " ", "alert alert-error"/>
@@ -85,7 +82,7 @@
                                 <input class="btn btn-primary"
                                 type='submit'
                                 name='update'
-                                value='Change password'  />
+                                value='<@spring.message "admin_pass_update.form.btn_change" />'  />
                             </div>
                         </div>
                 </form>
@@ -93,7 +90,8 @@
             <hr>
             <div class="row-fluid">
                 <div id="toplink">
-                    <a href="#top" class="top-link" title="Back to top">Back To Top <i class="icon-chevron-up"></i></a></div>
+                    <a href="#top" class="top-link" title="Back to top">
+                        <@spring.message "footer.link" /><i class="icon-chevron-up"></i></a></div>
                     <div class="subfooter">
                         <div class="span6">
                             <#import "../common/message/info.ftl" as my>

@@ -3,8 +3,12 @@
         - give ability for user to to see precise info about specific server
         - for admin_role the layout wil contain service menu on side bar
      ===================================================================== -->
+
 <#import "/util/spring.ftl" as spring />
+
 <#assign security=JspTaglibs["/WEB-INF/tlds/spring-security.tld"] />
+
+<#assign pageTitle><@spring.message "serv_detail.title" /></#assign>
 
 <@security.authorize ifAnyGranted="ROLE_USER">
     <#import "/layout/employee.ftl" as com>
@@ -13,13 +17,13 @@
     <#import "/layout/admin.ftl" as com>
 </@security.authorize>
 
-<@com.page title="Server details">
+<@com.page title="${pageTitle}">
 
     <#assign reloadTime = 5000 />
     <#include "/util/js/reloadTable.ftl"/>
 
     <div class="hero-unit">
-        <h1>Server details page</h1>
+        <h1>${pageTitle}</h1>
     </div>
     <div class="row-fluid">
          <table cellpadding="0"
@@ -29,12 +33,12 @@
                 class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Server name</th>
-                    <th>Address & Port</th>
-                    <th>URL</th>
-                    <th>State</th>
-                    <th>Last check</th>
-                    <th>Response</th>
+                    <th><@spring.message "serv_detail.table.serv_name" /></th>
+                    <th><@spring.message "serv_detail.table.address" /></th>
+                    <th><@spring.message "serv_detail.table.url" /></th>
+                    <th><@spring.message "serv_detail.table.state" /></th>
+                    <th><@spring.message "serv_detail.table.last_check" /></th>
+                    <th><@spring.message "serv_detail.table.response" /></th>
                 </tr>
             </thead>
                 <tbody>

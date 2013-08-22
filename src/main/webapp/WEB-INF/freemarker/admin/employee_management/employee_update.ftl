@@ -6,10 +6,12 @@
 
 <#import "/util/spring.ftl" as spring />
 
-<@com.page title="Employee update">
+<#assign pageTitle><@spring.message "empl_update.title" /></#assign>
+
+<@com.page title="${pageTitle}">
     <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
-        <h2>Employee update</h2>
+        <h2>${pageTitle}</h2>
     </div>
 
     <#-- ===================== Main row for update form ========================= -->
@@ -18,11 +20,12 @@
                 class="form-horizontal"
                 method="post"
                 autocomplete="off" >
-            <h3>Please fill in required information:</h3>
+            <h3><@spring.message "empl_update.main_row.title" />:</h3>
             <hr>
             <#-- ===================== Name ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="employee_name">Employee name</label>
+                <label class="control-label" for="employee_name">
+                    <@spring.message "empl_update.name" /></label>
                 <div class="controls">
                    <@spring.formInput "employeeEntity.employee_name", "input-xlarge" />
                    <@spring.showErrors " ", "alert alert-error"/>
@@ -31,7 +34,8 @@
 
             <#-- ===================== E-mail ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="email">E-mail</label>
+                <label class="control-label" for="email">
+                    <@spring.message "empl_update.email" /></label>
                 <div class="controls">
                    <@spring.formInput "employeeEntity.email", "input-xlarge"/>
                    <@spring.showErrors " ", "alert alert-error"/>
@@ -40,7 +44,8 @@
 
             <#-- ===================== Active ========================= -->
             <div class="control-group info">
-                <label class="control-label" for="activeState">Active</label>
+                <label class="control-label" for="activeState">
+                    <@spring.message "empl_update.active" /></label>
                 <div class="controls">
                     <@spring.formSingleSelect "simplFormModel.activeState", activeMap, " "/>
                 </div>
@@ -52,11 +57,11 @@
                     <input class="btn btn-primary"
                             type='submit'
                             name='update'
-                            value='Save changes'/>
+                            value='<@spring.message "empl_update.btn_save" />'/>
                     <input class="btn"
                             type='submit'
                             name='cancel'
-                            value='Cancel'/>
+                            value='<@spring.message "empl_update.btn_cancel" />'/>
                 </div>
             </div>
         </form>
@@ -66,14 +71,12 @@
     <#-- ===================== Information row for Update page ========================= -->
     <div class="row-fluid">
         <div class="span6">
-            <h3>Edit specifications</h3>
-            <p>To edit employee you can change supplied info such as Name,
-            E-mail or Activation status.</p>
+            <h3><@spring.message "empl_update.inf_specific.title" /></h3>
+            <p><@spring.message "empl_update.inf_specific.text" /></p>
         </div><!--/span-->
         <div class="span6">
-            <h3><i class="icon-warning-sign" ></i> Not Active status</h3>
-            <p>If current active status set to "not active" all operations
-                of provided employee will be terminated.</p>
+            <h3><i class="icon-warning-sign" ></i> <@spring.message "empl_update.inf_status.title" /></h3>
+            <p><@spring.message "empl_update.inf_status.text" /></p>
         </div><!--/span-->
     </div><!--/row-->
 </@com.page>

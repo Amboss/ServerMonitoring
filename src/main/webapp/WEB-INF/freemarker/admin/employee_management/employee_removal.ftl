@@ -7,31 +7,31 @@
 
 <#import "/util/spring.ftl" as spring />
 
-<@com.page title="Employee delete">
+<#assign pageTitle><@spring.message "empl_update.title" /></#assign>
 
-        <div class="modal" id="employee_removal" tabindex="-1" role="dialog"
-                 aria-labelledby="myModalLabel" aria-hidden="true" >
+<@com.page title="${pageTitle}">
+    <div class="modal" id="employee_removal" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true" >
+        <form class="modal-body" method="post">
+            <center>
+                <h3><@spring.message "empl_delete.form.title" /></h3>
+                <hr>
+                <p><@spring.message "empl_delete.name" />: ${employee.employee_name}</p>
+                <p><@spring.message "empl_delete.login" />: ${employee.login}</p>
+                <p><@spring.message "empl_delete.created" />: ${employee.created}</p>
+                <hr>
 
-            <form class="modal-body" method="post">
-                <center>
-                    <h3>Delete this employee?</h3>
-                    <hr>
-                    <p>Name: ${employee.employee_name}</p>
-                    <p>Login: ${employee.login}</p>
-                    <p>Created: ${employee.created}</p>
-                    <hr>
-
-                    <input class='btn btn-primary'
-                            type='submit'
-                            name='delete'
-                            value='Delete employee' />
-                    <input class="btn"
-                            data-dismiss='modal'
-                            type='submit'
-                            aria-hidden='true'
-                            name='cancel'
-                            value='Cancel' />
-                </center>
-             </form>
-        </div>
+                <input class='btn btn-primary'
+                        type='submit'
+                        name='delete'
+                        value='<@spring.message "empl_delete.btn_delete" />' />
+                <input class="btn"
+                        data-dismiss='modal'
+                        type='submit'
+                        aria-hidden='true'
+                        name='cancel'
+                        value='<@spring.message "empl_delete.btn_cancel" />' />
+            </center>
+         </form>
+    </div>
 </@com.page>

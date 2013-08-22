@@ -22,11 +22,10 @@ import serverMonitoring.util.web.validations.PasswordUpdateValidator;
 @Controller
 @Secured("ROLE_ADMIN")
 @RequestMapping("/admin/admin_update_pass")
-public class AdminPasswordUpdateController extends AbstractAdminController {
+public class AdminPasswordUpdateController  {
 
     protected static Logger logger = Logger.getLogger(AdminPasswordUpdateController.class);
     private ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
-    private String catalogPath = "/admin";
     private EmployeeService employeeService;
     private PasswordUpdateValidator passwordUpdateValidator;
 
@@ -36,7 +35,7 @@ public class AdminPasswordUpdateController extends AbstractAdminController {
     }
 
     @Autowired
-    public void setPasswordUpdateValidator(PasswordUpdateValidator passwordUpdateValidator) {
+    public void setValidator(PasswordUpdateValidator passwordUpdateValidator) {
         this.passwordUpdateValidator = passwordUpdateValidator;
     }
 
@@ -46,7 +45,6 @@ public class AdminPasswordUpdateController extends AbstractAdminController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView loadPage() {
-        showRequestLog("password_update");
         return new ModelAndView("/admin/admin_update_pass", "passUpdate", new PasswordUpdateModel());
     }
 
@@ -65,7 +63,7 @@ public class AdminPasswordUpdateController extends AbstractAdminController {
         if (errors.hasErrors()) {
             return new ModelAndView("/admin/admin_update_pass", "passUpdate", passUpdate);
         } else {
-            EmployeeEntity entity = employeeService.getEmployeeByLogin(getUserName());
+            EmployeeEntity entity = employeeService.getEmployeeByLogin("admin");
             String foo = passUpdate.getNewPassword();
             employeeService.updateEmployeePassword(entity, foo);
             status.setComplete();
