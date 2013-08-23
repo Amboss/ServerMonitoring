@@ -1,0 +1,193 @@
+#  ``````````````````````````` RUSSIAN labels ```````````````````````````
+#
+# ============================ Header ==========================================
+header_menu_pass=Изменение пароля
+header_menu_settings=Настройки
+header.title=Сервис наблюдения серверов
+#``````````login form
+header.lang_switch=Язык
+header.lang_switch_eng=Англ
+header.lang_switch_ru=Русс
+header.status.as=Вы вошли как
+header.status.anonim=Аноним
+header.signin=Войти
+header.signout=Выйти
+header.signin_user=Имя пользователя
+header.signin_pass=Пароль
+# ============================ Footer ==========================================
+footer.contact.title=Контакты
+footer.about.title=О нас
+footer.news.title=Наши новости
+# ============================ Side bar ==========================================
+sidebar_menu.title=Функционал
+sidebar_menu.employee=Управление пользователями
+sidebar_menu.server=Управление серверами
+# ============================ Index page ======================================
+index.title=Главная
+index.please_log=Вход в систему
+index.pass_rec=Восстановление пароля
+index.pass_rec.btn=Воcстановить пароль
+# ============================ Server Monitoring page ==========================
+monitoring.title=Сервис наблюдения
+#```````````Main row for Server Monitoring table
+monitoring.table.server_name=Имя сервера
+monitoring.table.state=Состояние
+monitoring.table.last_check=Когда проверен
+monitoring.table.active=Активность
+#```````````Information row
+monitoring.inf.list_serv=Список серверов
+monitoring.inf.serv_detail=Детали сервера
+#```````````Icon Information row
+monitoring.icon_inf.state_icon=Знак состояния
+monitoring.icon_inf.active=Знак активности
+# ============================ Server details page =============================
+serv_detail.title=Детали сервера
+#```````````table`````````
+serv_detail.table.serv_name=Имя сервера
+serv_detail.table.address=Адрес и порт
+serv_detail.table.url=URL
+serv_detail.table.state=Состояние
+serv_detail.table.last_check=Когда проверен
+serv_detail.table.response=Ответ
+# ============================ Password update =============================
+pass_update.title=Смена пароля
+#```````````Main row ````````
+pass_update.fill_in=Пожалуйста введите нужную информацию
+pass_update.currentPassword=Текущий пароль
+pass_update.newPassword=Новый пароль
+pass_update.confirmPassword=Подтвердите пароль
+pass_update.btn.update=Сменить пароль
+pass_update.btn.cancel=Отменить
+# ============================ Admin Password update =============================
+admin_pass_update.title=Первый вход администратора
+admin_pass_update.welcome=Добро пожаловать Администратор!
+admin_pass_update.pass_change.title=Пожалуйста введите новый пароль:
+admin_pass_update.form.newpass=Новый пароль
+admin_pass_update.form.confirm=Подтвердите пароль
+admin_pass_update.form.btn_change=Сменить пароль
+# ============================ Password recovery =============================
+pass_recovery.title=Восстановление пароля
+pass_recovery.forgot.title=Если пароль утерян
+pass_recovery.email.title=Введите ваш электронную почту
+pass_recovery.form.btn_generate=Восстановить пароль
+pass_recovery.form.btn_cancel=Отменить
+# ============================ Settings =============================
+settings.title=Настройки
+settings.current.title=Текущие настройки
+settings_label.scan_interval=Интервал сканирования
+settings_label.respond=Отсрочка ответа
+settings_label.reload=Время обновления страницы
+settings_label.host=Хост протокола сервера
+settings_label.port=Порт протокола сервера
+settings_label.username=Имя пользователя
+settings_label.pass=Пароль пользователя
+settings_label.btn_save=Сохранить изменения
+settings_label.btn_cancel=Отменить
+#````````````````Information row
+settings.inf.title=Редактирование настроек
+settings.notice.title=Внимание
+# ============================ Server update =============================
+server_update.title=Редактирование сервера
+server_update.main_row.title=Пожалуйста введите нужную информацию
+server_update.serv_name=Имя сервера
+server_update.address=Адрес
+server_update.port=Порт
+server_update.url=URL
+server_update.active=Статус активности
+server_update.btn_save=Сохранить изменения
+server_update.btn_cancel=Отменить
+#````````````````Information row
+server_update.info.edit=Спецификации редактирования
+server_update.info.status=Статус активности
+# ============================ Server delete =============================
+server_delete.title=Удаление сервера
+server_delete.question=Удалить это сервер?
+server_delete.name=Имя
+server_delete.address=Адрес
+server_delete.url=URL
+server_delete.created=Когда создан
+server_delete.btn_delete=Удалить сервер
+server_delete.btn_cancel=Отменить
+# ============================ Server registr =============================
+serv_registr.title=Регистрация сервера
+serv_registr.main_row.title=Пожалуйста введите нужную информацию
+serv_registr.main_row.name=Имя
+serv_registr.main_row.address=Адрес
+serv_registr.main_row.port=Порт
+serv_registr.main_row.url=URL
+serv_registr.main_row.active=Активность
+serv_registr.btn_create=Создать сервер
+serv_registr.btn_cancel=Отменить
+#````````````````Information row
+serv_registr.inf_specific.title=Спецификация регистрации
+serv_registr.inf_name.title=Уникальное имя сервера
+# ============================ Server manager =============================
+serv_mager.title=Управление серверами
+serv_mager.main_row.title=Список зарегистрированных серверов
+serv_mager.table.address_port=Адрес и порт
+serv_mager.table.response=Ответ на запрос
+serv_mager.table.last_check=Когда проверен
+serv_mager.table.active=Активность
+serv_mager.table.actions=Действия
+#````````````````Information row
+serv_mager.inf.list.title=Список серверов
+serv_mager.inf.registr.title=Регистрация нового сервера
+serv_mager.inf.btn=Регистрировать сервер
+#````````````````Icon row
+serv_mager.resp_icon.title=Знак ответа
+serv_mager.activ_icon.title=Знак активности
+# ============================ Server assignment =============================
+serv_assign.title=Назначение серверов
+serv_assign.main_row.title=Назначенные сервера для пользователя
+serv_assign.assign_list=Назначенные сервера
+serv_assign.available_list=Доступные сервера
+serv_assign.btn_assign=Назначить
+serv_assign.btn_cancel=Отменить
+#```````````````Icon row
+serv_assign.list_icon.title=Список серверов
+serv_assign.how_icon.title=Как назначить
+# ============================ Employee update ==============================
+empl_update.title=Редактирование сотрудника
+empl_update.main_row.title=Пожалуйста введите нужную информацию
+empl_update.name=Имя сотрудника
+empl_update.email=Электронная почта
+empl_update.active=Активность
+empl_update.btn_save=Сохранить изменения
+empl_update.btn_cancel=Отменить
+#````````````````Information row
+empl_update.inf_specific.title=Спецификация изменений
+empl_update.inf_status.title=Статус не активности
+# ============================ Employee delete ==============================
+empl_delete.title=Удаление сотрудника
+empl_delete.form.title=Удалить сотрудника?
+empl_delete.name=Имя сотрудника
+empl_delete.login=Логин
+empl_delete.created=Когда создан
+empl_delete.btn_delete=Удалить сотрудника
+empl_delete.btn_cancel=Отменить
+# ============================ Employee registration =============================
+empl_registr.title=Регистрация сотрудника
+empl_registr.main_row.title=Пожалуйста введите нужную информацию
+empl_registr.name=Имя сотрудника
+empl_registr.login=Логин
+empl_registr.email=Электронная почта
+empl_registr.active=Активность
+empl_registr.secur=Уровень доступа
+empl_registr.btn_create=Регистрировать сотрудника
+empl_registr.btn_cancel=Отменить
+#````````````````Information row
+empl_registr.inf_registr.title=Спецификация регистрации
+empl_registr.inf_inform.title=Informing new Employee
+# ============================ Employee manager =============================
+empl_manager.titlr=Управление сотрудниками
+empl_manager.main_row.title=Список зарегистрированных сотрудников
+empl_manager.table_name=Имя сотрудника
+empl_manager.table_active=Активность
+empl_manager.table_lastLogin=Когда входил
+empl_manager.table_actions=Действия
+empl_manager.icon_edit=Редактировать
+empl_manager.icon_assign=Назначить
+empl_manager.icon_delete=Удалить
+empl_manager.inf_list.title=Список сотрудников
+empl_manager.inf_registr.titl=Регистрация сотрудника
+empl_manager.btn_registr=Регистрировать сотрудника
