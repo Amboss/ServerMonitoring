@@ -24,7 +24,7 @@
     <#include "/util/js/sortMonitoringTable.ftl"/>
     <#-- ===================== Head with name of page ========================= -->
     <div class="hero-unit">
-        <h1>${pageTitle}</h1>
+        <h2>${pageTitle}</h2>
     </div>
 
     <#-- ===================== Main row for Server Monitoring table ========================= -->

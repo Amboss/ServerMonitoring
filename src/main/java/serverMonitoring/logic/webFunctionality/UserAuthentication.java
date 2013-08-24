@@ -3,7 +3,6 @@ package serverMonitoring.logic.webFunctionality;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -67,11 +66,8 @@ public class UserAuthentication extends SimpleUrlAuthenticationSuccessHandler
             employeeEntity = employeeDao.findByLogin(auth.getName());
         } catch (RuntimeException e) {
             throw new BadCredentialsException(
-                    messageSource.getMessage(
-                            "auth.no_user",
-                            new Object[]{new DefaultMessageSourceResolvable("auth.no_user")},
-                            "Access denied",
-                            Locale.getDefault())
+                    this.messageSource.getMessage("auth.no_user", new Object [] {"userName"},
+                            "Access denied", Locale.getDefault())
             );
         }
 
@@ -80,11 +76,8 @@ public class UserAuthentication extends SimpleUrlAuthenticationSuccessHandler
          */
         if (employeeEntity.getActive() == 0) {
             throw new BadCredentialsException(
-                    messageSource.getMessage(
-                            "auth.expired",
-                            new Object[]{new DefaultMessageSourceResolvable("auth.expired")},
-                            "Access denied",
-                            Locale.getDefault())
+                    this.messageSource.getMessage("auth.expired", new Object [] {"active"},
+                            "Access denied", Locale.getDefault())
             );
         }
 
@@ -94,11 +87,8 @@ public class UserAuthentication extends SimpleUrlAuthenticationSuccessHandler
          */
         if (!passwordEncoder.isPasswordValid(employeeEntity.getPassword(), (String) auth.getCredentials(), null)) {
             throw new BadCredentialsException(
-                    messageSource.getMessage(
-                            "auth.wrong",
-                            new Object[]{new DefaultMessageSourceResolvable("auth.wrong")},
-                            "Access denied",
-                            Locale.getDefault())
+                    this.messageSource.getMessage("auth.wrong", new Object [] {"password"},
+                            "Access denied", Locale.getDefault())
             );
         }
 

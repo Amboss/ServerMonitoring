@@ -68,7 +68,7 @@ admin_pass_update.form.btn_change=Сменить пароль
 # ============================ Password recovery =============================
 pass_recovery.title=Восстановление пароля
 pass_recovery.forgot.title=Если пароль утерян
-pass_recovery.email.title=Введите ваш электронную почту
+pass_recovery.email.title=Введите вашу электронную почту
 pass_recovery.form.btn_generate=Восстановить пароль
 pass_recovery.form.btn_cancel=Отменить
 # ============================ Settings =============================
@@ -129,6 +129,8 @@ serv_mager.table.response=Ответ на запрос
 serv_mager.table.last_check=Когда проверен
 serv_mager.table.active=Активность
 serv_mager.table.actions=Действия
+serv_mager.table_edit=Редакция
+serv_mager.table_selete=Удалить
 #````````````````Information row
 serv_mager.inf.list.title=Список серверов
 serv_mager.inf.registr.title=Регистрация нового сервера
@@ -179,13 +181,13 @@ empl_registr.btn_cancel=Отменить
 empl_registr.inf_registr.title=Спецификация регистрации
 empl_registr.inf_inform.title=Informing new Employee
 # ============================ Employee manager =============================
-empl_manager.titlr=Управление сотрудниками
+empl_manager.title=Управление сотрудниками
 empl_manager.main_row.title=Список зарегистрированных сотрудников
-empl_manager.table_name=Имя сотрудника
+empl_manager.table_name=Имя
 empl_manager.table_active=Активность
 empl_manager.table_lastLogin=Когда входил
 empl_manager.table_actions=Действия
-empl_manager.icon_edit=Редактировать
+empl_manager.icon_edit=Редакция
 empl_manager.icon_assign=Назначить
 empl_manager.icon_delete=Удалить
 empl_manager.inf_list.title=Список сотрудников

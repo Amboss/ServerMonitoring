@@ -14,18 +14,9 @@
         <welcome-file>index.ftl</welcome-file>
     </welcome-file-list>
 
-    <!-- ===================== Spring MVC configurations ========================================= -->
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>
-            classpath:application-context.xml
-            classpath:spring/spring-security.xml
-        </param-value>
-    </context-param>
-
     <!-- ===================== Spring UTF-8 servlet filter configurations ======================== -->
     <filter>
-        <filter-name>encodingFilter</filter-name>
+        <filter-name>characterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <init-param>
             <param-name>encoding</param-name>
@@ -36,6 +27,29 @@
             <param-value>true</param-value>
         </init-param>
     </filter>
+    <filter-mapping>
+        <filter-name>characterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- ===================== i18n configurations =============================================== -->
+    <filter>
+        <filter-name>localizationFilter</filter-name>
+        <filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>localizationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- ===================== Spring MVC configurations ========================================= -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:application-context.xml
+            classpath:spring/spring-security.xml
+        </param-value>
+    </context-param>
 
     <!-- ===================== Spring Security WEB infrastructure configurations ================= -->
     <filter>

@@ -37,17 +37,10 @@
                              authentication-failure-url="/auth/login?error=true"/>
 
         <security:logout invalidate-session="true"
-                         delete-cookies="true"
                          logout-success-url="/auth/login"
                          logout-url="/j_spring_security_logout"/>
         <!--<security:session-management session-authentication-strategy-ref="sas"/>-->
     </security:http>
-
-    <!-- Custom filter for username and password DELETED -->
-    <!--<bean id="authenticationFilter"-->
-    <!--class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"-->
-    <!--p:authenticationManager-ref="customAuthenticationManager"-->
-    <!--p:sessionAuthenticationStrategy-ref="sas"/>-->
 
     <!-- Session authentication strategy -->
     <bean id="sas"

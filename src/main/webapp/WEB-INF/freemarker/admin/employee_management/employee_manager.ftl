@@ -7,7 +7,7 @@
 
 <#import "/util/spring.ftl" as spring />
 
-<#assign pageTitle><@spring.message "empl_registr.title" /></#assign>
+<#assign pageTitle><@spring.message "empl_manager.title" /></#assign>
 
 <@com.page title="${pageTitle}">
 
@@ -28,10 +28,10 @@
                 class="table table-striped table-bordered">
              <thead>
                  <tr>
-                     <th><@spring.message "empl_manager.table_name" />Name</th>
-                     <th><@spring.message "empl_manager.table_active" />Active</th>
-                     <th><@spring.message "empl_manager.table_lastLogin" />lastLogin</th>
-                     <th><@spring.message "empl_manager.table_actions" />Actions</th>
+                     <th><@spring.message "empl_manager.table_name" /></th>
+                     <th><@spring.message "empl_manager.table_active" /></th>
+                     <th><@spring.message "empl_manager.table_lastLogin" /></th>
+                     <th><@spring.message "empl_manager.table_actions" /></th>
                  </tr>
              </thead>
              <tbody>

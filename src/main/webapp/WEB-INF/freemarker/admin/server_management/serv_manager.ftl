@@ -6,7 +6,7 @@
 
 <#import "/util/spring.ftl" as spring />
 
-<#assign pageTitle><@spring.message "settings.title" /></#assign>
+<#assign pageTitle><@spring.message "serv_mager.title" /></#assign>
 
 <@com.page title="${pageTitle}">
 
@@ -65,12 +65,12 @@
                         <td>${activeIcon}</td>
                         <td>
                             <a href="<@spring.url '/server_management/serv_update/${id}.html' />">
-                                <i class="icon-edit" ></i>&nbsp;Edit
+                                <i class="icon-edit" ></i>&nbsp;<@spring.message "serv_mager.table_edit" />
                             <a/>
                         </td>
                         <td>
                             <a href="<@spring.url '/server_management/serv_removal/${id}.html' />">
-                                <i class="icon-trash" ></i>&nbsp;Delete
+                                <i class="icon-trash" ></i>&nbsp;<@spring.message "serv_mager.table_selete" />
                             <a/>
                         </td>
                     </tr>
@@ -87,7 +87,7 @@
             <p><@spring.message "serv_mager.inf.list.text" /></p>
         </div><!--/span-->
         <div class="span6">
-            <h3><@spring.message "serv_mager.inf.registr.title" />Registration of new server</h3>
+            <h3><@spring.message "serv_mager.inf.registr.title" /></h3>
             <p><@spring.message "serv_mager.inf.registr.text" /></p>
             <p><a class="btn" href="<@spring.url '/server_management/serv_registr' />">
                     <@spring.message "serv_mager.inf.btn" />&raquo;</a></p>

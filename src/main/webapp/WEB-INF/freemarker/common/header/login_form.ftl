@@ -1,5 +1,6 @@
 <#-- ==============================================================
      login form
+        - lang changing switch
         - for common header with active form appearance
      ============================================================== -->
 <#import "/util/spring.ftl" as spring />
@@ -16,8 +17,8 @@
    <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" ><@spring.message "header.lang_switch" /><b class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li><a href="?language=en"><@spring.message "header.lang_switch_eng" /></a></li>
-            <li><a href="?language=ru"><@spring.message "header.lang_switch_ru" /></a></li>
+            <li><a href="?locale=en"><@spring.message "header.lang_switch_eng" /></a></li>
+            <li><a href="?locale=ru"><@spring.message "header.lang_switch_ru" /></a></li>
         </ul>
    </li>
 </ul>

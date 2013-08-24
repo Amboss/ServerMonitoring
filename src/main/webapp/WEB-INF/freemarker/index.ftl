@@ -4,8 +4,6 @@
      ===================================================================== -->
 <#import "/util/spring.ftl" as spring />
 
-<#import "/layout/default.ftl" as com>
-
 <#import "/layout/default.ftl" as com />
 
 <#assign pageTitle><@spring.message "index.title" /></#assign>

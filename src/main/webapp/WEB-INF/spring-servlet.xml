@@ -2,8 +2,8 @@
 <!-- ==================================================================================================
         Spring Servlet Context: defines this servlet's request-processing infrastructure
              - error messages source support
-             - locale Change Interceptor
-             - locale Resolver
+             - locale Change Interceptor TODO
+             - locale Resolver           TODO
              - freeMarker configuration
              - freeMarker viewResolver configuration
              - jackson Message Converter
@@ -17,18 +17,37 @@
             http://www.springframework.org/schema/mvc
             http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
-    <!-- serving up static resources in the ${webappRoot}/resources directory -->
+    <!-- serving up static resources -->
     <mvc:resources mapping="/static/**" location="/static/"/>
 
-    <bean id="localeResolver"
-          class="org.springframework.web.servlet.i18n.SessionLocaleResolver"
-          p:defaultLocale="ru_RU"/>
+    <!-- Configures Handler Interceptors -->
+    <bean id="localeChangeInterceptor"
+          class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
+          p:paramName="locale"/>
 
-    <!-- Load error messages configuration -->
+    <!-- locale Resolver configuration-->
+    <bean id="localeResolver"
+          class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <!--<property name="defaultLocale" value="en_US"/>-->
+    </bean>
+
+    <bean id="handlerMapping"
+          class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="localeChangeInterceptor"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Application Message Bundle -->
     <bean id="messageSource"
           class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="defaultEncoding" value="UTF-8"/>
+        <property name="fileEncodings" value="UTF-8"/>
+        <property name="cacheSeconds" value="0"/>
         <property name="fallbackToSystemLocale" value="false"/>
+        <property name="useCodeAsDefaultMessage" value="true"/>
         <property name="basenames">
             <list>
                 <value>/WEB-INF/messages/messages</value>
@@ -38,24 +57,11 @@
         </property>
     </bean>
 
-    <!--  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping -->
-    <bean id="handlerMapping"
-          class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
-        <property name="interceptors">
-            <list>
-                <ref bean="localeChangeInterceptor"/>
-            </list>
-        </property>
-    </bean>
-
-    <bean id="localeChangeInterceptor"
-          class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
-          p:paramName="language"/>
-
     <!-- Freemarker configuration -->
-    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-        <property name="templateLoaderPath" value="/WEB-INF/freemarker/" />
-        <property name="defaultEncoding" value="UTF-8" />
+    <bean id="freemarkerConfig"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/freemarker/"/>
+        <property name="defaultEncoding" value="UTF-8"/>
         <property name="freemarkerSettings">
             <props>
                 <prop key="auto_import">util/spring.ftl as spring</prop>
@@ -82,5 +88,4 @@
             </list>
         </property>
     </bean>
-
 </beans>
