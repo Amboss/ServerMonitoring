@@ -17,45 +17,21 @@
             http://www.springframework.org/schema/mvc
             http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
-    <!-- serving up static resources -->
-    <mvc:resources mapping="/static/**" location="/static/"/>
 
-    <!-- Configures Handler Interceptors -->
-    <bean id="localeChangeInterceptor"
-          class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
-          p:paramName="locale"/>
 
     <!-- locale Resolver configuration-->
     <bean id="localeResolver"
-          class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-        <!--<property name="defaultLocale" value="en_US"/>-->
-    </bean>
-
-    <bean id="handlerMapping"
-          class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
-        <property name="interceptors">
-            <list>
-                <ref bean="localeChangeInterceptor"/>
-            </list>
-        </property>
-    </bean>
+          class="org.springframework.web.servlet.i18n.CookieLocaleResolver"
+          p:cookieName="locale"
+          p:cookieMaxAge="31536000"/>
 
     <!-- Application Message Bundle -->
     <bean id="messageSource"
-          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="defaultEncoding" value="UTF-8"/>
-        <property name="fileEncodings" value="UTF-8"/>
-        <property name="cacheSeconds" value="0"/>
-        <property name="fallbackToSystemLocale" value="false"/>
-        <property name="useCodeAsDefaultMessage" value="true"/>
-        <property name="basenames">
-            <list>
-                <value>/WEB-INF/messages/messages</value>
-                <value>/WEB-INF/messages/labels</value>
-                <value>/WEB-INF/messages/include</value>
-            </list>
-        </property>
-    </bean>
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+          p:defaultEncoding="UTF-8"
+          p:fileEncodings="UTF-8"
+          p:fallbackToSystemLocale="true"
+          p:basenames="/WEB-INF/i18n/messages, /WEB-INF/i18n/labels, /WEB-INF/i18n/include"/>
 
     <!-- Freemarker configuration -->
     <bean id="freemarkerConfig"

@@ -19,8 +19,7 @@ import java.io.IOException;
  * - Changing Last login
  * - Admin handler redirect
  */
-public class CustomAuthenticationSuccessHandler
-        extends SavedRequestAwareAuthenticationSuccessHandler {
+public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
     protected static Logger userAccessLogger = Logger.getLogger(CustomAuthenticationSuccessHandler.class);
     private EmployeeService employeeService;

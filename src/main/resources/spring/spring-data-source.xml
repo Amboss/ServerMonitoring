@@ -20,16 +20,17 @@
     <tx:annotation-driven transaction-manager="txManager"/>
 
     <!-- TransactionManager settings -->
-    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <bean id="txManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <!-- DataSource configuration -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <bean id="dataSource"
+          class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url"
-                  value="jdbc:mysql://localhost:3306/server_monitoring_db?autoReconnect=true&amp;useUnicode=true&amp;
-                  characterEncoding=UTF-8&amp;characterSetResults=UTF-8"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/server_monitoring_db?autoReconnect=true&amp;
+            useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8"/>
         <property name="username" value="root"/>
         <property name="password" value=""/>
         <!--<property name="defaultTransactionIsolation" value="READ_UNCOMMITTED"/>-->

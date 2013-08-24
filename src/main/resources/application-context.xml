@@ -11,7 +11,8 @@
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-    <!-- Activates annotations scan -->
+    <!-- Activates annotations scan, declares support for all the general annotations
+        like @Autowired, @Resource, @Required, @PostConstruct-->
     <context:annotation-config/>
 
     <!-- Scans for annotated components in base-package -->
