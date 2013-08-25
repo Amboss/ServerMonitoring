@@ -16,7 +16,7 @@ import serverMonitoring.logic.service.AdminService;
 import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.ftl.RegistrSimplFormModel;
-import serverMonitoring.util.web.validations.ServerUpdateValidator;
+import serverMonitoring.util.web.validations.ServerRegistrationValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,7 +34,7 @@ public class ServerEditController extends AbstractAdminController {
 
     private List<String> activeMap = Arrays.asList("Active", "Not active");
 
-    private ServerUpdateValidator serverUpdateValidator;
+    private ServerRegistrationValidator serverRegistrationValidator;
 
     @Autowired
     private EmployeeService employeeService;
@@ -43,8 +43,8 @@ public class ServerEditController extends AbstractAdminController {
     private AdminService adminService;
 
     @Autowired
-    public void setValidator(ServerUpdateValidator serverUpdateValidator) {
-        this.serverUpdateValidator = serverUpdateValidator;
+    public void setValidator(ServerRegistrationValidator serverRegistrationValidator) {
+        this.serverRegistrationValidator = serverRegistrationValidator;
     }
 
     /**
@@ -96,7 +96,7 @@ public class ServerEditController extends AbstractAdminController {
         /**
          * form validation
          */
-        serverUpdateValidator.validate(serverEntity, errors);
+        serverRegistrationValidator.validate(serverEntity, errors);
 
         if (errors.hasErrors()) {
 

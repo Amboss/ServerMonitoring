@@ -76,4 +76,19 @@ public class CustomUtilsImpl implements CustomUtils {
         }
         return true;
     }
+
+    /**
+     * custom Regex Mutcher
+     */
+    @Override
+    public boolean getRegexMatch(Object value, String regex) {
+
+        String targetValue = value.toString();
+
+        Pattern textPattern = Pattern.compile(regex);
+
+        Matcher valueMatcher = textPattern.matcher(targetValue);
+
+        return valueMatcher.matches();
+    }
 }

@@ -18,7 +18,6 @@ public interface AnonymousService {
     /**
      * updating Employee password
      *
-     * TODO >>> NOT SURE IF THIS IS SAFE <<<
      */
     public void updateEmployeePassword(EmployeeEntity entity, String newPass);
 

@@ -27,4 +27,9 @@ public interface CustomUtils {
      * scan object to contain Digits
      */
     public boolean scanForDigits(Object value);
+
+    /**
+     * custom Regex Mutcher
+     */
+    public boolean getRegexMatch(Object value, String regex);
 }

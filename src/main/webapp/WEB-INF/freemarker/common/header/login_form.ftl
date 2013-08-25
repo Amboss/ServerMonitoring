@@ -45,7 +45,7 @@
 <#-- ==============================================================
      authorisation form
         - disappears if user successfully logged in
-        - TODO  why <@spring.message '' /> not working ???
+        - TODO  why <@spring.message '' /> for btn not working ???
      ============================================================== -->
 <@security.authorize ifNotGranted="ROLE_ADMIN, ROLE_USER">
     <form  class="navbar-form pull-right"

@@ -38,10 +38,6 @@ public class SettingsUpdateValidator implements Validator {
         return SystemSettingsModel.class.isAssignableFrom(clazz);
     }
 
-    /**
-     * @param target the object that is to be validated (can be {@code null})
-     * @param errors contextual state about the validation process (never {@code null})
-     */
     @Override
     public void validate(Object target, Errors errors) {
 

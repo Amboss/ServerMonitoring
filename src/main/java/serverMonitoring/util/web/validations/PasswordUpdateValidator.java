@@ -15,7 +15,6 @@ import serverMonitoring.model.ftl.PasswordUpdateModel;
 /**
  * Validator for change password page
  * - excluding current password if userName is "admin"
- * TODO fix error messages relations
  */
 @Component
 public class PasswordUpdateValidator implements Validator {
@@ -39,10 +38,6 @@ public class PasswordUpdateValidator implements Validator {
         return PasswordUpdateModel.class.isAssignableFrom(clazz);
     }
 
-    /**
-     * @param target the object that is to be validated (can be {@code null})
-     * @param errors contextual state about the validation process (never {@code null})
-     */
     @Override
     public void validate(Object target, Errors errors) {
 
@@ -86,6 +81,16 @@ public class PasswordUpdateValidator implements Validator {
                 "required.newPassword", "Field name is required.");
 
         /**
+         *  newPassword
+         *  check for newPassword length
+         */
+        if (updateModel.getNewPassword() != null) {
+            if (updateModel.getNewPassword().length() < 6 | updateModel.getNewPassword().length() > 16) {
+                errors.rejectValue("newPassword", "password.length");
+            }
+        }
+
+        /**
          *  confirmPassword
          *  check for empty confirmPassword field
          */
@@ -99,6 +104,7 @@ public class PasswordUpdateValidator implements Validator {
                 passwordValidatorLogger.error("wrong.password");
                 errors.rejectValue("confirmPassword", "wrong.password");
             }
+
         }
     }
 }
