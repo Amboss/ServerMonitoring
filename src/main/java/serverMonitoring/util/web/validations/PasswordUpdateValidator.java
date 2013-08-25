@@ -45,8 +45,7 @@ public class PasswordUpdateValidator implements Validator {
         String login = SecurityContextHolder.getContext().getAuthentication().getName();
 
         /**
-         *  currentPassword
-         *  excluding "admin" entity.
+         *  currentPassword excluding "admin" entity.
          */
         if (!login.equals("admin")) {
 
@@ -97,14 +96,13 @@ public class PasswordUpdateValidator implements Validator {
         if (updateModel.getNewPassword() != null) {
             ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword",
                     "required.confirmPassword", "Field name is required.");
-            /**
+            /*
              *  check if confirm password is correct
              */
             if (!updateModel.getNewPassword().equals(updateModel.getConfirmPassword())) {
                 passwordValidatorLogger.error("wrong.password");
                 errors.rejectValue("confirmPassword", "wrong.password");
             }
-
         }
     }
 }
