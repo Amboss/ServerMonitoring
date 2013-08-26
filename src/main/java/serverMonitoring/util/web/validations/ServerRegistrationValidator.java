@@ -23,11 +23,11 @@ public class ServerRegistrationValidator implements Validator {
 
     protected static Logger registrValidatorLogger = Logger.getLogger(ServerRegistrationValidator.class);
 
-    private static final String NAME_PATTERN = "(?=^.{1,128}$)(^(?:(?!\\d+\\.)[a-zA-Z0-9_\\-]{1,63}\\.?)+(?:[a-zA-Z]{2,})$)";
+    private final String NAME_PATTERN = "(?=^.{1,128}$)(^(?:(?!\\d+\\.)[a-zA-Z0-9_\\-]{1,63}\\.?)+(?:[a-zA-Z]{2,})$)";
 
-    private static final String ADDRESS_PATTERN = "(?=^.{1,128}$)(^(?:(?!\\d+\\.)[a-zA-Z0-9_\\-]{1,63}\\.?)+(?:[a-zA-Z]{2,})$)";
+    private final String ADDRESS_PATTERN = "(?=^.{1,128}$)(^(?:(?!\\d+\\.)[a-zA-Z0-9_\\-]{1,63}\\.?)+(?:[a-zA-Z]{2,})$)";
 
-    private static final String URL_PATTERN = "([a-z0-9]|[a-z0-9][a-z0-9\\-]{0,61}[a-z0-9])(\\.[a-z0-9]|[a-z0-9][a-z0-9\\-]{0,61}[a-z0-9])*\\.?";
+    private final String URL_PATTERN = "([a-z0-9]|[a-z0-9][a-z0-9\\-]{0,61}[a-z0-9])(\\.[a-z0-9]|[a-z0-9][a-z0-9\\-]{0,61}[a-z0-9])*\\.?";
 
     private AdminService adminService;
 
@@ -103,7 +103,7 @@ public class ServerRegistrationValidator implements Validator {
             /*
              *   check for server_name content
              */
-            if (util.getRegexMatch(entity.getServer_name(), NAME_PATTERN)) {
+            if (util.getPatternMatch(entity.getServer_name(), NAME_PATTERN)) {
                 errors.rejectValue("server_name", "server_name.content");
             }
         }
@@ -124,7 +124,7 @@ public class ServerRegistrationValidator implements Validator {
             /*
              *   check for address content
              */
-            if (util.getRegexMatch(entity.getServer_name(), ADDRESS_PATTERN)) {
+            if (util.getPatternMatch(entity.getServer_name(), ADDRESS_PATTERN)) {
                 errors.rejectValue("address", "address.content");
             }
         }
@@ -164,7 +164,7 @@ public class ServerRegistrationValidator implements Validator {
             /*
              *   check for url content
              */
-            if (util.getRegexMatch(entity.getUrl(), URL_PATTERN)) {
+            if (util.getPatternMatch(entity.getUrl(), URL_PATTERN)) {
                 errors.rejectValue("url", "url.content");
             }
         }

@@ -31,5 +31,5 @@ public interface CustomUtils {
     /**
      * custom Regex Mutcher
      */
-    public boolean getRegexMatch(Object value, String regex);
+    public boolean getPatternMatch(Object value, String regex);
 }

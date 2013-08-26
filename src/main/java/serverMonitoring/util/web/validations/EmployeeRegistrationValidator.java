@@ -18,11 +18,11 @@ public class EmployeeRegistrationValidator implements Validator {
 
     protected static Logger registrValidatorLogger = Logger.getLogger(EmployeeRegistrationValidator.class);
 
-    private static final String  RU_ENG_PATTERN = "^[&#1072;-&#1103;&#1040;-&#1071;A-Za-z- \\+]+[&#1072;-&#1103;&#1040;-&#1071;A-Za-z-]$;";
+    private final String RU_ENG_PATTERN = "([a-zA-Z\\x{0430}-\\x{044F}\\x{0410}-\\x{042F} .-]+)*";
 
-    private static final String ENG_PATTERN = "^[A-Za-z- \\+]+[A-Za-z-]$;";
+    private final String ENG_PATTERN = "^([a-zA-Z]+[_-])*";
 
-    private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$;";
+    private final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,}){0,64}$";
 
     private EmployeeService employeeService;
 
@@ -63,14 +63,14 @@ public class EmployeeRegistrationValidator implements Validator {
              *  check for employee_name length
              */
             if (entity.getEmployee_name().length() > 128) {
-                errors.reject("employee_name", "employee_name.length");
+                errors.rejectValue("employee_name", "employee_name.length");
             }
 
             /*
              *  check employee_name content
              */
-            if (util.getRegexMatch(entity.getEmployee_name(), RU_ENG_PATTERN)) {
-                errors.reject("employee_name", "employee_name.content");
+            if (util.getPatternMatch(entity.getEmployee_name(), RU_ENG_PATTERN)) {
+                errors.rejectValue("employee_name", "employee_name.content");
             }
         }
 
@@ -95,14 +95,14 @@ public class EmployeeRegistrationValidator implements Validator {
              *  check for login length
              */
             if (entity.getLogin().length() > 16) {
-                errors.reject("login", "login.length");
+                errors.rejectValue("login", "login.length");
             }
 
             /*
              *  check employee_name content
              */
-            if (util.getRegexMatch(entity.getLogin(), ENG_PATTERN)) {
-                errors.reject("employee_name", "employee_name.content");
+            if (util.getPatternMatch(entity.getLogin(), ENG_PATTERN)) {
+                errors.rejectValue("employee_name", "employee_name.content");
             }
         }
 
@@ -127,14 +127,14 @@ public class EmployeeRegistrationValidator implements Validator {
              *  check for E-mail length
              */
             if (entity.getEmail().length() > 64) {
-                errors.reject("email", "email.length");
+                errors.rejectValue("email", "email.length");
             }
 
             /*
              *  check employee_name content
              */
-            if (util.getRegexMatch(entity.getEmail(), EMAIL_PATTERN)) {
-                errors.reject("employee_name", "employee_name.content");
+            if (util.getPatternMatch(entity.getEmail(), EMAIL_PATTERN)) {
+                errors.rejectValue("email", "email.content");
             }
         }
     }

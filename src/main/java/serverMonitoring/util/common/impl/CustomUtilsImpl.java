@@ -78,17 +78,21 @@ public class CustomUtilsImpl implements CustomUtils {
     }
 
     /**
-     * custom Regex Mutcher
+     * custom Pattern matcher
+     * Validate username with regular expression
+     * @param value for validation
+     * @param regex contains pattern to match
+     * @return true valid value, false invalid value
      */
     @Override
-    public boolean getRegexMatch(Object value, String regex) {
+    public boolean getPatternMatch(final Object value, String regex) {
 
         String targetValue = value.toString();
 
-        Pattern textPattern = Pattern.compile(regex);
+        Pattern pattern = Pattern.compile(regex);
 
-        Matcher valueMatcher = textPattern.matcher(targetValue);
+        Matcher matcher = pattern.matcher(targetValue);
 
-        return valueMatcher.matches();
+        return matcher.matches();
     }
 }
