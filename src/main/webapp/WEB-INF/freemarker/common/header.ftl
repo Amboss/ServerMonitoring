@@ -14,7 +14,6 @@
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/bootstrap.css'/>"/>
         <link rel="stylesheet" type="text/css" href="<@spring.url '/static/css/DT_bootstrap.css'/>"/>
 
-
         <style type="text/css">
             body {
                 padding-top: 60px;
@@ -33,6 +32,8 @@
         </style>
 
         <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery-latest.js" ></script>
+        <script type="text/javascript" charset="utf-8" src="<@spring.url '/static/js/jquery.validate.js'/>" ></script>
+        <script type="text/javascript" charset="utf-8" src="<@spring.url '/static/js/jquery.i18n.properties.js'/>" ></script>
         <script type="text/javascript" charset="utf-8" src="<@spring.url '/static/js/dataTables.js'/>" ></script>
         <script type="text/javascript" charset="utf-8" src="<@spring.url '/static/js/DT_bootstrap.js'/>" ></script>
         <script type="text/javascript" charset="utf-8" src="<@spring.url '/static/js/bootstrap.js'/>" ></script>

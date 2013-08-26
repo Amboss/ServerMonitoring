@@ -24,8 +24,9 @@
                 background-image: url("<@spring.url'/static/img/header_default2.png'/>");
             }
         </style>
-        <script type="text/javascript" src="<@spring.url '/static/js/bootstrap.js'/>" ></script>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+        <script type="text/javascript" charset="utf-8" src="<@spring.url '/static/js/bootstrap.js'/>" ></script>
+        <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery-latest.js"></script>
+        <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery.validate.js" ></script>
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"; charset="utf-8">
         <meta name="description" content="Server Monitoring Service">
