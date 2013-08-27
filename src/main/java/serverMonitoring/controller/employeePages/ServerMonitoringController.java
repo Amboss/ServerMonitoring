@@ -14,7 +14,6 @@ import serverMonitoring.model.ServerEntity;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Handles and retrieves /WEB-INF/ftl/employee/monitoring.ftl
@@ -45,14 +44,14 @@ public class ServerMonitoringController extends AbstractEmployeeController {
          * redirecting by role
          */
         if (isUserIsAdmin(request)) {
-            List <ServerEntity> list = adminService.getAllServers();
+//            List <ServerEntity> list = adminService.getAllServers();
 
             /*
              * changing Server Last Check date
              */
-            for(ServerEntity entity: list) {
-                employeeService.changeServerLastCheck(entity.getServer_name());
-            }
+//            for(ServerEntity entity: list) {
+//                employeeService.changeServerLastCheck(entity.getServer_name());
+//            }
 
             return new ModelAndView("employee/monitoring", "availableServers",
                     adminService.getAllServers());

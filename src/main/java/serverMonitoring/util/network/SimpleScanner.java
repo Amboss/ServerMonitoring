@@ -1,15 +1,12 @@
 package serverMonitoring.util.network;
 
-import serverMonitoring.model.serverStateEnum.ServerState;
-
-import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
 /**
- * User: serge
+ * Interface for custom network scan
  */
-public interface CustomScanner {
+public interface SimpleScanner {
 
     /**
      * simple port scanner
@@ -21,9 +18,6 @@ public interface CustomScanner {
      */
     public Future<Boolean> doMultipleScan(final ExecutorService es, final String ip,
                                           final int port, final int timeout);
-    /**
-     * Sends GET request to @param ip: @param port with Apache HttpClient
-    */
-    public ServerState sendGetServerState(final String ip, final int port,
-                                          final int timeout) throws IOException;
+
+
 }

@@ -11,7 +11,7 @@ import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.ftl.SystemSettingsModel;
 import serverMonitoring.util.common.CustomUtils;
-import serverMonitoring.util.network.CustomScanner;
+import serverMonitoring.util.network.SimpleScanner;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class ServerRegistrationValidator implements Validator {
 
     private CustomUtils util;
 
-    private CustomScanner customScanner;
+    private SimpleScanner customScanner;
 
     @Autowired
     public void setUtil(CustomUtils util) {
@@ -55,7 +55,7 @@ public class ServerRegistrationValidator implements Validator {
     }
 
     @Autowired
-    public void setCustomScanner(CustomScanner customScanner) {
+    public void setCustomScanner(SimpleScanner customScanner) {
         this.customScanner = customScanner;
     }
 
