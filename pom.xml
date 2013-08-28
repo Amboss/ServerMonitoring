@@ -63,6 +63,7 @@
         <!-- Javax Mail properties -->
         <mail.version>1.4.7</mail.version>
 
+        <jackson.version>1.9.13</jackson.version>
     </properties>
 
     <dependencies>
@@ -290,20 +291,11 @@
             <version>${mail.version}</version>
         </dependency>
 
+        <!-- jackson dependencies -->
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.13</version>
-        </dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>6.0</version>
-        </dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>6.0</version>
+            <version>${jackson.version}</version>
         </dependency>
 
     </dependencies>

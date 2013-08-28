@@ -1,13 +1,15 @@
 package serverMonitoring.util.network.impl;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import serverMonitoring.logic.service.AdminService;
 import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.ftl.SystemSettingsModel;
 import serverMonitoring.model.serverStateEnum.ServerState;
-import serverMonitoring.util.network.ScheduledScanner;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -16,21 +18,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Sends GET request to @param ip: @param port with Apache HttpClient
+ * Sends GET request to @param ip: @param port with HttpURLConnection
  */
-public class ScheduledScannerImpl implements ScheduledScanner {
 
-    protected static Logger logger = Logger.getLogger(ScheduledScannerImpl.class);
+public class ScheduledScanner implements InitializingBean {
+
+    protected static Logger logger = Logger.getLogger(ScheduledScanner.class);
 
     protected final static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0";
-
-    private ScheduledFuture<?> myTask;
-
-    private ScheduledExecutorService scheduler;
 
     private static final int MYTHREADS = 30;
 
@@ -42,12 +40,11 @@ public class ScheduledScannerImpl implements ScheduledScanner {
 
     private EmployeeService employeeService;
 
-    public ScheduledScannerImpl() {
-
-    }
+    private ConfigurableApplicationContext context =
+            new ClassPathXmlApplicationContext(new String[]{"classpath:application-context.xml"});
 
     @Autowired
-    public void initAdminService(AdminService adminService) {
+    public void setAdminService(AdminService adminService) {
         this.adminService = adminService;
     }
 
@@ -56,17 +53,13 @@ public class ScheduledScannerImpl implements ScheduledScanner {
         this.employeeService = employeeService;
     }
 
-    private List<ServerEntity> listToScan = adminService.getAllServers();
-
-    private SystemSettingsModel settings = employeeService.getSettingsByName("default");
-
     /**
      * Sends GET request to @param ip: @param port with Apache HttpClient
      * <p/>
      * param ip      - must contain URL or IP of target server;
      * param port    - for server target Port;
      * param timeout - sets the time for request timeout before no respond;
-     *
+     * <p/>
      * ServerState enum:
      * OK - server is up and responding correctly
      * WARN  - server is running, but returns a response to the HTTP - code different than 200
@@ -74,12 +67,19 @@ public class ScheduledScannerImpl implements ScheduledScanner {
      * <p/>
      * - all other info: http://docs.oracle.com/javaee/6/api/javax/ws/rs/core/Response.Status.html
      */
-    public void executeScanner() {
+    @Override
+    public void afterPropertiesSet() throws Exception {
+
+        logger.debug("ServletContextListener started");
+
+        final List<ServerEntity> listToScan = adminService.getAllServers();
+
+        final SystemSettingsModel settings = employeeService.getSettingsByName("default");
 
         // setting task to execute;
-        scheduler = Executors.newScheduledThreadPool(MYTHREADS);
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(MYTHREADS);
 
-        myTask = scheduler.scheduleAtFixedRate(new Runnable() {
+        scheduler.scheduleAtFixedRate(new Runnable() {
 
             @Override
             public void run() {
@@ -132,6 +132,6 @@ public class ScheduledScannerImpl implements ScheduledScanner {
              * param period the period between successive executions;
              * param unit the time unit of the initialDelay and period parameters;
              */
-        }, 0, settings.getServerScanInterval(), TimeUnit.SECONDS);   // scheduler
+        }, 0, settings.getServerScanInterval(), TimeUnit.SECONDS);
     }   // executeScanner()
 }

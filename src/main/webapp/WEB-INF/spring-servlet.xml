@@ -14,7 +14,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
-    <!-- locale Resolver configuration-->
+<!--
+        =============================== locale Resolver configuration =================================
+-->
     <bean id="localeResolver"
           class="org.springframework.web.servlet.i18n.CookieLocaleResolver"
           p:cookieName="locale"
@@ -28,7 +30,9 @@
           p:fallbackToSystemLocale="true"
           p:basenames="/WEB-INF/i18n/messages, /WEB-INF/i18n/labels, /WEB-INF/i18n/include"/>
 
-    <!-- Freemarker configuration -->
+<!--
+        =============================== Freemarker configuration ======================================
+ -->
     <bean id="freemarkerConfig"
           class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="templateLoaderPath" value="/WEB-INF/freemarker/"/>
@@ -48,7 +52,9 @@
           p:exposeSpringMacroHelpers="true"
           p:contentType="text/html;charset=UTF-8"/>
 
-    <!-- jackson Message Converter configuration -->
+<!--
+        =============================== jackson Message Converter configuration ======================
+-->
     <bean id="jacksonMessageConverter"
           class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
 

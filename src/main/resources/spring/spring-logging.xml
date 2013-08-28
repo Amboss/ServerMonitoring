@@ -12,5 +12,5 @@
           class="org.springframework.beans.factory.config.MethodInvokingFactoryBean"
           p:targetClass="org.springframework.util.Log4jConfigurer"
           p:targetMethod="initLogging"
-          p:arguments="classpath:/log/log4j.properties"/>
+          p:arguments="classpath:log4j.properties"/>
 </beans>
