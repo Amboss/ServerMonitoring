@@ -30,6 +30,4 @@
     xmlns:jee="http://www.springframework.org/schema/jee"
     http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd-->
 
-    <bean id="scheduledScanner" class="serverMonitoring.util.network.impl.ScheduledScanner" />
-
 </beans>

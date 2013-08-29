@@ -3,8 +3,9 @@ package serverMonitoring.util.network.impl;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 import serverMonitoring.logic.service.AdminService;
 import serverMonitoring.logic.service.EmployeeService;
 import serverMonitoring.model.ServerEntity;
@@ -18,12 +19,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Sends GET request to @param ip: @param port with HttpURLConnection
  */
 
+@Component
 public class ScheduledScanner implements InitializingBean {
 
     protected static Logger logger = Logger.getLogger(ScheduledScanner.class);
@@ -39,9 +42,6 @@ public class ScheduledScanner implements InitializingBean {
     private AdminService adminService;
 
     private EmployeeService employeeService;
-
-    private ConfigurableApplicationContext context =
-            new ClassPathXmlApplicationContext(new String[]{"classpath:application-context.xml"});
 
     @Autowired
     public void setAdminService(AdminService adminService) {
@@ -72,6 +72,10 @@ public class ScheduledScanner implements InitializingBean {
 
         logger.debug("ServletContextListener started");
 
+        ApplicationContext context =
+                new ClassPathXmlApplicationContext(new String[]{"classpath:application-context.xml"});
+
+
         final List<ServerEntity> listToScan = adminService.getAllServers();
 
         final SystemSettingsModel settings = employeeService.getSettingsByName("default");
@@ -79,7 +83,7 @@ public class ScheduledScanner implements InitializingBean {
         // setting task to execute;
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(MYTHREADS);
 
-        scheduler.scheduleAtFixedRate(new Runnable() {
+        ScheduledFuture<?> myTask = scheduler.scheduleAtFixedRate(new Runnable() {
 
             @Override
             public void run() {
