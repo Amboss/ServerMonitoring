@@ -20,6 +20,7 @@ import serverMonitoring.util.common.CustomUtils;
 import serverMonitoring.util.web.validations.EmployeeUpdateValidatior;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 
@@ -129,8 +130,8 @@ public class EmployeeEditController extends AbstractAdminController {
                 /**
                  * invalidating employee session
                  */
-//                HttpSession session = request.getSession();
-//                session.invalidate();
+                HttpSession session = request.getSession();
+                session.invalidate();
             }
 
             /**

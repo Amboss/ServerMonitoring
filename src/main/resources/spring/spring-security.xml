@@ -40,6 +40,7 @@
                          logout-success-url="/auth/login"
                          logout-url="/j_spring_security_logout"/>
         <!--<security:session-management session-authentication-strategy-ref="sas"/>-->
+
     </security:http>
 
     <!-- Session authentication strategy -->

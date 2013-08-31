@@ -3,11 +3,9 @@ package serverMonitoring.util.network.impl;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
-import serverMonitoring.logic.service.AdminService;
-import serverMonitoring.logic.service.EmployeeService;
+import serverMonitoring.logic.DAO.ServerDao;
+import serverMonitoring.logic.DAO.SettingsDao;
 import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.ftl.SystemSettingsModel;
 import serverMonitoring.model.serverStateEnum.ServerState;
@@ -24,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Sends GET request to @param ip: @param port with HttpURLConnection
+ * TODO not working properly
  */
 
 @Component
@@ -39,18 +38,26 @@ public class ScheduledScanner implements InitializingBean {
 
     private Timestamp timestamp = new Timestamp(date.getTime());
 
-    private AdminService adminService;
+    private ServerDao serverDao;
 
-    private EmployeeService employeeService;
+    private SettingsDao settingsDao;
+
+    private ScheduledExecutorService scheduler;
+
+    private ScheduledFuture<?> myTask;
+
+    private List<ServerEntity> listToScan;
+
+    private SystemSettingsModel settings;
 
     @Autowired
-    public void setAdminService(AdminService adminService) {
-        this.adminService = adminService;
+    public void setSettingsDao(SettingsDao settingsDao) {
+        this.settingsDao = settingsDao;
     }
 
     @Autowired
-    public void setEmployeeService(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public void setServerDao(ServerDao serverDao) {
+        this.serverDao = serverDao;
     }
 
     /**
@@ -72,21 +79,17 @@ public class ScheduledScanner implements InitializingBean {
 
         logger.debug("ServletContextListener started");
 
-        ApplicationContext context =
-                new ClassPathXmlApplicationContext(new String[]{"classpath:application-context.xml"});
-
-
-        final List<ServerEntity> listToScan = adminService.getAllServers();
-
-        final SystemSettingsModel settings = employeeService.getSettingsByName("default");
+        settings = settingsDao.getSettingsByName("default");
 
         // setting task to execute;
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(MYTHREADS);
+        scheduler = Executors.newScheduledThreadPool(MYTHREADS);
 
-        ScheduledFuture<?> myTask = scheduler.scheduleAtFixedRate(new Runnable() {
+        myTask = scheduler.scheduleAtFixedRate(new Runnable() {
 
             @Override
             public void run() {
+
+                listToScan = serverDao.findAllServers();
 
                 // iterating list of all servers
                 for (ServerEntity serverEntity : listToScan) {
@@ -94,41 +97,46 @@ public class ScheduledScanner implements InitializingBean {
                     // check if state of server is active
                     if (serverEntity.getActive().equals(1)) {
 
-                        ServerState state;
-
                         try {
-                            // setting URL or IP eith Port of target address
-                            URL obj = new URL(serverEntity.getAddress() + ":" + serverEntity.getPort());
+                            // setting URL or IP with Port of target address
+                            URL obj = new URL(serverEntity.getUrl());
+
+                            ServerState state = null;
 
                             // establishing connection
                             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-                            con.setRequestMethod("GET");
 
-                            // setting timeout of response
-                            con.setConnectTimeout(settings.getTimeoutOfRespond());
+                            if (con != null) {
+                                con.setRequestMethod("GET");
 
-                            // add request header
-                            con.setRequestProperty("User-Agent", USER_AGENT);
+                                // setting timeout of response
+                                con.setConnectTimeout(settings.getTimeoutOfRespond());
 
-                            if (con.getResponseCode() == 200) {
-                                state = ServerState.OK;
-                            } else if (con.getResponseCode() == 500) {
-                                state = ServerState.FAIL;   // Internal Server Error
+                                // add request header
+                                con.setRequestProperty("User-Agent", USER_AGENT);
+
+                                if (con.getResponseCode() == 200) {
+                                    state = ServerState.OK;
+                                } else if (con.getResponseCode() == 500) {
+                                    state = ServerState.FAIL;   // Internal Server Error
+                                } else {
+                                    state = ServerState.WARN;   // BAD_REQUEST or other conflict
+                                }
+
                             } else {
-                                state = ServerState.WARN;   // BAD_REQUEST or other conflict
+                                state = ServerState.FAIL;
                             }
+                            // saving response from server
+                            serverEntity.setState(state);
+                            serverEntity.setResponse(state.toString());
+                            serverEntity.setLastCheck(timestamp);
+                            serverDao.updateServer(serverEntity);
                         } catch (Exception e) {
-                            state = ServerState.FAIL;
+                            logger.debug("some thing wrong");
                         }
-
-                        // saving response from server
-                        serverEntity.setState(state);
-                        serverEntity.setResponse(state.toString());
-                        serverEntity.setLastCheck(timestamp);
-                        adminService.updateServer(serverEntity);
                     }   // if
-                }   // run()
-            }   // for
+                }   // for
+            }   // run()
             /*
              * Scheduling Fixed Rate of scan
              *
