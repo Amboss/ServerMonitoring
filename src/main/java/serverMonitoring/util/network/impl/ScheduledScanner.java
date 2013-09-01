@@ -10,6 +10,8 @@ import serverMonitoring.model.ServerEntity;
 import serverMonitoring.model.ftl.SystemSettingsModel;
 import serverMonitoring.model.serverStateEnum.ServerState;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Timestamp;
@@ -32,7 +34,7 @@ public class ScheduledScanner implements InitializingBean {
 
     protected final static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0";
 
-    private static final int MYTHREADS = 30;
+    private static final int MYTHREADS = 10;
 
     private Date date = new Date();
 
@@ -81,69 +83,74 @@ public class ScheduledScanner implements InitializingBean {
 
         settings = settingsDao.getSettingsByName("default");
 
-        // setting task to execute;
+        listToScan = serverDao.findAllServers();
+
         scheduler = Executors.newScheduledThreadPool(MYTHREADS);
 
-        myTask = scheduler.scheduleAtFixedRate(new Runnable() {
+        // iterating list of all servers
+        for (final ServerEntity serverEntity : listToScan) {
 
-            @Override
-            public void run() {
+            // check if state of server is active
+            if (serverEntity.getActive().equals(1)) {
 
-                listToScan = serverDao.findAllServers();
+                // setting task to execute;
+                myTask = scheduler.scheduleAtFixedRate(new Runnable() {
 
-                // iterating list of all servers
-                for (ServerEntity serverEntity : listToScan) {
-
-                    // check if state of server is active
-                    if (serverEntity.getActive().equals(1)) {
+                    @Override
+                    public void run() {
 
                         try {
-                            // setting URL or IP with Port of target address
-                            URL obj = new URL(serverEntity.getUrl());
-
-                            ServerState state = null;
-
+                           /*
+                             * constructor for URL:
+                             * - String protocol;
+                             * - String host;
+                             * - int proxy port;
+                             * - String, the original URL, specified in the file parameter
+                             */
+                            URL urlObject = new URL(serverEntity.getAddress());
                             // establishing connection
-                            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+                            HttpURLConnection connection = (HttpURLConnection) urlObject.openConnection();
+                            connection.setRequestMethod("GET");
+                            connection.setReadTimeout(5000);
+                            connection.setRequestProperty("User-Agent", USER_AGENT);
+                            connection.setConnectTimeout(settings.getTimeoutOfRespond());
 
-                            if (con != null) {
-                                con.setRequestMethod("GET");
-
-                                // setting timeout of response
-                                con.setConnectTimeout(settings.getTimeoutOfRespond());
-
-                                // add request header
-                                con.setRequestProperty("User-Agent", USER_AGENT);
-
-                                if (con.getResponseCode() == 200) {
-                                    state = ServerState.OK;
-                                } else if (con.getResponseCode() == 500) {
-                                    state = ServerState.FAIL;   // Internal Server Error
-                                } else {
-                                    state = ServerState.WARN;   // BAD_REQUEST or other conflict
-                                }
-
-                            } else {
+                            ServerState state;
+                            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                                state = ServerState.OK;
+                            } else if (connection.getResponseCode() == HttpURLConnection.HTTP_INTERNAL_ERROR) {
                                 state = ServerState.FAIL;
+                            } else {
+                                state = ServerState.WARN;   // BAD_REQUEST or other conflict
                             }
+
+                            // formation of response
+                            String temp = null;
+                            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                            StringBuilder response = new StringBuilder();
+                            while ((temp = reader.readLine()) != null) {
+                                response.append(temp).append(" ");
+                            }
+                            reader.close();
+                            connection.disconnect();
+
                             // saving response from server
                             serverEntity.setState(state);
-                            serverEntity.setResponse(state.toString());
+                            serverEntity.setResponse(response.toString());
                             serverEntity.setLastCheck(timestamp);
                             serverDao.updateServer(serverEntity);
                         } catch (Exception e) {
-                            logger.debug("some thing wrong");
+                            // BAD_REQUEST or other conflict
                         }
-                    }   // if
-                }   // for
-            }   // run()
-            /*
-             * Scheduling Fixed Rate of scan
-             *
-             * param initialDelay the time to delay first execution;
-             * param period the period between successive executions;
-             * param unit the time unit of the initialDelay and period parameters;
-             */
-        }, 0, settings.getServerScanInterval(), TimeUnit.SECONDS);
-    }   // executeScanner()
+                    }   // run()
+                /*
+                 * Scheduling Fixed Rate of scan:
+                 * - int initialDelay, the time to delay first execution;
+                 * - int period between successive executions;
+                 * - TimeUnit of the initialDelay and period parameters;
+                 */
+                }, 0, settings.getServerScanInterval(), TimeUnit.SECONDS);
+            }   // if server is active
+        }   // for
+    }   // afterPropertiesSet()
 }
