@@ -55,7 +55,7 @@ public class AdminServiceImpl implements AdminService {
      * updating Employee
      */
     @Override
-    public void updateEmployee(EmployeeEntity entity) {
+    public synchronized void updateEmployee(EmployeeEntity entity) {
         adminLogger.debug("updating Employee with id: " + entity.getId());
         employeeDao.update(entity);
     }
@@ -75,7 +75,7 @@ public class AdminServiceImpl implements AdminService {
      * deleting Employee
      */
     @Override
-    public void deleteEmployee(Long entity_id) {
+    public synchronized void deleteEmployee(Long entity_id) {
         adminLogger.debug("deleting Employee with id: " + Long.toString(entity_id));
         employeeDao.delete(entity_id);
     }
@@ -93,7 +93,7 @@ public class AdminServiceImpl implements AdminService {
      * updating Server
      */
     @Override
-    public void updateServer(ServerEntity entity) {
+    public synchronized void updateServer(ServerEntity entity) {
         adminLogger.debug("updating Server with id: " + entity.getId());
         serverDao.updateServer(entity);
     }
@@ -111,7 +111,7 @@ public class AdminServiceImpl implements AdminService {
      * deleting Server
      */
     @Override
-    public void deleteServer(Long id) {
+    public synchronized void deleteServer(Long id) {
         adminLogger.debug("deleting Server with id: " + id);
         serverDao.deleteServer(id);
     }
@@ -121,7 +121,7 @@ public class AdminServiceImpl implements AdminService {
      * @param model must be SystemSettingsModel type
      */
     @Override
-    public void updateSettings(SystemSettingsModel model) {
+    public synchronized void updateSettings(SystemSettingsModel model) {
         adminLogger.debug("updating Settings");
         settingsDao.updateSettings(model);
     }
@@ -137,7 +137,7 @@ public class AdminServiceImpl implements AdminService {
     /**
      * Deleting Settings entity
      */
-    public void deleteSettings(String settings_name) {
+    public synchronized void deleteSettings(String settings_name) {
         adminLogger.debug("Deleting new settings");
         settingsDao.deleteSettings(settings_name);
     }

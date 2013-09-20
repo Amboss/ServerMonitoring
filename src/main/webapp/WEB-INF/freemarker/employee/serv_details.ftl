@@ -19,8 +19,9 @@
 
 <@com.page title="${pageTitle}">
 
-    <#assign reloadTime = 5000 />
-    <#include "/util/js/reloadTable.ftl"/>
+    <#-- ===================== JQuery functions ========================= -->
+        <#assign reloadTime = tableReloadTime />
+        <#include "/util/js/reloadTable.ftl"/>
 
     <div class="hero-unit">
         <h1>${pageTitle}</h1>

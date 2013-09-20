@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import serverMonitoring.logic.service.EmployeeService;
-import serverMonitoring.model.ServerEntity;
 
 /**
  * Handles and retrieves /WEB-INF/ftl/employee/serv_details.ftl
@@ -34,8 +33,8 @@ public class ServerDetailsController extends AbstractEmployeeController {
             /*
              * changing Server Last Check date
              */
-            ServerEntity entity = new ServerEntity();
-            employeeService.changeServerLastCheck(serverName);
+//            ServerEntity entity = new ServerEntity();
+//            employeeService.changeServerLastCheck(serverName);
 
             return new ModelAndView("employee/serv_details", "server",
                     employeeService.getServerByName(serverName));
