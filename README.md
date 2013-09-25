@@ -36,7 +36,7 @@
 
 <h2>Project URL: /ServerMonitoring/index.html</h2>
 
-<span>Project is designated for multiple servers scan made by employees, with can login to assigned
+<span>Project is designated for multiple servers scan made by employees, which can login to assigned
  for them working place. Administration part of the project represented by employee managing module,
  server managing module and assignment page, setting page. Application have page with password recovery,
  </span>
