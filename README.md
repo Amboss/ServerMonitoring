@@ -12,6 +12,7 @@
     <li>Spring Framework (Core)</li>
     <li>Spring Framework (MVC)</li>
     <li>Spring Framework (Security)</li>
+    <li>Spring(i18) localisation</li>
     <li>JDBC</li>
     <li>MySQL</li>
     <li>JNDI</li>
